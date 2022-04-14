@@ -1,0 +1,272 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<style>
+ .aluoooos{
+     font-size: 13px!important;
+     font-weight: 300;
+     top: -32px !important;
+        } 
+ .profile_photo{
+        height: 150px;
+        width: 150px;
+        background-color: #999;
+        border-radius: 50%;
+    }
+    .profile_photo div{
+        height: 150px;
+        width: 150px;
+        border-radius: 50%;
+        background-position: top center;
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+    .form-select {
+    display: block;
+    width: 100%;
+    padding: .375rem 2.25rem .375rem .75rem;
+    -moz-padding-start: calc(0.75rem - 3px);
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #fff;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right .75rem center;
+    background-size: 16px 12px;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+option {
+    font-weight: normal;
+    display: block;
+    white-space: nowrap;
+    min-height: 1.2em;
+    padding: 0px 2px 1px;
+}
+
+#profile_photo{
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.profile_photoss{
+    transition: 1s;
+    background-color: #dfb547;
+ 
+}
+.ana{
+ 
+    animation: .4s aaaaaa forwards;
+    
+}
+.bana{
+    animation: .4s bbbbb forwards;
+}
+@keyframes aaaaaa{
+    0%{
+        height: 0%;
+        width: 0%;
+    }
+    100%{
+       top: 0;
+       left: 0;
+       height: 100%;
+       width: 100%;
+    }
+}
+@keyframes bbbbb{
+    0%{
+        height: 100%;
+        width: 100%;
+    }
+    100%{
+       height: 0%;
+       width: 0%;
+       
+    }
+}
+#profle_file{
+    display: none;
+}
+
+.adress-option{
+    width: 800px;
+    height: 100px;
+    padding: 20px 50px;
+    margin: auto;
+}
+.adress-option ul li{
+    font-size: 20px;
+    display: inline-block;
+    padding: 10px 30px;
+   cursor: pointer;
+   text-align: center;
+}
+.adress-option ul li.active{
+    color: #4c8e00;
+}
+.adress-option ul li.active div{
+    width: 150px;
+    height: 3.5px;
+    background-color: #67c100;
+    margin-top: 7px;
+    border-radius: 40%;
+}
+.adress-option ul li div{
+    width: 150px;
+    height: 3.5px;
+    margin-top: 7px;
+    border-radius: 40%;
+}
+
+.loading-choise-adress{
+    margin-top: 90px;
+    height: 100px;
+    width: 100%;
+}
+.loading-choise-adress div:nth-child(1){
+    background-color: red;
+}
+.loading-choise-adress div:nth-child(2){
+    background-color: green;
+}
+.loading-choise-adress div:nth-child(3){
+    background-color: blue;
+}
+.ball_animation{
+    height:9px ;
+    width: 8px;
+    animation: ball_animate 2s infinite ;
+    display: inline-block;
+    border-radius: 50%;
+}
+ .ball_animation:nth-child(1){
+    animation-delay: .9s;
+}
+ .ball_animation:nth-child(2){
+    animation-delay: .7s;
+}
+ .ball_animation:nth-child(3){
+    animation-delay: 0.1s;
+}
+ .ball_animation:nth-child(4){
+    animation-delay: 0.0s;
+}
+@keyframes ball_animate{
+    0%{
+        transform: translateX(0%);
+    }
+    100%{
+        transform: translateX(1600px);
+    }
+}
+
+                         @media screen and (max-width: 1000px) {
+                                            .adress-option {
+                                                width: 535px;
+                                            }
+                                        }
+                                        @media screen and (max-width: 551px) {
+                                            .adress-option {
+                                                width: 300px;
+                                                margin-bottom: 90px;
+                                            }
+                                        }
+</style>
+                                <div class="adress-option">
+                                    <ul>
+                                        <li kisslu="localAdress">Local Adress <div></div></li>
+                                        <li kisslu="map" >Use Google Map <div></div></li>
+                                    </ul>
+                                </div>
+                                <script>
+                                    var adress_loading_html = `
+                                    <div class="loading-choise-adress">
+                                        <div class="ball_animation"></div>
+                                        <div class="ball_animation"></div>
+                                        <div class="ball_animation"></div>
+                                        <div class="ball_animation"></div>
+                                    </div>
+                                    `
+                                       $(".adress-option li").click((e)=>{
+                                        const adress_target = $('#adress_choise_show')
+                                        if(!e.target.classList[0]){
+                                            $(".adress-option li").removeClass("active")
+                                            e.target.classList.add("active")
+                                            const kisslu = e.target.getAttribute("kisslu")
+                                            console.log(kisslu);
+                                            if(sessionStorage.getItem(`${kisslu}_html`)){
+                                                adress_target.html(sessionStorage.getItem(`${kisslu}_html`))
+                                            }else{
+                                                $.ajax({
+                                                    method:"GET",
+                                                    url:`/customer/api/get/adress_html/${kisslu}/`,
+                                                    beforeSend:()=>{
+                                                        adress_target.empty()
+                                                        adress_target.html(adress_loading_html)
+                                                    },
+                                                    success:(data)=>{
+                                                        console.log(data);
+                                                        adress_target.html(data.html)
+                                                        sessionStorage.clear()
+                                                        sessionStorage.setItem(`${kisslu}_html`,data.html)
+                                                        setSessionprodModal();
+                                                    },
+                                                    error:(err)=>{
+                                                        adress_target.html("Network connection problem")
+                                                    }
+                                                })
+                                            }
+                                        }
+                                    })
+                                    
+                                    {{is_geo}}?$("li[kisslu='map']").click():$("li[kisslu='localAdress']").click()
+                                    $("select[name='gender']").change((e)=>{
+                                        $.ajax({
+                                            method:"POST",
+                                            url:"{{POST_API}}?gender=True",
+                                            data:{
+                                                "gender":e.target.value,
+                                                'csrfmiddlewaretoken': csrfmiddlewaretoken,
+                                            },
+                                            success:(sucData)=>{
+                                                console.log(sucData);
+                                            }
+                                        })
+                                    })
+                                    $("input[name='user-name']").blur((e)=>{
+                                        console.log(e.target.value);
+                                        $.ajax({
+                                            method:"POST",
+                                            url:"{{POST_API}}?profile_name=True",
+                                            data:{
+                                                "name":e.target.value,
+                                                'csrfmiddlewaretoken': csrfmiddlewaretoken,
+                                            },
+                                            success:(sucData)=>{
+                                                console.log(sucData);
+                                                const error_div = e.target.parentNode.querySelector(".input-error")
+                                                if(error_div.textContent){
+                                                    error_div.textContent = ""
+                                                }
+                                                if(sucData.state == "faild"){
+                                                    error_div.textContent = sucData.data
+                                                    error_div.setAttribute("style","display:block;")
+                                                    
+                                                }else if(sucData.state == "successful"){
+                                                    sessionStorage.clear();
+                                                    $(".oneWord").text(e.target.value)
+                                                    setSessionprodModal();
+                                                    $('input[name="user-name"].has-value').val(e.target.value)
+                                                }
+                                            }
+                                        })
+                                    })
+                                    
+                                </script>

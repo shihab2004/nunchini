@@ -1,0 +1,302 @@
+{% extends 'admin/home/base.html' %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/adminc8.css' %}">
+{% endblock css %}
+
+{% block body %}
+
+<div id="frame">
+    <div id="sidepanel">
+        <div id="profile">
+            <div class="wrap">
+                <img id="profile-img" src="{{img}}" class="online" alt="{{user_name}}" />
+                <p>{{user_name}}</p>
+                <i class="fa fa-chevron-down expand-button" aria-hidden="true"></i>
+                <div id="status-options">
+                    <ul>
+                        <li id="status-online" class="active"><span class="status-circle"></span> <p>Online</p></li>
+                        <li id="status-away"><span class="status-circle"></span> <p>Away</p></li>
+                        <li id="status-busy"><span class="status-circle"></span> <p>Busy</p></li>
+                        <li id="status-offline"><span class="status-circle"></span> <p>Offline</p></li>
+                    </ul>
+                </div>
+                <div id="expanded">
+                    <label for="twitter"><i class="fa fa-facebook fa-fw" aria-hidden="true"></i></label>
+                    <input name="twitter" type="text" value="mikeross" />
+                    <label for="twitter"><i class="fa fa-twitter fa-fw" aria-hidden="true"></i></label>
+                    <input name="twitter" type="text" value="ross81" />
+                    <label for="twitter"><i class="fa fa-instagram fa-fw" aria-hidden="true"></i></label>
+                    <input name="twitter" type="text" value="mike.ross" />
+                </div>
+            </div>
+        </div>
+        <div id="search">
+            <label for=""><i class="fa fa-search" aria-hidden="true"></i></label>
+            <input type="text" placeholder="Search contacts..." />
+        </div>
+        <div id="contacts">
+            <ul>
+
+
+            </ul>
+               
+        </div>
+        <div id="bottom-bar">
+            <button id="addcontact"><i class="fa fa-user-plus fa-fw" aria-hidden="true"></i> <span>Add contact</span></button>
+            <button id="settings"><i class="fa fa-cog fa-fw" aria-hidden="true"></i> <span>Settings</span></button>
+        </div>
+    </div>
+    <div class="content">
+        <div class="contact-profile">
+            <img src="" alt="" />
+            <p></p>
+            <div class="social-media">
+                <i class="fa fa-facebook" aria-hidden="true"></i>
+                <i class="fa fa-twitter" aria-hidden="true"></i>
+                 <i class="fa fa-instagram" aria-hidden="true"></i>
+            </div>
+        </div>
+        <div class="messages">
+            <ul>
+
+             
+
+              
+            </ul>
+        </div>
+        <div class="message-input">
+            <div class="wrap">
+            <input type="text" placeholder="Write your message..." />
+            <i class="fa fa-paperclip attachment" aria-hidden="true"></i>
+            <button class="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock body %}
+
+{% block js %}
+<script>$(".messages").animate({ scrollTop: $(document).height() }, "fast");
+    
+    $("#profile-img").click(function() {
+        $("#status-options").toggleClass("active");
+    });
+    
+    $(".expand-button").click(function() {
+    $("#profile").toggleClass("expanded");
+        $("#contacts").toggleClass("expanded");
+    });
+    
+    $("#status-options ul li").click(function() {
+        $("#profile-img").removeClass();
+        $("#status-online").removeClass("active");
+        $("#status-away").removeClass("active");
+        $("#status-busy").removeClass("active");
+        $("#status-offline").removeClass("active");
+        $(this).addClass("active");
+        
+        if($("#status-online").hasClass("active")) {
+            $("#profile-img").addClass("online");
+        } else if ($("#status-away").hasClass("active")) {
+            $("#profile-img").addClass("away");
+        } else if ($("#status-busy").hasClass("active")) {
+            $("#profile-img").addClass("busy");
+        } else if ($("#status-offline").hasClass("active")) {
+            $("#profile-img").addClass("offline");
+        } else {
+            $("#profile-img").removeClass();
+        };
+        
+        $("#status-options").removeClass("active");
+    });
+    
+    function newMessage(message) {
+        
+        $('<li class="replies"><img src="{{img}}" alt="" /><p>' + message + '</p></li>').appendTo($('.messages ul'));
+        $('.message-input input').val(null);
+        $('.contact.active .preview').html('<span>You: </span>' + message);
+        $(".messages").animate({ scrollTop: $('.messages').prop("scrollHeight") }, "fast");
+    };
+    
+    // $('.submit').click(function() {
+    // newMessage();
+    // });
+    
+    // $(window).on('keydown', function(e) {
+    // if (e.which == 13) {
+    //     newMessage();
+    //     return false;
+    // }
+    // });
+    //# sourceURL=pen.js
+</script>
+
+
+
+
+
+<script>
+
+    class render_c8{
+        constructor(obj){
+            this.profile_pic = obj.photo;
+            this.name = obj.name;
+            this.message = obj.message;
+            this.ul = $('.messages ul');
+            console.log(obj);
+        }
+        render_message(val,imga=this.profile_pic){
+            const html = `
+                <li class="${val}">
+                    <img src="${imga}" alt="${this.name}" />
+                    <p>${this.message.message}</p>
+                </li>
+            `
+            this.ul.append(html)
+        }
+
+    }
+
+    
+    class Socket{
+        constructor(roomId){
+            this.roomName = roomId
+            this.chatSocket = new WebSocket(
+                'ws://' +
+                window.location.host +
+                '/ws/chat/' +
+                this.roomName +
+                '/'
+            );
+
+        }
+
+        listen_socket(){
+            this.chatSocket.onmessage = (e) => {
+                const data2 = JSON.parse(e.data);
+                this.action(data2)
+                console.log(data2);
+               if($('.content').attr('c8_id') == data2.client.pk){
+                const conf = {
+                    name:data2.client.name,
+                    photo:data2.client.img,
+                    message:{
+                        message:data2.message
+                    }
+                }
+                const c8obj = new render_c8(conf);
+                c8obj.render_message('replies');
+                $(".messages").animate({ scrollTop: $('.messages').prop("scrollHeight") }, "fast");
+               }
+            }
+        }
+
+        send_message(message){
+            this.chatSocket.send(JSON.stringify({
+                "message": message
+            }))
+        }
+        action(obj){
+            if(obj.client.pk == '{{chat_room}}'){
+                return false;
+            }
+            $(`li[c_id='${obj.client.pk}']`).remove()
+            $('#contacts ul').prepend(`
+                <li c_id='${obj.client.pk}' class="contact">
+                    <div class="wrap">
+                        <span class="contact-status online"></span>
+                        <img src="${obj.client.img}" alt="${obj.client.name}" />
+                        <div class="meta">
+                            <p class="name">${obj.client.name}</p>
+                            <p class="preview">${obj.message}</p>
+                        </div>
+                    </div>
+                </li>
+            `)
+
+        }
+    
+        listen_submit_event(){
+            $('body').on('click',`.submit[c8_id="${this.roomName}"]`,e =>{
+                const message = $(".message-input input").val();
+                if($.trim(message) == '') {
+                    return false;
+                }
+                newMessage(message);
+                this.send_message(message)
+            })
+        }
+
+    }
+
+
+    $.ajax({
+        type:"GET",
+        url:'/admin/chat/?get_active_all_member=True',
+        success:(data)=>{
+            console.log(data.data);
+            data.data.forEach(element => {
+                const c8Socket = new Socket(element.client_id)
+                c8Socket.listen_socket()
+                c8Socket.listen_submit_event()
+            });
+        }
+    })
+    
+
+    $('body').on('click','#contacts li',(e)=>{
+        const c_id = e.currentTarget.getAttribute('c_id')
+        $.ajax({
+            type:"GET",
+            url:`/admin/chat/?get_member_c8=${c_id}`,
+            success:data =>{
+                if(data.status === "successful"){
+                    const conf = {
+                        'name':e.currentTarget.querySelector('.name').textContent,
+                        'photo':e.currentTarget.querySelector('img').src
+                    }
+                    $('.contact-profile img').attr('src',conf.photo);
+                    $('.contact-profile p').text(conf.name);
+                    $('.content').attr('c8_id',c_id)
+                    $('.submit').attr('c8_id',c_id)
+                    $('.messages ul').empty()
+                    data.data.forEach(message =>{
+                        conf.message = message
+                        c8Obj = new render_c8(conf)
+                        if(c_id == message.profile_pk){
+                            c8Obj.render_message("sent")
+                        }else{
+                            c8Obj.render_message("replies","{{img}}")
+
+                        }
+
+                    })
+
+                 $(".messages").animate({ scrollTop: $('.messages').prop("scrollHeight") }, "fast");
+
+                }
+            }
+        })
+    })
+    
+
+   //waithing for incoming user connection
+   const waitForCostomer = new WebSocket(
+                'ws://' +
+                window.location.host +
+                '/ws/alert/'
+   )
+   waitForCostomer.onmessage = e =>{
+       const data = JSON.parse(e.data)
+       
+       if(data.alert == true){
+           console.log(data);
+            const c8 = new Socket(data.id)
+            c8.listen_socket()
+            c8.listen_submit_event()
+       }
+   }
+
+</script>
+{% endblock js %}

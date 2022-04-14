@@ -1,0 +1,94 @@
+{% extends 'admin/home/base.html' %}
+{% load static %}
+
+{% load jin %}
+
+{% block body %}
+<div class="content-wrapper">
+    <div class="page-header">
+      <h3 class="page-title">
+        {{root.Name}} Business
+      </h3>
+    </div>
+    <div class="row">
+
+        <div class="col-md-12 grid-margin stretch-card">
+
+            <div class="card">
+                <div class="card-body">
+                  
+                  
+                  <div class="d-flex justify-content-between mb-4"><h4 class="card-title">Our Total Clients ({{obj.count}})</h4> </div>
+
+
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="table-responsive">
+                        <div id="order-listing_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4 no-footer">
+<div class="row"><div class="col-sm-12">
+                                    <table id="order-listing" class="table dataTable no-footer" role="grid"
+                                     aria-describedby="order-listing_info">
+
+
+                          <thead>
+                            <tr role="row">
+                                <th class="sorting_asc" style="width: 47.0312px;">Image</th>
+                                <th class="sorting" style="width: 84.75px;">Name</th>
+                            </tr>
+                            </thead>
+                          <tbody>
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            {% for m in obj %}
+                            <tr role="row" class="odd">
+                                <td><img src="{% if m.image %}{{m.image.url}}{% else %}/media/user.jpg{% endif %}" alt=""> </td>
+
+                                <td>{{m.name}}</td>
+
+
+                               
+                            </tr>
+                            {% endfor %}
+
+
+
+
+
+
+
+                         
+
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        </div>
+        
+      </div>
+   
+    </div>
+    </div>
+    </div>
+    </div>
+    
+{% endblock body %}
+
+{% block js %}
+<script src="{% static 'admin/home/js/data-table.js'%}"></script>
+ <script>
+  $(".mu")[8].classList.add("active");
+  const mu =$("a[href='/admin/business/client/']");
+  mu.closest(".collapse").addClass("show")
+  mu.addClass("active")
+ </script>
+{% endblock js %}

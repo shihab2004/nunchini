@@ -1,0 +1,111 @@
+
+                                        <script>
+                                        // If you're adding a number of markers, you may want to drop them on the map
+                                        // consecutively rather than all at once. This example shows how to use
+                                        // window.setTimeout() to space your markers' animation.
+
+                                           function address_update_ajsx(map,text_adress){
+                                                if(map){
+                                                    $.ajax({
+                                                        method:"POST",
+                                                        url:"/customer/api/post/?map_update=true",
+                                                        data:{
+                                                            "map":JSON.stringify(map),
+                                                            'csrfmiddlewaretoken': csrfmiddlewaretoken,
+                                                        },
+                                                        success:(data)=>{
+                                                            console.log(data)
+                                                            if(data.update === "successful"){
+                                                                $("#notification_message").html("")
+                                                            }
+                                                        },
+                                                        error:(err)=>{
+                                                            console.log(err)
+                                                        }
+                                                    })
+                                                }else if(text_adress){
+                                                    console.log("ADRESS")
+                                                }
+                                                }
+
+                                        var neighborhoods = { lat: {{get_lat}}, lng: {{get_lng}} };
+
+                                        
+                                        var markers = [];
+                                        var map;
+
+                                        function initMap() {
+                                            map = new google.maps.Map(document.getElementById("map"), {
+                                            zoom: 12,
+                                            center: { lat: {{get_lat}}, lng: {{get_lng}} },
+                                            });
+                                        }
+
+                                        function drop() {
+                                            $("#update_location").removeClass("btn-dark")
+                                            $("#drop").addClass("btn-dark")
+                                            clearMarkers();
+
+                                           
+                                            addMarkerWithTimeout(neighborhoods, 200);
+                                            
+                                        }
+
+                                        function addMarkerWithTimeout(position, timeout) {
+                                            window.setTimeout(() => {
+                                            markers.push(
+                                                new google.maps.Marker({
+                                                position: position,
+                                                map,
+                                                animation: google.maps.Animation.DROP,
+                                                })
+                                            );
+                                            }, timeout);
+                                        }
+
+                                        function clearMarkers() {
+                                            for (let i = 0; i < markers.length; i++) {
+                                            markers[i].setMap(null);
+                                            }
+                                            markers = [];
+                                        }
+
+
+
+
+                                             // Customizing google map api
+                                    
+                                                    function getLocation(e) {
+                                                        $("#update_location").addClass("btn-dark")
+                                                        $("#drop").removeClass("btn-dark")
+                                                    if (navigator.geolocation) {
+                                                        navigator.geolocation.getCurrentPosition(showPosition);
+                                                    } else { 
+                                                        alert("Geolocation is not supported by this browser.");
+                                                    }
+                                                    }
+                                                    
+                                    
+                                                    function showPosition(position) {
+                                                        const latitude =  position.coords.latitude
+                                                        const longitude =  position.coords.longitude
+                                                        const cr_location = {
+                                                            lat: position.coords.latitude,
+                                                            lng: position.coords.longitude 
+                                                        }
+                                                        neighborhoods = cr_location
+                                                        clearMarkers()
+                                                        
+                                                        address_update_ajsx(cr_location)
+                                    
+                                                        map = new google.maps.Map(document.getElementById("map"), {
+                                                                                    zoom: 12,
+                                                                                    center: cr_location,
+                                                                                    });
+                                                        addMarkerWithTimeout(cr_location,  200);
+                                                        if(!$("#floating-panel #drop").length){
+                                                            $("#floating-panel").prepend(`<button class="btn btn-light" id="drop" onclick="drop()">Drop Your location</button>`)
+                                                        }
+                                                    }
+                                    
+                                    </script>

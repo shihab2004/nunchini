@@ -1,0 +1,100 @@
+{% extends 'admin/home/base.html' %}
+{% load static %}
+
+{% load jin %}
+
+{% block body %}
+<div class="content-wrapper">
+    <div class="page-header">
+      <h3 class="page-title">
+        Others
+      </h3>
+    </div>
+    <div class="row">
+
+        <div class="col-md-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Notification ({{new_notication_count}})</h4> </br>
+
+                  
+              
+
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                          <thead>
+                            <tr>
+                             
+                           
+                              <th>
+                                Message
+                              </th>
+                              <th>
+                                Date
+                              </th>
+                              <th>
+                                Status
+                              </th>
+                              <th>
+                                Action
+                              </th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                
+                            {% for n in obj %}
+                            <tr>
+                          
+                              <td>
+                                {{n.title}}
+                              </td>
+                              
+                              
+                              <td>
+                                {{n.date}}
+                              </td>
+                              <td>
+                                {% if n.is_new  %}
+                                <label class="badge badge-success badge-pill">NEW</label>
+                                {% else %}
+                                <label class="badge badge-warning badge-pill">READ</label>
+                                {% endif %}
+                
+                
+                              </td>
+                              <td>
+                                <a href="{{n.url}}?notifation=redirect&id={{n.id}}"><button type="button" class="btn btn-outline-primary btn-fw">View</button></a>
+                              </td>
+                            </tr>
+                            {% endfor %}
+                          </tbody>
+                        </table>
+                
+                
+                        <div class="btn-group my-3" role="group" aria-label="Basic example">
+                            {% for page in page_range %}
+                            
+                              <a href="?page={{page}}" type="button" class="btn {% if page == current_page  %}active{% endif %} btn-primary">{{page}}</a>
+                       
+                          {% endfor %}
+                        </div>
+                      </div>
+                </div>
+            </div>
+           
+
+
+    </div>
+    </div>
+    </div>
+    
+{% endblock body %}
+
+{% block js %}
+ <script>
+  $(".mu")[9].classList.add("active");
+  const mu =$("a[href='/admin/notification/']");
+  mu.closest(".collapse").addClass("show")
+  mu.addClass("active")
+ </script>
+{% endblock js %}

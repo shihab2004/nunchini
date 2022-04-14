@@ -1,0 +1,112 @@
+{% extends 'admin/home/base.html' %}
+{% load static %}
+
+{% block body %}
+
+<div class="row grid-margin">
+    <div class="col-12">
+
+
+
+    <div class="card">
+        <div class="card-body">
+
+            <h4 class="card-title">{{heading}}</h4>
+            
+
+        
+            <div class="form-group row">
+                <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Menu Name</label>
+                <div class="col-sm-9">
+                  <input name="Name" value="{{menu.name}}" type="text" class="form-control" id="exampleInputUsername2" placeholder="Footer Menu Name">
+                </div>
+              </div>
+        
+
+  
+        
+        <div class="form-group">
+            <label>Select footer sub Menu</label>
+            <select multiple name="subMenu" class="js-example-basic-multiple w-100 select2-hidden-accessible" multiple="" tabindex="-1" aria-hidden="true">
+                {% for m in sub_menu %}
+                <option {% if m in menu.menu.all %}selected{% endif %} value="{{m.id}}">{{m.name}}</option>
+                {% endfor %}
+         
+            </select>
+          </div>
+
+
+    
+
+    
+     
+
+ 
+
+    
+
+        
+    <div class="form-group row">
+            
+        <div class="col-lg-8">
+            <button id="submit" class="btn btn-primary" >Submit</button>
+
+            {% if is_dt %}
+                <a href="/admin/menu/footer/delete/{{c_menu.id}}/" id="submit" class="btn btn-danger" >Delete</a>
+            {% endif %}
+
+            </div>
+        </div>
+
+    </div>
+</div>
+  
+
+    </div>
+
+
+</div>
+  
+  
+
+{% endblock body %}
+
+{% block js %}
+
+<script src="{% static 'admin/home/js/select2.js'%}"></script>
+
+<script>
+$("#submit").click((e)=>{
+        
+$.ajax({
+    type:"POST",
+     url:"",
+     data:{"obj":JSON.stringify({
+         name:$('input[name="Name"]').val(),
+         subMenu:$("select").val()
+     }),csrfmiddlewaretoken:"{{ csrf_token }}"},
+     beforeSend:()=>{
+       $(".C").html(`
+ <div class="loader-demo-box">
+   <div class="dot-opacity-loader">
+     <span></span>
+     <span></span>
+     <span></span>
+   </div>
+ </div>
+       `)
+     },
+     success:(e)=>{
+         window.location.href = "/admin/menu/footer/" 
+     }
+ 
+       
+       
+   })
+})
+   $(".mu")[4].classList.add("active");
+     const mu =$("a[href='/admin/menu/footer/']");
+     mu.closest(".collapse").addClass("show")
+     mu.addClass("active")
+</script>
+{% endblock js %}

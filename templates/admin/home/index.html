@@ -1,0 +1,607 @@
+{% extends 'admin/home/base.html' %}
+{% load jin %}
+
+
+{% block body %}
+
+    <div class="content-wrapper">
+      <div class="page-header">
+        <h3 class="page-title">
+          Dashboard
+        </h3>
+      </div>
+      <div class="row grid-margin">
+        <div class="col-12">
+          <div class="card card-statistics">
+            <div class="card-body">
+              <div class="d-flex flex-column flex-md-row align-items-center justify-content-between">
+                  <div class="statistics-item">
+                    <p>
+                      <i class="icon-sm fa fa-user mr-2"></i>
+                      Total users
+                    </p>
+                    <h2 class="counter">{{total_user}}</h2>
+
+                  </div>
+                  <div class="statistics-item">
+                    <p>
+                      <i class="icon-sm far fa-bell mr-2"></i>
+                      Pending Orders
+                    </p>
+                    <h2 class="counter">{{Pending_order}}</h2>
+
+                  </div>
+                  <div class="statistics-item">
+                    <p>
+                      <i class="icon-sm fas fa-circle-notch mr-2"></i>
+                      Processing Orders
+                    </p>
+                    <h2 class="counter">{{Processing_orders}}</h2>
+
+                  </div>
+                  <div class="statistics-item">
+                    <p>
+                      <i class="icon-sm fas fa-check-circle mr-2"></i>
+                      Successful Order
+                    </p>
+                    <h2 class="counter">{{success_order}}</h2>
+
+                  </div>
+                  <div class="statistics-item">
+                    <p>
+                      <i class="icon-sm fas fa-light fa-money-bill mr-2"></i>
+                      Sales
+                    </p>
+                    <div class="d-flex"><h2 class="counter">{{root.Total_sell_money}} </h2><p>৳</p></div>
+
+                  </div>
+                  <div class="statistics-item">
+                    <p>
+                      <i class="icon-sm fas fa-regular fa-envelope mr-2"></i>
+                      New Inbox
+                    </p>
+                    <h2 class="counter">{{new_mail}}</h2>
+
+                  </div>
+                  <div class="statistics-item">
+                    <p>
+                      <i class="icon-sm fas fa-cubes mr-2"></i>
+                      Total Product
+                    </p>
+                    <h2 class="counter">{{total_product}}</h2>
+
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6 grid-margin stretch-card">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title">
+                <i class="fas fa-gift"></i>
+                Orders
+              </h4>
+              <canvas id="orders-chart"></canvas>
+              <div id="orders-chart-legend" class="orders-chart-legend"></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 grid-margin stretch-card">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title">
+                <i class="fas fa-chart-line"></i>
+                Sales
+              </h4>
+              <h2 class="mb-5">{{total_sales}}৳ <span class="text-muted h4 font-weight-normal">Sales</span></h2>
+              <canvas id="sales-chart"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4 grid-margin stretch-card">
+          <div class="card">
+            <div class="card-body d-flex flex-column">
+              <h4 class="card-title">
+                <i class="fas fa-chart-pie"></i>
+                This Year Order Status
+              </h4>
+              <div class="flex-grow-1 d-flex flex-column justify-content-between">
+                <canvas id="sales-status-chart" class="mt-3"></canvas>
+                <div class="pt-4">
+                  <div id="sales-status-chart-legend" class="sales-status-chart-legend"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 grid-margin ">
+          <div class="card pb-5">
+            <div class="card-body">
+              <h4 class="card-title">
+                <i class="fab fa-bitcoin"></i>
+                Total Money Saved
+              </h4>
+
+                <h1 class="text-center display-1 pt-5">{{root.Total_saved_money}} ৳</h1>
+            </div>
+          </div>
+          <div class="card pb-5">
+            <div class="card-body">
+              <h4 class="card-title">
+                <i class="far fa-handshake"></i>
+                New Corporate Customer Request
+              </h4>
+
+                <h1 class="text-center display-1 pt-5">{{new_corporate_req}}</h1>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 grid-margin stretch-card">
+          <div class="card">
+            <div class="card-body d-flex flex-column">
+              <h4 class="card-title">
+                <i class="fas fa-tachometer-alt"></i>
+                Daily Sales
+              </h4>
+              <p class="card-description">Daily sales for the past one month</p>
+              <div class="flex-grow-1 d-flex flex-column justify-content-between">
+                <canvas id="daily-sales-chart" class="mt-3 mb-3 mb-md-0"></canvas>
+                <div id="daily-sales-chart-legend" class="daily-sales-chart-legend pt-4 border-top"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 grid-margin">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title">
+                <i class="fas fa-envelope"></i>
+                Inbox({{new_mail}})
+              </h4>
+              <div class="table-responsive">
+                <table class="table">
+                  <tbody>
+                    {% for m in mails %}
+                    <tr>
+
+                      <td class="py-1">
+                        <img src="{% if m.profile.profile_photo %}{{m.profile.profile_photo.url}}{% else %}/media/user.jpg{% endif %}" alt="profile" class="img-sm rounded-circle"/>
+                      </td>
+                      <td class="font-weight-bold">
+                        {{m.profile}}
+                      </td>
+                      <td>
+                        <label class="badge badge-light badge-pill">0{{m.number}}</label>
+                      </td>
+                      <td>
+                        {{m.message|truncatechars:20}}
+                      </td>
+                      <td>
+                        <a href="mail/details/{{m.id}}/" class="btn btn-outline-primary btn-fw">View</a>
+                      </td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+                <a href="mail/" class="btn btn-outline-info btn-fw">Show More</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-8 grid-margin stretch-card">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title">
+                <i class="fas fa-rocket"></i>
+                Recent Orders
+              </h4>
+              <div class="table-responsive">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>Customer</th>
+                      <th>Order code</th>
+                      <th>Status</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for order in  demo_order_list %}
+                    <tr>
+                      <td class="font-weight-bold">
+                        {{order.profile}}
+                      </td>
+                      <td class="text-muted">
+                        #{{order.id}}
+                      </td>
+                      <td>
+                        {% if order.order_status == "SF" %}
+                        <label class="badge badge-success badge-pill">Delivered</label>
+
+                            {% elif   order.order_status == "PS" %}
+                            <label class="badge badge-warning badge-pill">Processing</label>
+
+                            {% elif   order.order_status == "CN" %}
+                            <label class="badge badge-danger badge-pill">Cancelled</label>
+                            {% elif   order.order_status == "PN" %}
+                            <label class="badge badge-primary badge-pill">Pending</label>
+                        {% endif %}
+                      </td>
+                      <td>
+                        <a href="order/details/{{order.id}}/" class="btn btn-outline-dark btn-fw">Details</a>
+                      </td>
+                    </tr>
+                    {% endfor %}
+
+
+
+
+                  </tbody>
+                </table>
+                <a href="order/" class="btn btn-outline-info btn-fw">Show More</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 grid-margin stretch-card">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title">
+                <i class="fas fa-calendar-alt"></i>
+                Calendar
+              </h4>
+              <div id="inline-datepicker-example" class="datepicker"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-body">
+              <div class="d-md-flex justify-content-between align-items-center">
+                <div class="d-flex align-items-center mb-3 mb-md-0">
+                  <button class="btn btn-social-icon btn-facebook btn-rounded">
+                    <i class="fab fa-facebook-f"></i>
+                  </button>
+                  <div class="ml-4">
+                    <h5 class="mb-0">Facebook</h5>
+                    <p class="mb-0">813 friends</p>
+                  </div>
+                </div>
+                <div class="d-flex align-items-center mb-3 mb-md-0">
+                  <button class="btn btn-social-icon btn-twitter btn-rounded">
+                    <i class="fab fa-twitter"></i>
+                  </button>
+                  <div class="ml-4">
+                    <h5 class="mb-0">Twitter</h5>
+                    <p class="mb-0">9000 followers</p>
+                  </div>
+                </div>
+                <div class="d-flex align-items-center mb-3 mb-md-0">
+                  <button class="btn btn-social-icon btn-google btn-rounded">
+                    <i class="fab fa-google-plus-g"></i>
+                  </button>
+                  <div class="ml-4">
+                    <h5 class="mb-0">Google plus</h5>
+                    <p class="mb-0">780 friends</p>
+                  </div>
+                </div>
+                <div class="d-flex align-items-center">
+                  <button class="btn btn-social-icon btn-linkedin btn-rounded">
+                    <i class="fab fa-linkedin-in"></i>
+                  </button>
+                  <div class="ml-4">
+                    <h5 class="mb-0">Linkedin</h5>
+                    <p class="mb-0">1090 connections</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- content-wrapper ends -->
+
+
+
+{% endblock body %}
+
+
+  {% block js %}
+
+
+  <script>
+    $(".mu")[0].classList.add("active");
+
+
+    (function($) {
+      'use strict';
+      $(function() {
+        if ($("#orders-chart").length) {
+          var currentChartCanvas = $("#orders-chart").get(0).getContext("2d");
+          var currentChart = new Chart(currentChartCanvas, {
+            type: 'bar',
+            data: {
+              labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+              datasets: [{
+                  label: 'Delivered',
+                  data: [{{order_yearly_report_Suc|get_item:'jan'}}, {{order_yearly_report_Suc|get_item:'feb'}}, {{order_yearly_report_Suc|get_item:'mar'}}, {{order_yearly_report_Suc|get_item:'apr'}}, {{order_yearly_report_Suc|get_item:'may'}}, {{order_yearly_report_Suc|get_item:'jun'}}, {{order_yearly_report_Suc|get_item:'jul'}}, {{order_yearly_report_Suc|get_item:'aug'}}, {{order_yearly_report_Suc|get_item:'sep'}}, {{order_yearly_report_Suc|get_item:'oct'}}, {{order_yearly_report_Suc|get_item:'nov'}}, {{order_yearly_report_Suc|get_item:'dec'}}],
+                  backgroundColor: '#392c70'
+                },
+                {
+                  label: 'Cancelled',
+                  data: [{{order_yearly_report_Cen|get_item:'jan'}}, {{order_yearly_report_Cen|get_item:'feb'}}, {{order_yearly_report_Cen|get_item:'mar'}}, {{order_yearly_report_Cen|get_item:'apr'}}, {{order_yearly_report_Cen|get_item:'may'}}, {{order_yearly_report_Cen|get_item:'jun'}}, {{order_yearly_report_Cen|get_item:'jul'}}, {{order_yearly_report_Cen|get_item:'aug'}}, {{order_yearly_report_Cen|get_item:'sep'}}, {{order_yearly_report_Cen|get_item:'oct'}}, {{order_yearly_report_Cen|get_item:'nov'}}, {{order_yearly_report_Cen|get_item:'dec'}}],
+                  backgroundColor: '#d1cede'
+                }
+              ]
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: true,
+              layout: {
+                padding: {
+                  left: 0,
+                  right: 0,
+                  top: 20,
+                  bottom: 0
+                }
+              },
+              scales: {
+                yAxes: [{
+                  gridLines: {
+                    drawBorder: false,
+                  },
+                  ticks: {
+                    stepSize: 10,
+                    fontColor: "#686868"
+                  }
+                }],
+                xAxes: [{
+                  stacked: true,
+                  ticks: {
+                    beginAtZero: true,
+                    fontColor: "#686868"
+                  },
+                  gridLines: {
+                    display: false,
+                  },
+                  barPercentage: 0.4
+                }]
+              },
+              legend: {
+                display: false
+              },
+              elements: {
+                point: {
+                  radius: 0
+                }
+              },
+              legendCallback: function(chart) {
+                var text = [];
+                text.push('<ul class="legend'+ chart.id +'">');
+                for (var i = 0; i < chart.data.datasets.length; i++) {
+                  text.push('<li><span class="legend-label" style="background-color:' + chart.data.datasets[i].backgroundColor + '"></span>');
+                  if (chart.data.datasets[i].label) {
+                    text.push(chart.data.datasets[i].label);
+                  }
+                  text.push('</li>');
+                }
+                text.push('</ul>');
+                return text.join("");
+              },
+            }
+          });
+          document.getElementById('orders-chart-legend').innerHTML = currentChart.generateLegend();
+        }
+        if ($('#sales-chart').length) {
+          var lineChartCanvas = $("#sales-chart").get(0).getContext("2d");
+          var data = {
+            labels: [ {% for record  in sales_record %}{{record.year}},{% endfor %}],
+            datasets: [
+              {
+                label: 'Sales',
+                data: [ {% for record  in sales_record %}{{record.sales}},{% endfor %}],
+                borderColor: [
+                  '#392c70'
+                ],
+                borderWidth: 3,
+                fill: false
+              },
+              {
+                label: 'Product',
+                data:  [{% for record  in sales_record %}{{record.product}},{% endfor %}],
+                borderColor: [
+                  '#000'
+                ],
+                borderWidth: 3,
+                fill: false
+              },
+              {
+                label: 'Total Saved',
+                data: [{% for record  in sales_record %}{{record.saved}},{% endfor %}],
+                borderColor: [
+                  '#ff5e6d'
+                ],
+                borderWidth: 3,
+                fill: false
+              },
+              {
+                label: 'Total Order',
+                data: [{% for record  in sales_record %}{{record.order}},{% endfor %}],
+                borderColor: [
+                  '#04b76b'
+                ],
+                borderWidth: 3,
+                fill: false
+              },
+
+            ]
+          };
+          var options = {
+            scales: {
+              yAxes: [{
+                gridLines: {
+                  drawBorder: false
+                },
+                ticks: {
+                  stepSize: 200000,
+                  fontColor: "#686868"
+                }
+              }],
+              xAxes: [{
+                display: false,
+                gridLines: {
+                  drawBorder: false
+                }
+              }]
+            },
+            legend: {
+              display: false
+            },
+            elements: {
+              point: {
+                radius: 3
+              }
+            },
+            stepsize: 1
+          };
+          var lineChart = new Chart(lineChartCanvas, {
+            type: 'line',
+            data: data,
+            options: options
+          });
+        }
+        if ($("#sales-status-chart").length) {
+          var pieChartCanvas = $("#sales-status-chart").get(0).getContext("2d");
+          var pieChart = new Chart(pieChartCanvas, {
+            type: 'pie',
+            data: {
+              datasets: [{
+                data: [{{this_year_order_status.per_suc_order}}, {{this_year_order_status.per_ps_order}}, {{this_year_order_status.per_pn_order}}, {{this_year_order_status.per_cn_order}}],
+                backgroundColor: [
+                  '#04b76b',
+                  '#392c70',
+                  '#eeeeee',
+                  '#ff5e6d'
+                ],
+                borderColor: [
+                  '#04b76b',
+                  '#392c70',
+                  '#eeeeee',
+                  '#ff5e6d'
+                ],
+              }],
+
+              // These labels appear in the legend and in the tooltips when hovering different arcs
+              labels: [
+                'Successful',
+                'Processing',
+                'Pending',
+                'Cancelled'
+              ]
+            },
+            options: {
+              responsive: true,
+              animation: {
+                animateScale: true,
+                animateRotate: true
+              },
+              legend: {
+                display: false
+              },
+              legendCallback: function(chart) {
+                var text = [];
+                text.push('<ul class="legend'+ chart.id +'">');
+                for (var i = 0; i < chart.data.datasets[0].data.length; i++) {
+                  text.push('<li><span class="legend-label" style="background-color:' + chart.data.datasets[0].backgroundColor[i] + '"></span>');
+                  if (chart.data.labels[i]) {
+                    text.push(chart.data.labels[i]);
+                  }
+                  text.push('<label class="badge badge-light badge-pill legend-percentage ml-auto">'+ chart.data.datasets[0].data[i] + '%</label>');
+                  text.push('</li>');
+                }
+                text.push('</ul>');
+                return text.join("");
+              }
+            }
+          });
+          document.getElementById('sales-status-chart-legend').innerHTML = pieChart.generateLegend();
+        }
+        if ($("#daily-sales-chart").length) {
+          var dailySalesChartData = {
+            datasets: [{
+              data: [{{month_order_status.per_suc_order}}, {{month_order_status.per_ps_order}}, {{month_order_status.per_pn_order}}, {{month_order_status.per_cn_order}}],
+              backgroundColor: [
+                '#04b76b',
+                '#392c70',
+                '#e9e8ef',
+                '#ff5e6d'
+              ],
+              borderWidth: 0
+            }],
+
+            // These labels appear in the legend and in the tooltips when hovering different arcs
+            labels: [
+              'Successful',
+              'Processing',
+              'Pending',
+              'Cancelled'
+            ]
+          };
+          var dailySalesChartOptions = {
+            responsive: true,
+            maintainAspectRatio: true,
+            animation: {
+              animateScale: true,
+              animateRotate: true
+            },
+            legend: {
+              display: false
+            },
+            legendCallback: function(chart) {
+              var text = [];
+              text.push('<ul class="legend'+ chart.id +'">');
+              for (var i = 0; i < chart.data.datasets[0].data.length; i++) {
+                text.push('<li><span class="legend-label" style="background-color:' + chart.data.datasets[0].backgroundColor[i] + '"></span>');
+                if (chart.data.labels[i]) {
+                  text.push(chart.data.labels[i]);
+                }
+                text.push('</li>');
+              }
+              text.push('</ul>');
+              return text.join("");
+            },
+            cutoutPercentage: 70
+          };
+          var dailySalesChartCanvas = $("#daily-sales-chart").get(0).getContext("2d");
+          var dailySalesChart = new Chart(dailySalesChartCanvas, {
+            type: 'doughnut',
+            data: dailySalesChartData,
+            options: dailySalesChartOptions
+          });
+          document.getElementById('daily-sales-chart-legend').innerHTML = dailySalesChart.generateLegend();
+        }
+        if ($("#inline-datepicker-example").length) {
+          $('#inline-datepicker-example').datepicker({
+            enableOnReadonly: true,
+            todayHighlight: true,
+          });
+        }
+      });
+    })(jQuery);
+  </script>
+
+  {% endblock js %}

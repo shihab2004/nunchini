@@ -1,0 +1,186 @@
+<style>
+    .pictureNavigation a{
+        cursor: pointer;
+    }
+    .footerLogo{
+        display: block !important;
+    }
+    #footer{
+        color: black !important;
+    }
+</style>
+<div class="lightboxContainer">
+    <div class="lightbox"><button class="close"></button>
+        <div class="lightboxContent">
+            <article class="productDetails" itemscope="" itemtype="http://schema.org/Product">
+                <section class="left">
+                    <div class="productGallery">
+                        <div class="productImageContainer">
+                            <div class="productImage">
+                                <img itemprop="image" class="productImage" src="[[single_image]]">
+                            </div>
+                      
+                        </div>
+                        <ul class="pictureNavigation">
+                                        [[M-image]]
+                        </ul>
+                    </div>
+                </section>
+                <section class="right">
+                    <div class="nameAndSubtext">
+                        <h1 itemprop="name">[[Name]]</h1><span>[[Amount]]</span>
+                    </div>
+                    <div class="quantityContainer" itemprop="offers" itemscope="" itemtype="http://schema.org/Offer">
+                        <link itemprop="availability" href="http://schema.org/InStock">
+                        <link itemprop="url" href="https://chaldal.com/tatka-egg-pack-12-pcs">
+                        <div class="discountedPriceSection">
+                            <div class="discountedPrice"><span itemprop="priceCurrency" content="BDT">[[banglaTaka]]</span><span
+                                    itemprop="price" content="99"><span>[[discord_price]]</span></span>
+                            </div>
+                            <div class="fullPrice">
+                                [[del-price]]
+                            </div>
+                            <div class="discount">
+                                [[pd-dis]]
+                            </div>
+                        </div>
+                        <section id='add_card_modals_element'>
+                            <div class="quantityEditor"><button class="removeButton outer zero">-</button>
+                                <div class="QuantityTextContainer">
+                                    <div class="quantity"><span>[[p-c-qnt]]</span>
+                                    </div>
+                                    <div class="inBag">in bag
+                                    </div>
+                                </div><button class="addButton outer">+</button>
+                            </div><button id="buyNowButton">Buy Now</button>
+                        </section>
+                    </div>
+                    <div class="actionButtons"><button class=""><svg version="1.1" x="0px" y="0px"
+                                viewBox="0 0 100 100">
+                                <path
+                                    d="M50,86c-0.5,0-1-0.2-1.4-0.6L15.7,52.8c-1.4-1.3-2.5-2.8-3.5-4.4c-5.4-8.9-4-20.3,3.5-27.7C20,16.4,25.8,14,31.9,14 c4.1,0,8.2,1.1,11.7,3.2c1.6,0.9,3.1,2.1,4.5,3.5c0.7,0.7,1.3,1.4,1.9,2.1c0.6-0.7,1.2-1.4,1.9-2.1c1.4-1.3,2.9-2.5,4.5-3.5 c3.5-2.1,7.6-3.2,11.7-3.2c6.1,0,11.9,2.4,16.2,6.7c7.4,7.4,8.9,18.8,3.5,27.7c-1,1.6-2.1,3.1-3.5,4.4L51.4,85.4 C51,85.8,50.5,86,50,86z M31.9,18c-5.1,0-9.8,2-13.4,5.5c-6.1,6.1-7.3,15.5-2.9,22.8c0.8,1.3,1.8,2.6,2.9,3.7L50,81.2L81.5,50 c1.1-1.1,2.1-2.3,2.9-3.7c4.4-7.4,3.3-16.8-2.9-22.8C77.9,20,73.1,18,68.1,18c-3.4,0-6.8,0.9-9.7,2.6c-1.3,0.8-2.6,1.7-3.7,2.9 c-1.2,1.2-2.2,2.5-3,3.8c-0.4,0.6-1,1-1.7,1h0c-0.7,0-1.4-0.4-1.7-1c-0.8-1.4-1.8-2.7-3-3.8c-1.1-1.1-2.4-2.1-3.7-2.8  C38.7,18.9,35.3,18,31.9,18z">
+                                </path>
+                            </svg><span>
+                            </span><span>Favourite</span></button><button><svg version="1.1" x="0px" y="0px"
+                                viewBox="0 0 100 100">
+                                <g>
+                                    <path
+                                        d="M81,15.5c-4.719,0-6.938-1.268-9.508-2.736C68.815,11.234,65.78,9.5,59.999,9.5s-8.816,1.734-11.493,3.264 c-2.569,1.468-4.789,2.736-9.508,2.736s-6.938-1.268-9.507-2.736C26.814,11.234,23.78,9.5,18,9.5v4v32v4v41h4V49.889 c2.239,0.484,3.797,1.371,5.507,2.348c2.677,1.529,5.711,3.264,11.491,3.264c5.781,0,8.815-1.734,11.492-3.264 c2.57-1.469,4.789-2.736,9.509-2.736s6.938,1.268,9.509,2.736c2.171,1.24,4.577,2.615,8.492,3.09V55.5h4v-40H81z M71.492,48.764 C68.815,47.234,65.78,45.5,59.999,45.5s-8.816,1.734-11.493,3.264c-2.569,1.469-4.789,2.736-9.508,2.736s-6.938-1.268-9.507-2.736 c-1.979-1.131-4.156-2.371-7.491-2.942V13.889c2.239,0.485,3.797,1.371,5.507,2.348c2.677,1.53,5.711,3.264,11.491,3.264 c5.781,0,8.815-1.734,11.492-3.263c2.57-1.469,4.789-2.737,9.509-2.737s6.938,1.268,9.509,2.737c2.171,1.24,4.577,2.614,8.492,3.09 v31.968C75.199,50.879,73.445,49.88,71.492,48.764z">
+                                    </path>
+                                </g>
+                            </svg><span>
+                            </span><span>Incorrect
+                                Info?</span></button></div>
+                    <div class="divider"></div>
+                    <div class="details" itemprop="description">
+                        <p>[[Description]]</p>
+                    </div>
+                    
+                </section>
+            </article>
+        </div>
+        <footer id="footer">
+            <section class="footer-banner">
+                <div class="banner">
+                    <div class="wrap">
+                        <div class="left-area">
+                            <ul>
+                            {% for features in  root.Features.all %}
+                                <li>
+                                    <span class="icon">
+                                        <img src="{{features.image.url}}">
+                                    </span>
+                                    <span class="text">
+                                        <span>{{features.name}}</span>
+                                    </span>
+                                </li>
+                            {% endfor %}
+                            </ul>
+                        </div>
+                        <div class="right-area">
+                            <ul>
+                                <li class="text">Pay with</li>
+                            {% for payment in root.Payment_allow.all %}
+                                <li class="icon">
+                                    <img src="{{payment.get_image}}">
+                                </li>
+                            {% endfor %}
+                                
+                               
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <div class="footer-left">
+                <div class="footerTop">
+                    <h2 class="footerLogo"><img class="chaldal_logo"
+                            style="background-image:url({{root.get_logo}});background-repeat:no-repeat;"
+                            src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                            alt="Chaldal.com"></h2>
+                    <p>{{root.Description}}</p>
+                </div>
+                <div class="footerBottom">
+                    {% for item in footer %}
+                    <div class="list-type customer-service">
+                        <p>{{item.name}}</p>
+                        <ul>
+                            {% for links in item.menu.all %}
+                            <li><a {% if links.url %}mat="{{links.get_url}}"{%endif%}>{{links.name}}</a></li>
+                            {%endfor%}
+                        </ul>
+                    </div>
+                  {%endfor%}
+                </div>
+            </div>
+            <div class="footer-right">
+                <div class="app-download-section">
+                    <div class="wrap">
+                    {% if root.Play_store %}
+                        <div class="google_play_store">
+                            <a target="_blank" href="{{root.Play_store}}">
+                                <img src="{{MEDIA_URL}}others/google_play_store.jpg">
+                            </a>
+                        </div>
+                    {% endif %}
+                    {% if root.App_store %}
+                        <div class="app_store">
+                            <a target="_blank" href="{{root.App_store}}">
+                                <img src="{{MEDIA_URL}}others/app_store.jpg">
+                            </a>
+                        </div>
+                    {% endif %}
+                    </div>
+                </div>
+                <div class="contact-section">
+                    <div class="phone-number">
+                        <div class="wrap"><span class="phone-icon">
+                        <img src="{{MEDIA_URL}}others/phone_icon.jpg"></span><span
+                                class="number">0{{root.Mobile.all.first.Phone}}</span>
+                        </div>
+                    </div>
+                    <div style="text-align: center;" class="email-address"><span class="pre-text">or email</span>
+                        <span style="display: flex;flex-direction: column;" class="email">
+                        {% for email in root.Email.all %}
+                           <span> {{email.email}}</span>
+                        {% endfor %}
+                        </span>
+                    </div>
+                </div>
+                <div class="social-section">
+                    <ul>
+                    {% for socalMd in root.Social_media.all %}
+                        <li>
+                            <a href="{{socalMd.url}}" target="_blank"><span>
+                                </span><img
+                                    src="{{socalMd.image.url}}"><span>
+                                </span></a>
+                        </li>
+                    {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </footer>
+    </div>
+</div>
+

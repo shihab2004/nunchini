@@ -1,0 +1,368 @@
+{% extends 'admin/home/base.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'admin/home/vendors/summernote/dist/summernote-bs4.css'%}">
+<style>
+  .oc{
+    height: 90px;
+    width: 150px;
+    margin-bottom: 33px;
+  }
+</style>
+{% endblock css %}
+
+
+{% block body %}
+<h1 class="display-4 ml-1 mb-4">Customize Site</h2>
+<div class="row">
+    <div class="col-md-6 grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Site Settings</h4>
+          <p class="card-description">
+            Change Basic site setting
+          </p>
+            <div class="form-group">
+              <label for="exampleInputUsername1">Site Name</label>
+              <input type="text" name="siteName" class="form-control" value="{{root.Name}}" id="exampleInputUsername1" placeholder="Primary Name">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Primary Number</label>
+              <input type="number" name="siteNumber" value="{{root.get_site_number}}" class="form-control" id="exampleInputEmail1" placeholder="Site Number">
+            </div>
+
+            <div class="form-group">
+              <label for="exampleInputEmail1">Selecte Primary Email</label>
+              <select class="form-control"name="menu" multiple>
+
+                {% for m in mail %}
+    
+                <option  value="{{m.id}}" {% if m in root.Email.all %} selected {% endif %}>{{m.Name}} ------> {{m.email}}</option>
+                {% endfor %}
+    
+              </select>
+            </div>
+
+            <div class="form-group">
+                <label for="exampleInputEmail1">Site Description</label>
+                <div class="card">
+                    <div class="card-body">
+                      
+                      <div id="summernoteExample" style="display: none;">
+                      {{root.Description|safe}}
+                   
+                      </div></div><div class="note-statusbar">  <div class="note-resizebar">    <div class="note-icon-bar"></div>    <div class="note-icon-bar"></div>    <div class="note-icon-bar"></div>  </div></div><div class="modal link-dialog" aria-hidden="false" tabindex="-1"><div class="modal-dialog">  <div class="modal-content">    <div class="modal-header">      <h4 class="modal-title">Insert Link</h4>      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>    </div>    <div class="modal-body"><div class="form-group note-form-group"><label class="note-form-label">Text to display</label><input class="note-link-text form-control  note-form-control  note-input" type="text"></div><div class="form-group note-form-group"><label class="note-form-label">To what URL should this link go?</label><input class="note-link-url form-control note-form-control note-input" type="text" value="http://"></div><label class="custom-control custom-checkbox" for="sn-checkbox-open-in-new-window"> <input type="checkbox" class="custom-control-input" id="sn-checkbox-open-in-new-window" checked=""> <span class="custom-control-indicator"></span> <span class="custom-control-description">Open in new window</span></label></div>    <div class="modal-footer"><button href="#" class="btn btn-primary note-btn note-btn-primary note-link-btn disabled" disabled="">Insert Link</button></div>  </div></div></div><div class="modal" aria-hidden="false" tabindex="-1"><div class="modal-dialog">  <div class="modal-content">    <div class="modal-header">      <h4 class="modal-title">Insert Image</h4>      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>    </div>    <div class="modal-body"><div class="form-group note-form-group note-group-select-from-files"><label class="note-form-label">Select from files</label><input class="note-image-input form-control note-form-control note-input" type="file" name="files" accept="image/*" multiple="multiple"></div><div class="form-group note-group-image-url" style="overflow:auto;"><label class="note-form-label">Image URL</label><input class="note-image-url form-control note-form-control note-input  col-md-12" type="text"></div></div>    <div class="modal-footer"><button href="#" class="btn btn-primary note-btn note-btn-primary note-image-btn disabled" disabled="">Insert Image</button></div>  </div></div></div><div class="modal" tabindex="-1" style="display: none;" aria-hidden="true"><div class="modal-dialog">  <div class="modal-content">    <div class="modal-header">      <h4 class="modal-title">Insert Video</h4>      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>    </div>    <div class="modal-body"><div class="form-group note-form-group row-fluid"><label class="note-form-label">Video URL? <small class="text-muted">(YouTube, Vimeo, Vine, Instagram, DailyMotion or Youku)</small></label><input class="note-video-url form-control  note-form-control note-input span12" type="text"></div></div>    <div class="modal-footer"><button href="#" class="btn btn-primary note-btn note-btn-primary  note-video-btn disabled" disabled="">Insert Video</button></div>  </div></div></div><div class="modal" aria-hidden="false" tabindex="-1"><div class="modal-dialog">  <div class="modal-content">    <div class="modal-header">      <h4 class="modal-title">Help</h4>      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>    </div>    <div class="modal-body" style="max-height: 300px; overflow: scroll;"><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>ENTER</kbd></label><span>Insert Paragraph</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+Z</kbd></label><span>Undoes the last command</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+Y</kbd></label><span>Redoes the last command</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>TAB</kbd></label><span>Tab</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>SHIFT+TAB</kbd></label><span>Untab</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+B</kbd></label><span>Set a bold style</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+I</kbd></label><span>Set a italic style</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+U</kbd></label><span>Set a underline style</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+SHIFT+S</kbd></label><span>Set a strikethrough style</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+BACKSLASH</kbd></label><span>Clean a style</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+SHIFT+L</kbd></label><span>Set left align</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+SHIFT+E</kbd></label><span>Set center align</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+SHIFT+R</kbd></label><span>Set right align</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+SHIFT+J</kbd></label><span>Set full align</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+SHIFT+NUM7</kbd></label><span>Toggle unordered list</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+SHIFT+NUM8</kbd></label><span>Toggle ordered list</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+LEFTBRACKET</kbd></label><span>Outdent on current paragraph</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+RIGHTBRACKET</kbd></label><span>Indent on current paragraph</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+NUM0</kbd></label><span>Change current block's format as a paragraph(P tag)</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+NUM1</kbd></label><span>Change current block's format as H1</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+NUM2</kbd></label><span>Change current block's format as H2</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+NUM3</kbd></label><span>Change current block's format as H3</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+NUM4</kbd></label><span>Change current block's format as H4</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+NUM5</kbd></label><span>Change current block's format as H5</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+NUM6</kbd></label><span>Change current block's format as H6</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+ENTER</kbd></label><span>Insert horizontal rule</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+K</kbd></label><span>Show Link Dialog</span></div>    <div class="modal-footer"><p class="text-center"><a href="http://summernote.org/" target="_blank">Summernote 0.8.8</a> · <a href="https://github.com/summernote/summernote" target="_blank">Project</a> · <a href="https://github.com/summernote/summernote/issues" target="_blank">Issues</a></p></div>  </div></div></div>
+                    </div>            
+            </div>
+
+
+
+           
+
+             
+
+
+            
+           
+
+
+
+
+
+            <button id="ms_22" type="submit" class="btn btn-primary mr-2">Submit</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Change Site Image</h4>
+          <p class="card-description">
+            Change Site Basic Image
+          </p>
+          <form method="post" action="?CDI=True" enctype="multipart/form-data" class="forms-sample">
+              {% csrf_token %}
+            <img class="oc" src="{{root.get_logo}}" alt="">
+            <div class="form-group row">
+              <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Logo</label>
+              <div class="col-sm-9">
+                <input type="file" class="form-control" id="exampleInputUsername2" name="logo">
+              </div>
+            </div>
+
+            <img class="oc" src="{{root.get_favicon}}" alt="">
+            <div class="form-group row">
+              <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Favicon</label>
+              <div class="col-sm-9">
+                <input type="file" class="form-control" id="exampleInputUsername2" name="favicon">
+              </div>
+            </div>
+
+            <div class="form-group  mv-3">Customize Admin Panel</div>
+
+            <img class="oc" src="{{root.Mini_Logo.url}}" alt="">
+            <div class="form-group row">
+              <label for="exampleInputMobile" class="col-sm-3 col-form-label">Mini Logo</label>
+              <div class="col-sm-9">
+                <input type="file" class="form-control" id="exampleInputUsername2" name="mini_logo">
+              </div>
+            </div>
+       
+
+            <img class="oc" src="{{root.admin_login_photo.url}}" alt="">
+            <div class="form-group row">
+              <label for="exampleInputMobile" class="col-sm-3 col-form-label">Login Photo</label>
+              <div class="col-sm-9">
+                <input type="file" class="form-control" id="exampleInputUsername2" name="login_img">
+              </div>
+            </div>
+       
+            <button type="submit" class="btn btn-primary mr-2">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Other Settings</h4>
+          <p class="card-description">
+            Site customize other setting
+          </p>
+          <form method="post" action="?OS=True" class="forms-sample">
+            {% csrf_token %}
+            <div class="form-group">
+              <label for="exampleInputName1">Reusable bag price</label>
+              <input type="number" value="{{root.reusable_bag_price}}" class="form-control" name="reusable_bag_price" id="exampleInputName1" placeholder="Change Reusable Bag Price">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail3">Change Site Bar Image (It Use When User Bag Will Empty)</label>
+              <img class="oc mt-4" src="{{root.side_bar_image.url}}" alt="">
+              <input type="file" class="form-control" id="exampleInputEmail3" name="side_bar_image">
+            </div>
+
+
+
+        
+            <button type="submit" class="btn btn-primary mr-2">Submit</button>
+            <button class="btn btn-light">Cancel</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    
+
+
+
+
+    <div class="col-md-12 grid-margin stretch-card">
+
+      <div class="card">
+          <div class="card-body">
+            
+            
+                       
+                       <div class="d-flex justify-content-between mb-4"><h4 class="card-title">Site Email</h4>  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal-5">+ Create new</button> </div>
+
+
+            <div class="row">
+              <div class="col-12">
+                <div class="table-responsive">
+                  <div id="order-listing_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4 no-footer">
+<div class="row"><div class="col-sm-12">
+                              <table id="order-listing" class="table dataTable no-footer" role="grid"
+                               aria-describedby="order-listing_info">
+
+
+                    <thead>
+                      <tr role="row">
+                          <th class="sorting" style="width: 84.75px;">Name</th>
+                          <th class="sorting" style="width: 84.75px;">Email</th>
+                          <th class="sorting"  style="width: 56.4219px;">Action</th>
+                      </tr>
+                      </thead>
+                    <tbody>
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      {% for m in mobile %}
+                      <tr role="row" class="odd">
+
+                          <td>{{m.Name}}
+                          </td>
+
+                          <td>{{m.email}}
+                          </td>
+
+
+                            <td>
+                       <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#exampleModal-4" data-d2="{{m.email}}" data-d1="{{m.Name}}" data-d3="{{m.id}}">View</button>
+                            </td>
+                      </tr>
+                      {% endfor %}
+
+
+
+
+
+
+
+                   
+
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+  </div>
+  
+</div>
+
+</div>
+</div>
+
+
+
+
+
+
+
+    
+  </div>
+  
+
+
+
+
+
+
+
+
+  <div class="modal fade" id="exampleModal-5" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="ModalLabel">Create New Email</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+        </button>
+        </div>
+        <div class="modal-body">
+          <form method="post" action="?ecreate=True">
+            {% csrf_token %}
+            <div class="form-group">
+              <label for="recipient-name" class="col-form-label">Recipient:</label>
+              <input name="namesh" required type="text" class="form-control" id="recipient-name">
+            </div>
+            <div class="form-group">
+              <label for="message-text" class="col-form-label">Email:</label>
+              <input type="email" required name="emailsh" class="form-control" id="message-text">
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button  type="submit" class="btn btn-success">Create</button>
+            <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  
+  
+
+
+
+
+
+
+
+  <div class="modal fade" id="exampleModal-4" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="ModalLabel">Edit Email</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form method="post" action="?emedit=True">
+            {% csrf_token %}
+            <div class="form-group">
+              <label for="recipient-name" class="col-form-label">Recipient:</label>
+              <input name="namesh" required type="text" class="form-control" id="recipient-name">
+            </div>
+            <div class="form-group">
+              <label for="message-text" class="col-form-label">Email:</label>
+              <input type="email" required name="emailsh" class="form-control" id="message-text">
+              <input type="hidden" name="eid">
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button  type="submit" class="btn btn-success">Update</button>
+            <a id="md21" class="btn btn-danger">Delete</a>
+            <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  
+  
+
+
+
+
+{% endblock body %}
+
+{% block js %}
+
+<script src="{% static 'admin/home/vendors/tinymce/tinymce.min.js'%}"></script>
+<script src="{% static 'admin/home/vendors/tinymce/themes/modern/theme.js'%}"></script>
+<script src="{% static 'admin/home/vendors/summernote/dist/summernote-bs4.min.js'%}"></script>
+<script src="{% static 'admin/home/js/editorDemo.js'%}"></script>
+<script src="{% static 'admin/home/js/data-table.js'%}"></script>
+<script src="{% static 'admin/home/js/modal-demo.js'%}"></script>
+
+
+ <script>
+     $(".mu")[5].classList.add("active");
+      $("#ms_22").click((e)=>{
+        $.ajax({
+    type:"POST",
+     url:"?SS=True",
+     data:{"obj":JSON.stringify({
+         name:$('input[name="siteName"]').val(),
+         subMenu:$("select[name='menu']").val(),
+         dis:$(".note-editable").html()
+     }),csrfmiddlewaretoken:"{{ csrf_token }}"},
+     beforeSend:()=>{
+       $(".C").html(`
+ <div class="loader-demo-box">
+   <div class="dot-opacity-loader">
+     <span></span>
+     <span></span>
+     <span></span>
+   </div>
+ </div>
+       `)
+     },
+     success:(e)=>{
+         location.reload();
+     }
+ 
+       
+       
+   })
+      })
+ </script>
+{% endblock js %}

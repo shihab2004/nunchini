@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+{% load jin %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'admin/home/css/style.css' %}">
+</head>
+<body>
+    <div class="card-body">
+        <div class="container-fluid">
+          <h3 class="text-right my-5">Order&nbsp;&nbsp;#{{o.id}}</h3>
+          <hr>
+        </div>
+        <div class="container-fluid d-flex justify-content-between">
+          <div class="col-lg-3 pl-0">
+            <p class="mt-4 "><b>{{o.profile}}</b></p>
+            <p class="w-75 mb-2">Delivery Adress: {{o.home_adress.adress}}</p>
+            <p class="w-75 mb-2">Customer Name: {{o.home_adress.delivery_parson_name}}</p>
+            <p class="w-75 mb-2">Phone: 0{{o.home_adress.Phone}}</p>
+            <p class="w-75 mb-2">{{o.home_adress.area.name}}, {{o.home_adress.city.Name}}</p>
+          </div>
+          <div class="col-lg-3 pr-0">
+            <p class="mt-5 mb-2 text-right"><b>Delivery Man</b></p>
+            <p class="text-right">{{o.delivery_man.name}}</p>
+          </div>
+        </div>
+        <div class="container-fluid d-flex justify-content-between">
+          <div class="col-lg-3 pl-0">
+            <p class="mb-0 mt-5">Order Date : {{o.ordered_time}}</p>
+            <p>Delivery Date : {{o.delivery_time}}</p>
+          </div>
+        </div>
+        <div class="container-fluid mt-5 d-flex justify-content-center w-100">
+          <div class="table-responsive w-100">
+              <table class="table">
+                <thead>
+                  <tr class="bg-dark text-white">
+                      <th>#</th>
+                      <th>Description</th>
+                      <th class="text-right">Quantity</th>
+                      <th class="text-right">Unit cost</th>
+                      <th class="text-right">Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for order in o.product_info %}
+                  <tr class="text-right">
+                    <td class="text-left">1</td>
+                    <td class="text-left">{{order.name}}</td>
+                    <td>{{order.quantity}}</td>
+                    <td>{{order.price}}৳</td>
+                    <td>{{order.quantity|total_per_price:order.price}}৳</td>
+                  </tr>
+                  {% endfor %}
+                
+                </tbody>
+              </table>
+            </div>
+        </div>
+        <div class="container-fluid mt-5 w-100">
+          <p class="text-right mb-2">Sub - Total amount: {{o.product_total}}৳</p>
+          <p class="text-right mb-2">Delivery Charge: {{o.order_delivery_charge}}৳</p>
+          <p class="text-right">Discont ({% if o.discount_offer %}{{o.discount_offer}}{% else %}0{% endif %}%) : -{{o.dp}}৳</p>
+          <h4 class="text-right mb-5">Total : {{o.total_price}}৳</h4>
+          <hr>
+        </div>
+       
+    </div>
+</body>
+</html>

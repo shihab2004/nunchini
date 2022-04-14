@@ -1,0 +1,24 @@
+{% extends 'admin/home/base.html' %}
+
+{% block body %}
+
+<div class="message-body">
+    <div class="sender-details">
+      <img class="img-sm rounded-circle mr-3" src="{% if  mail.profile.profile_photo %}{{mail.profile.profile_photo.url}}{% else %}/media/user.jpg{% endif %}" alt="">
+      <div class="details">
+        <p class="msg-subject">
+          Post On ({{mail.time}})
+        </p>
+        <p class="sender-email">
+          Name: {% if mail.profile.user.username %}{{mail.profile.user.username}} {% else %}Anonymous User{% endif %}{{mail.profile.user.username}}</br>
+          Email: <a href="mailto:{{mail.email}}">{{mail.email}}</a></br>
+          Phone: <a href="tel:0{{mail.number}}">0{{mail.number}}</a> 
+        </p>
+      </div>
+    </div>
+    <div class="message-content">
+     {{mail.message}}
+    </div>
+    
+  </div>
+  {% endblock body %}

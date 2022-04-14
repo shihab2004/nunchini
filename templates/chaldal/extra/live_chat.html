@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+</head>
+
+<body class="bg-dark text-light">
+    <h1 class="text-center">Chat application</h1>
+
+    <div class="container">
+        <form action="">
+
+            <div class="mb-3">
+                <label for="parson-message" class="form-label">Your Message</label>
+                <textarea class="form-control" name="message" id="parson-message" rows="3"></textarea>
+            </div>
+            <button class="btn btn-danger" type="submit">Submit</button>
+        </form>
+    </div>
+
+
+
+    <script>
+        const roomName = "{{chat_room}}"
+        const chatSocket = new WebSocket(
+            'ws://' +
+            window.location.host +
+            '/ws/chat/' +
+            roomName +
+            '/'
+        );
+
+        chatSocket.onmessage = (e) => {
+            console.log(e)
+        }
+
+
+        document.querySelector("form").addEventListener("submit", (e) => {
+            message = document.querySelector("#parson-message").value
+            e.preventDefault()
+            chatSocket.send(JSON.stringify({
+                "message": message
+            }))
+            document.querySelector("#parson-message").value = ""
+        })
+    </script>
+</body>
+
+</html>

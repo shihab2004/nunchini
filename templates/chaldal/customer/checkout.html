@@ -1,0 +1,1255 @@
+{% load costomer-tag %}
+{% if bag_status %}
+
+
+{% block link %}
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWOqMTUtC3VgJPQE39tnbIeLM-yAU4Ijw&callback=initMap&libraries=&v=weekly" async ></script>
+{% endblock link %}
+
+<style>
+    .form-select {
+display: block;
+width: 100%;
+padding: .375rem 2.25rem .375rem .75rem;
+-moz-padding-start: calc(0.75rem - 3px);
+font-size: 1rem;
+font-weight: 400;
+line-height: 1.5;
+color: #212529;
+background-color: #fff;
+background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
+background-repeat: no-repeat;
+background-position: right .75rem center;
+background-size: 16px 12px;
+border: 1px solid #ced4da;
+border-radius: .25rem;
+transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+-webkit-appearance: none;
+-moz-appearance: none;
+appearance: none;
+}
+option {
+font-weight: normal;
+display: block;
+white-space: nowrap;
+min-height: 1.2em;
+padding: 0px 2px 1px;
+}
+.googlemapBtn button{
+    padding: 15px 300px;
+    margin:20px 0px 30px 0px;
+    font-size: 16px;
+    background-color: #fff;
+    border: 2px solid #ff686e;
+    transition: .4s;
+}
+.googlemapBtn button:hover{
+    background-color: #ff686e;
+    border: 2px solid #fff;
+    color: #fff;
+}
+.googlemapBtn{
+    display: flex;
+    justify-content: center;
+}
+@media screen and (max-width: 1200px) {
+    .googlemapBtn button{
+     padding: 15px 250px;
+    }
+}
+@media screen and (max-width: 1020px) {
+    .googlemapBtn button{
+     padding: 15px 150px;
+    }
+}
+@media screen and (max-width: 435PX) {
+    .googlemapBtn button{
+     padding: 15px 40px;
+    }
+}
+
+#map {
+        height: 500px;
+}
+/* Optional: Makes the sample page fill the window. */
+
+#floating-panel {
+    color:#000!im;
+    position: relative;
+    top: 10px;
+    z-index: 1;
+    background-color: rgb(95 176 3);
+    padding: 5px;
+    border: 1px solid #999;
+    text-align: center;
+    font-family: "Roboto", "sans-serif";
+    line-height: 30px;
+    padding-left: 10px;
+}
+#update_location{
+    margin-left:10px
+    }
+    .btn-dark{
+        background-color: #fff700;
+    }
+
+
+    .adress-option{
+    width: 800px;
+    height: 100px;
+    padding: 20px 50px;
+    margin: auto;
+}
+.adress-option ul li{
+    font-size: 20px;
+    display: inline-block;
+    padding: 10px 30px;
+   cursor: pointer;
+   text-align: center;
+}
+.adress-option ul li.active{
+    color: #4c8e00;
+}
+.adress-option ul li.active div{
+    width: 150px;
+    height: 3.5px;
+    background-color: #67c100;
+    margin-top: 7px;
+    border-radius: 40%;
+}
+.adress-option ul li div{
+    width: 150px;
+    height: 3.5px;
+    margin-top: 7px;
+    border-radius: 40%;
+}
+
+@media screen and (max-width: 1000px) {
+      .adress-option {
+          width: 535px;
+      }
+  }
+  @media screen and (max-width: 551px) {
+      .adress-option {
+          width: 300px;
+          margin-bottom: 90px;
+      }
+  }
+#googleMap{
+    display: none;
+    margin-bottom: 30px;
+}
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="bodyTable">
+    <div>
+        <div class="checkoutExperience2">
+            <div>
+                <div>
+                    <h1>Checkout</h1>
+                    <div class="adress-option">
+                        <ul>
+                            <li kisslu="localAdress" class="active">Local Adress <div></div></li>
+                            <li kisslu="map" >Use Google Map <div></div></li>
+                        </ul>
+                    </div>
+
+                    <div></div>
+                    <div class="checkoutDelivery">
+                        <div>
+
+                            <div id="locationFormUser" class="deliveryStep">
+                                <div class="deliveryStepTitle">
+                                    <div class="titleLeft">
+                                        <div class="stepIcon">
+                                            <svg style="fill: #214354;stroke: #214354;display: inline-block;vertical-align: middle;" width="30px" height="30px" x="0px" y="0px" viewBox="0 0 500 500">
+                                                <g>
+                                                    <path
+                                                        d="M418.455,188.455C418.455,95.418,343.037,20,250.001,20   C156.964,20,81.546,95.418,81.546,188.455c0,33.983,10.074,65.614,27.383,92.079h-0.298l126.278,201.831h0.005   c2.759,5.539,8.479,9.349,15.087,9.349c6.607,0,12.327-3.811,15.085-9.349h0.006l126.279-201.831h-0.299   C408.382,254.068,418.455,222.438,418.455,188.455L418.455,188.455 M250.001,111.641c42.425,0,76.814,34.389,76.814,76.814   c0,42.426-34.389,76.814-76.814,76.814s-76.815-34.389-76.815-76.814C173.187,146.03,207.575,111.641,250.001,111.641   L250.001,111.641 M250.001,111.641L250.001,111.641z">
+                                                    </path>
+                                                </g>
+                                            </svg>
+                                        </div>
+                                        <h2>Delivery Address</h2>
+                                    </div>
+                                </div>
+
+                                
+                                <div class="deliveryStepContent">
+                                    <div class="addressComponent mui">
+
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <div id="googleMap">
+                                <p style="text-align:center;font-size:15px;font-weight: 600;margin-bottom: 10px;">
+                                    {%if is_use_geo_google %}
+                                    We have receive your location. If you select Google Maps, your product will be delivered to the location which you provided <br/> by Google Maps.
+                                    {%else%}
+                                    Please Update the location to deliver the product to your home
+                                    {%endif%}
+                                </p>
+                                <div id="floating-panel">
+                                    {%if is_use_geo_google %}<button class="btn btn-light" id="drop" onclick="drop()">Drop Your location</button>{%endif%}
+                                    <button class="btn btn-light" id="update_location" onclick="getLocation()">Update Your location</button>
+                                </div>
+                                <div id="map"></div>
+                            </div>
+
+
+<script>
+var neighborhoods = { lat: {{geolocation.lat}}, lng: {{geolocation.lng}} };
+
+                                            
+var markers = [];
+var map;
+
+function initMap() {
+    map = new google.maps.Map(document.getElementById("map"), {
+    zoom: 12,
+    center: { lat: {{geolocation.lat}}, lng: {{geolocation.lng}} },
+    });
+}
+
+function drop() {
+    $("#update_location").removeClass("btn-dark")
+    $("#drop").addClass("btn-dark")
+    clearMarkers();
+
+   
+    addMarkerWithTimeout(neighborhoods,  200);
+    
+}
+
+function addMarkerWithTimeout(position, timeout) {
+    window.setTimeout(() => {
+    markers.push(
+        new google.maps.Marker({
+        position: position,
+        map,
+        animation: google.maps.Animation.DROP,
+        })
+    );
+    }, timeout);
+}
+
+function clearMarkers() {
+    for (let i = 0; i < markers.length; i++) {
+    markers[i].setMap(null);
+    }
+    markers = [];
+}
+
+
+// Customizing google map api
+                                    
+function getLocation(e) {
+    $("#update_location").addClass("btn-dark");
+    $("#drop").removeClass("btn-dark");
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+    } else { 
+        alert("Geolocation is not supported by this browser.");
+    }
+    }
+
+        
+function showPosition(position) {
+    const latitude =  position.coords.latitude;
+    const longitude =  position.coords.longitude;
+    const cr_location = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude 
+    }
+    neighborhoods = cr_location;
+    clearMarkers();
+    
+    address_update_ajsx(cr_location);
+    formObj.lat = latitude;
+    formObj.lng = longitude;
+        
+    map = new google.maps.Map(document.getElementById("map"), {
+                                zoom: 12,
+                                center: cr_location,
+                                });
+    addMarkerWithTimeout(cr_location,  200);
+    if(!$("#floating-panel #drop").length){
+        $("#floating-panel").prepend(`<button class="btn btn-light" id="drop" onclick="drop()">Drop Your location</button>`)
+    }
+}
+
+
+function address_update_ajsx(map){
+   
+    $.ajax({
+        method:"POST",
+        url:"/customer/api/post/?map_update=true",
+        data:{
+            "map":JSON.stringify(map),
+            'csrfmiddlewaretoken': '{{ csrf_token }}',
+        },
+        success:(data)=>{
+            console.log(data)
+            if(data.update === "successful"){
+                alert('Your location successfully upgrade🥰');
+                $('#googleMap p').html('We have receive your location. If you select Google Maps, your product will be delivered to the location which you provided <br/> by Google Maps.');
+            }
+        },
+        error:(err)=>{
+            alert(err);
+        }
+    })
+  
+}
+</script>
+
+
+                            
+
+                           
+
+
+
+                            <div>
+                                <div class="deliveryStep activeStep deliverySlot">
+                                    <div class="deliveryStepTitle">
+                                        <div class="titleLeft">
+                                            <div class="stepIcon">
+                                                <svg style="fill: #214354;stroke: #214354;display: inline-block;vertical-align: middle;" width="30px" height="30px" x="0px" y="0px" viewBox="0 0 100 100">
+                                                    <g transform="translate(0,-952.36218)">
+                                                        <path
+                                                            d="m 50,970.36215 c -17.6731,0 -32,14.32701 -32,31.99995 0,17.673 14.3269,32.0001 32,32.0001 17.6731,0 32,-14.3271 32,-32.0001 0,-17.67294 -14.3269,-31.99995 -32,-31.99995 z m 0,10 c 1.1046,0 2,0.8954 2,2 l 0,17.99995 16,0 c 1.1046,0 2,0.8954 2,2 0,1.1046 -0.8954,2 -2,2 l -18,0 c -1.1046,0 -2,-0.8954 -2,-2 l 0,-19.99995 c 0,-1.1046 0.8954,-2 2,-2 z"
+                                                            stroke="none"></path>
+                                                    </g>
+                                                </svg>
+                                            </div>
+                                            <h2>Preferred Delivery Timings</h2>
+                                        </div>
+                                    </div>
+                                    <div class="deliveryStepContent">
+                                        <div class="deliveryComponent isBothDropDown">
+                                            <div>
+                                                <div class="timings">
+                                                    <div class="onlyExpressItems">
+                                                        <div class="deliveryTimeWrapper">
+                                                            <div class="deliveryTime">
+                                                                <div class="iconAndDescription">
+                                                                    <p>
+                                                                        <svg version="1.1" x="0px" y="0px"
+                                                                            viewBox="-9 11 100 100">
+                                                                            <path class="st0"
+                                                                                d="M59.4,32.6c0.2,0.2-0.2,0.3-0.2,0.3s-1.2,0.3-1.5,0.8c-0.3,0.3-0.8,1.5-0.8,1.5c0.7-0.2,1.5-0.3,2.3-0.7 c0.2,0,0.3,0.2,0.5,0.3c0.2,0-2,0.8-2.5,1.2c-0.3,0.3-2,1.7-2.5,1.7S53,37.9,53,37.9c0.2,0.3,0.3,0.7,0.7,1.2c0,0-1.2,0.7-1.2,0.8 c-0.2,0.2-1,1.2-1,1.2s3,0.3,4-1.3c-1,1.7-3.3,3.3-8.2,3.3c-5,0-9-2-11.7-3c-2.8-1.2-6.5-2.5-9.5-2.5c-2.8,0-6.2,0.8-8.4,2.9 c-3.9-1.5-9.2-0.7-11.7,1.7c-2.3,2.3-4.7,5.2-5,7.2c-0.5,2.2-1.7,7.4-3.3,9.7c-2.3,3.8-5,4.8-5.9,6.5c-0.8,1.7-0.8,5.2-0.7,5.2 c0.3,0.2,1.5,0,2.2-0.3c1.3-0.5,5-4.3,6.4-6.2c1.3-1.8,5.9-9.9,6.5-12.7c0.7-2.8,1.3-5.7,3.3-7.2c2.2-1.5,4.8-0.8,4.8-0.7 c0,0-2.5,2-2.7,7.5c-0.2,5.5,3.2,4.9,1.5,8.4c-1.7,3-6.7,1-8.4,2.8c-1.3,1.5,0,6.9,0,7.9c0,1-0.5,5.7-0.8,6.9c-0.2,1,0,1.7-0.2,2.3 c-0.2,0.5,1,0.7,1,0.7s-1,1.3-1.5,1c-0.5-0.2-0.8-0.2-1.2,0c-0.3,0-1,0.3-1.7,0l-2.7,5.7c0.3,0.2,0.8,0.3,1.3,0.2 c0.7-0.2,4-1.7,4.4-2c0.5-0.2,3.3-1.8,3.8-2.8c0.3-1,1-4.2,1-5.2c0.2-1,0.3-4.2,0.3-5c0-0.8-0.2-2.3,0-3c0.3-0.5,0.8-1.2,1.5-1.5 c0.8-0.2,1.8-0.2,2-0.2c0.3,0,3.2,0.3,3.7,0.3c0.7,0,3.3-0.5,4-0.8c0.8-0.2,1.3,0,1.5,0.3c0.3,0.3-0.3,0.8-0.3,1 c-0.2,0.2-1.5,1.8-1.8,2.5c-0.3,0.8-1.5,2.3-1.2,3c0.3,0.7,0.3,0.8,1.3,1.3c1,0.3,4.9,2.3,7,4.3c2.3,2.2,4.5,4.8,4.9,6.2 c0.5,1.5,1.3,1.7,1.8,1.7c0.5,0.2,1.5,0.3,1.5,1c0,0.7-0.2,1.5-0.2,1.5l6.2,2.3c0,0,0-2.2-0.2-3c-0.2-1-1.2-2-2-3 c-0.8-1.2-9.5-9.7-10.4-10.4c-0.8-0.5-1.5-1.2-1.7-2.5c-0.2-1.3,1.5-2.3,2.5-3.5c0.7-0.8,2.5-4.7,2.8-5.2c0.3-0.5,1.5-1.8,2.2-1.8 c0.8,0,2.7,1.2,5,2c1,0.3,8.2,2.2,9.2,2.5c1,0.2,3.2,0,3.8,0.7c0.7,0.5,0,1.8-0.2,2.7c-0.2,1-2,4.7-2,4.7s0.3,1.3,0.3,2.4 c0,1.2-0.5,5.3-1,6.7c-0.3,1.5-2.7,5.4-3.2,6c-0.3,0.5-0.8,0.8-0.8,1.7c0,0.8,1.5,1,2,1.7c0.7,0.5,0.2,1.5,0,2.5l6.7,2.8 c0-0.5,0.3-1.3,0-1.7c-0.2-0.5-1-1.5-1.5-2.2c-0.3-0.5-1.5-2.3-1.8-2.7c-0.3-0.5-0.3-1.5,0-2.3c0.2-0.8,2.3-6.5,2.5-7.2 c0.3-0.8,3.5-7.5,3.8-8.4c0.3-1,3-5.9,3.3-6.7c0.3-1,2.5-1.8,3.2-1.8c0.8,0,5,1.5,5.7,1.8c0.5,0.2,4.4,1.8,5,2.2 c0.8,0.3,0.3,1-0.2,1.2c-0.5,0.3-6.7,4.5-7.2,4.7c-0.5,0.2-1,0.7-1.3,0.7c-0.5,0-1.2,0.5-1.2,0.7c0,0.3-0.2,1-1,1c-0.7,0-2-1-2.8-2 c-1.2,0.7-2,1.2-2.5,2.2c-0.8,0.8-1.2,1.5-1.7,2.7c0.3,0.3,1,0.5,1.5,0.5h5.4c0.5,0,1.2-0.2,1.7-0.3c0.5-0.3,13.7-9,13.7-9 s2.2-1.7,2.2-3.2c0-1.2-1-1.5-1.3-2c-0.5-0.3-3.5-2.3-4-2.7c-0.7-0.5-3-1.8-3.7-2.2c-0.5-0.3-2.4-1-2.4-1c0.5-1.5,0.8-2.7,1-3 c0.2-0.3,0.2-3.4,0.3-3.9c0-0.5,0.8-2.7,1.2-3c0.3-0.3,1.2-3,1.3-3.5c0.2-0.3,1.5-4.2,2.2-4.2c0.7-0.2,1.3,0.5,2,0.5 c0.7,0.2,3.2-0.2,4.5,0c1.2,0.2,2.7,1.7,3,1.8c0.5,0.2,1.7,0.7,2,0.7c0.2,0,1.8-1.2,1.8-1.5c0-0.3-1.2-1-1.3-1 c-0.2-0.2-1.3-0.8-1.3-0.8c0,0.2,0.5-0.3,1.3-0.3c0.7,0,1.3,0.7,1.5,0.8c0.3,0.2,1.2,0.7,1.3,0.3c0.2-0.2,0.8-1,0.8-1.5 c0-0.7-0.7-1.5-1-1.8c-0.3-0.3-4.2-4-4.5-4.2c-0.5-0.2-2.5-2-2.5-2.5c-0.2-0.3-1.2-1.2-1.3-1.3c-0.2-0.2-5.2-3.7-5.9-4.2 c-0.7-0.5-1.3-1.3-1.3-2.2c0-0.8-0.3-3-0.3-3s-1.2-0.2-1.7,0.3c-0.5,0.3-1.7,3-2.3,3c-1.8-0.3-4.2,0.2-4.2,0.5 c0.2,0.5,1.8,0.2,1.8,0.2c0,0.2-0.7,1-1.2,1c-0.3,0-1.3,0.3-1.5,0.5c-0.3,0-1,0.5-1,0.5c0.5,0,1,0,1.7,0.2c0,0-1,0.7-1.5,0.7 c-0.5,0-2.2,0.5-2.7,0.7c-0.3,0.3-1.7,1.3-1.7,1.3h-1.5l0.2,0.3h0.8L59.4,32.6L59.4,32.6z">
+                                                                            </path>
+                                                                        </svg><span> </span><span>When would you like
+                                                                            your
+                                                                            <b>Express Delivery</b>?</span>
+                                                                    </p>
+                                                                </div>
+                                                                <div class="clearAll"></div>
+                                                                <div class="dropdownContainer">
+                                                                    <section class="selectOptions daySelect">
+                                                                        <div class="firstBlock">
+                                                                            <p class="dayName">today</p>
+                                                                            <p class="dateName"></p>
+                                                                        </div>
+                                                                        <div class="tooltipSuggestion">
+                                                                            <i class="caret-down"></i>
+                                                                        </div>
+                                                                    </section>
+                                                                    <section class="mobileDaySelect mobileDropDown">
+                                                                        <select>
+                                                                           
+                                                                            <option value="{{tarik|wichIndex:0}}-{{mas|wichIndex:0}}">
+                                                                                today - {{tarik|wichIndex:0}} {{mas|wichIndex:0}}
+                                                                            </option>
+                                                                            <option value="{{tarik|wichIndex:1}}-{{mas|wichIndex:1}}">
+                                                                                Tomorrow - {{tarik|wichIndex:1}} {{mas|wichIndex:1}}
+                                                                            </option>
+                                                                            <option value="{{tarik|wichIndex:2}}-{{mas|wichIndex:2}}">
+                                                                                {{bar|wichIndex:0}} - {{tarik|wichIndex:2}} {{mas|wichIndex:2}}
+                                                                            </option>
+                                                                            <option value="{{tarik|wichIndex:3}}-{{mas|wichIndex:3}}">
+                                                                                {{bar|wichIndex:1}} - {{tarik|wichIndex:3}} {{mas|wichIndex:3}}
+                                                                            </option>
+                                                                            <option value="{{tarik|wichIndex:4}}-{{mas|wichIndex:4}}">
+                                                                                {{bar|wichIndex:2}} - {{tarik|wichIndex:4}} {{mas|wichIndex:4}}
+                                                                            </option>
+                                                                            <option value="{{tarik|wichIndex:5}}-{{mas|wichIndex:5}}">
+                                                                                {{bar|wichIndex:3}} - {{tarik|wichIndex:5}} {{mas|wichIndex:5}}
+                                                                            </option>
+                                                                            <option value="{{tarik|wichIndex:6}}-{{mas|wichIndex:6}}">
+                                                                                {{bar|wichIndex:4}} - {{tarik|wichIndex:6}} {{mas|wichIndex:6}}
+                                                                            </option>
+                                                                        </select>
+                                                                    </section>
+                                                                    <section class="selectOptions timeSelect">
+                                                                        <div class="firstBlock">
+                                                                            <p class="dateName"
+                                                                                style="margin-top: 17px">
+                                                                                {{time|wichIndex:0|wichIndex:0|wichIndex:0}}:00 {{time|wichIndex:0|wichIndex:0|wichIndex:1}} - {{time|wichIndex:0|wichIndex:1|wichIndex:0}}:00 {{time|wichIndex:0|wichIndex:1|wichIndex:1}}
+                                                                            </p>
+                                                                        </div>
+                                                                        <div class="tooltipSuggestion">
+                                                                            <i class="caret-down"></i>
+                                                                        </div>
+                                                                    </section>
+                                                                    <section class="mobileTimeSelect mobileDropDown">
+                                                                        <select>
+                                                                        {% for table  in time %}
+                                                                            <option value="{{table|wichIndex:0|wichIndex:0}}:00-{{table|wichIndex:0|wichIndex:1}}_{{table|wichIndex:1|wichIndex:0}}:00-{{table|wichIndex:1|wichIndex:1}}">
+                                                                                {{table|wichIndex:0|wichIndex:0}}:00 {{table|wichIndex:0|wichIndex:1}} - {{table|wichIndex:1|wichIndex:0}}:00 {{table|wichIndex:1|wichIndex:1}}
+                                                                            </option>
+                                                                        {% endfor %}
+                                                                        </select>
+                                                                    </section>
+                                                                </div>
+
+
+                                                                <!-- date option -->
+                                                                <div style="display: none;" class="days dropdown fullWidth">
+
+                                                                   {% if isDvToday %}
+                                                                    <div class="singleDay" value="{{tarik|wichIndex:0}}-{{mas|wichIndex:0}}">
+                                                                        <p>today</p>
+                                                                        <p>{{tarik|wichIndex:0}} {{mas|wichIndex:0}}</p>
+                                                                    </div>
+                                                                   {%endif%}
+                                                                    <div class="singleDay" value="{{tarik|wichIndex:1}}-{{mas|wichIndex:1}}">
+                                                                      <p>Tomorrow</p>
+                                                                      <p>{{tarik|wichIndex:1}} {{mas|wichIndex:1}}</p>
+                                                                    </div>
+                                                                    <div class="singleDay" value="{{tarik|wichIndex:2}}-{{mas|wichIndex:2}}">
+                                                                      <p>{{bar|wichIndex:0}}</p>
+                                                                      <p>{{tarik|wichIndex:2}} {{mas|wichIndex:2}}</p>
+                                                                    </div>
+                                                                    <div class="singleDay" value="{{tarik|wichIndex:3}}-{{mas|wichIndex:3}}">
+                                                                      <p>{{bar|wichIndex:1}}</p>
+                                                                      <p>{{tarik|wichIndex:3}} {{mas|wichIndex:3}}</p>
+                                                                    </div>
+                                                                    <div class="singleDay" value="{{tarik|wichIndex:4}}-{{mas|wichIndex:4}}">
+                                                                      <p>{{bar|wichIndex:2}}</p>
+                                                                      <p>{{tarik|wichIndex:4}} {{mas|wichIndex:4}}</p>
+                                                                    </div>
+                                                                    <div class="singleDay" value="{{tarik|wichIndex:5}}-{{mas|wichIndex:5}}">
+                                                                      <p>{{bar|wichIndex:3}}</p>
+                                                                      <p>{{tarik|wichIndex:5}} {{mas|wichIndex:5}}</p>
+                                                                    </div>
+                                                                    <div class="singleDay" value="{{tarik|wichIndex:6}}-{{mas|wichIndex:6}}">
+                                                                      <p>{{bar|wichIndex:4}}</p>
+                                                                      <p>{{tarik|wichIndex:6}} {{mas|wichIndex:6}}</p>
+                                                                    </div>
+                                                                  </div>
+                                                                  
+                                                                <!-- time option  -->
+                                                            <div style="display: none;" class="times dropdown">
+                                                       
+
+
+         
+                                                            {% for table in time %}
+
+                                                                    <div class="singleTime {% if not forloop.counter0 %} selected  {% endif %}" value="{{table|wichIndex:0|wichIndex:0}}:00-{{table|wichIndex:0|wichIndex:1}}_{{table|wichIndex:1|wichIndex:0}}:00-{{table|wichIndex:1|wichIndex:1}}">
+                                                                        <p>
+                                                                            <span>{{table|wichIndex:0|wichIndex:0}}:00 {{table|wichIndex:0|wichIndex:1}} - {{table|wichIndex:1|wichIndex:0}}:00 {{table|wichIndex:1|wichIndex:1}}</span><span class="costOrAvailability"></span>
+                                                                        </p>
+                                                                    </div>
+
+                                                            {% endfor %}
+                                                                  
+
+
+
+                                                              
+                                                            </div>
+
+                                                            </div>
+                                                            <div class="clearAll"></div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="shoppingBagChoice">
+                                <table>
+                                    <tbody>
+                                        <tr class="shoppingBagBlock">
+                                            <td class="label">
+                                                <div class="shoppingBagInfo">
+                                                    <span class="choiceIconContainer">
+                                                        <div class="img-block">
+
+                                                           </div>
+                                                    </span>
+                                                    <h4>
+                                                        <span>Add reusable bags?</span>
+                                                        <span style="display: none;">1 reusable bags added</span>
+                                                    </h4>
+                                                    <span class="info-icon"><svg width="17px" height="17px" style="display: inline-block;vertical-align: middle;" version="1.1" viewBox="0 0 100 100">
+                                                            <path
+                                                                d="m50 5c-24.898 0-45 20.102-45 45s20.102 45 45 45 45-20.102 45-45-20.102-45-45-45zm7.1016 70c0 2.1992-1.8984 4.1016-4.1016 4.1016h-6.1992c-2.1992 0-4.1016-1.8984-4.1016-4.1016v-26.199c0-2.3008 1.8984-4.1016 4.1016-4.1016h6.1992c2.1992 0 4.1016 1.8984 4.1016 4.1016zm-7.2031-37.102c-4.6016 0-8.3984-3.8008-8.3984-8.5 0-4.6992 3.8008-8.5 8.3984-8.5 4.6992 0 8.5 3.8008 8.5 8.5 0 4.7031-3.7969 8.5-8.5 8.5z">
+                                                            </path>
+                                                        </svg></span>
+                                                </div>
+                                            </td>
+                                            <td class="value">
+                                                <span style="display: none;">
+                                                    <span>৳</span>
+                                                    <span>{{reusable_bag_price}}</span>
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <div class="switch-block">
+                                                    <div class="switch">
+                                                        <input class="toggle toggle-light" id="toggleSwitch"
+                                                            type="checkbox"value="off" /><label class="toggle-btn"
+                                                            for="toggleSwitch"></label>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="placeOrderFooter">
+                                <div class="paymentMethodInstruction">
+                                    <span>Payment options available on the next page</span>
+                                </div>
+                                <div class="confirmBtnContainer">
+                                    <p class="footNote">
+                                        <span><span>৳</span><span>{{delivery_charge}}</span><span> </span></span><span>Delivery charge
+                                            included</span>
+                                    </p>
+                                    <button style='z-index:100000000;' class="confirmBtn confirmOrder">
+                                        <div>
+                                            <div class="placeOrderText">Proceed</div>
+                                            <div class="placeOrderPrice">
+                                                <span>৳ </span><span></span>
+                                            </div>
+                                        </div>
+                                    </button>
+                                    <p class="termConditionText">
+                                        <span>By clicking/tapping proceed, I agree to Chaldal's
+                                            <a href="/t/terms-of-use/" target="_blank">Terms of Services</a></span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<script>
+    {% if price_status %}
+        $(".placeOrderPrice span")[1].textContent = "{{total_price}}";
+    {% else %}
+        alert("Please Resure Your product again Some worng with your product price")
+    {% endif %}
+    var defult_adress = {
+        "panding_delivaryAdress":"{{panding_delivaryAdress}}",
+        "adress":`{{adress}}`,
+        "area":"{{area}}",
+    }
+    var formObj={ 
+        'address_type':'localAdress',
+        "selectedCityId":defult_adress.panding_delivaryAdress,
+        'reusableBag':"off",
+        "dVdate": $(".days .singleDay.selected").attr("value"),
+        "dVtime": $(".times .singleTime.selected").attr('value'),
+        {%if is_use_geo_google %}
+        'lat':{{geolocation.lat}},
+        'lng':{{geolocation.lng}},
+        {%endif%}
+    }
+
+    // ****************************SOME CONFIGARATIONS HERE 👆  ************************
+    
+    function choAdressHtml(adressObj){ 
+        const html = `
+        <div class="theSelectedAddress">
+            <div class="stepIcon">
+                <svg style="fill: #214354;stroke: #214354;display: inline-block;vertical-align: middle;" width="30px" height="30px" x="0px" y="0px" viewBox="0 0 500 500">
+                    <g>
+                        <path
+                            d="M418.455,188.455C418.455,95.418,343.037,20,250.001,20   C156.964,20,81.546,95.418,81.546,188.455c0,33.983,10.074,65.614,27.383,92.079h-0.298l126.278,201.831h0.005   c2.759,5.539,8.479,9.349,15.087,9.349c6.607,0,12.327-3.811,15.085-9.349h0.006l126.279-201.831h-0.299   C408.382,254.068,418.455,222.438,418.455,188.455L418.455,188.455 M250.001,111.641c42.425,0,76.814,34.389,76.814,76.814   c0,42.426-34.389,76.814-76.814,76.814s-76.815-34.389-76.815-76.814C173.187,146.03,207.575,111.641,250.001,111.641   L250.001,111.641 M250.001,111.641L250.001,111.641z">
+                        </path>
+                    </g>
+                </svg>
+            </div>
+            <div class="stepLabel">Delivery Address</div>
+            <div class="wholeAddress" adress-pk="${adressObj.panding_delivaryAdress}">
+                <span class="wrap"><span>${adressObj.adress}</span><span> </span><br /><span>
+                    </span><span>${adressObj.area}, {{city}}</span><span>
+                    </span><span></span></span>
+            </div>
+            <div class="stepAction" onclick="stepActionfnc()"><button>Change</button></div>
+        </div>
+        `
+        return html
+    }
+    $(".addressComponent.mui").html(choAdressHtml(defult_adress))
+</script>
+
+
+
+
+<script>
+    var svg_target = $(".img-block")
+    var svg_defultHtml = `
+        <svg style="display: inline-block;vertical-align: middle;" width="22px" height="30px" viewBox="0 0 242 298">
+            <path fill="#d07d3f" d="M23.38 81.52h196.1v168.9h-196z">
+            </path>
+            <path fill="#edc55c"
+                d="M13.18 122.12v163.5a12.72 12.72 0 0013 12.4 6.6 6.6 0 001.4-.1h187.6a12.74 12.74 0 0014.3-11 6.15 6.15 0 00.1-1.4v-163.4c0 .1-216.2 0-216.4 0zm30.5-26.9l-20.3-13.7v33.8h20.3zm175.8-13.7L199.18 95v20.3h20.3z">
+            </path>
+            <path fill="#dda44e"
+                d="M43.58 122.12v-27l-30.6 27zM199.18 95v27H230z">
+            </path>
+            <path fill="#d07d3f"
+                d="M61.18 161a9.41 9.41 0 00-9.3 9.3 9.26 9.26 0 009.2 9.3h.1a9.41 9.41 0 009.3-9.3 9.16 9.16 0 00-9-9.3zm113.3 0a9.41 9.41 0 00-9.3 9.3 9.26 9.26 0 009.2 9.3h.1a9.41 9.41 0 009.3-9.3 9.16 9.16 0 00-9-9.3z">
+            </path>
+            <path fill="#cba94f"
+                d="M118 238.72c-33.6 0-60.8-29.8-60.8-66.4a4.26 4.26 0 118.5-.7v.7a52.6 52.6 0 00104.8 9.2 47.13 47.13 0 000-9.2 4.26 4.26 0 118.5-.7v.7c-.12 36.6-27.52 66.4-61 66.4z">
+            </path>
+            <path fill="#fff"
+                d="M118 233.52A61.26 61.26 0 0157.08 172a4.2 4.2 0 018.4-.4v.4a52.41 52.41 0 00104.8 2v-2a4.2 4.2 0 118.4-.4v.4A61.09 61.09 0 01118 233.52z">
+            </path>
+        </svg>
+    `
+    svg_target.html(svg_defultHtml)
+    $("#toggleSwitch").change((e)=>{
+        $(".shoppingBagBlock .value > span").toggle()
+        $("h4  span").toggle()
+       const crntValue = e.currentTarget.value
+       if(crntValue == "off"){
+         svg_target.html(`
+           <svg style="display:inline-block;vertical-align:middle;" width="22px" height="30px" viewBox="0 0 242 298">
+            <path fill="#d07c3f" d="M23.28 81.69h195.8v168.62H23.46z"></path>
+            <path fill="#5eae35"
+                d="M123.92 142.74V95H109a14.94 14.94 0 110-29.87h14.93l-9-9a12.71 12.71 0 0117.93-17.92l9 9v-12a17.92 17.92 0 0135.84-.8v12.75l9-9A12.72 12.72 0 01206 54.74a12.94 12.94 0 01-1.39 1.38l-9 9h14.93a14.94 14.94 0 110 29.87h-14.92v47.79z">
+            </path>
+            <path fill="#fb0200" d="M165.75 95a29.88 29.88 0 00-29.88 29.88v6h59.75v-6A29.88 29.88 0 00165.75 95z"></path>
+            <path fill="#ff8706" d="M34.31 136.77V35.21a29.87 29.87 0 0159.74 0v101.56z"></path>
+            <path fill="#ffa646" d="M52.23 47.15h23.9v12h-23.9zM52.23 71.05h23.9V83h-23.9zM52.23 94.94h23.9v12h-23.9z"></path>
+            <path fill="#008c02" d="M135.87 77V65a12 12 0 0011.95-11.95h12A23.93 23.93 0 01135.87 77z"></path>
+            <path fill="#84d2f4"
+                d="M48.55 67.86L37.88 46 12.49 58.35l10.66 21.89a32.18 32.18 0 011.48 24.53 32.1 32.1 0 001.5 24.59l33.35 68.44 59.25-28.87-33.35-68.44A32.08 32.08 0 0067 84.21a32.11 32.11 0 01-18.4-16.29z">
+            </path>
+            <path fill="#57b7eb"
+                d="M92.13 114.34l26.6 54.59-59.25 28.87-33.34-68.43a32.14 32.14 0 01-1.49-24.53 32.21 32.21 0 00-1.48-24.54L12.48 58.35 37.88 46 42 54.48A14.9 14.9 0 0035.84 74a32.23 32.23 0 011.49 24.53 32.16 32.16 0 001.47 24.54 52.56 52.56 0 0052.66 29.28 49.64 49.64 0 01-6.17-9.11 23.54 23.54 0 016.85-28.95z">
+            </path>
+            <path fill="#d0d8da" d="M0 43.48L33.86 27l8.25 16.94L8.25 60.41zM30.61 138.55l59.25-28.87 14.44 29.63L45 168.18z">
+            </path>
+            <path fill="#93999a"
+                d="M69 149.87a48.06 48.06 0 009.09 2.22L45 168.18l-14.39-29.63 13.63-6.64A52.13 52.13 0 0069 149.87zM92.14 114.33l12.16 25-16.59 8.08a36.06 36.06 0 01-2.4-4.06 23.56 23.56 0 016.83-29.02zM38 35.45l4.12 8.47L8.25 60.41 0 43.48l10.75-5.24a18.71 18.71 0 0018.77 1.33z">
+            </path>
+            <path fill="#008c02" d="M189.64 83a23.93 23.93 0 01-23.9-23.9h11.95a12 12 0 0011.95 11.95z"></path>
+            <path fill="#ffc933"
+                d="M82.1 101.35a29.87 29.87 0 0029.9 29.88h12a12 12 0 0012-11.95 29.87 29.87 0 00-30-29.88H94a12 12 0 00-11.9 11.95z">
+            </path>
+            <path fill="#eec65d"
+                d="M13.16 122.2v163.23a12.7 12.7 0 0013 12.42 12.26 12.26 0 001.36-.1h187.35a12.71 12.71 0 0014.24-11 12.26 12.26 0 00.1-1.35V122.2c0 .18-215.88 0-216.05 0zm30.38-26.8L23.28 81.69v33.77h20.26zm175.54-13.71L198.83 95.2v20.26h20.26z">
+            </path>
+            <path fill="#dca34f" d="M43.53 122.2v-27L13 122.2zm155.28-27v27h30.72z"></path>
+            <path fill="#d07c3f"
+                d="M61.1 161a9.37 9.37 0 00-9.29 9.28A9.26 9.26 0 0061 179.6h.06a9.36 9.36 0 009.28-9.28 9.16 9.16 0 00-9-9.28zm113.09 0a9.37 9.37 0 00-9.29 9.28 9.26 9.26 0 009.23 9.28h.06a9.36 9.36 0 009.28-9.28 9.16 9.16 0 00-9-9.28z">
+            </path>
+            <path fill="#cba94f"
+                d="M117.81 238.66c-33.6 0-60.76-29.7-60.76-66.33a4.23 4.23 0 118.43-.68 3.86 3.86 0 010 .68 52.52 52.52 0 00104.65 9.15 53.77 53.77 0 000-9.15 4.23 4.23 0 118.43-.68 3.86 3.86 0 010 .68c.01 36.67-27.33 66.33-60.75 66.33z">
+            </path>
+            <path fill="#fff"
+                d="M117.81 233.43A61.09 61.09 0 0157 172a4.22 4.22 0 018.43-.39 2.54 2.54 0 010 .39 52.33 52.33 0 10104.65 1.95V172a4.22 4.22 0 018.43-.39 2.54 2.54 0 010 .39 61.19 61.19 0 01-60.7 61.43z">
+            </path>
+        </svg>
+           `)
+
+           e.currentTarget.value = "on"
+           formObj.reusableBag = "on"
+           $('.placeOrderPrice span')[1].textContent = Number($('.placeOrderPrice span')[1].textContent) + {{reusable_bag_price}}
+        }else{
+            if(formObj.reusableBag == "on"){
+                $('.placeOrderPrice span')[1].textContent = Number($('.placeOrderPrice span')[1].textContent) - {{reusable_bag_price}}
+            }
+            formObj.reusableBag = "off"
+            svg_target.html(svg_defultHtml)
+            e.currentTarget.value = "off"
+           
+       }
+    })
+    $(".timeSelect").click(()=>{
+        $(".times").toggle()
+    })
+    
+    $(".daySelect").click(()=>{
+        $(".days").toggle()
+    })
+
+    function stepActionfnc (){
+        console.log("SSSSSSSSSSSSSSSSSSSSSSSSS");
+        $(".deliveryStep").addClass("activeStep");
+
+
+        $.ajax({
+            method:"GET",
+            url:"{% url 'customer:checkout'%}?adress_api=true",
+            success:(data)=>{
+                console.log(data);
+
+                let adress_html = ""
+
+                const panding_adddr = $(".wholeAddress").attr("adress-pk")
+
+                var checkpoint = ""
+                data.data.forEach(element => {
+                    var checkpoint = element.pk == panding_adddr?"selectedAddress":""
+
+                    console.log();
+                    adress_html += addrUpbyModal(checkpoint,element)
+
+
+
+                    console.log(element);
+                });
+
+
+                $(".addressComponent.mui").html(`
+        
+                    <div class="submitting">
+                            <section class="">
+                                <section class="addresses">
+                                    ${adress_html}
+                                </section>
+                                <div class="newAddressAddBtn" adress_add="true" onclick="modals_render(this)">
+                                    <section>
+                                        <svg width="15px" height="15px" style="display: inline-block; vertical-align: middle" version="1.1" viewBox="5 7 22 22" x="0px" y="0px">
+                                            <g stroke-width="1">
+                                                <rect height="19" width="1" x="16" y="7"></rect>
+                                                <rect height="1" width="19" x="7" y="16"></rect>
+                                            </g>
+                                        </svg><span>New Address</span>
+                                    </section>
+                                </div>
+                            </section>
+                        </div>
+
+                    `)
+
+
+            }
+        })
+
+    }
+
+
+    function addrUpbyModal(checkpoint,element){
+        const html =  `
+                <div class="address ${checkpoint}" data-address="${element.pk}" name="${element.name}" phone="${element.phone}" onclick="cityChoise(this)">
+                    <span class="selectedAddressTickIcon">
+                        <svg style="fill: #3bb07e;stroke: #3bb07e;display: inline-block;vertical-align: middle;" width="20px" height="20px" version="1.1" viewBox="0 0 100 100" x="0px" y="0px">
+                            <path
+                                d="M50,88.6c21.3,0,38.6-17.3,38.6-38.6S71.3,11.4,50,11.4S11.4,28.7,11.4,50S28.7,88.6,50,88.6z M31.8,45.9l12.3,12.3  l22.5-22.5l3,3L44.1,64.2L28.8,48.9L31.8,45.9z">
+                            </path>
+                        </svg>
+                    </span>
+                    <span>
+                        <p>${element.adress}</p>
+                        <span class="addressArea">${element.area}, {% if city %}{{city}}{% else %}{{city_from_session}}{%endif%}</span>
+                    </span>
+                </div>
+                                
+                `
+                console.log(html);
+        return html
+    }
+   
+
+function cityChoise(e){
+    console.log("choise city sussfuly");
+    const pdId = e.getAttribute("data-address");
+    formObj.selectedCityId = pdId;
+    const newAdressObj = {
+        "panding_delivaryAdress":pdId,
+        "adress":e.querySelector("span p").textContent,
+        "area":e.querySelector("span .addressArea").textContent.split(",")[0],
+    }
+    console.log(newAdressObj);
+    $(".addressComponent.mui").html(choAdressHtml(newAdressObj))
+    $(".deliveryStep").removeClass("activeStep")
+}
+
+
+
+</script>
+<script>
+    //models_click_event 
+
+    function modals_render(e){
+        console.log("modal rendaring");
+        const parent_div = e.parentNode
+            if(e.getAttribute("adress_add") == "true"){
+                    product_data ={
+                    "name":"{{request.user.username}}",
+                    "phone":"{{defult_number}}",
+                    "area_id":0,
+                    "adress":"",
+                    "add_adress":e.getAttribute("adress_add"),
+                    "modals_append_id":document.querySelector(".submitting")
+                    }
+            }else{
+                product_data ={
+                "id":parent_div.getAttribute("data-address"),
+                "name":parent_div.getAttribute("name"),
+                "phone":parent_div.getAttribute("phone"),
+                "area_id":e.getAttribute("area_pk"),
+                "adress":parent_div.querySelector("span p").textContent,
+                "add_adress":e.getAttribute("adress_add"),
+                "modals_append_id":parent_div
+
+            }
+        }
+      
+        models_show(product_data)
+        if(product_data.area_id){     //Render edit modals area select option selected faild
+        
+            const option_target = $("select[name='area']")[0].options
+            for(var option=0;option<option_target.length;option++){
+                if (option_target[option].value == product_data.area_id){
+                    option_target[option].defaultSelected  = true
+                }
+            }
+        }
+
+
+    }
+
+        
+
+    function models_show(productObj){
+
+        if(productObj.add_adress === "true"){
+            ajsx_model_type = "add_adress"
+            action_html = `
+            <button class="btn btn-danger" type="submit">Add</button>
+            `
+        }else{
+            ajsx_model_type = "update_adress"
+            action_html = `
+            <button class="btn btn-danger" type="submit">update</button>
+            <button class="btn" id="delete_modals">delete</button>
+            `
+        }
+
+            const modals_html = `
+            <div class="ModalDialogContainer">
+                <div class="ModalDialog fullScreenOnMobile">
+                    <div class="ModalTitle">New Address</div>
+                    <button class="close modal_close"></button>
+                    <div class="ModalDialogContent undefined">
+                        <div class="addressInputComponent">
+                            <div class="show">
+                                <form id="modal_form">
+                                    <div class="inputContainer alternateStyle">
+                                        <div class="input-label">Name</div>
+                                        <input class="has-value" name="name" type="text" required="" maxlength="70" value="${productObj.name}">
+                                        <span class="input-error"></span>
+                                        <span class="input-description">e.g Emraan Mahmood</span>
+                                        <span class="input-extra-content"></span>
+                                    </div>
+                                    <div class="alternateInputStyle">
+                                        <div class="input-label">Phone Number</div>
+                                        <div class="input">
+                                            <span class="dial-code">+88</span>
+                                            <input type="tel" name="phone" value="0${productObj.phone}" placeholder="e.g. 01672955886">
+                                        </div>
+                                    </div>
+                                    <div class="error"></div>
+                                    <div class="city-field">
+                                        <div class="input-label">City</div>
+                                        <div class="area-input cursor-none">
+                                            <span class="areaName">{% if city %}{{city}}{% else %}{{city_from_session}}{%endif%}</span> 
+                                        </div>
+                                        
+                                        
+                                    </div>
+                                    <div  class="area-dropdown-field">
+                                        <div class="input-label">Area</div>
+                                        <select name="area" class="form-select">
+                                            {%for area in area_option%}
+                                                  <option value='{{area.pk}}'>{{area.name}}</option>
+                                            {%endfor%}
+                                        </select>
+
+                                    </div>
+                                    <div class="inputContainer alternateStyle">
+                                        <div class="input-label">Address</div>
+                                            <textarea class="" name="address" type="text" required="" maxlength="400" rows="3">${productObj.adress}</textarea>
+                                            <span class="input-error"></span>
+                                            <span class="input-description">e.g House No 73, Road 14, Block F,Bashundhara R/A, Dhaka - 1216</span>
+                                            <span class="input-extra-content"></span>
+                                    </div>
+                                    <div class="actions">
+                                        ${action_html}
+                                    </div>
+                                    <input type="hidden" value="${productObj.id}" name="pk">
+                                </form>
+                                <div class="error dropdownError"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            `
+   
+        productObj.modals_append_id.insertAdjacentHTML("beforeend",modals_html)
+
+
+
+        $(`.modal_close`).click((e)=>{
+            $(".ModalDialogContainer").remove()
+        })
+
+        $("#delete_modals").click((e)=>{
+            e.preventDefault()
+            const pk = $("#modal_form").find("input[name='pk']")[0].value
+            $.ajax({
+                method:"POST",
+                url:`{% url 'customer:post_data' %}?delete=true`,
+                data:{
+                    "pk":pk,
+                    'csrfmiddlewaretoken': csrfmiddlewaretoken,
+                },
+                success:(e)=>{
+                    productObj.modals_append_id.remove()
+                }
+                
+            })
+        })
+
+
+
+
+        
+        $("#modal_form").submit((e)=>{
+            e.preventDefault()
+            const form = $("#modal_form")
+            const area = form.find("select[name='area']")[0]
+            const data = {
+                'pk': form.find("input[name='pk']")[0].value,
+                'name': form.find("input[name='name']")[0].value,
+                'adress':form.find("textarea")[0].value,
+                'phone':form.find("input[name='phone']")[0].value.replace(/0+/,""),
+                "area":area.value,
+            }
+            const area_text = area.options[area.options.selectedIndex].textContent
+            update_adress_ajsx(data,ajsx_model_type,area_text,productObj.modals_append_id)
+            console.log(data);
+
+
+            $(".modal_close").click()
+        })
+
+
+
+    }
+
+
+
+    function update_adress_ajsx(data,type,area_text,target){
+    $.ajax({
+        method:"POST",
+        url:`{% url 'customer:post_data' %}?${type}=true`,
+        data:{
+           
+            "data":JSON.stringify(data),
+            'csrfmiddlewaretoken': csrfmiddlewaretoken,
+        },
+        success:(sucData)=>{
+            console.log(sucData);
+            if(type == "update_adress"){
+                console.log("####################YES############")
+
+                console.log(target);
+                target.querySelector("span p").textContent = data.adress
+                target.querySelector("span .addressArea").textContent = `${area_text}, {{city}}`
+                target.setAttribute("name",data.name)
+                target.setAttribute("data-address",data.pk)
+                target.setAttribute("phone",data.phone)
+
+                console.log(data);
+                
+            }else{
+                const length = $("#localAdress-list section").length
+               
+            const newdata = {
+                pk:sucData.pk,
+                name: data.name,
+                phone:data.phone,
+                area_pk: data.area,
+                adress:data.adress,
+                area:area_text
+            }
+
+             $("section.addresses").append(addrUpbyModal("",newdata))
+               
+            }
+        },
+        error:(err)=>{
+            console.log(err);
+        }
+    })
+} 
+
+$(".singleTime").click((e)=>{
+    console.log(e);
+    
+    djTime(e.currentTarget);
+})
+
+function djTime(e){
+    $(".times.dropdown").css("display","none");
+    $(".singleTime").removeClass("selected");
+    e.classList.add("selected");
+    formObj.dVtime = e.getAttribute("value");
+    $(".timeSelect .dateName").text(e.querySelector("span").textContent);
+}
+
+
+var wasRemoved = true
+$(".singleDay").click((e)=>{
+    $(".days.dropdown").css("display","none");
+   {% if removed_tt %}
+   
+                if(wasRemoved){
+                    if(e.currentTarget != $(".singleDay")[0]){
+                        var allHTml = "";
+                    for(var i=0;i<{{removed_tt}};i++){
+                        var crnt_time = 8+i;
+                        var crnt_intTime = "AM";
+                        var paser_intTime = "AM";
+                        
+                        if(crnt_time>12){
+                            crnt_time -= 12;
+                            crnt_intTime = "PM";
+                            paser_intTime = crnt_intTime;
+                        }
+                        
+                        var paser_time = crnt_time == 12?crnt_time-11:crnt_time+1
+
+                        if(crnt_time == 12){
+                            crnt_intTime = "PM";
+                            paser_intTime = "PM";
+                        }else if(crnt_time == 11){
+                            paser_intTime = "PM";
+
+                        }
+                        const mltHtml = `
+                        
+                            <div onclick="djTime(this)" class="singleTime " value="${crnt_time}:00-${crnt_intTime}_${paser_time}:00-${paser_intTime}">
+                                <p>
+                                    <span>${crnt_time}:00 ${crnt_intTime} - ${paser_time}:00 ${paser_intTime}</span><span class="costOrAvailability"></span>
+                                </p>
+                            </div>
+
+                        `;
+                        allHTml += mltHtml;
+                    }
+                    $(".times.dropdown").prepend(allHTml)
+                    wasRemoved = false;
+                }
+                }
+                if(e.currentTarget == $(".singleDay")[0] && !wasRemoved){
+                    for(var i=0;i<{{removed_tt}};i++){
+                        
+                        $(".times.dropdown").find("div:first").remove()
+                    }
+                    wasRemoved = true;
+                    $(".singleTime")[0].click();
+                }
+            
+   {% endif %}
+    $(".singleDay").removeClass("selected")
+    e.currentTarget.classList.add("selected")
+    formObj.dVdate = e.currentTarget.getAttribute("value")
+    $(".firstBlock .dayName")[0].textContent = e.currentTarget.children[0].textContent;
+    $(".firstBlock .dateName")[0].textContent = e.currentTarget.children[1].textContent;
+    console.log(e);
+
+})
+
+
+
+
+
+
+
+
+var wasRemoved_2 = true;
+$(".mobileDaySelect select").change((e)=>{
+
+   {% if removed_tt %}
+   
+                if(wasRemoved_2){
+                    if(e.currentTarget.value != $(".mobileDaySelect select option")[0].value){
+                        var allHTml = ""
+                    for(var i=0;i<{{removed_tt}};i++){
+                        var crnt_time = 8+i;
+                        var crnt_intTime = "AM"
+                        var paser_intTime = "AM"
+                        
+                        if(crnt_time>12){
+                            crnt_time -= 12
+                            crnt_intTime = "PM"
+                            paser_intTime = crnt_intTime
+                        }
+                        
+                        var paser_time = crnt_time == 12?crnt_time-11:crnt_time+1
+
+                        if(crnt_time == 12){
+                            crnt_intTime = "PM"
+                            paser_intTime = "PM"
+                        }else if(crnt_time == 11){
+                            paser_intTime = "PM"
+
+                        }
+                        const mltHtml = `
+                        
+                            <option value="${crnt_time}00-${crnt_intTime}_${paser_time}:00-${paser_intTime}">${crnt_time}:00 ${crnt_intTime} - ${paser_time}:00 ${paser_intTime}</option>
+
+                        `
+                        allHTml += mltHtml;
+                    }
+                    $(".mobileTimeSelect select").prepend(allHTml)
+                    wasRemoved_2 = false;
+                }
+                }
+                if(e.currentTarget.value == $(".mobileDaySelect select option")[0].value && !wasRemoved_2){
+                    for(var i=0;i<{{removed_tt}};i++){
+                        
+                        $(".mobileTimeSelect select").find("option:first").remove();
+                    }
+                    wasRemoved_2 = true;
+                    
+                }
+            
+   {% endif %}
+
+    console.log(e);
+
+})
+
+
+
+
+
+
+
+$(".singleDay")[0].click()
+
+$(".confirmOrder.confirmBtn").click((e)=>{
+    if(current_width <= 700){
+        formObj.dVdate = $('.mobileDaySelect select').val();
+        formObj.dVtime = $('.mobileTimeSelect  select').val();
+    }
+    if(formObj.address_type =='map' ){
+        if(!(formObj.lat && formObj.lng)){
+            alert('We cannot find your location. Please update your location or use Local Adress');
+        }
+    }
+    site_ajsxWithPOST(formObj,"{% url 'customer:payment'  %}")
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+$(".adress-option li").click((e)=>{
+    const attrGet = e.currentTarget.getAttribute('kisslu');
+    if(!e.target.classList[0]){
+        $(".adress-option li").removeClass("active")
+        e.target.classList.add("active")
+        const kisslu = e.target.getAttribute("kisslu")
+        if(attrGet == 'localAdress'){
+            $('#locationFormUser').show();
+            $('#googleMap').hide();
+            formObj.address_type = attrGet;
+        }else{
+            $('#locationFormUser').hide();
+            $('#googleMap').show()
+            formObj.address_type = attrGet;
+        }
+    }
+})
+
+
+
+
+
+
+
+</script>
+{% else %}
+
+<section class="bodyTable">
+  <div>
+    <div class="checkoutExperience2">
+      <div>
+        <div>
+          <h1>Checkout</h1>
+          <div class="emptyCartError">
+            <img src="{{root.side_bar_image.url}}"/>
+            <h1>
+              <span> </span>
+              <span>Your shopping cart is empty, Please add some products before you checkout.</span>
+            </h1>
+            <a href="/" class="confirmBtn primaryFixedBtn">Start shopping now</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+{% endif %}
+
+<script>
+    setTitle('Checkout')
+</script>

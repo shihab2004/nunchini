@@ -1,0 +1,928 @@
+ {% extends 'chaldal/base.html' %}
+{% load costomer-tag %}
+{% load static %}
+{% block link %}
+
+<!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> -->
+<style>
+    .profile_photo{
+        height: 150px;
+        width: 150px;
+        background-color: #999;
+        border-radius: 50%;
+    }
+    .profile_photo div{
+        height: 150px;
+        width: 150px;
+        border-radius: 50%;
+        background-position: top center;
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+    .form-select {
+    display: block;
+    width: 100%;
+    padding: .375rem 2.25rem .375rem .75rem;
+    -moz-padding-start: calc(0.75rem - 3px);
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #fff;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right .75rem center;
+    background-size: 16px 12px;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+option {
+    font-weight: normal;
+    display: block;
+    white-space: nowrap;
+    min-height: 1.2em;
+    padding: 0px 2px 1px;
+}
+
+#profile_photo{
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.profile_photoss{
+    transition: 1s;
+    background-color: #4c8e00;
+ 
+}
+.ana{
+ 
+    animation: .4s aaaaaa forwards;
+    
+}
+.bana{
+    animation: .4s bbbbb forwards;
+}
+@keyframes aaaaaa{
+    0%{
+        height: 0%;
+        width: 0%;
+    }
+    100%{
+       top: 0;
+       left: 0;
+       height: 100%;
+       width: 100%;
+    }
+}
+@keyframes bbbbb{
+    0%{
+        height: 100%;
+        width: 100%;
+    }
+    100%{
+       height: 0%;
+       width: 0%;
+       
+    }
+}
+#profle_file{
+    display: none;
+}
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+{% endblock link %}
+{% block body_content %}
+
+<section class="bodyTable">
+                        <div>
+                            <div class="profile">
+                                <h2 class="profile-title">Your Profile</h2>
+                                <div class="profile-info">
+                                    <form>
+                                        <div class="inputContainer">
+                                            <div id="profile_photo" class="profile_photo">
+                                                
+
+                                                <div id="dp_profile" style="background-image: url({%if profile.profile_photo %}{{profile.profile_photo.url}}{%endif%});"></div>
+                    
+                                                
+
+                                            </div>
+                                            <input id="profle_file" type="file">
+
+                                            <script>
+                                                $('#profile_photo').mouseenter((e)=>{
+                                                    
+                                                    $('#profile_photo').append(`
+                                                    <div class='profile_photoss ana' style=' position: absolute; top:${e.offsetY}px ;left: ${e.offsetX}px;'>
+                                                        <div style="display: flex;justify-content: center;height:100%;align-items: center;flex-direction: column;">
+                                                            <i style='color:#fff;font-size:18px' class="fas fa-camera"></i>
+                                                            <span style="color:#fff;font-weight: 500;font-size:14px;">Upload Photo</span>
+                                                        </div>
+
+                                                    <div>
+                                                    `)
+                                                })
+                                                
+                                                $('#profile_photo').mouseleave((e)=>{
+                                                    
+                                                   $('.profile_photoss div').remove()
+                                                   $('.profile_photoss').removeClass('ana');
+                                                   $('.profile_photoss').addClass('bana');
+                                                   $('.profile_photoss').css('left',5);
+                                                   $('.profile_photoss').css('top',5);
+                                                   setTimeout(()=>{
+                                                    $('.profile_photoss').remove() 
+                                                   },400)                                                  
+
+                                                })
+
+                                                $('#profile_photo').click(()=>{
+                                                    const file =$('#profle_file').click();
+                                                })
+
+                                                $('#profle_file').change(()=>{
+                                                    const file = $('input#profle_file')[0].files[0]
+                                                    const url = URL.createObjectURL(file)
+                                                    $('#dp_profile').css('background-image',`url(${url})`)
+                                                    
+                                                    $('body').append(`
+                                                    
+                                                    <div class="cancelContainer ordCM">
+
+                                                        <div class="ModalDialogContainer orderCancelPrompt">
+                                                        <div class="ModalDialog">
+                                                            <div class="ModalDialogContent">
+                                                            <div>
+                                                                <div class="modal-text">
+                                                                <h1>Are you sure?</h1>
+                                                                <p>You want to change your current profile photo?</p>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                <button class="btnSecondary">Yes</button>
+                                                                <button class="btnPrimary">No</button>
+                                                                </div>
+                                                            </div>
+                                                            </div>
+                                                        </div>
+                                                        </div>
+                                                    </div>
+                                                `)
+
+                                                    $('.ordCM .btnPrimary').click(()=>{
+                                                        $('.ordCM').remove()
+                                                        $('#dp_profile').css('background-image',`url({%if profile.profile_photo %}{{profile.profile_photo.url}}{%endif%})`)
+                                                    })
+                                                    $('.ordCM .btnSecondary').click(()=>{
+                                                        $('.ordCM').remove();
+                                                        const profile_form = new FormData();
+                                                        profile_form.append('csrfmiddlewaretoken',csrfmiddlewaretoken);
+                                                        profile_form.append('profile_photo',file)
+                                                        $.ajax({
+                                                            type:"POST",
+                                                            url:"{% url 'customer:post_data2' %}?update_profile=True",
+                                                            enctype: "multipart/form-data",
+                                                            cache: false,
+                                                            processData: false,
+                                                            contentType: false,
+                                                            data:profile_form,
+                                                            success:(data)=>{
+                                                                console.log(data);
+                                                            }
+
+                                                        })
+                                                    })
+
+
+                                                })
+                                            </script>
+
+                 
+                                        </div>
+                                        
+                           
+
+                                        <style>
+                                            .aluoooos{
+                                                font-size: 13px!important;
+                                                font-weight: 300;
+                                                top: -32px !important;
+                                            }    
+                                        </style>
+                                       
+                                        <div class="inputContainer">
+                                            <input class="has-value" name="user-name" type="text" required maxlength="70" value="{{profile.user.username}}">
+                                            <span class="input-placeholder">Name</span>
+                                            <span class="input-error"></span>
+                                            <span class="input-description"></span>
+                                            <span class="input-extra-content"></span>
+                                        </div>
+                                        <div class="inputContainer">
+                                            <input class="paddingForExtraContent" name="email" type="email" value="{{profile.user.email}}" data-reactid=".26j8ymn200w.6.2.0.0.1.0.1.0">
+                                            <span class="input-placeholder">Email Address</span>
+                                            <span class="input-error" data-reactid=".26j8ymn200w.6.2.0.0.1.0.1.2"></span>
+                                            <span class="input-description" data-reactid=".26j8ymn200w.6.2.0.0.1.0.1.3"></span>
+                                            <script>
+                                                if($('input[name="email"]').val()){
+                                                    $('input[name="email"]').parent().find('.input-placeholder').addClass('aluoooos')
+                                                }
+
+                                                $('input[name="email"]').change((e)=>{
+                                                if(e.currentTarget.value){
+                                                    e.currentTarget.closest('.inputContainer').querySelector('.input-placeholder').classList.add('aluoooos');
+                                                }else{
+                                                    e.currentTarget.closest('.inputContainer').querySelector('.input-placeholder').classList.remove('aluoooos');
+
+                                                }
+                                            })
+                                            </script>
+                                            {% if not profile.user.email %}
+                                            <span class="input-extra-content" style="margin-top: -11px;" data-reactid=".26j8ymn200w.6.2.0.0.1.0.1.4">
+                                                <div class="extraContentForEmail" data-reactid=".26j8ymn200w.6.2.0.0.1.0.1.4.0">
+                                                    <button class="btn emailVerify btn-danger verifyBtn" data-reactid=".26j8ymn200w.6.2.0.0.1.0.1.4.0.0">VERIFY</button>
+                                                </div>
+                                            </span>
+
+                                           <script>
+                                            $('.emailVerify').click((e)=>{
+                                                e.preventDefault();
+                                                const emailVal = $('input[name="email"]').val();
+                                                const is_match = emailVal.match(/^[\w.\.]+@\w+\.\D+/);
+                                                if(is_match){
+                                                    $.ajax({
+                                                    method:"POST",
+                                                    url:"{% url 'customer:post_data2' %}?email_varify=True",
+                                                    data:{
+                                                        'email':emailVal,
+                                                        'csrfmiddlewaretoken':csrfmiddlewaretoken
+                                                    },
+                                                    success:(data)=>{
+                                                        if(data.status == "successful"){
+                                                          
+                                                             alert("Your varify code is send. Go to your email and varify the email😀");
+                                                        }
+                                                    }
+                                                    })
+                                                }else{
+                                                    console.log(e.currentTarget.closest('.inputContainer'));
+                                                    e.currentTarget.closest('.inputContainer').querySelector('.input-error').style.display = "block";
+                                                    e.currentTarget.closest('.inputContainer').querySelector('.input-error').textContent = "Your Email is Invalid🙂"
+                                                }
+                                                console.log("sdad");
+                                            })
+                                          
+
+                                           </script>
+                                           {% endif %}
+                                        </div>
+                                        <div class="inputContainer disable" data-reactid=".26j8ymn200w.6.2.0.0.1.0.2">
+                                            <input class="has-value" name="number" type="text" disabled value="+880{{profile.Phone}}" data-reactid=".26j8ymn200w.6.2.0.0.1.0.2.0">
+                                            <span class="input-placeholder" data-reactid=".26j8ymn200w.6.2.0.0.1.0.2.1">Phone Number</span>
+                                            <span class="input-error" data-reactid=".26j8ymn200w.6.2.0.0.1.0.2.2"></span>
+                                            <span class="input-description" data-reactid=".26j8ymn200w.6.2.0.0.1.0.2.3"></span>
+                                            {% if not profile.Phone %}
+                                            <span class="input-extra-content" data-reactid=".26j8ymn200w.6.2.0.0.1.0.2.4">
+                                            <div class="extraContentForPhone" data-reactid=".26j8ymn200w.6.2.0.0.1.0.1.4.0">
+                                                    <button class="btn btn-primary verifyBtn" data-reactid=".26j8ymn200w.6.2.0.0.1.0.1.4.0.0">VERIFY</button>
+                                                </div>
+                                            </span>
+                                            {% endif %}
+                                        </div>
+                                        <div class="inputContainer" data-reactid=".26j8ymn200w.6.2.0.0.1.0.3">
+                                            <label class="labelClass" data-reactid=".26j8ymn200w.6.2.0.0.1.0.3.0">Gender</label>
+                                            <select class="selectClass" data-reactid=".26j8ymn200w.6.2.0.0.1.0.3.1">
+                                                <option value="N" {{profile.gender|option_filter:"N"}} data-reactid=".26j8ymn200w.6.2.0.0.1.0.3.1.$0">None</option>
+                                                <option value="M" {{profile.gender|option_filter:"M"}} data-reactid=".26j8ymn200w.6.2.0.0.1.0.3.1.$1">Male</option>
+                                                <option value="F" {{profile.gender|option_filter:"F"}} data-reactid=".26j8ymn200w.6.2.0.0.1.0.3.1.$2">Female</option>
+                                                <option value="O" {{profile.gender|option_filter:"O"}}  data-reactid=".26j8ymn200w.6.2.0.0.1.0.3.1.$3">Others</option>
+                                            </select>
+                                        </div>
+                                    </form>
+
+                                    <style>
+                                        .adress-option{
+                                            width: 800px;
+                                            height: 100px;
+                                            padding: 20px 50px;
+                                            margin: auto;
+                                        }
+                                        .adress-option ul li{
+                                            font-size: 20px;
+                                            display: inline-block;
+                                            padding: 10px 30px;
+                                           cursor: pointer;
+                                           text-align: center;
+                                        }
+                                        .adress-option ul li.active{
+                                            color: #4c8e00;
+                                        }
+                                        .adress-option ul li.active div{
+                                            width: 150px;
+                                            height: 3.5px;
+                                            background-color: #67c100;
+                                            margin-top: 7px;
+                                            border-radius: 40%;
+                                        }
+                                        .adress-option ul li div{
+                                            width: 150px;
+                                            height: 3.5px;
+                                            margin-top: 7px;
+                                            border-radius: 40%;
+                                        }
+
+
+                                        .loading-choise-adress{
+                                            margin-top: 90px;
+                                            height: 100px;
+                                            width: 100%;
+                                        }
+                                        .loading-choise-adress div:nth-child(1){
+                                            background-color: red;
+                                        }
+                                        .loading-choise-adress div:nth-child(2){
+                                            background-color: green;
+                                        }
+                                        .loading-choise-adress div:nth-child(3){
+                                            background-color: blue;
+                                        }
+                                        .ball_animation{
+                                            height:9px ;
+                                            width: 8px;
+                                            animation: ball_animate 2s infinite ;
+                                            display: inline-block;
+                                            border-radius: 50%;
+                                        }
+                                         .ball_animation:nth-child(1){
+                                            animation-delay: .9s;
+                                        }
+                                         .ball_animation:nth-child(2){
+                                            animation-delay: .7s;
+                                        }
+                                         .ball_animation:nth-child(3){
+                                            animation-delay: 0.1s;
+                                        }
+                                         .ball_animation:nth-child(4){
+                                            animation-delay: 0.0s;
+                                        }
+                                        @keyframes ball_animate{
+                                            0%{
+                                                transform: translateX(0%);
+                                            }
+                                            100%{
+                                                transform: translateX(1600px);
+                                            }
+                                        }
+                                        @media screen and (max-width: 1000px) {
+                                            .adress-option {
+                                                width: 520px;
+                                            }
+                                        }
+                                        @media screen and (max-width: 551px) {
+                                            .adress-option {
+                                                width: 300px;
+                                                margin-bottom: 90px;
+                                            }
+                                        }
+                                                                                </style>
+                                    <div class="adress-option">
+                                        <ul>
+                                            <li kisslu="localAdress" class="active">Local Adress <div></div></li>
+                                            <li kisslu="map">Use Google Map <div></div></li>
+                                        </ul>
+                                    </div>
+                                    <script>
+                                       var adress_loading_html = `
+                                            <div class="loading-choise-adress">
+                                                <div class="ball_animation"></div>
+                                                <div class="ball_animation"></div>
+                                                <div class="ball_animation"></div>
+                                                <div class="ball_animation"></div>
+                                            </div>
+                                            `
+                                            $(".adress-option li").click((e)=>{
+                                                const adress_target = $('#adress_choise_show')
+                                                if(!e.target.classList[0]){
+                                                    $(".adress-option li").removeClass("active")
+                                                    e.target.classList.add("active")
+                                                    const kisslu = e.target.getAttribute("kisslu")
+                                                    if(sessionStorage.getItem(`${kisslu}_html`)){
+                                                        adress_target.html(sessionStorage.getItem(`${kisslu}_html`))
+                                                    }else{
+                                                        $.ajax({
+                                                            method:"GET",
+                                                            url:`/customer/api/get/adress_html/${kisslu}/`,
+                                                            beforeSend:()=>{
+                                                                adress_target.empty()
+                                                                adress_target.html(adress_loading_html)
+                                                            },
+                                                            success:(data)=>{
+                                                                console.log(data);
+                                                                adress_target.html(data.html)
+                                                                sessionStorage.clear()
+                                                                sessionStorage.setItem(`${kisslu}_html`,data.html)
+                                                                setSessionprodModal();
+                                                            },
+                                                            error:(err)=>{
+                                                                adress_target.html("Network connection problem")
+                                                            }
+                                                        })
+                                                    }
+                                                }
+                                            })
+                                            
+                                            {% if is_geo %}true{% else %}false{% endif %}?$("li[kisslu='map']").click():$("li[kisslu='localAdress']").click()
+                                            $("select[name='gender']").change((e)=>{
+                                                $.ajax({
+                                                    method:"POST",
+                                                    url:"{{POST_API}}?gender=True",
+                                                    data:{
+                                                        "gender":e.target.value,
+                                                        'csrfmiddlewaretoken': csrfmiddlewaretoken,
+                                                    },
+                                                    success:(sucData)=>{
+                                                        console.log(sucData);
+                                                    }
+                                                })
+                                            })
+                                            $("input[name='user-name']").blur((e)=>{
+                                                console.log(e.target.value);
+                                                $.ajax({
+                                                    method:"POST",
+                                                    url:"{{POST_API}}?profile_name=True",
+                                                    data:{
+                                                        "name":e.target.value,
+                                                        'csrfmiddlewaretoken': csrfmiddlewaretoken,
+                                                    },
+                                                    success:(sucData)=>{
+                                                        console.log(sucData);
+                                                        const error_div = e.target.parentNode.querySelector(".input-error")
+                                                        if(error_div.textContent){
+                                                            error_div.textContent = ""
+                                                        }
+                                                        if(sucData.state == "faild"){
+                                                            error_div.textContent = sucData.data
+                                                            error_div.setAttribute("style","display:block;")
+                                                            
+                                                        }else if(sucData.state == "successful"){
+                                                            sessionStorage.clear();
+                                                            setSessionprodModal();
+                                                            $(".oneWord").text(e.target.value)
+                                                            $('input[name="user-name"].has-value').val(e.target.value)
+                                                        }
+                                                    }
+                                                })
+                                            })
+                                    </script>
+                                   
+                                    <section id="adress_choise_show">
+
+                                       
+                                    {% if profile.is_geoLocation  %}
+
+                                        <style type="text/css">
+                                                /* Always set the map height explicitly to define the size of the div
+                                                * element that contains the map. */
+                                                #map {
+                                                    height: 500px;
+                                                }
+
+                                                /* Optional: Makes the sample page fill the window. */
+
+
+                                                #floating-panel {
+                                                    position: relative;
+                                                    top: 10px;
+                                                    z-index: 1;
+                                                    background-color: rgb(95 176 3);
+                                                    padding: 5px;
+                                                    border: 1px solid #999;
+                                                    text-align: center;
+                                                    font-family: "Roboto", "sans-serif";
+                                                    line-height: 30px;
+                                                    padding-left: 10px;
+                                                }
+
+                                                #update_location{
+                                                    margin-left:10px
+                                                }
+                                        </style>
+
+
+                                        <script>
+                                            // If you're adding a number of markers, you may want to drop them on the map
+                                            // consecutively rather than all at once. This example shows how to use
+                                            // window.setTimeout() to space your markers' animation.
+                                            var neighborhoods = { lat: {{profile.get_lat_long.lat}}, lng: {{profile.get_lat_long.lng}} };
+
+                                            
+                                            var markers = [];
+                                            var map;
+
+                                            function initMap() {
+                                                map = new google.maps.Map(document.getElementById("map"), {
+                                                zoom: 12,
+                                                center: { lat: {{profile.get_lat_long.lat}}, lng: {{profile.get_lat_long.lng}} },
+                                                });
+                                            }
+
+                                            function drop() {
+                                                $("#update_location").removeClass("btn-dark")
+                                                $("#drop").addClass("btn-dark")
+                                                clearMarkers();
+
+                                               
+                                                addMarkerWithTimeout(neighborhoods,  200);
+                                                
+                                            }
+
+                                            function addMarkerWithTimeout(position, timeout) {
+                                                window.setTimeout(() => {
+                                                markers.push(
+                                                    new google.maps.Marker({
+                                                    position: position,
+                                                    map,
+                                                    animation: google.maps.Animation.DROP,
+                                                    })
+                                                );
+                                                }, timeout);
+                                            }
+
+                                            function clearMarkers() {
+                                                for (let i = 0; i < markers.length; i++) {
+                                                markers[i].setMap(null);
+                                                }
+                                                markers = [];
+                                            }
+                                        </script>
+
+                                        <script
+                                        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWOqMTUtC3VgJPQE39tnbIeLM-yAU4Ijw&callback=initMap&libraries=&v=weekly"
+                                        async
+                                        ></script>
+
+                                            <div id="floating-panel">
+                                                <button class="btn btn-light" id="drop" onclick="drop()">Drop Your location</button>
+                                                <button class="btn btn-light" id="update_location" onclick="getLocation()">Update Your location</button>
+                                            </div>
+                                                <div id="map"></div>
+
+                                                
+                                                <script>
+                                                    // Customizing google map api
+                                    
+                                                    function getLocation(e) {
+                                                        $("#update_location").addClass("btn-dark")
+                                                        $("#drop").removeClass("btn-dark")
+                                                    if (navigator.geolocation) {
+                                                        navigator.geolocation.getCurrentPosition(showPosition);
+                                                    } else { 
+                                                        x.innerHTML = "Geolocation is not supported by this browser.";
+                                                    }
+                                                    }
+                                                    
+                                    
+                                                    function showPosition(position) {
+                                                        const latitude =  position.coords.latitude
+                                                        const longitude =  position.coords.longitude
+                                                        const cr_location = {
+                                                            lat: position.coords.latitude,
+                                                            lng: position.coords.longitude 
+                                                        }
+                                                        neighborhoods = cr_location
+                                                        clearMarkers()
+                                                        
+                                                        address_update_ajsx(cr_location)
+                                    
+                                                        map = new google.maps.Map(document.getElementById("map"), {
+                                                                                    zoom: 12,
+                                                                                    center: cr_location,
+                                                                                    });
+                                                        addMarkerWithTimeout(cr_location,  200);
+                                                    }
+                                    
+                                                    
+                                                                        
+                                            </script>
+                                    {% else %}
+                                
+                                     <div class="address-block checkoutExperience2" data-reactid=".26j8ymn200w.6.2.0.0.1.1">
+                                        <div class="deliveryStep activeStep" data-reactid=".26j8ymn200w.6.2.0.0.1.1.0">
+                                            <div class="deliveryStepTitle" data-reactid=".26j8ymn200w.6.2.0.0.1.1.0.0">
+                                                <div class="titleLeft" data-reactid=".26j8ymn200w.6.2.0.0.1.1.0.0.0">
+                                                    <h2 data-reactid=".26j8ymn200w.6.2.0.0.1.1.0.0.0.1">Address Book</h2>
+                                                </div>
+                                            </div>
+                                            <div class="deliveryStepContent">
+                                                <div class="addressComponent mui">
+                                                    <div class="">
+                                                        <section class="">
+                                                            <div id="update_adress" pk="0" name="{{request.user.username}}" adress="" phone="{{request.user.get_profile.Phone}}" adress_add="true" targetId="update_adress_modals" onclick="modals_render(this)" class="newAddressAddBtn buttonOnTop" data-reactid=".26j8ymn200w.6.2.0.0.1.1.0.1.0.0.2.0">
+                                                                <section data-reactid=".26j8ymn200w.6.2.0.0.1.1.0.1.0.0.2.0.0">
+                                                                    <svg width="15px" height="15px" style="display:inline-block;vertical-align:middle;" version="1.1" viewBox="5 7 22 22" x="0px" y="0px">
+                                                                        <g stroke-width="1">
+                                                                            <rect height="19" width="1" x="16" y="7"></rect>
+                                                                            <rect height="1" width="19" x="7" y="16"></rect>
+                                                                        </g>
+                                                                    </svg>
+                                                                    <span data-reactid=".26j8ymn200w.6.2.0.0.1.1.0.1.0.0.2.0.0.1">New Address</span>
+                                                                </section>
+                                                            </div>
+                                                            <div id="update_adress_modals"></div>
+
+                                                        
+
+
+                                                              
+                                                 
+
+                                                            <script>
+                                                                var active_modals_id = null;
+                                                                function models_show(modals_id,target_id,add_adress="false",name="",phone="",area="",pk=0){
+                                                                    const model_div = $(`#${modals_id}`)
+                                                                    const target = $(`#${target_id}`)
+                                                                    let action_html
+                                                                    let ajsx_url
+                                                                    if(add_adress === "true"){
+                                                                        ajsx_model_type = "add_adress"
+                                                                        action_html = `
+                                                                        <button class="btn btn-danger" type="submit">Add</button>
+                                                                        `
+                                                                    }else{
+                                                                        ajsx_model_type = "update_adress"
+                                                                        action_html = `
+                                                                        <button class="btn btn-danger" type="submit">update</button>
+                                                                        <button class="btn" id="delete_modals">delete</button>
+                                                                        `
+                                                                    }
+
+                                                                        const modals_html = `
+                                                                        <div class="ModalDialogContainer">
+                                                                            <div class="ModalDialog fullScreenOnMobile">
+                                                                                <div class="ModalTitle">New Address</div>
+                                                                                <button class="close modal_close" id="${target_id}_empty"></button>
+                                                                                <div class="ModalDialogContent undefined">
+                                                                                    <div class="addressInputComponent">
+                                                                                        <div class="show">
+                                                                                            <form id="modal_form" action="?add_adress=True">
+                                                                                                <div class="inputContainer alternateStyle">
+                                                                                                    <div class="input-label">Name</div>
+                                                                                                    <input class="has-value" name="name" type="text" required="" maxlength="70" value="${name}">
+                                                                                                    <span class="input-error"></span>
+                                                                                                    <span class="input-description">e.g Emraan Mahmood</span>
+                                                                                                    <span class="input-extra-content"></span>
+                                                                                                </div>
+                                                                                                <div class="alternateInputStyle">
+                                                                                                    <div class="input-label">Phone Number</div>
+                                                                                                    <div class="input">
+                                                                                                        <span class="dial-code">+88</span>
+                                                                                                        <input type="tel" name="phone" value="0${phone}" placeholder="e.g. 01672955886">
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                <div class="error"></div>
+                                                                                                <div class="city-field">
+                                                                                                    <div class="input-label">City</div>
+                                                                                                    <div class="area-input cursor-none">
+                                                                                                        <span class="areaName">{{profile.current_city.Name}}</span> 
+                                                                                                    </div>
+                                                                                                    
+                                                                                                    
+                                                                                                </div>
+                                                                                                <div  class="area-dropdown-field">
+                                                                                                    <div class="input-label">Area</div>
+                                                                                                    <select name="area" class="form-select">
+                                                                                                        {% for i in  request.user.get_profile.current_city.get_area.all %}
+                                                                                                        <option value="{{i.pk}}">{{i.name}}</option>
+                                                                                                        {% endfor %}
+                                                                                                    </select>
+            
+                                                                                                </div>
+                                                                                                <div class="inputContainer alternateStyle">
+                                                                                                    <div class="input-label">Address</div>
+                                                                                                        <textarea class="" name="address" type="text" required="" maxlength="400" rows="3">${area}</textarea>
+                                                                                                        <span class="input-error"></span>
+                                                                                                        <span class="input-description">e.g House No 73, Road 14, Block F,Bashundhara R/A, Dhaka - 1216</span>
+                                                                                                        <span class="input-extra-content"></span>
+                                                                                                </div>
+                                                                                                <div class="actions">
+                                                                                                    ${action_html}
+                                                                                                </div>
+                                                                                                <input type="hidden" value="${pk}" name="pk">
+                                                                                            </form>
+                                                                                            <div class="error dropdownError"></div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        `
+                                                                    target.html(modals_html)
+                                                                    model_div.attr("data-bs-toggle","modal")
+                                                                    model_div.attr("data-bs-target",`#${modals_id}`)
+
+
+                                                                    $(`#${target_id}_empty`).click((e)=>{
+                                                                        target.empty()
+                                                                    })
+
+                                                                    $("#delete_modals").click((e)=>{
+                                                                        e.preventDefault()
+                                                                        const pk = $("#modal_form").find("input[name='pk']")[0].value
+                                                                        $.ajax({
+                                                                            method:"POST",
+                                                                            url:`{% url 'customer:post_data' %}?delete=true`,
+                                                                            data:{
+                                                                                "pk":pk,
+                                                                                'csrfmiddlewaretoken': '{{ csrf_token }}',
+                                                                            },
+                                                                            success:(e)=>{
+                                                                                $(".modal_close").click()
+                                                                                model_div.parent().parent().remove()
+                                                                            }
+                                                                            
+                                                                        })
+                                                                    })
+
+                                                                    $("#modal_form").submit((e)=>{
+                                                                        e.preventDefault()
+                                                                        const form = $("#modal_form")
+                                                                        const area = form.find("select[name='area']")[0]
+                                                                        const data = {
+                                                                            'pk': form.find("input[name='pk']")[0].value,
+                                                                            'name': form.find("input[name='name']")[0].value,
+                                                                            'adress':form.find("textarea")[0].value,
+                                                                            'phone':form.find("input[name='phone']")[0].value,
+                                                                            "area":area.value,
+                                                                        }
+                                                                        const area_text = area.options[area.options.selectedIndex].textContent
+                                                                        update_adress_ajsx(data,ajsx_model_type,area_text)
+                                                                        console.log(area_text);
+                                                                        if(ajsx_model_type == "update_adress"){
+                                                                        model_div.parent("div")[0].querySelector(".l-Adress").textContent = area_text
+                                                                        }
+                                                                        $(".modal_close").click()
+
+                                                                    })
+                                                                    
+                                                                   
+                                                                    
+                                                                }
+                                                                
+                                                            //models_click_event 
+                                                            function modals_render(e){
+                                                                active_modals_id = e.id
+                                                                models_show(active_modals_id,e.getAttribute("targetId"),e.getAttribute("adress_add"),e.getAttribute("name"),e.getAttribute("phone"),e.getAttribute("adress"),e.getAttribute("pk"))
+                                                                if(e.getAttribute("area")){     //Render edit modals area select option selected faild
+                                                                    const option_target = $("select[name='area']")[0].options
+                                                                    for(var option=0;option<option_target.length;option++){
+                                                                        if (option_target[option].value == e.getAttribute("area")){
+                                                                            option_target[option].defaultSelected  = true
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                            
+                                                     
+                                                         
+                                                               
+                                                       
+                                                            function update_adress_ajsx(data,type,area_text){
+                                                                $.ajax({
+                                                                    method:"POST",
+                                                                    url:`{% url 'customer:post_data' %}?${type}=true`,
+                                                                    data:{
+                                                                       
+                                                                        "data":JSON.stringify(data),
+                                                                        'csrfmiddlewaretoken': '{{ csrf_token }}',
+                                                                    },
+                                                                    success:(sucData)=>{
+                                                                        console.log(sucData);
+                                                                        if(type == "update_adress"){
+                                                                            console.log("####################YES############")
+                                                                            const edit_modals_terget = $(`#${active_modals_id}`)
+                                                                            edit_modals_terget.attr("pk",data.pk)
+                                                                            edit_modals_terget.attr("name",data.name)
+                                                                            edit_modals_terget.attr("adress",data.adress)
+                                                                            edit_modals_terget.attr("phone",data.phone)
+                                                                            edit_modals_terget.attr("area",data.area)
+                                                                            edit_modals_terget.parent()[0].querySelector("p").textContent = data.adress 
+                                                                            console.log(data);
+                                                                            
+                                                                        }else{
+                                                                            const length = $("#localAdress-list section").length
+                                                                            var jin = `
+                                                                            <section class="addresses">
+                                                                                <div class="address disableAddressSelection" data-address="1682035">
+                                                                                    <span class="selectedAddressTickIcon">
+                                                                                        <svg style="fill:#3BB07E;stroke:#3BB07E;display:inline-block;vertical-align:middle;" width="20px" height="20px" version="1.1" viewBox="0 0 100 100" x="0px" y="0px">
+                                                                                            <path d="M50,88.6c21.3,0,38.6-17.3,38.6-38.6S71.3,11.4,50,11.4S11.4,28.7,11.4,50S28.7,88.6,50,88.6z M31.8,45.9l12.3,12.3  l22.5-22.5l3,3L44.1,64.2L28.8,48.9L31.8,45.9z"></path>
+                                                                                        </svg>
+                                                                                    </span>
+                                                                                    <span>
+                                                                                        <p>${data.adress}</p>
+                                                                                        <span class="addressArea"><span class="l-Adress">${area_text}</span>,  {{profile.current_city.Name}}</span>
+                                                                                    </span>
+                                                                                    <a pk="${sucData.pk}" name="${data.name}" area="${data.area}" adress="${data.adress}" phone="${data.phone}" adress_add="false" id="edit_adress_modals_${length}" targetId="target_modals_${length}" onclick="modals_render(this)">Edit</a>
+                                                                                </div>
+
+                                                                                <div id="target_modals_${length}">
+
+                                                                                </div>
+                                                                        
+                                                                            </section>
+                                                                         `
+                                                                         console.log(area_text);
+                                                                         $("#localAdress-list").prepend(jin)
+
+                                                                        }
+                                                                    },
+                                                                    error:(err)=>{
+                                                                        console.log(err);
+                                                                    }
+                                                                })
+                                                            } //
+
+                  
+                                                            
+                                                            </script>
+                                                              
+                                                                <section id="localAdress-list">
+                                                                    {% for adress in profile.get_all_adress %}
+                                                                        <section class="addresses">
+                                                                            <div class="address disableAddressSelection" data-address="1682035">
+                                                                                <span class="selectedAddressTickIcon">
+                                                                                    <svg style="fill:#3BB07E;stroke:#3BB07E;display:inline-block;vertical-align:middle;" width="20px" height="20px" version="1.1" viewBox="0 0 100 100" x="0px" y="0px">
+                                                                                        <path d="M50,88.6c21.3,0,38.6-17.3,38.6-38.6S71.3,11.4,50,11.4S11.4,28.7,11.4,50S28.7,88.6,50,88.6z M31.8,45.9l12.3,12.3  l22.5-22.5l3,3L44.1,64.2L28.8,48.9L31.8,45.9z"></path>
+                                                                                    </svg>
+                                                                                </span>
+                                                                                <span>
+                                                                                    <p>{{adress.adress}}</p>
+                                                                                    <span class="addressArea"><span class="l-Adress">{{adress.area.name}}</span>,  {{adress.city.Name}}</span>
+                                                                                </span>
+                                                                                <a pk="{{adress.pk}}" name="{{adress.delivery_parson_name}}" area="{{adress.area.pk}}" adress="{{adress.adress}}" phone="{{adress.Phone}}" adress_add="false" id="edit_adress_modals_{{forloop.counter}}" targetId="target_modals_{{forloop.counter}}" onclick="modals_render(this)">Edit</a>
+                                                                            </div>
+
+                                                                            <div id="target_modals_{{forloop.counter}}">
+
+                                                                            </div>
+                                                                        
+                                                                        </section>
+                                                                    {% endfor %}    
+                                                                </section>
+                                                        </section>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endif %}
+                                </section>
+                                    <div class="submitButtonSection" data-reactid=".26j8ymn200w.6.2.0.0.1.2"></div>
+                                </div>
+                            </div>
+                        </div>
+
+</section>
+    
+{% endblock body_content %}
+
+
+
+        {% block extra_js %}
+
+
+        
+        <script>
+            function address_update_ajsx(map,text_adress){
+                   if(map){
+                    $.ajax({
+                        method:"POST",
+                        url:"/customer/api/post/?map_update=true",
+                        data:{
+                            "map":JSON.stringify(map),
+                            'csrfmiddlewaretoken': '{{ csrf_token }}',
+                        },
+                        success:(data)=>{
+                            console.log(data)
+                            if(data.update === "successful"){
+                                $("#notification_message").html("")
+                            }
+                        },
+                        error:(err)=>{
+                            console.log(err)
+                        }
+                    })
+                   }else if(text_adress){
+                    console.log("ADRESS")
+                   }
+                }
+                // address_update_ajsx(text_adress=1)
+               setTitle('{% if profile %}{{profile.user}}{% endif %}')
+        </script>
+
+        {% endblock extra_js %}

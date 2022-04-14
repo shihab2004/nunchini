@@ -1,0 +1,154 @@
+                                            <div class="frontPageBanners appBanners">
+                                                <section class="squareSlider card">
+                                                    <div class="fade-carousel-container"><a href="/fresh-fruit"><img
+                                                                src="https://chaldn.com/_mpimage?src=https%3A%2F%2Feggyolk.chaldal.com%2Fapi%2FPicture%2FRaw%3FpictureId%3D80628&amp;q=low&amp;v=1&amp;m=300&amp;webp=1"
+                                                                style="background-color:transparent;"></a></div>
+                                                </section>
+                                                <section class="landingPageSlider ">
+                                                    <div class="right-Top-Banners card">
+                                                        <div class="fade-carousel-container"><a
+                                                                href="/search/diaper"><img
+                                                                    src="https://chaldn.com/_mpimage?src=https%3A%2F%2Feggyolk.chaldal.com%2Fapi%2FPicture%2FRaw%3FpictureId%3D80629&amp;q=low&amp;v=1&amp;m=910&amp;webp=1"
+                                                                    style="background-color:transparent;"></a></div>
+                                                    </div>
+                                                    <div class="right-bottom-images card">
+                                                        <div class="fade-carousel-container"><a
+                                                                href="/qurbani-special"><img
+                                                                    src="https://chaldn.com/_mpimage?src=https%3A%2F%2Feggyolk.chaldal.com%2Fapi%2FPicture%2FRaw%3FpictureId%3D80630&amp;q=low&amp;v=1&amp;m=910&amp;webp=1"
+                                                                    style="background-color:transparent;"></a></div>
+                                                    </div>
+                                                </section>
+                                            </div>
+
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+ <li class="contact active">
+                        <div class="wrap">
+                            <span class="contact-status busy"></span>
+                            <img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
+                            <div class="meta">
+                                <p class="name">Harvey Specter</p>
+                                <p class="preview">Wrong. You take the gun, or you pull out a bigger one. Or, you call their bluff. Or, you do any one of a hundred and forty six other things.</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="contact">
+                        <div class="wrap">
+                            <span class="contact-status away"></span>
+                            <img src="http://emilcarlsson.se/assets/rachelzane.png" alt="" />
+                            <div class="meta">
+                                <p class="name">Rachel Zane</p>
+                                <p class="preview">I was thinking that we could have chicken tonight, sounds good?</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="contact">
+                        <div class="wrap">
+                            <span class="contact-status online"></span>
+                            <img src="http://emilcarlsson.se/assets/donnapaulsen.png" alt="" />
+                            <div class="meta">
+                                <p class="name">Donna Paulsen</p>
+                                <p class="preview">Mike, I know everything! I'm Donna..</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="contact">
+                        <div class="wrap">
+                            <span class="contact-status busy"></span>
+                            <img src="http://emilcarlsson.se/assets/jessicapearson.png" alt="" />
+                            <div class="meta">
+                                <p class="name">Jessica Pearson</p>
+                                <p class="preview">Have you finished the draft on the Hinsenburg deal?</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="contact">
+                        <div class="wrap">
+                            <span class="contact-status"></span>
+                            <img src="http://emilcarlsson.se/assets/haroldgunderson.png" alt="" />
+                            <div class="meta">
+                                <p class="name">Harold Gunderson</p>
+                                <p class="preview">Thanks Mike! :)</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="contact">
+                        <div class="wrap">
+                            <span class="contact-status"></span>
+                            <img src="http://emilcarlsson.se/assets/danielhardman.png" alt="" />
+                            <div class="meta">
+                                <p class="name">Daniel Hardman</p>
+                                <p class="preview">We'll meet again, Mike. Tell Jessica I said 'Hi'.</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="contact">
+                        <div class="wrap">
+                            <span class="contact-status busy"></span>
+                            <img src="http://emilcarlsson.se/assets/katrinabennett.png" alt="" />
+                            <div class="meta">
+                                <p class="name">Katrina Bennett</p>
+                                <p class="preview">I've sent you the files for the Garrett trial.</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="contact">
+                        <div class="wrap">
+                            <span class="contact-status"></span>
+                            <img src="http://emilcarlsson.se/assets/charlesforstman.png" alt="" />
+                            <div class="meta">
+                                <p class="name">Charles Forstman</p>
+                                <p class="preview">Mike, this isn't over.</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="contact">
+                        <div class="wrap">
+                            <span class="contact-status"></span>
+                            <img src="http://emilcarlsson.se/assets/jonathansidwell.png" alt="" />
+                            <div class="meta">
+                                <p class="name">Jonathan Sidwell</p>
+                                <p class="preview"><span>You:</span> That's bullshit. This deal is solid.</p>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+
+
+
+
+
+
+//menu Language
+                                                <li>
+                                                        <svg width="24px" height="19px" style="fill: #4f4f4f;stroke: #4f4f4f;display: inline-block;vertical-align: middle;" version="1.1" viewBox="0 0 100 100">
+                                                            <g>
+                                                                <path
+                                                                    d="m34.324 42.16c-3.6836 3.043-8.5195 6.0039-14.902 8.5312l-1.4727-3.7148c5.7148-2.2656 10.059-4.8828 13.379-7.5625-4.0391-4.1055-6.2031-8.1836-7.3477-11.438h4.2695c1.0898 2.5703 2.9492 5.6406 6.0625 8.7656 5.5352-5.5703 7.0781-10.98 7.5078-13.648l-25.129 0.003906v-4.2148h15.199v-4.7695h4.2148v4.7695h15.199v4.2148h-5.4453c-0.38281 3.1055-1.9805 9.6875-8.5391 16.336 0.71094 0.57031 1.4766 1.1367 2.2852 1.6953 0.80469-1.0742 2.0781-1.7812 3.5234-1.7812h19.156c0.35938-1.8125 0.55859-3.6836 0.55859-5.6016 0-15.715-12.738-28.457-28.457-28.457-15.715 0-28.457 12.742-28.457 28.457s12.742 28.453 28.457 28.453c1.4766 0 2.9102-0.14453 4.3281-0.35938v-16.488c-1.6211-1.043-3.082-2.1133-4.3906-3.1914z">
+                                                                </path>
+                                                                <path d="m67.902 55.926l-5.3789 14.801h10.754l-5.2852-14.801z"></path>
+                                                                <path
+                                                                    d="m90.078 42.125h-44.598c-2.207 0-3.9922 1.7891-3.9922 3.9922v44.598c0 2.2031 1.7891 3.9922 3.9922 3.9922h44.598c2.2031 0 3.9922-1.7891 3.9922-3.9922v-44.598c0-2.207-1.7891-3.9922-3.9922-3.9922zm-12 41.711l-3.4648-9.5547h-13.422l-3.5586 9.5547h-4.3086l12.355-31.73h4.6641l12.398 31.73z">
+                                                                </path>
+                                                            </g>
+                                                        </svg><span> Language</span>
+                                                        <div class="flipswitch">
+                                                            <input type="checkbox" name="flipswitch" class="flipswitch-cb" id="fs" checked="" /><label
+                                                                class="flipswitch-label" for="fs">
+                                                                <div class="flipswitch-inner"></div>
+                                                                <div class="flipswitch-switch"></div>
+                                                            </label>
+                                                        </div>
+                                                    </li>

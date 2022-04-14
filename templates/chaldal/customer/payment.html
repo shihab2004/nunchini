@@ -1,0 +1,342 @@
+<style>
+ #map {
+        height: 200px;
+}
+</style>
+
+
+<section class="bodyTable">
+  <div>
+    <div class="checkoutExperience2">
+      <div>
+        <div class="checkoutConfirmComponent">
+          <div class="orderSuccess">
+            <img
+              src="{{MEDIA_URL}}/grocery-crate2.webp"
+            />
+            <div class="orderSuccessMessage">
+              <div class="orderNum">
+                <span>Order Number </span><b><span>#{{orderId}}</span></b>
+              </div>
+              <div class="thankYou">
+                <div><span>Your order is on its way</span></div>
+                <div>
+                  <span>please pay with <b>cash on delivery</b></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="paymentMethods">
+            <div class="inlinePaymentComponent">
+              <div>
+                <h4>
+                  <span>Do you want to <b>Pay Now</b>?</span>
+                </h4>
+                <section class="paymentMethods">
+                  <div class="paymentMethodItem" data-payment="1">
+                    <div class="Portwallet paymentMethodItemContent">
+                      <img
+                        src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                        style="
+                          background-image: url({{MEDIA_URL}}/payment_icons_portwallet.webp);
+                        "
+                      />
+                      <p>Bangladeshi Credit / Debit Card</p>
+                    </div>
+                  </div>
+                  <div class="paymentMethodItem" data-payment="2">
+                    <div class="Bkash paymentMethodItemContent">
+                      <img
+                        src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                        style="
+                          background-image: url({{MEDIA_URL}}/bekash.png);
+                        "
+                      />
+                      <p>bKash</p>
+                    </div>
+                  </div>
+                  <div class="brainTree" data-payment="3">
+                    <div class="braintreePaymentContainer">
+                      <span>or</span
+                      ><button class="braintreePayment">
+                        <img
+                          src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                          style="
+                            background-image: url({{MEDIA_URL}}/paypal.webp);
+                          "
+                        /><span class="divider">/</span
+                        ><span>International Credit Card</span>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="" data-payment="4">
+                    <div class="oldBkashPaymentContainer">
+                      <button class="oldBkashPayment">
+                        <img
+                          src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                          style="
+                            background-image:  url({{MEDIA_URL}}/bekash.png);
+                            background-repeat: no-repeat;
+                            background-position: center;
+                          "
+                        /><span>bKash (TrxID method)</span>
+                      </button>
+                    </div>
+                  </div>
+                  <form id="braintreeCheckout">
+                    <div id="payment-container"></div>
+                  </form>
+                </section>
+                <br />
+              </div>
+            </div>
+          </div>
+          <div class="restOfThePage">
+            <div class="orderDetails">
+              <div class="orderSummary">
+                <div class="orderSummaryContent">
+                  <h6>Order Summary</h6>
+                  <table>
+                    <tbody>
+                      <tr>
+                        <td class="label">Subtotal</td>
+                        <td class="value"><span>৳</span><span>{{total_price}}</span></td>
+                      </tr>
+                      <tr>
+                        <td class="label">Delivery Charge</td>
+                        <td class="value"><span>৳</span><span>{{delivery_charge}}</span></td>
+                      </tr>
+                    {% if reusablePrice %}
+                      <tr>
+                        <td class="label">Reusable Bag</td>
+                        <td class="value"><span>৳</span><span>{{reusablePrice}}</span></td>
+                      </tr>
+                    {% endif %}
+                    {% if discount_offer %}
+                      <tr>
+                        <td class="label">Discount</td>
+                        <td class="value" style="color:red;"><span>- ৳</span><span>{{discount_offer}}</span></td>
+                      </tr>
+                    {% endif %}
+                      <tr>
+                        <td class="label">Order Total</td>
+                        <td class="value"><span>৳</span><span>{{order_total}}</span></td>
+                      </tr>
+                     
+
+
+                      <tr>
+                        <td class="label walletRed">Amount Paid</td>
+                        <td class="value"><span>৳</span><span>0</span></td>
+                      </tr>
+                    </tbody>
+                    <tfoot>
+                      <tr>
+                        <td class="label">Due</td>
+                        <td class="value"><span>৳</span><span>{{order_total}}</span></td>
+                      </tr>
+                    </tfoot>
+                  </table>
+                </div>
+              </div>
+              <div class="orderSummary">
+                <div class="deliveryDetails">
+                {% if  not geo.status %}
+                
+                  <h6>Delivery Address</h6>
+                  <p>{{Delivery_Address}}</p>
+                {% endif %}
+              
+                  <h6>Preferred Delivery Timings</h6>
+                  <div
+                    class="deliveryTimeSelectionContainer singleSlotShipment"
+                  >
+                    <div class="expressDelivery">
+                      <div class="deliveryTypeTitle">Express Delivery</div>
+                      <div class="deliveryDate">{{Delivery_day}} {{Delivery_mounth}}</div>
+                      <div class="deliveryTimeRange">
+                        <span>{{Delivery_to_time}}</span><span> - </span><span>{{Delivery_from_time}}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+
+
+
+
+
+                {% if   geo.status %}
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWOqMTUtC3VgJPQE39tnbIeLM-yAU4Ijw&callback=initMap&libraries=&v=weekly" async ></script>
+
+              <div id="googleMap" class="deliveryDetails">
+                  <p style="text-align:center;font-size:17px;font-weight: 600;margin-bottom: 10px;">
+                      Google Map
+                  </p>
+                 
+                  <div id="map"></div>
+              </div>
+
+              
+
+
+              <script>
+                var neighborhoods = { lat: {{geo.lat}}, lng: {{geo.lng}} };
+                
+                var markers = [];
+                var map;
+                
+                function initMap() {
+                    map = new google.maps.Map(document.getElementById("map"), {
+                    zoom: 16,
+                    center:neighborhoods,
+                    });
+                }
+
+                   // Customizing google map api
+              
+                    window.setTimeout(() => {
+                    markers.push(
+                        new google.maps.Marker({
+                        position: neighborhoods,
+                        map,
+                        animation: google.maps.Animation.DROP,
+                        })
+                    );
+                    }, 250);
+              
+                
+                </script>
+
+              {% endif %}
+
+
+
+
+
+
+
+
+
+
+              </div>
+            </div>
+            <div class="orderInstructionList">
+              <label>Order Instructions</label>
+              <table>
+                <tbody></tbody>
+              </table>
+            </div>
+
+            <div class="orderInstructionContainer">
+              {% if Instructions %}{{Instructions}}{%else%}
+              <div>
+                <div class="OrderInstructionForm">
+                  <textarea
+                    placeholder="E.g. Call me when you arrive"
+                  ></textarea
+                  ><button><span>Submit</span></button>{%endif%}
+                </div>
+
+
+                <script>
+                  $('.orderInstructionContainer button').click(()=>{
+                      if($('.orderInstructionContainer textarea').val()){
+                        $.ajax({
+                        type:"POST",
+                        url:"{% url 'customer:post_data3' %}?update_order_instructions=True",
+                        data:{
+                          'csrfmiddlewaretoken': csrfmiddlewaretoken,
+                          'instructions':$('.orderInstructionContainer textarea').val(),
+                          "orderId":"{{orderId}}"
+                        },
+                        success:(data)=>{
+                          var structions = `
+                              <div class="cancelContainer oldinstak">
+
+                                <div class="ModalDialogContainer orderCancelPrompt">
+                                  <div style="" class="ModalDialog">
+                                    <div class="ModalDialogContent">
+                                      <div>
+                                        <div class="modal-text">
+                                          <h1>Thanks for Order Instructions</h1>
+                                          <p style='margin: 20px;'>We received your Instructions. As possiable as we maintain the Instructions. Thanks for guiding us🥰</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                          <button class="btnPrimary">Close</button>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              `
+                              $('body').append(structions)
+                              $('.OrderInstructionForm').html($('.orderInstructionContainer textarea').val())
+                              $('.oldinstak .btnPrimary').click(()=>{
+                                $('.oldinstak').remove()
+
+                              })
+                        }
+                      })
+                      }
+                  })
+                </script>
+              </div>
+            </div>
+            <div class="cancelContainer">
+              <div class="cancelContent">
+                <label>Would you like to cancel this order?</label
+                ><button class="cancelOrderBtn">Cancel Order</button>
+              </div>
+            </div>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+var orderCancel_modals_Html = `
+<div class="cancelContainer ordCM">
+
+  <div class="ModalDialogContainer orderCancelPrompt">
+    <div style="" class="ModalDialog">
+      <div class="ModalDialogContent">
+        <div>
+          <div class="modal-text">
+            <h1>Are you sure?</h1>
+            <p>You want to cancel this order?</p>
+          </div>
+          <div class="modal-footer">
+            <button class="btnSecondary">Yes</button>
+            <button class="btnPrimary">No</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`
+$(".cancelOrderBtn").click(()=>{
+  $(".bodyTable").append(orderCancel_modals_Html)
+  $(".modal-footer .btnPrimary").click(()=>{
+    $(".ordCM").remove()
+  })
+  $(".modal-footer .btnSecondary").click(()=>{
+    site_ajsxWithPOST({"orderId":$(".orderNum b span").text().split("#")[1]},"{% url 'customer:post_data2' %}?cancelOrder=True")
+    $(".ordCM").remove()
+  })
+})
+
+setTitle('Payment')
+</script>
+
+<style>
+.orderCancelPrompt .ModalDialog:before{
+  background-image:url(https://chaldn.com/asset/Egg.Grocery.Fabric/Egg.Grocery.Web1/1.5.0+Release-2217/Default/components/shared/CancelOrderDialog/images/egg_sad.png?alpha=1&webp=1)
+}
+</style>

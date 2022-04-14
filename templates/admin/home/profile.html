@@ -1,0 +1,181 @@
+{% extends 'admin/home/base.html' %}
+
+
+{% block body %}
+
+
+    <div class="card text-center">
+        <div class="card-body">
+            <img src="{% if obj.profile_photo %}{{obj.profile_photo.url}}{% else %}/media/user.jpg{% endif %}" class="img-lg rounded-circle mb-2" alt="profile image">
+            <h4>{{obj.user}}</h4>
+            <a href="tel:0{{obj.Phone}}" class="text-muted">Phone: 0{{obj.Phone}}</a>
+         
+            <div class="border-bottom py-4">
+                Profile Info
+            <div class="py-4">
+                <p class="clearfix">
+                  <span class="float-left">
+                    ID
+                  </span>
+                  <span class="float-right text-muted">
+                    #{{obj.id}}
+                  </span>
+                </p>
+
+
+                
+                <p class="clearfix">
+                  <span class="float-left">
+                    Area
+                  </span>
+                  <span class="float-right text-muted">
+                  
+                   {{obj.adress.last.area.name}} -> {{obj.adress.last.delivery_parson_name}}
+                  </span>
+                </p>
+                <p class="clearfix">
+                  <span class="float-left">
+                    City
+                  </span>
+                  <span class="float-right text-muted">
+                    {{obj.current_city.Name}}
+                  </span>
+                </p>
+                <p class="clearfix">
+                  <span class="float-left">
+                    Ip Adress
+                  </span>
+                  <span class="float-right text-muted">
+                    {{obj.ip_addr}}
+                  </span>
+                </p>
+                  <p class="clearfix">
+                    <span class="float-left">
+                      Last login:
+                    </span>
+                    <span class="float-right text-muted">
+                      {{profile.user.last_login}}
+                    </span>
+                  </p>
+                  <p class="clearfix">
+                    <span class="float-left">
+                      Date joined:
+                    </span>
+                    <span class="float-right text-muted">
+                      {{profile.user.date_joined}}
+                    </span>
+                  </p>
+                  
+                <p class="clearfix">
+                  <span class="float-left">
+                    Gender
+                  </span>
+                  <span class="float-right text-muted">
+                    {{obj.get_gender_display}}
+                  </span>
+                </p>
+               
+
+                {% if obj.location.all %}
+
+                
+                <p class="clearfix">
+                  <span class="float-left">
+                    Geo Location
+                  </span>
+                  <span class="float-right text-muted">
+                    <a target="_" href="https://www.google.com/maps/search/?api=1&amp;query={{obj.location.all.first.latitude}}%2C{{obj.location.all.first.longitude}}">{{obj.location.all.first.longitude}} lat, {{obj.location.all.first.longitude}} long</a>
+                  </span>
+                </p>
+                
+
+                {% endif %}
+             
+       
+        </div>
+       
+          
+        </div>
+
+Order Info
+        <div class="py-4">
+          <p class="clearfix">
+            <span class="float-left">
+                Total Order Placed Successfully
+            </span>
+            <span class="float-right text-muted">
+              {{order_suc.count}}
+            </span>
+          </p>
+          <p class="clearfix">
+            <span class="float-left">
+                Total Order Canceled
+            </span>
+            <span class="float-right text-muted">
+              {{order_cen.count}}
+            </span>
+          </p>
+          <p class="clearfix">
+            <span class="float-left">
+                Order Id (Successfully Placed)
+            </span>
+            <span class="float-right text-muted">
+                {% for i in order_suc %}<a href="/admin/order/details/{{i.id}}/" target="_a">#{{i.id}}</a> {% if not forloop.last %},{% endif %}{% endfor %}
+            </span>
+          </p>
+         
+          <p class="clearfix">
+            <span class="float-left">
+                Order Id (Canceled)
+            </span>
+            <span class="float-right text-muted">
+                {% for i in order_cen %}<a href="/admin/order/details/{{i.id}}/" target="_a">#{{i.id}}</a> {% if not forloop.last %},{% endif %}{% endfor %}
+            </span>
+          </p>
+         
+        
+         
+        </div>
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        Admin Info
+        <div class="py-4">
+       <form action="" method="post">
+         {% csrf_token %}
+          <p class="clearfix">
+            <span class="float-left">
+               Is Super User?
+            </span>
+            <span class="float-right text-muted">
+                <label class="form-check-label">
+                  <input type="checkbox" class="form-check-input" name="is_su" checked>
+             
+                </label>
+            </span>
+          </p>
+         <button class="btn btn-outline-primary" type="submit">Submit</button>
+        </form>
+         
+        </div>
+      
+
+
+        </div>
+    </div>
+
+{% endblock body %}

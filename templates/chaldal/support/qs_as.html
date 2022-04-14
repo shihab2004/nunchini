@@ -1,0 +1,96 @@
+<section class="bodyTable">
+    <div>
+        <div class="topicPage">
+            <div class="loaded">
+                <div class="page-bg-image">
+                    <div class="page-image" style="
+             
+              background-size: cover;
+              background-position: center center;
+              background-repeat: no-repeat;
+             "></div>
+                    <div class="page-title">FAQ</div>
+                    <div class="link-section">
+                        <ul class="page-link">
+                            {% for menu in menus %}
+                            <li class="links selectedLink">
+                                <a class="itemLinks" href="{{menu.url}}">{{menu.name}}</a><span class=""></span>
+                            </li>
+                            {% endfor %}
+                            
+
+                        </ul>
+                    </div>
+                </div>
+                <div>
+                    <div class="body needHelpItemBody">
+                       
+                        
+                      
+           
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+    var help__click = true;
+     {% if  popstate %}
+        var help__click = false;
+    {% endif %}
+    $('.itemLinks').click((e)=>{
+        e.preventDefault()
+        $('.itemLinks').parent().find('span').removeClass('itemUnderline')
+        e.currentTarget.parentNode.children[1].classList.add('itemUnderline');
+        $.ajax({
+            type:'GET',
+            url:e.currentTarget.href,
+            success:(data)=>{
+                setTitle(e.currentTarget.textContent)
+                $('.page-title').text(data.menu_name)
+                $('.body.needHelpItemBody').html(data.data)
+                $('.page-image').css('background-image',`url(${data.img})`)
+                const url = e.currentTarget.href.split('?')[1].split('=')[1]
+
+                if(help__click){
+                    url_routing(`/t/${url}/`)
+                }
+                not_click = true;
+                if(data.section == 'team'){
+                    $('.body.needHelpItemBody').append(`
+                    <div class='team-page'>
+                        <sction class='team-section'>
+                        <div class="team-block"><div>
+                        </sction>
+                    </div>
+                        `)
+                    data.team_members_data.forEach((mem)=>{
+                        const team_html = data.team_html
+                        const html = team_html.replace('[[member_img]]',mem.photo).replace('[[member_name]]',mem.name).replace('[[occupation]]',mem.occupation).replace('[[discription]]',mem.discription).replace('[[media]]',"{{MEDIA_URL}}")
+                        $('.team-block').append(html)
+                    })
+
+                    let old;
+                    $('.individualTeam').click((e)=>{
+                        if (old != e.currentTarget){
+                        $('.individualTeam').removeClass('selected');
+                        $('.individualTeam .arrowHolder').removeClass('nai');
+                        }
+                        e.currentTarget.classList.toggle('selected');
+                        e.currentTarget.querySelector('.arrowHolder').classList.toggle('nai');
+                        
+                        old = e.currentTarget
+                    })
+                }else if(data.section == 'contact-us'){
+                    $('.body.needHelpItemBody').append(data.form_html)
+                }
+            }
+        })
+    })
+    {% if crnt_menu %}
+   
+    $('.itemLinks[href="/t/api/?menu={{crnt_menu}}"]')[0].click()
+    console.log('{{crnt_menu}}')
+    {% endif %}
+</script>

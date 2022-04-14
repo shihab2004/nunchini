@@ -1,0 +1,631 @@
+<style>
+    .Pending{
+        background: #077E8C;
+    }
+    .Cancelled{
+        background:#adadad;
+    }
+    .Processing{
+        background :#fad064;
+    }
+    .Successful{
+        background :#8ec63f;
+    }
+    .marker-tick{
+        display: flex;
+        justify-content: flex-end;
+        flex-direction: row;
+        margin-top: -35px;
+    }
+    .reported{
+        margin-top: 8px;
+        padding: 3px;
+        color:black;
+        font-weight: 610;
+        background-color: gold;
+    }
+</style>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+<section class="bodyTable">
+    <div>
+        <div class="order-history-page">
+            <div class="page-title"><span>My Orders</span><span> </span></div>
+            <div class="order-list">
+
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+</section>
+
+
+<script>
+    
+ 
+
+{% if isNeedObj %}
+
+   class MyorderObj{
+       constructor(obj){
+            this.id = obj.orderId
+            this.total_price = obj.total_price;
+            this.adress = obj.home_adress;
+            this.bag_item = obj.bag_json.data;
+            this.Delivery_from_time = obj.Delivery_from_time
+            this.Delivery_to_time = obj.Delivery_to_time
+            this.home_adress = obj.home_adress
+            this.status = obj.order_status
+            this.date = obj.Delivery_Date
+            this.order_reported = obj.ISorder_reported
+            this.stars = obj.order_stars
+       }
+
+
+       get_full_html(){
+           var full_starts = ""
+          if(this.status === "Successful"){
+              for(var i=0;i<this.stars;i++){
+             full_starts += this.getOrderStarHtml("selected","disabled")
+           }
+           var baki_stars = 5 -  this.stars
+           for(var i=0;i<baki_stars;i++){
+             this.stars?full_starts += this.getOrderStarHtml("","disabled"):full_starts += this.getOrderStarHtml("","")
+           }
+          }
+           
+            const itemsss = this.get_all_prodIt_html()
+            const detail_html = this.order_detail_html(itemsss)
+            const all_html = this.order_item_html(detail_html,full_starts)
+
+           return all_html
+        }
+
+       get_prodIt_html(items){
+            const productItemHtml = `
+                    <div class="product-items">
+                            <div class="productInfo">
+                                <div class="product-image">
+                                    <img src="${items.img}" size="400" style="background-color:transparent;">
+                                </div>
+                                <div class="product-details">
+                                    <div class="product-name">${items.name}</div>
+                                    <div class="product-info">
+                                        <span class="product-mass"><span></span>
+                                        <span>${items.amount}</span><span> 
+                                            
+                                        </span></span>
+                                        <span class="qty"><span>Qty.</span><span>${items.quantity}</span>
+                                    </span>
+                                    <span class="total-price"><span>Tk.</span><span>${items.price}</span></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                `
+            return productItemHtml
+       }
+       get_all_prodIt_html(){
+           let proitHt = ""
+           this.bag_item.forEach((item)=>{
+                proitHt +=this.get_prodIt_html(item);
+           })
+           return proitHt
+       }
+
+
+       order_detail_html(product_item){
+           const detailsHtml = `
+           <div class="order-details" style="display:none;">
+                    <div class="title"><span> </span><span>Order Details</span><span> </span></div>
+                        <div class="add_items_bag_btn mouse-hover-cursor-pointer">
+                            <div class="wrap"><span class="add_bag_icon">
+                                <svg style="fill:#4c8e00;stroke:#4c8e00;display:inline-block;vertical-align:middle;" width="20px" height="20px" version="1.1" viewBox="0 0 512 512" x="0px" y="0px">
+                                        <g>
+                                            <path
+                                                d="M330.9,220.3v-39.4h-38.5c-6.3-64.3-44.7-112.4-92.6-112.4c-47.9,0-86.3,48.1-92.6,112.4H68.7v262.6h189.3   c-24.3-23.8-39.5-57-39.5-93.6C218.5,284,267.5,229.4,330.9,220.3z M199.8,106c26.6,0,49.6,32.8,55,74.9h-110   C150.2,138.7,173.2,106,199.8,106z">
+                                            </path>
+                                            <path
+                                                d="M349.6,256.2c-51.6,0-93.6,42-93.6,93.6s42,93.6,93.6,93.6c51.6,0,93.6-42,93.6-93.6S401.3,256.2,349.6,256.2z    M405.8,368.6h-37.5V406h-37.5v-37.5h-37.5v-37.5h37.5v-37.5h37.5v37.5h37.5V368.6z">
+                                            </path>
+                                        </g>
+                                </svg></span><span class="add_bag_txt"><span> </span><span>Add all items to Shopping Bag</span></span>
+                            </div>
+                        </div>
+                        <div class="product-list-wrap">
+                            <div class="shipmentSection">
+                                <div class="shipment-address-section">
+                                    <div class="delivery-address-info">
+                                        <div class="delivery-address">
+                                            <span class="delivery-address-title">Delivery Address</span>
+                                        </div>
+                                        <div class="delivery-address">
+                                            <span class="delivery-address-text">${this.home_adress}</span>
+                                        </div>
+                                    </div>
+                                    ${this.status !="Successful" && this.status !="Cancelled"?"<div style='text-align:end;'><button class='cancell_order_btn__orderPage'style='padding: 8px 15px;background:#4c8e00;color: white;outline: none;border: none;border-radius: 3px;'>Cancel Order</button></div>":""}
+                                </div>
+                                <div class="product-list-section">
+                                    <div class="delivery-type-time-info">
+                                        <div class="info">
+                                            <div class="delivery-type"><span class="delivery-type-name">#${this.id}</span>
+                                            </div>
+                                            <div class="delivery-time"><span class="date-time-txt">${this.date}, ${this.Delivery_from_time} - ${this.Delivery_to_time}</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="product-list">
+
+                                  <!-- product item list here -->
+                                        ${product_item}
+                                </div>
+
+                            </div>
+                    </div>
+
+                    
+            </div>
+
+           `
+           return detailsHtml;
+       }
+    
+       getOrderStarHtml(isSle="",isDis=""){// selected disabled
+           const start = `
+                                                <span class="${isDis} star ${isSle}">
+                                                    <svg fill="#ebebeb" width="22" height="22" version="1.1" viewBox="0 0 1080 1080" x="0px" y="0px">
+                                                        <polygon
+                                                            points="540,90 679.057,386.262 990,433.771 765,664.376 818.115,990 540,836.261 261.884,990 315,664.376 90,433.769   400.943,386.262 ">
+                                                        </polygon>
+                                                    </svg>
+                                                </span>
+                                               
+           `
+           return start
+       }
+
+       get_reportBtn(){
+           let btn 
+           let cls
+            if(!this.order_reported){
+                btn =  `   <button class="action-btn border-radius-small mouse-hover-cursor-pointer">
+                                                    <span class="icon">
+                                                        <svg style="fill:#a3a3a3;stroke:#a3a3a3;display:inline-block;vertical-align:middle;" width="12px" height="12px" version="1.1" viewBox="0 0 128 128" x="0px" y="0px">
+                                                            <path
+                                                                d="M126.905,112.061L68.668,11.191c-2.566-4.445-6.767-4.445-9.334,0L1.095,112.061c-2.567,4.445-0.466,8.082,4.668,8.082  h116.474C127.371,120.143,129.472,116.506,126.905,112.061z M68.742,39.112l-1.383,47.517H60.64l-1.383-47.517H68.742z   M63.902,106.781c-3.359,0-5.73-2.668-5.73-6.125c0-3.557,2.469-6.125,5.926-6.125c3.459,0,5.731,2.568,5.731,6.125  C69.828,104.113,67.557,106.781,63.902,106.781z">
+                                                            </path>
+                                                        </svg>
+                                                    </span>
+                                                    <span class="text"><span> </span>
+                                                    <span>Report Issues</span><span> </span>
+                                                    </span>
+                                                </button>`
+                cls = 'report-btn'
+                    
+            }else{
+                btn =  "Order Reported"
+                cls = 'reported'
+            }
+            const html = `
+                                         <div class="${cls}">
+                                                ${btn}
+                                            </div>
+            `
+            return html
+       }
+       order_item_html(items,starHtml=""){ // complete processing
+            
+           const html = `
+                <div class="order-items border-radius-small">
+                            <div class="order-summary">
+                                <div class="left-order-info">
+                                    <div class="order-status">
+                                        <div class="status-block">
+                                            <span class="text border-radius-small ${this.status}"><span>${this.status}</span></span>
+                                        </div>
+                                    </div>
+                                    <div class="order-id">
+                                        <span>Order</span>
+                                        <span class="the-id"><span>#</span><span>${this.id}</span></span>
+                                    </div>
+                                    <div class="total-price"><span> ৳</span><span>${this.total_price}</span></div>
+                                </div>
+                               
+                                ${this.status == "Cancelled"?"":this.get_right_actionHtml(starHtml)}
+
+                            </div>
+
+                            ${items}
+
+
+                            <div class="actions-btns border-radius-small mouse-hover-cursor-pointer">
+                                <div class="view-details-btn"><span class="icon arrow-down"><svg
+                                            style="fill:#a3a3a3;stroke:#a3a3a3;display:inline-block;vertical-align:middle;"
+                                            width="18px" height="18px" version="1.1" viewBox="0 0 100 100" x="0px" y="0px">
+                                            <g transform="translate(0,-952.36218)">
+                                                <path
+                                                    style="opacity:1;stroke:none;stroke-width:3.33333324999999990px;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4px;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0px;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate;fill-opacity:1;"
+                                                    d="M 50 8 C 26.804041 8 8 26.804041 8 50 C 8 73.195959 26.804041 92 50 92 C 73.195959 92 92 73.195959 92 50 C 92 26.804041 73.195959 8 50 8 z M 49.84375 34 A 2.0001999 2.0001999 0 0 1 51.46875 34.625 L 73.46875 58.625 A 2.0012983 2.0012983 0 0 1 70.53125 61.34375 L 50 38.9375 L 29.46875 61.34375 A 2.0012983 2.0012983 0 0 1 26.53125 58.625 L 48.53125 34.625 A 2.0001999 2.0001999 0 0 1 49.84375 34 z "
+                                                    transform="translate(0,952.36218)"></path>
+                                            </g>
+                                        </svg></span><span class="text"><span> </span><span>Hide Details</span><span>
+                                        </span></span>
+                                    </div>
+                            </div>
+                </div>
+
+
+           `
+           return html
+       }
+
+       get_right_actionHtml(starHtml=""){
+           const html = `
+                            <div class="right-order-actions">
+                                    <div class="shipment-info-section">
+                                        <div class="shipment-rating-report-btn">
+                                            <div class="rating-star">
+                                                <div class="star-ratings-div">
+
+                                                        <!-- strat here -->
+                                                       ${starHtml}
+                                                </div>
+
+                                            </div>
+                                            <div class="shipment-name"><span>#${this.id}</span></div>
+                                            <div class="shipment-time">${this.date}<br> ${this.Delivery_to_time} - ${this.Delivery_from_time}</div>
+
+
+
+
+                                          ${this.status == "Successful"?this.get_reportBtn():""}
+                                            
+
+
+
+                                        </div>
+                                    </div>
+                                </div>
+           `
+           return html
+       }
+      
+   }
+
+
+document.cookie = 'MyorderObj=true'
+$("[mat='/customer/orders/?matRout=True&obj=True']").attr("mat","/customer/orders/?matRout=True")
+{% endif %}
+
+var order_repota_html="";
+$.ajax({
+    type:"GET",
+    url:"{% url 'customer:userOrdered' %}?api=True",
+    success:(data)=>{
+        
+        if(!data.data.length){
+            $('.order-list').html(`
+            <h1>You have never ordered before. No Order Found</h1>
+            `);
+        }
+        let all_reportList = ""
+        data.order_report.forEach((report)=>{
+            all_reportList += `
+                                <li>
+                                    <span><span>${report[0]}</span></span>
+                                </li>
+            `
+            order_repota_html += `
+            <option>${report[0]}</option>
+            `
+        })
+        const report_modalHTML = `
+            <div class="ModalDialogContainer report-item-dialog-style">
+                <div class="ModalDialog">
+                    <div class="ModalTitle">What went wrong?</div>
+                    <button class="close"></button>
+                    <div class="ModalDialogContent undefined">
+                        <div class="report-items">
+                            <ul>
+                                ${all_reportList}
+                            </ul>
+                            <div class="report-submit-button">
+                                <button disabled="" class="btn border-radius-small">
+                                    <span>Submit</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `
+
+
+       
+        data.data.forEach((order)=>{
+            const o_obj = new MyorderObj(order)
+            $(".order-list").append(o_obj.get_full_html())
+        })
+        $(".order-items .actions-btns").click((e)=>{
+            const parent =  e.currentTarget.closest(".order-items")
+           if(!parent.classList.contains("selected")){
+            $(".icon").addClass("arrow-down")
+            $(".order-details").css("display","none")
+            $(".order-items").removeClass("selected")
+            parent.classList.add("selected")
+            parent.querySelector(".order-details").style.display = "block"
+            parent.querySelector(".icon").classList.remove("arrow-down")
+
+           }else{
+             parent.classList.remove("selected")
+             $(".order-details").css("display","none")
+             parent.querySelector(".icon").classList.add("arrow-down")
+           }
+
+        })
+        $('.report-btn button').click((rep)=>{
+            var report_conf
+            bodyAjsx.append(report_modalHTML)
+            $(".report-items li").click((e)=>{
+                report_conf = e.currentTarget.querySelector("span span").textContent;
+                $(".report-submit-button button").removeAttr('disabled');
+                $(".marker-tick").remove();
+                $(".report-items li").removeClass("selected")
+                e.currentTarget.classList.add("selected")
+                e.currentTarget.insertAdjacentHTML("beforeend",`
+                <span class="marker-tick">
+                    <svg style=" fill: green; stroke: green; display: inline-block; vertical-align: middle; " width="22px" height="22px" version="1.1" viewBox="0 0 100 100" x="0px" y="0px">
+                            <path
+                                d="M50,88.6c21.3,0,38.6-17.3,38.6-38.6S71.3,11.4,50,11.4S11.4,28.7,11.4,50S28.7,88.6,50,88.6z M31.8,45.9l12.3,12.3  l22.5-22.5l3,3L44.1,64.2L28.8,48.9L31.8,45.9z">
+                            </path>
+                    </svg>
+                </span>
+                `)
+            })
+          
+            $(".report-submit-button button").click(()=>{
+                $.ajax({
+                    method:"POST",
+                    url:"{% url 'customer:userOrdered' %}?orderReport=True",
+                    data:{
+                        "csrfmiddlewaretoken": csrfmiddlewaretoken,
+                        "data":JSON.stringify({
+                            orderId:rep.currentTarget.closest(".order-items").querySelector(".the-id").childNodes[1].textContent,
+                            report:report_conf,
+                        })
+                    },
+                    success:(data)=>{
+                        console.log(data);
+                        if(data.status == "successful"){
+                            rep.currentTarget.parentNode.classList.replace("report-btn","reported");
+                            rep.currentTarget.parentNode.innerHTML = "Ordered Reported";
+                            $(".report-item-dialog-style .close").click();
+                        }
+                    }
+                })
+            })
+            $(".report-item-dialog-style .close").click(()=>{
+                $(".report-item-dialog-style").remove();
+            })
+        })
+        
+
+                $(".order-items .star").hover((star)=>{
+                const star_tg = star.currentTarget;
+                var nai = false;
+            
+                
+                for(var i=0;i<star_tg.parentNode.children.length;i++){
+                    if(star_tg.parentNode.children[i].classList.contains('disabled')){
+                        nai = true;
+                        break;
+                    }
+                }
+                if(!nai){
+                    const total_start = [...star_tg.parentNode.children]
+                    total_start.forEach((oo)=>[
+                        oo.classList.remove('selected')
+                    ])
+                    console.log(star_tg);
+                    star_tg.classList.add('selected')
+                
+                    for(var i=0;i<total_start.indexOf(star_tg);i++){
+                        total_start[i].classList.add('selected')
+                    }
+                }
+            })
+
+                $(".order-items .star").click((star)=>{
+                    var paisi = false;
+                    var jin = [...star.currentTarget.parentNode.children]
+                    jin.forEach((s)=>{
+                        if(s.classList.contains('disabled')){
+                            paisi = true;
+                        }
+                    })
+                    if(!paisi){
+                        const star_given = jin.indexOf(star.currentTarget)+ 1;
+                        jin.forEach((s)=>s.classList.add('disabled'))
+                        $.ajax({
+                            type:"POST",
+                            url:"{% url 'customer:userOrdered' %}?uploadStar=True",
+                            data:{
+                                "csrfmiddlewaretoken": csrfmiddlewaretoken,
+                                'rating':star_given,
+                                'orderId':star.currentTarget.closest('.order-items').querySelector(".the-id").childNodes[1].textContent
+                            },
+                            success:(data)=>{
+                                console.log(data);
+                            }
+                        })
+                    }
+
+                })
+ 
+
+        $('.star-ratings-div').mouseleave((oow)=>{
+            var jin = [...oow.currentTarget.children]
+            
+            jin.forEach((s)=>{
+                if(!s.classList.contains('disabled')){
+                    s.classList.remove('selected')
+                }
+            })
+         
+        })
+
+    
+        
+        
+    },
+    error:()=> alert("NETWORK CONNECTION ERROR!!!😢")
+})
+
+
+
+$('body').on('click','.add_items_bag_btn',(e)=>{
+    const order_id = e.currentTarget.closest('.order-items').querySelectorAll(".the-id span")[1].textContent;
+    $.ajax({
+        type:"POST",
+        url:"{% url 'customer:post_data3'%}?add_previous_item_to_card=True",
+        data:{
+            'order_id':order_id,
+            "csrfmiddlewaretoken": csrfmiddlewaretoken,
+        },
+        success:(data)=>{
+            console.log(data);
+            if(data.status == "successful"){
+                if(data.data.sucsses_product != "[]"){
+                    data.data.sucsses_product.forEach(item =>{
+                        const index = current_bag_item.findIndex(e => e.product_id == item.product_id);
+                        if(index != -1){
+                            current_bag_item[index] = {
+                                'amount':item.amount,
+                                'product_id':item.product_id,
+                                'img':item.img,
+                                'price':item.discord_price,
+                                'name':item.name,
+                                "quantity":item.qnt,
+                            }
+                        }else{
+                            current_bag_item.push({
+                                'amount':item.amount,
+                                'product_id':item.product_id,
+                                'img':item.img,
+                                'price':item.discord_price,
+                                'name':item.name,
+                                "quantity":item.qnt,
+                            })
+                        }
+                    })
+
+                    localStorage.setItem('current_bag_item',JSON.stringify(current_bag_item));
+                }
+
+                if(data.data.faild_product != '[]'){
+                    faild_current_product = []
+                    data.data.faild_product.forEach(item =>{
+                        faild_current_product.push({
+                                'amount':item.amount,
+                                'product_id':item.product_id,
+                                'img':item.img,
+                                'Price':item.discord_price,
+                                'name':item.name,
+                                "quantity":item.qnt,
+                        })
+                    })
+                    localStorage.setItem('faild_current_product',JSON.stringify(faild_current_product));
+                    
+                }
+
+            }
+
+            update_little_bag_html();
+            $('.shoppingCartWrapper .shoppingCartButton').click();
+            
+        }
+    })
+   
+})
+
+$('body').on('click','.cancell_order_btn__orderPage',(e)=>{
+    const order_div = e.currentTarget.closest('.order-items')
+    const order_id = order_div.querySelectorAll(".the-id span")[1].textContent;
+    
+    
+    var structions = `
+                    <div class="cancelContainer oldinstak">
+                        <div class="ModalDialogContainer orderCancelPrompt">
+                        <div style="" class="ModalDialog">
+                            <div class="ModalDialogContent">
+                            <div>
+                                <div class="modal-text">
+                                <h1>Are You Sure?😥</h1>
+                                <p style='margin: 20px;'>If you have any issu. Then report us <br /> Report below👇</p>
+                                
+                               
+                                    <select style='padding: 10px;'>
+                                        <option>None</option>
+                                        ${order_repota_html}    
+                                    </select>
+                                </div>
+                                <div class="modal-footer">
+                                    <button style="margin-right: 13px;" class="btnSecondary">Close</button>
+                                    <button class="btnPrimary">Cance Order</button>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    `;
+    $('body').append(structions)
+    $('.OrderInstructionForm').html($('.orderInstructionContainer textarea').val())
+    $('.oldinstak .btnSecondary').click(()=>{
+        $('.oldinstak').remove()
+    })
+    $('.oldinstak .btnPrimary').click(()=>{
+            $.ajax({
+                type:"POST",
+                url:"{% url 'customer:post_data3'%}?reportOrder=True",
+                data:{
+                    'orderId':order_id,
+                    "csrfmiddlewaretoken": csrfmiddlewaretoken,
+                    'report':$('.oldinstak select').val()
+                },
+                success:(data)=>{
+                    if(data.status=="successful"){
+                        order_div.querySelector('.status-block .text').classList.replace('Pending',"Cancelled");
+                        order_div.querySelector('.status-block .text').classList.replace('Processing',"Cancelled");
+                        order_div.querySelector('.status-block .text span').textContent = "Cancelled";
+                        order_div.querySelector('.cancell_order_btn__orderPage').parentNode.remove();
+                        order_div.querySelector('.right-order-actions').remove();
+                        order_div.querySelectorAll('.total-price span')[1].textContent = "0";
+                        $('.oldinstak').remove();
+                    }else{
+                        alert(data.data);
+                    }
+                },
+                error:()=>{
+                    
+                    $('.oldinstak').remove();
+                    alert('Report faild. Network connection error');
+                }
+
+            })
+   
+       
+    })
+           
+
+    
+    
+})
+
+
+setTitle('Order')
+</script>

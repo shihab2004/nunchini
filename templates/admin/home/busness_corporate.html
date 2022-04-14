@@ -1,0 +1,95 @@
+{% extends 'admin/home/base.html' %}
+{% load static %}
+
+{% load jin %}
+
+{% block body %}
+<div class="content-wrapper">
+    <div class="page-header">
+      <h3 class="page-title">
+        {{root.Name}} Business
+      </h3>
+    </div>
+    <div class="row">
+
+        <div class="col-md-12 grid-margin stretch-card">
+
+            <div class="card">
+                <div class="card-body">
+                  
+                  
+                  <div class="d-flex justify-content-between mb-4"><h4 class="card-title">Corporates ({{obj.count}})</h4> <a href="?create=True&editing=True" class="btn h-25 btn-primary">+ Create new</a></div>
+
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="table-responsive">
+                        <div id="order-listing_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4 no-footer">
+<div class="row"><div class="col-sm-12">
+                                    <table id="order-listing" class="table dataTable no-footer" role="grid"
+                                     aria-describedby="order-listing_info">
+
+
+                          <thead>
+                            <tr role="row">
+                                <th class="sorting_asc" style="width: 47.0312px;">Image</th>
+                                <th class="sorting" style="width: 84.75px;">Name</th>
+                                <th class="sorting" style="width: 84.75px;">Action</th>
+                            </tr>
+                            </thead>
+                          <tbody>
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            {% for m in obj %}
+                            <tr role="row" class="odd">
+                                <td>{% if m.svg_file %}{{m.svg_file|get_svg_text_form_file|safe}}{% else %}No Svg Found😐{% endif %} </td>
+
+                                <td>{{m.title}}</td>
+                                <td><a href="?update={{m.id}}&editing=True" class="btn btn-outline-primary btn-rounded btn-fw">View</a></td>
+
+
+                               
+                            </tr>
+                            {% endfor %}
+
+
+
+
+
+
+
+                         
+
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        </div>
+        
+      </div>
+   
+    </div>
+    </div>
+    </div>
+    </div>
+    
+{% endblock body %}
+
+{% block js %}
+<script src="{% static 'admin/home/js/data-table.js'%}"></script>
+ <script>
+  $(".mu")[8].classList.add("active");
+  const mu =$("a[href='/admin/business/corporate/']");
+  mu.closest(".collapse").addClass("show")
+  mu.addClass("active")
+ </script>
+{% endblock js %}

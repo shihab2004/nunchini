@@ -1,0 +1,94 @@
+{% extends 'admin/home/base.html' %}
+{% load static %}
+{% block body %}
+<div class="content-wrapper">
+    <div class="page-header">
+      <h3 class="page-title">
+        Products
+      </h3>
+    </div>
+    <div class="row">
+
+        <div class="col-md-12 grid-margin stretch-card">
+
+            <div class="card">
+                <div class="card-body">
+                  
+                  
+                  <div class="d-flex justify-content-between mb-4"><h4 class="card-title">Total Products ({{prod.count}})</h4> <a href="create/" class="btn h-25 btn-primary">+ Create new</a></div>
+
+
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="table-responsive">
+                        <div id="order-listing_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4 no-footer">
+<div class="row"><div class="col-sm-12">
+                                    <table id="order-listing" class="table dataTable no-footer" role="grid"
+                                     aria-describedby="order-listing_info">
+
+
+                          <thead>
+                            <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="order-listing" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Order #: activate to sort column descending" style="width: 47.0312px;">Product Id #</th><th class="sorting" tabindex="0" aria-controls="order-listing" rowspan="1" colspan="1" aria-label="Purchased On: activate to sort column ascending" style="width: 84.75px;">Name</th><th class="sorting" tabindex="0" aria-controls="order-listing" rowspan="1" colspan="1" aria-label="Customer: activate to sort column ascending" style="width: 64.8594px;">Menu</th><th class="sorting" tabindex="0" aria-controls="order-listing" rowspan="1" colspan="1" aria-label="Ship to: activate to sort column ascending" style="width: 43.1094px;">Store Quantity Available</th><th class="sorting" tabindex="0" aria-controls="order-listing" rowspan="1" colspan="1" aria-label="Base Price: activate to sort column ascending" style="width: 56.4219px;">Price</th><th class="sorting" tabindex="0" aria-controls="order-listing" rowspan="1" colspan="1" aria-label="Purchased Price: activate to sort column ascending" style="width: 93.75px;">Discount Price</th><th class="sorting" tabindex="0" aria-controls="order-listing" rowspan="1" colspan="1" aria-label="Actions: activate to sort column ascending" style="width: 52.1406px;">Actions</th></tr>
+                            </thead>
+                          <tbody>
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            {% for product in prod %}
+                            <tr role="row" class="odd">
+                                  <td class="sorting_1">{{product.id}}</td>
+                                  <td>{{product.Name}}</td>
+                                  <td>
+                                    {% for menu in product.menu.all %}{{menu}} {% if not forloop.last %}
+                                    ,
+                                    {% endif %}
+                                    {% endfor %}
+                                  </td>
+                                  <td>{{product.Stoke_quantity}}</td>
+                                  <td>{{product.Price}}</td>
+                                  <td>{{product.get_discord_price}}</td>
+                                  
+                                  <td>
+                                    <a href="details/{{product.id}}/" class="btn btn-outline-primary">View</a>
+                                  </td>
+                            </tr>
+                            {% endfor %}
+
+
+
+
+
+
+
+                         
+
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        </div>
+        
+      </div>
+   
+    </div>
+    </div>
+    </div>
+    </div>
+    
+{% endblock body %}
+
+{% block js %}
+<script src="{% static 'admin/home/js/data-table.js'%}"></script>
+<script>
+  $(".mu")[2].classList.add("active");
+</script>
+{% endblock js %}

@@ -1,0 +1,88 @@
+{% extends 'admin/home/base.html' %}
+
+
+{% block body %}
+
+    <div class="card-body">
+      <h4 class="card-title">Contact Us Inbox</h4>
+      <p class="card-description">
+        New mail's <code>{{new_mail}}</code>
+      </p>
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>
+                User
+              </th>
+              <th>
+                User
+              </th>
+           
+              <th>
+                Message
+              </th>
+              <th>
+                Date
+              </th>
+              <th>
+                Status
+              </th>
+              <th>
+                Action
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+
+            {% for m in mail %}
+            <tr>
+              <td class="py-1">
+                 
+                <img src="{% if  m.profile.profile_photo %}{{m.profile.profile_photo.url}}{% else %}/media/user.jpg{% endif %}" alt="image">
+              </td>
+              <td>
+                {{m.profile}}
+              </td>
+              
+              <td>
+                {{m.message|truncatechars:20}}
+              </td>
+              <td>
+                {{m.time}}
+              </td>
+              <td>
+                {% if m.status == "N" %}
+                <label class="badge badge-success badge-pill">NEW</label>
+                {% else %}
+                <label class="badge badge-warning badge-pill">READ</label>
+                {% endif %}
+
+
+              </td>
+              <td>
+                <a href="details/{{m.id}}/"><button type="button" class="btn btn-outline-primary btn-fw">View</button></a>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+
+
+        <div class="btn-group my-3" role="group" aria-label="Basic example">
+            {% for page in page_range %}
+            
+              <a href="?page={{page}}" type="button" class="btn {% if page == current_page  %}active{% endif %} btn-primary">{{page}}</a>
+       
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+ 
+{% endblock body %}
+
+{% block js %}
+<script>
+  $(".mu")[3].classList.add("active");
+</script>
+{% endblock js %}

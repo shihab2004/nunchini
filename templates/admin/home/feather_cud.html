@@ -1,0 +1,112 @@
+{% extends 'admin/home/base.html' %}
+{% load static %}
+
+{% block body %}
+
+<style>
+    .nhano img{
+      height: 150px;
+      width: 250px;
+    }
+  </style>
+<div class="row grid-margin">
+    <div class="col-12">
+
+
+<form action="{{acUrl|safe}}" enctype="multipart/form-data" method="post">
+    {% csrf_token %}
+    <div class="card">
+        <div class="card-body">
+
+            <h4 class="card-title">{{heading}}</h4>
+            
+            {%if obj.image %}
+            
+            <div class="row">
+                <div class="col nhano"><img src="{{obj.image.url}}" alt=""></div>
+            </div>
+            {% endif %}
+
+        
+
+        
+
+        <div class="form-group row">
+            <div class="col-lg-3">
+            <label class="col-form-label">Feature Name</label>
+            </div>
+            <div class="col-lg-8">
+                <input {% if not is_dt %}required{% endif %} value="{{obj.name}}"  class="form-control"  name="name"  type="text">
+            </div>
+        </div>
+    
+        
+      
+
+
+    
+
+    
+     
+
+    {% if c_menu.page_image %}
+        <div class="form-group row">
+
+            
+        </div>
+        {% endif %}
+        
+        
+        <div class="form-group row">
+        <div class="col-lg-3">
+            <label class="col-form-label">Upload Image</label>
+        </div>
+        <div class="col-lg-8">
+            <input {% if not is_dt %}required{% endif %}  class="form-control"  name="img" id="defaultconfig-5" type="file">
+        </div>
+        
+    </div>
+
+
+
+    
+
+        
+    <div class="form-group row">
+            
+        <div class="col-lg-8">
+            <button id="submit" class="btn btn-primary" >Submit</button>
+        </form>
+
+            {% if is_dt %}
+            <form class="d-inline" method="post" action="{{ac_to_R|safe}}">
+                {% csrf_token %}
+                <input type="hidden" name="id" value="{{obj.id}}" />
+                <button type="submit" class="btn btn-danger" >Delete</button>
+            </form>
+            {% endif %}
+
+            </div>
+        </div>
+
+    </div>
+</div>
+  
+
+    </div>
+
+
+</div>
+  
+  
+
+{% endblock body %}
+{% block js %}
+<script>
+    $(".mu")[9].classList.add("active");
+    const mu =$("a[href='/admin/d_feature/']");
+    mu.closest(".collapse").addClass("show")
+    mu.addClass("active")
+</script>
+{% endblock js %}
+

@@ -1,0 +1,2831 @@
+{% spaceless %}
+{% load static %}
+{% load product-tag %}
+{% load costomer-tag %}
+<!DOCTYPE html>
+<html class="theme-grocery needs-cover">
+    <meta http-equiv="content-type" content="text/html;charset=utf-8"/>
+    <head>
+
+        <meta name="google" content="notranslate">
+        <meta http-equiv="Content-type" content="text/html;charset=UTF-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+        <title>Fresh Vegetables - {{root.Name}} 🥚Online Grocery Shopping and Delivery in Bangladesh | Buy fresh food items, personal care, baby products and more</title>
+
+        <link rel="shortcut icon" href="{{root.get_favicon}}" type="image/x-icon">
+        <link rel="stylesheet" href="{% static 'css/chaldal-styles.css' %}" media="all"/>
+        {% block link %}
+
+        {% endblock link %}
+        <style>
+#card-offer-textEdit{background:#e3e3e3;border:0;text-align:center;outline:0;padding:10px 5px}#card-offer-btn{background:#4c8e00;color:#fff;font-size:14px;border:none;border-radius:3px;line-height:28px;-webkit-box-shadow:0 0 5px #ccc;-moz-box-shadow:0 0 5px #ccc;box-shadow:0 0 5px #ccc;margin-left:14px}.menu_0099{display:flex!important;align-items:center}.alu-link{padding:10px;cursor:pointer;border-bottom:1px solid #e1e1e1;display:block;text-decoration:none;color:inherit}.alu-link:hover{background:#c7c7c7;font-weight:700}.menuWrapper{background-color:#4c8e00}.nai{display:none}#bags{z-index:10000}a[mat]{cursor:pointer}@media screen and (max-height:1117px){.shoppingCart .body{height:900px!important}@media screen and (max-height:1077px){.shoppingCart .body{height:850px!important}@media screen and (max-height:1032px){.shoppingCart .body{height:800px!important}@media screen and (max-height:975px){.shoppingCart .body{height:750px!important}@media screen and (max-height:933px){.shoppingCart .body{height:670px!important}@media screen and (max-height:854px){.shoppingCart .body{height:610px!important}@media screen and (max-height:794px){.shoppingCart .body{height:530px!important}@media screen and (max-height:713px){.shoppingCart .body{height:460px!important}@media screen and (max-height:645px){.c8-clint #message{height: 50%!important;}.shoppingCart .body{height:400px!important}}}}}}}}}}.everythingElseWrapper{padding-top:40px!important}@media screen and (max-width:750px){.everythingElseWrapper{padding-top:68px!important}}
+        </style>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        /* <script src="{% static 'js/oi.js' %}" crossorigin="anonymous"></script> */
+    </head>
+    <body class="">
+
+
+        <div id="fb-root"></div>
+        <div id="page">
+            <div class="app catalog navOpen chaldal-theme"  data-react-checksum="1215102889">
+                <div class="mui" >
+                    <div class="authDialogs" ></div>
+                </div>
+
+    {% comment %} Live CHAT {% endcomment %}
+
+
+                    <span>
+                        <a class="chat_launcher"><span class="chatContent"><span>Live Chat</span><span> </span><span class="chatIcon">
+                            <svg width="38px" height="38px" style=" fill: white; stroke: white; display: inline-block; vertical-align: middle; " viewBox="0 0 100 100" version="1.1" x="0px" y="0px">
+                                <path
+                                    d="M88.272,59.79c4.025-4.372,6.228-9.787,6.228-15.38c0-13.711-13.026-24.866-29.038-24.866  c-6.555,0-12.925,1.918-18.018,5.394c-3.138-0.882-6.485-1.366-9.963-1.366c-17.634,0-31.98,12.269-31.98,27.348  c0,6.19,2.454,12.185,6.939,17.01L9.03,77.804c-0.248,0.719-0.067,1.516,0.467,2.057c0.382,0.388,0.897,0.596,1.424,0.596  c0.21,0,0.421-0.033,0.626-0.101l13.193-4.349c4.03,1.499,8.313,2.259,12.74,2.259c9.518,0,18.073-3.579,23.937-9.24  c1.281,0.159,2.641,0.24,4.045,0.24c4.001,0,7.865-0.683,11.499-2.029l11.828,3.896c0.205,0.067,0.416,0.101,0.626,0.101  c0.526,0,1.042-0.208,1.424-0.596c0.534-0.541,0.715-1.338,0.467-2.057L88.272,59.79z M25.527,72.025  c-0.437-0.173-0.918-0.188-1.362-0.04l-10.036,3.309l2.493-7.224c0.251-0.729,0.062-1.537-0.487-2.077  C11.856,61.78,9.5,56.426,9.5,50.918c0-12.874,12.552-23.348,27.98-23.348c3.408,0,6.675,0.513,9.698,1.448  c0.005,0.002,0.01,0.003,0.014,0.005c10.655,3.301,18.269,11.87,18.269,21.896c0,12.874-12.552,23.348-27.98,23.348  C33.307,74.266,29.285,73.512,25.527,72.025z M77.536,63.214c-0.447-0.148-0.929-0.134-1.364,0.041  c-3.36,1.334-6.964,2.011-10.71,2.011c-0.257,0-0.502-0.016-0.755-0.021c3.011-4.169,4.754-9.076,4.754-14.326  c0-10.509-6.972-19.647-17.165-24.224c3.925-2.036,8.481-3.151,13.166-3.151c13.806,0,25.038,9.36,25.038,20.866  c0,4.91-2.104,9.687-5.922,13.447c-0.549,0.541-0.738,1.349-0.487,2.077l2.117,6.138L77.536,63.214z M27.806,52.014  c0,1.657-1.343,3-3,3s-3-1.343-3-3c0-1.657,1.343-3,3-3S27.806,50.357,27.806,52.014z M40.48,52.014c0,1.657-1.343,3-3,3  c-1.657,0-3-1.343-3-3c0-1.657,1.343-3,3-3C39.137,49.014,40.48,50.357,40.48,52.014z M53.155,52.014c0,1.657-1.343,3-3,3  c-1.657,0-3-1.343-3-3c0-1.657,1.343-3,3-3C51.812,49.014,53.155,50.357,53.155,52.014z">
+                                </path>
+                            </svg></span></span>
+                        </a>
+                    </span>
+
+    {% comment %} Live CHAT {% endcomment %}
+
+
+                <div id="bags"  class="shoppingCartWrapper">
+                    <div class="cartContainer">
+                        <div class="shoppingCart collapsed empty responsive">
+                            <div class="header">
+                                <div class="cart">
+                                    <svg version="1.1" id="Calque_1" x="0px" y="0px" style="fill:#FDD670;stroke:#FDD670;" width="21px" height="32px" viewBox="0 0 100 160.13">
+                                        <g>
+                                            <polygon points="11.052,154.666 21.987,143.115 35.409,154.666"></polygon>
+                                            <path d="M83.055,36.599c-0.323-7.997-1.229-15.362-2.72-19.555c-2.273-6.396-5.49-7.737-7.789-7.737   c-6.796,0-13.674,11.599-16.489,25.689l-3.371-0.2l-0.19-0.012l-5.509,1.333c-0.058-9.911-1.01-17.577-2.849-22.747   c-2.273-6.394-5.49-7.737-7.788-7.737c-8.618,0-17.367,18.625-17.788,37.361l-13.79,3.336l0.18,1.731h-0.18v106.605l17.466-17.762   l18.592,17.762V48.06H9.886l42.845-10.764l2.862,0.171c-0.47,2.892-0.74,5.865-0.822,8.843l-8.954,1.75v106.605l48.777-10.655   V38.532l0.073-1.244L83.055,36.599z M36.35,8.124c2.709,0,4.453,3.307,5.441,6.081c1.779,5.01,2.69,12.589,2.711,22.513   l-23.429,5.667C21.663,23.304,30.499,8.124,36.35,8.124z M72.546,11.798c2.709,0,4.454,3.308,5.44,6.081   c1.396,3.926,2.252,10.927,2.571,18.572l-22.035-1.308C61.289,21.508,67.87,11.798,72.546,11.798z M58.062,37.612l22.581,1.34   c0.019,0.762,0.028,1.528,0.039,2.297l-23.404,4.571C57.375,42.986,57.637,40.234,58.062,37.612z M83.165,40.766   c-0.007-0.557-0.01-1.112-0.021-1.665l6.549,0.39L83.165,40.766z"></path>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="itemCount">
+                                    <span>0 ITEMS</span>
+                                    <span class="count-mobile">
+                                        <span>0</span>
+                                    </span>
+                                </div>
+                                <button class="closeCartButtonTop">Close</button>
+                            </div>
+                            <section  class="stickyHeader">
+                                <div class="itemCount">
+                                    <svg version="1.1" id="Calque_1" x="0px" y="0px" style="fill:#fff;stroke:#fff;" width="16px" height="24px" viewBox="0 0 100 160.13">
+                                        <g>
+                                            <polygon points="11.052,154.666 21.987,143.115 35.409,154.666"></polygon>
+                                            <path d="M83.055,36.599c-0.323-7.997-1.229-15.362-2.72-19.555c-2.273-6.396-5.49-7.737-7.789-7.737   c-6.796,0-13.674,11.599-16.489,25.689l-3.371-0.2l-0.19-0.012l-5.509,1.333c-0.058-9.911-1.01-17.577-2.849-22.747   c-2.273-6.394-5.49-7.737-7.788-7.737c-8.618,0-17.367,18.625-17.788,37.361l-13.79,3.336l0.18,1.731h-0.18v106.605l17.466-17.762   l18.592,17.762V48.06H9.886l42.845-10.764l2.862,0.171c-0.47,2.892-0.74,5.865-0.822,8.843l-8.954,1.75v106.605l48.777-10.655   V38.532l0.073-1.244L83.055,36.599z M36.35,8.124c2.709,0,4.453,3.307,5.441,6.081c1.779,5.01,2.69,12.589,2.711,22.513   l-23.429,5.667C21.663,23.304,30.499,8.124,36.35,8.124z M72.546,11.798c2.709,0,4.454,3.308,5.44,6.081   c1.396,3.926,2.252,10.927,2.571,18.572l-22.035-1.308C61.289,21.508,67.87,11.798,72.546,11.798z M58.062,37.612l22.581,1.34   c0.019,0.762,0.028,1.528,0.039,2.297l-23.404,4.571C57.375,42.986,57.637,40.234,58.062,37.612z M83.165,40.766   c-0.007-0.557-0.01-1.112-0.021-1.665l6.549,0.39L83.165,40.766z"></path>
+                                        </g>
+                                    </svg>
+                                    <p>
+                                        <span>0 ITEMS</span>
+                                    </p>
+                                </div>
+                                <div class="total">
+                                    <span>৳ </span>
+                                    <div class="odometer">0</div>
+                                </div>
+                            </section>
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <script>
+                    var disccc = {{discout_parsent}};
+
+
+                    var dv_time_on_bag,faild_current_product=localStorage.getItem("faild_current_product")?JSON.parse(localStorage.getItem("faild_current_product")):[];$("body").on("click",".btnDiscount",()=>{$("#disInput").toggle(),$(".btnDiscount span").hasClass("arrow-down")?($(".btnDiscount span").addClass("arrow-up"),$(".btnDiscount span").removeClass("arrow-down")):($(".btnDiscount span").removeClass("arrow-up"),$(".btnDiscount span").addClass("arrow-down"))});
+
+
+                    $('body').on('click','#disInput  button',(e)=>{
+                            $.ajax({
+                                type:"POST",
+                                url:"{% url 'product:api' %}?discountCode=True",
+                                data:{
+                                    'code':$('#disInput input').val(),
+                                    "csrfmiddlewaretoken": csrfmiddlewaretoken
+                                },
+                                success:(data)=>{
+                                    if(data.parsent && data.status == 'succsess'){
+                                        $('.discountCode').text(`Your ${data.parsent}% Discount is On`);
+                                        disccc = data.parsent;
+                                        update_little_bag_html();
+                                    }
+                                }
+
+                            })
+                    })
+
+                    var hight = window.innerHeight * 0.85;
+                   function sideBar(){
+
+                    $(".shoppingCartWrapper .stickyHeader").click((e)=>{
+
+                        document.querySelector("html").classList.add("sc-fullscreen")
+                        const main_div = e.currentTarget.parentNode.parentNode.parentNode
+                        main_div.classList.add("shoppingCartWrapperExpanded")
+
+
+
+                        main_div.innerHTML = `
+
+        <div class="cartContainer">
+        <div class="shoppingCartButton"></div>
+        <div class="shoppingCart expanded empty responsive">
+            <div class="header">
+                <div class="cart"><svg version="1.1" id="Calque_1" x="0px" y="0px"
+                        style="fill:#FDD670;stroke:#FDD670;" width="21px" height="32px" viewBox="0 0 100 160.13">
+                        <g>
+                            <polygon points="11.052,154.666 21.987,143.115 35.409,154.666"></polygon>
+                            <path d="M83.055,36.599c-0.323-7.997-1.229-15.362-2.72-19.555c-2.273-6.396-5.49-7.737-7.789-7.737   c-6.796,0-13.674,11.599-16.489,25.689l-3.371-0.2l-0.19-0.012l-5.509,1.333c-0.058-9.911-1.01-17.577-2.849-22.747   c-2.273-6.394-5.49-7.737-7.788-7.737c-8.618,0-17.367,18.625-17.788,37.361l-13.79,3.336l0.18,1.731h-0.18v106.605l17.466-17.762   l18.592,17.762V48.06H9.886l42.845-10.764l2.862,0.171c-0.47,2.892-0.74,5.865-0.822,8.843l-8.954,1.75v106.605l48.777-10.655   V38.532l0.073-1.244L83.055,36.599z M36.35,8.124c2.709,0,4.453,3.307,5.441,6.081c1.779,5.01,2.69,12.589,2.711,22.513   l-23.429,5.667C21.663,23.304,30.499,8.124,36.35,8.124z M72.546,11.798c2.709,0,4.454,3.308,5.44,6.081   c1.396,3.926,2.252,10.927,2.571,18.572l-22.035-1.308C61.289,21.508,67.87,11.798,72.546,11.798z M58.062,37.612l22.581,1.34   c0.019,0.762,0.028,1.528,0.039,2.297l-23.404,4.571C57.375,42.986,57.637,40.234,58.062,37.612z M83.165,40.766   c-0.007-0.557-0.01-1.112-0.021-1.665l6.549,0.39L83.165,40.766z"></path>
+                        </g>
+                    </svg></div>
+                <div class="itemCount"><span id="boroSide_bag">${current_bag_item.length} ITEMS</span><span class="count-mobile"
+                        ><span>0</span></span></div><button
+                    class="closeCartButtonTop">Close</button>
+            </div>
+            <section class="in-shopping-cart" id="shipping-cost-meter">
+                <div class="costMeterSection">
+                    <div class="costMeter">
+                        <div class="container">
+                            <div class="progress">
+                                <div style="width:0%;" class="bar"></div>
+                                <div class="meterInfoText">
+                                    <div class="InfoTextLeft"><span> </span><span>
+                                        <span>Shop ৳400 more and save ৳10 fee</span></span>
+                                        <span> </span>
+                                    </div>
+                                    <div class="InfoTextRight">
+                                        <span class="priceSection"><span><span>৳ </span><span>29</span></span></span>
+                                        <span class="helpIcon">
+                                            <svg width="15px" height="15px" style="fill:#fff;stroke:#fff;display:inline-block;vertical-align:middle;" version="1.1" viewBox="0 0 100 100">
+                                                <path d="m50 5c-24.898 0-45 20.102-45 45s20.102 45 45 45 45-20.102 45-45-20.102-45-45-45zm7.1016 70c0 2.1992-1.8984 4.1016-4.1016 4.1016h-6.1992c-2.1992 0-4.1016-1.8984-4.1016-4.1016v-26.199c0-2.3008 1.8984-4.1016 4.1016-4.1016h6.1992c2.1992 0 4.1016 1.8984 4.1016 4.1016zm-7.2031-37.102c-4.6016 0-8.3984-3.8008-8.3984-8.5 0-4.6992 3.8008-8.5 8.3984-8.5 4.6992 0 8.5 3.8008 8.5 8.5 0 4.7031-3.7969 8.5-8.5 8.5z"></path>
+                                            </svg>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="stickyHeader">
+                <div class="itemCount"><svg version="1.1" id="Calque_1" x="0px" y="0px" style="fill:#fff;stroke:#fff;" width="16px" height="24px" viewBox="0 0 100 160.13">
+                        <g>
+                            <polygon points="11.052,154.666 21.987,143.115 35.409,154.666"></polygon>
+                            <path
+                                d="M83.055,36.599c-0.323-7.997-1.229-15.362-2.72-19.555c-2.273-6.396-5.49-7.737-7.789-7.737   c-6.796,0-13.674,11.599-16.489,25.689l-3.371-0.2l-0.19-0.012l-5.509,1.333c-0.058-9.911-1.01-17.577-2.849-22.747   c-2.273-6.394-5.49-7.737-7.788-7.737c-8.618,0-17.367,18.625-17.788,37.361l-13.79,3.336l0.18,1.731h-0.18v106.605l17.466-17.762   l18.592,17.762V48.06H9.886l42.845-10.764l2.862,0.171c-0.47,2.892-0.74,5.865-0.822,8.843l-8.954,1.75v106.605l48.777-10.655   V38.532l0.073-1.244L83.055,36.599z M36.35,8.124c2.709,0,4.453,3.307,5.441,6.081c1.779,5.01,2.69,12.589,2.711,22.513   l-23.429,5.667C21.663,23.304,30.499,8.124,36.35,8.124z M72.546,11.798c2.709,0,4.454,3.308,5.44,6.081   c1.396,3.926,2.252,10.927,2.571,18.572l-22.035-1.308C61.289,21.508,67.87,11.798,72.546,11.798z M58.062,37.612l22.581,1.34   c0.019,0.762,0.028,1.528,0.039,2.297l-23.404,4.571C57.375,42.986,57.637,40.234,58.062,37.612z M83.165,40.766   c-0.007-0.557-0.01-1.112-0.021-1.665l6.549,0.39L83.165,40.766z"></path>
+                        </g>
+                    </svg>
+                    <p><span>0 ITEMS</span></p>
+                </div>
+                <div class="total"><span>৳</span></div>
+            </section>
+            <div class="body" style="height: ${hight}px;">
+                <section class="itemsHeader expressHeader">
+                     <div>
+                        <div class="cartItemsHeaderIcon"><svg version="1.1" x="0px" y="0px"
+                                viewBox="0 20 90 90">
+                                <path class="st0"
+                                    d="M59.4,32.6c0.2,0.2-0.2,0.3-0.2,0.3s-1.2,0.3-1.5,0.8c-0.3,0.3-0.8,1.5-0.8,1.5c0.7-0.2,1.5-0.3,2.3-0.7 c0.2,0,0.3,0.2,0.5,0.3c0.2,0-2,0.8-2.5,1.2c-0.3,0.3-2,1.7-2.5,1.7S53,37.9,53,37.9c0.2,0.3,0.3,0.7,0.7,1.2c0,0-1.2,0.7-1.2,0.8 c-0.2,0.2-1,1.2-1,1.2s3,0.3,4-1.3c-1,1.7-3.3,3.3-8.2,3.3c-5,0-9-2-11.7-3c-2.8-1.2-6.5-2.5-9.5-2.5c-2.8,0-6.2,0.8-8.4,2.9 c-3.9-1.5-9.2-0.7-11.7,1.7c-2.3,2.3-4.7,5.2-5,7.2c-0.5,2.2-1.7,7.4-3.3,9.7c-2.3,3.8-5,4.8-5.9,6.5c-0.8,1.7-0.8,5.2-0.7,5.2 c0.3,0.2,1.5,0,2.2-0.3c1.3-0.5,5-4.3,6.4-6.2c1.3-1.8,5.9-9.9,6.5-12.7c0.7-2.8,1.3-5.7,3.3-7.2c2.2-1.5,4.8-0.8,4.8-0.7 c0,0-2.5,2-2.7,7.5c-0.2,5.5,3.2,4.9,1.5,8.4c-1.7,3-6.7,1-8.4,2.8c-1.3,1.5,0,6.9,0,7.9c0,1-0.5,5.7-0.8,6.9c-0.2,1,0,1.7-0.2,2.3 c-0.2,0.5,1,0.7,1,0.7s-1,1.3-1.5,1c-0.5-0.2-0.8-0.2-1.2,0c-0.3,0-1,0.3-1.7,0l-2.7,5.7c0.3,0.2,0.8,0.3,1.3,0.2 c0.7-0.2,4-1.7,4.4-2c0.5-0.2,3.3-1.8,3.8-2.8c0.3-1,1-4.2,1-5.2c0.2-1,0.3-4.2,0.3-5c0-0.8-0.2-2.3,0-3c0.3-0.5,0.8-1.2,1.5-1.5 c0.8-0.2,1.8-0.2,2-0.2c0.3,0,3.2,0.3,3.7,0.3c0.7,0,3.3-0.5,4-0.8c0.8-0.2,1.3,0,1.5,0.3c0.3,0.3-0.3,0.8-0.3,1 c-0.2,0.2-1.5,1.8-1.8,2.5c-0.3,0.8-1.5,2.3-1.2,3c0.3,0.7,0.3,0.8,1.3,1.3c1,0.3,4.9,2.3,7,4.3c2.3,2.2,4.5,4.8,4.9,6.2 c0.5,1.5,1.3,1.7,1.8,1.7c0.5,0.2,1.5,0.3,1.5,1c0,0.7-0.2,1.5-0.2,1.5l6.2,2.3c0,0,0-2.2-0.2-3c-0.2-1-1.2-2-2-3 c-0.8-1.2-9.5-9.7-10.4-10.4c-0.8-0.5-1.5-1.2-1.7-2.5c-0.2-1.3,1.5-2.3,2.5-3.5c0.7-0.8,2.5-4.7,2.8-5.2c0.3-0.5,1.5-1.8,2.2-1.8 c0.8,0,2.7,1.2,5,2c1,0.3,8.2,2.2,9.2,2.5c1,0.2,3.2,0,3.8,0.7c0.7,0.5,0,1.8-0.2,2.7c-0.2,1-2,4.7-2,4.7s0.3,1.3,0.3,2.4 c0,1.2-0.5,5.3-1,6.7c-0.3,1.5-2.7,5.4-3.2,6c-0.3,0.5-0.8,0.8-0.8,1.7c0,0.8,1.5,1,2,1.7c0.7,0.5,0.2,1.5,0,2.5l6.7,2.8 c0-0.5,0.3-1.3,0-1.7c-0.2-0.5-1-1.5-1.5-2.2c-0.3-0.5-1.5-2.3-1.8-2.7c-0.3-0.5-0.3-1.5,0-2.3c0.2-0.8,2.3-6.5,2.5-7.2 c0.3-0.8,3.5-7.5,3.8-8.4c0.3-1,3-5.9,3.3-6.7c0.3-1,2.5-1.8,3.2-1.8c0.8,0,5,1.5,5.7,1.8c0.5,0.2,4.4,1.8,5,2.2 c0.8,0.3,0.3,1-0.2,1.2c-0.5,0.3-6.7,4.5-7.2,4.7c-0.5,0.2-1,0.7-1.3,0.7c-0.5,0-1.2,0.5-1.2,0.7c0,0.3-0.2,1-1,1c-0.7,0-2-1-2.8-2 c-1.2,0.7-2,1.2-2.5,2.2c-0.8,0.8-1.2,1.5-1.7,2.7c0.3,0.3,1,0.5,1.5,0.5h5.4c0.5,0,1.2-0.2,1.7-0.3c0.5-0.3,13.7-9,13.7-9 s2.2-1.7,2.2-3.2c0-1.2-1-1.5-1.3-2c-0.5-0.3-3.5-2.3-4-2.7c-0.7-0.5-3-1.8-3.7-2.2c-0.5-0.3-2.4-1-2.4-1c0.5-1.5,0.8-2.7,1-3 c0.2-0.3,0.2-3.4,0.3-3.9c0-0.5,0.8-2.7,1.2-3c0.3-0.3,1.2-3,1.3-3.5c0.2-0.3,1.5-4.2,2.2-4.2c0.7-0.2,1.3,0.5,2,0.5 c0.7,0.2,3.2-0.2,4.5,0c1.2,0.2,2.7,1.7,3,1.8c0.5,0.2,1.7,0.7,2,0.7c0.2,0,1.8-1.2,1.8-1.5c0-0.3-1.2-1-1.3-1 c-0.2-0.2-1.3-0.8-1.3-0.8c0,0.2,0.5-0.3,1.3-0.3c0.7,0,1.3,0.7,1.5,0.8c0.3,0.2,1.2,0.7,1.3,0.3c0.2-0.2,0.8-1,0.8-1.5 c0-0.7-0.7-1.5-1-1.8c-0.3-0.3-4.2-4-4.5-4.2c-0.5-0.2-2.5-2-2.5-2.5c-0.2-0.3-1.2-1.2-1.3-1.3c-0.2-0.2-5.2-3.7-5.9-4.2 c-0.7-0.5-1.3-1.3-1.3-2.2c0-0.8-0.3-3-0.3-3s-1.2-0.2-1.7,0.3c-0.5,0.3-1.7,3-2.3,3c-1.8-0.3-4.2,0.2-4.2,0.5 c0.2,0.5,1.8,0.2,1.8,0.2c0,0.2-0.7,1-1.2,1c-0.3,0-1.3,0.3-1.5,0.5c-0.3,0-1,0.5-1,0.5c0.5,0,1,0,1.7,0.2c0,0-1,0.7-1.5,0.7 c-0.5,0-2.2,0.5-2.7,0.7c-0.3,0.3-1.7,1.3-1.7,1.3h-1.5l0.2,0.3h0.8L59.4,32.6L59.4,32.6z"></path>
+                            </svg></div><span>Express Delivery</span>
+                    </div><span>${dv_time_on_bag}</span>
+                </section>
+
+
+
+
+                <section style="background: #fff;z-index: 5000;" class="discountCodeContainer notEligible">
+                    <div id='disInput' style='display:none'>
+                        <input placeholder="Special Code" id="card-offer-textEdit" style='margin-bottom:10px;width:200px;' type='text' />
+                        <button id="card-offer-btn">Submit</button>
+                    </div>
+                    <div class="discountCodeHeader">
+                        <button class="btnDiscount">
+                            <span class="arrow-icon arrow-down">
+                                <svg width="10px" height="10px" style="fill:#787878;stroke:#787878;display:inline-block;vertical-align:middle;" viewBox="0 0 100 100">
+                                    <path transform="translate(0 -952.36)"
+                                        d="m31.918 1045.4l36.164-31.684 12.918-11.316-12.918-11.316-36.164-31.684-12.918 11.316 36.168 31.684-36.168 31.684zm0 0"
+                                        stroke="#000" stroke-linecap="round" stroke-width="2">
+                                    </path>
+                                </svg>
+                            </span>
+                            <span>Have a special code?</span>
+
+                        </button>
+                    </div>
+                    <div class="discountCode">${disccc?`Your ${disccc}% Discount is On`:""}</div>
+                </section>
+                <div class="emptyCart">
+                    <div class="nothingToSeeHereMoveOn">
+                        <div>{% if root.side_bar_image %}<img src="{{root.side_bar_image.url}}">{% endif %}</div>
+                        <span>Your shopping bag is empty. Start shopping</span>
+                    </div>
+                </div>
+            </div>
+            <div class="emptyFooter">
+                <div class="footer">
+                    <div><span></span><a href="tel:+880{{root.Mobile.first.Phone}}">Phone : +880{{root.Mobile.first.Phone}}</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                        `
+
+
+
+                        // if faild order is here
+                        if(faild_current_product.length){
+                            $('.shoppingCart .body').prepend(`
+                        <div id='outofstockitem_bag'>
+                            <section class="itemsHeader outOfStockHeader">
+                                <div>Out of Stock Items</div>
+                            </section>
+                            <div class="outofstockitem">
+
+
+
+
+
+                            </div>
+                            </div>
+
+                        `);
+
+                        faild_current_product.forEach(item =>{
+                            $('.outofstockitem').append(`
+                            <div data-pvid="${item.product_id}" data-type="outofstock" class="orderItem">
+                                <div class="quantity">
+                                    <div class="caret caret-up disabled" title="Add one more to bag">
+                                    <svg version="1.1" x="0px" y="0px" viewBox="0 20 100 100">
+                                        <polygon points="46.34,39.003 46.34,39.003 24.846,60.499 29.007,64.657 50.502,43.163 71.015,63.677 75.175,59.519 50.502,34.844   " ></polygon>
+                                    </svg>
+                                    </div>
+                                    <span class="onHoverCursor"><span>${item.quantity}</span></span>
+                                    <div class="caret caret-down disabled" title="Remove one from bag">
+                                    <svg version="1.1" x="0px" y="0px" viewBox="0 -20 100 100">
+                                        <polygon points="53.681,60.497 53.681,60.497 75.175,39.001 71.014,34.843 49.519,56.337 29.006,35.823 24.846,39.982   49.519,64.656 " ></polygon>
+                                    </svg>
+                                    </div>
+                                </div>
+                                <div class="picture">
+                                    <div class="productPicture">
+                                    <img src="${item.img}" />
+                                    </div>
+                                </div>
+                                <div class="name">
+                                    <span>Radhuni Jorda Mix</span>
+                                    <div class="subText">
+                                    <span>৳ </span><span>${item.Price}</span><span> / ${item.amount}</span>
+                                    </div>
+                                </div>
+                                <div class="amount">
+                                    <section>
+                                    <div class="total"><span>৳ </span><span>${item.Price * item.quantity}</span></div>
+                                    </section>
+                                    <div class="remove" title="Remove from bag">
+                                    <svg version="1.1" x="0px" y="0px" viewBox="0 0 100 100">
+                                        <rect x="19.49" y="46.963" transform="matrix(-0.7071 0.7071 -0.7071 -0.7071 121.571 49.0636)" width="62.267" height="5.495" ></rect>
+                                        <rect x="18.575" y="47.876" transform="matrix(-0.7071 -0.7071 0.7071 -0.7071 49.062 121.5686)" width="62.268" height="5.495" ></rect>
+                                    </svg>
+                                    </div>
+                                </div>
+                                </div>
+                            `)
+                        })
+                        }
+                        //showing item on current item on bag        need ajsx function form backend
+                        const prod_stg = localStorage.getItem("current_bag_item")
+                        if(prod_stg != "[]" && prod_stg != null){
+                            $(".shoppingCartWrapper .emptyCart").remove()
+                            const prods = JSON.parse(prod_stg)
+                            prods.forEach((e)=>{
+                                bag_append_item(e)
+                            })
+
+                        }
+
+
+                        // arrow button click event
+                        $(".shoppingCartButton").click(()=>{
+                            $('html').removeClass("sc-fullscreen")
+                            main_div.classList.remove("shoppingCartWrapperExpanded")
+                            setTimeout(()=>{
+                                main_div.innerHTML =`
+
+                            <div class="cartContainer">
+                        <div class="shoppingCart collapsed empty responsive">
+                            <div class="header">
+                                <div class="cart">
+                                    <svg version="1.1" id="Calque_1" x="0px" y="0px" style="fill:#FDD670;stroke:#FDD670;" width="21px" height="32px" viewBox="0 0 100 160.13">
+                                        <g>
+                                            <polygon points="11.052,154.666 21.987,143.115 35.409,154.666"></polygon>
+                                            <path d="M83.055,36.599c-0.323-7.997-1.229-15.362-2.72-19.555c-2.273-6.396-5.49-7.737-7.789-7.737   c-6.796,0-13.674,11.599-16.489,25.689l-3.371-0.2l-0.19-0.012l-5.509,1.333c-0.058-9.911-1.01-17.577-2.849-22.747   c-2.273-6.394-5.49-7.737-7.788-7.737c-8.618,0-17.367,18.625-17.788,37.361l-13.79,3.336l0.18,1.731h-0.18v106.605l17.466-17.762   l18.592,17.762V48.06H9.886l42.845-10.764l2.862,0.171c-0.47,2.892-0.74,5.865-0.822,8.843l-8.954,1.75v106.605l48.777-10.655   V38.532l0.073-1.244L83.055,36.599z M36.35,8.124c2.709,0,4.453,3.307,5.441,6.081c1.779,5.01,2.69,12.589,2.711,22.513   l-23.429,5.667C21.663,23.304,30.499,8.124,36.35,8.124z M72.546,11.798c2.709,0,4.454,3.308,5.44,6.081   c1.396,3.926,2.252,10.927,2.571,18.572l-22.035-1.308C61.289,21.508,67.87,11.798,72.546,11.798z M58.062,37.612l22.581,1.34   c0.019,0.762,0.028,1.528,0.039,2.297l-23.404,4.571C57.375,42.986,57.637,40.234,58.062,37.612z M83.165,40.766   c-0.007-0.557-0.01-1.112-0.021-1.665l6.549,0.39L83.165,40.766z"></path>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="itemCount">
+                                    <span>0 ITEMS</span>
+                                    <span class="count-mobile">
+                                        <span>0</span>
+                                    </span>
+                                </div>
+                                <button class="closeCartButtonTop">Close</button>
+                            </div>
+                            <section  class="stickyHeader">
+                                <div class="itemCount">
+                                    <svg version="1.1" id="Calque_1" x="0px" y="0px" style="fill:#fff;stroke:#fff;" width="16px" height="24px" viewBox="0 0 100 160.13">
+                                        <g >
+                                            <polygon points="11.052,154.666 21.987,143.115 35.409,154.666"></polygon>
+                                            <path d="M83.055,36.599c-0.323-7.997-1.229-15.362-2.72-19.555c-2.273-6.396-5.49-7.737-7.789-7.737   c-6.796,0-13.674,11.599-16.489,25.689l-3.371-0.2l-0.19-0.012l-5.509,1.333c-0.058-9.911-1.01-17.577-2.849-22.747   c-2.273-6.394-5.49-7.737-7.788-7.737c-8.618,0-17.367,18.625-17.788,37.361l-13.79,3.336l0.18,1.731h-0.18v106.605l17.466-17.762   l18.592,17.762V48.06H9.886l42.845-10.764l2.862,0.171c-0.47,2.892-0.74,5.865-0.822,8.843l-8.954,1.75v106.605l48.777-10.655   V38.532l0.073-1.244L83.055,36.599z M36.35,8.124c2.709,0,4.453,3.307,5.441,6.081c1.779,5.01,2.69,12.589,2.711,22.513   l-23.429,5.667C21.663,23.304,30.499,8.124,36.35,8.124z M72.546,11.798c2.709,0,4.454,3.308,5.44,6.081   c1.396,3.926,2.252,10.927,2.571,18.572l-22.035-1.308C61.289,21.508,67.87,11.798,72.546,11.798z M58.062,37.612l22.581,1.34   c0.019,0.762,0.028,1.528,0.039,2.297l-23.404,4.571C57.375,42.986,57.637,40.234,58.062,37.612z M83.165,40.766   c-0.007-0.557-0.01-1.112-0.021-1.665l6.549,0.39L83.165,40.766z"></path>
+                                        </g>
+                                    </svg>
+                                    <p>
+                                        <span>0 ITEMS</span>
+                                    </p>
+                                </div>
+                                <div class="total">
+                                    <span>৳ </span>
+                                    <div class="odometer">0</div>
+                                </div>
+                            </section>
+
+                        </div>
+                    </div>
+
+
+                            `
+                            update_little_bag_html();
+                            sideBar();
+
+
+                            },300)
+                        })
+
+
+                    // close button event
+                    $(".closeCartButtonTop").click(()=>{
+                        $(".shoppingCartButton").click()
+                    })
+
+
+                    $(".caret").click((e)=>{
+                        const check = e.currentTarget.classList.contains("caret-up")?true:false
+                        bagItemfocus(e.currentTarget.parentNode.parentNode.getAttribute("data-pvid"),check)
+                    })
+
+
+                    //removing item to bag
+                    rmIt2ndEvent(main_div)
+
+
+
+                    dqnt2Event(main_div)
+
+
+                    console.log(current_bag_item);
+                 if(current_bag_item.length){
+                    sideBarPOb() //checking and changing side bar footer and adding new place order button
+                 }
+
+                    })
+
+
+
+                   }
+                   sideBar()
+
+                </script>
+
+                <script>
+
+
+function bagItemfocus(p_id,is_up=false){
+                        const check_up = is_up?"caret-up":"caret-down"
+                        var item_div = $(`.orderItem[data-pvid='${p_id}'] .${check_up}`)
+                        if(!item_div.hasClass("disabled")){
+                            item_div.parents(".orderItem").addClass("focus")
+                            setTimeout(()=>item_div.parents(".orderItem").removeClass("focus"),700)
+                        }
+                    }
+
+
+
+                </script>
+
+
+
+
+
+                <div class="headerWrapper" style="height:55px;" >
+                    <div class="headerWrapperWrapper" >
+                        <div>
+                            <div itemscope itemtype="http://schema.org/WebSite" class="top-header" >
+                                <button class="hamburgerMenu hidden-xs" >
+                                    <svg style="fill:#444444;stroke:#444444;display:inline-block;vertical-align:middle;" width="25px" height="25px" version="1.1" viewBox="0 0 100 100" >
+                                        <path d="m12 20v8h76v-8zm0 26v8h76v-8zm0 26v8h76v-8z" ></path>
+                                    </svg>
+                                </button>
+
+{% comment %} LOGO {% endcomment %}
+
+                                <div class="logo hidden-xs" >
+                                    <a>
+                                        <img class="egg chaldal_logo" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" style="background-image:url({{root.get_logo}});background-repeat:no-repeat;" >
+                                    </a>
+                                </div>
+                                <script>
+                                    $('.logo.hidden-xs').click(()=>{
+                                        $('.menu_0011')[0].click();
+                                    })
+                                </script>
+
+
+
+                                <div class="searchArea" >
+                                    <div class="searchInput" >
+                                        <meta itemprop="target" content="https://chaldal.com/search/{search_term_string}" >
+                                        <input class="searchBox" type="text" autocomplete="off" placeholder="Search for products (e.g. eggs, milk, potato)" required >
+
+                                        <script>
+                                            function setTitle(title){
+                                                document.title = `${title} - {{root.Name}} 🥚Online Grocery Shopping and Delivery in Bangladesh | Buy fresh food items, personal care, baby products and more"`
+                                            }
+                                            var request_product_svg = `<svg width="22px" height="25px" style="display: inline-block; vertical-align: middle;" viewBox="0 0 100 100" version="1.1" x="0px" y="0px"><path d="M71.8,36.4l-29,13.8V78c0,0.6-0.5,1-1,1c-0.6,0-1-0.5-1-1V50.1l-15.8-8.6l38.6-18.4l7.7,4.2c0.2-0.7,0.4-1.3,0.7-2  L49.8,13.4c-1.9-1-4.1-1.1-6-0.2L7.4,30.6c-2.3,1.1-3.8,3.4-3.8,6v26.5c0,2.4,1.3,4.7,3.5,5.8L38.7,86c1.9,1,4.1,1.1,6,0.2  l36.4-17.3c2.3-1.1,3.8-3.4,3.8-6V45.2c0,0,0,0,0,0C79,45.2,73.9,41.5,71.8,36.4z M8.2,32.5l38.6-18.4L61.3,22L22.7,40.3L8.2,32.5z   M75.5,59.5l-19.3,9.4V55.3l19.3-9.4V59.5z M96,31c0,6.1-5,11.1-11.1,11.1c-6.1,0-11.1-5-11.1-11.1s5-11.1,11.1-11.1  c3.1,0,5.9,1.3,7.9,3.3L84.1,32l-2.6-2.6c-0.6-0.6-1.5-0.6-2.1,0c-0.6,0.6-0.6,1.5,0,2.1l4.6,4.6l10.5-10.5C95.5,27.2,96,29.1,96,31  z"></path></svg>`;
+                                            $('body').on("keyup",".searchBox",(v)=>{
+                                                $('.searchBox').val(v.currentTarget.value);
+                                                $('#page_banner').empty();
+                                                preParent = false;
+                                                const cunt_value = v.currentTarget.value;
+                                                const crnt_value_length = cunt_value.length;
+                                                if(cunt_value){
+                                                    $.ajax({
+                                                    type:'GET',
+                                                    url:`/search/${cunt_value}/`,
+                                                    success:(data)=>{
+                                                        if(data.status === 'succsess'){
+                                                            // console.log(data);
+                                                            $('#body_content_ajsx').empty();
+                                                            const product = data.product
+                                                            console.log('**************************************$$@@');
+
+                                                            for(items in product){
+                                                                console.log(product[items]);
+                                                                const p_obj = {
+                                                                        id:product[items].pk,
+                                                                        img:product[items].image_link,
+                                                                        name:product[items].Name,
+                                                                        amount:product[items].Amount,
+                                                                        is_discord_price:product[items].is_discord_price,
+                                                                        discord_price:product[items].discord_price,
+                                                                        price:product[items].Price,
+                                                                        slug:product[items].slug,
+                                                                        is_stoke:product[items].is_stoke,
+                                                                        is_requested:product[items].is_requested
+
+                                                                    }
+                                                                    var old_str = get_product_html(p_obj).match(/<div class="name">.*<\/div>/)[0].match(/>.*class/)[0].match(/.*\/div>/)[0].replace(">","").replace("</div>","");
+                                                                    var am = get_product_html(p_obj).match(/<div class="name">.*<\/div>/)[0].match(/>.*class/)[0].match(/.*\/div>/)[0].replace(">","").replace("</div>","");
+                                                                    var new_cntRegxvalue = cunt_value.replaceAll('(','\\(').replaceAll(')','\\)');
+                                                                    var regxx = new RegExp(new_cntRegxvalue,'ig');
+                                                                    var km = [...am.matchAll(regxx)];
+                                                                    var newStr = '';
+                                                                    var count = 0;
+                                                                    for(char in km){
+                                                                        const new_index = km[char].index + crnt_value_length;
+
+                                                                        console.log("----------");
+                                                                        const new_new = km[count][0];
+                                                                        console.log(new_new);
+                                                                        console.log(am);
+                                                                        const new_value = `<em>${new_new}</em>`;
+                                                                        var new__new_cntRegxvalue = new_new.replaceAll('(','\\(').replaceAll(')','\\)');
+                                                                        var regx = new RegExp(`(?!(<em>))${new__new_cntRegxvalue}(?!(</em>))`);
+                                                                        am = am.replace(regx,new_value);
+                                                                        count++;
+                                                                    }
+
+                                                                    $('#body_content_ajsx').append(get_product_html(p_obj).replace(old_str,am));
+
+
+                                                                }
+
+
+
+                                                                ajx_updataion = true;
+                                                                current_bag_item.forEach((item_pd)=>{
+
+
+                                                                   for(var cnt=0;cnt<item_pd.quantity;cnt++){
+                                                                    //    $(`.product[product-id="${item_pd.product_id}"] .imageWrapper`).click();
+                                                                        console.log($(`.product[product-id="${item_pd.product_id}"] .imageWrapper`).click());
+                                                                   }
+
+                                                                })
+                                                                ajx_updataion = false;
+
+
+
+
+
+                                                        }else{
+                                                            $('#body_content_ajsx').html(`
+                                                            <section class="bodyWrapper">
+                                                                <div class="noMatch">
+                                                                    <p>Your search <em>${data.data}</em> did not match any products</p>
+                                                                </div>
+                                                            </section>
+                                                            `);
+                                                        }
+
+                                                    },
+
+
+                                                })
+
+                                                }else{
+                                                    $('#body_content_ajsx').html(`
+                                                    <section class="bodyWrapper">
+                                                        <div class="categoryHeader"><div></div></div>
+                                                        <div class="noMatch">
+                                                            <p>Search for products (e.g. eggs, milk, potato)</p>
+                                                        </div>
+                                                    </section>
+                                                    `);
+
+                                                }
+                                            })
+                                        </script>
+                                        <button type="submit" >
+                                            <svg class="search" version="1.1" x="0px" y="0px" viewBox="0 0 100 100" >
+                                                <path d="M44.5,78.5c-18.8,0-34-15.3-34-34s15.3-34,34-34s34,15.3,34,34S63.3,78.5,44.5,78.5z M44.5,18.1  C30,18.1,18.2,30,18.2,44.5S30,70.8,44.5,70.8S70.9,59,70.9,44.5S59,18.1,44.5,18.1z" ></path>
+                                                <path d="M87.2,91c-1,0-2-0.4-2.7-1.1L63.1,68.5c-1.5-1.5-1.5-3.9,0-5.4s3.9-1.5,5.4,0l21.3,21.3  c1.5,1.5,1.5,3.9,0,5.4C89.2,90.6,88.2,91,87.2,91z" ></path>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+
+
+
+                                <a href="/customer/select-city/" class="citySelectionLink hidden-xs">
+                                    <div class="area citySelectionArea">
+                                        <span class="locationMarkerIcon">
+                                            <svg style="fill:#fff;stroke:#fff;display:inline-block;vertical-align:middle;" width="20px" height="25px" viewBox="0 0 22.254 29.006" >
+                                                <path fill="none" stroke-width="2" d="M10.086 27.461C2.423 16.351 1 15.21 1 11.127a10.127 10.127 0 0120.254 0c0 4.083-1.423 5.223-9.086 16.334a1.266 1.266 0 01-2.082 0zm1.041-12.114a4.22 4.22 0 10-4.22-4.22 4.22 4.22 0 004.22 4.22z" ></path>
+                                            </svg>
+                                        </span>
+                                        <p class="metropolitanAreaName">{{crnt_city}}</p>
+                                        <p>
+                                            <i class="arrow-down"></i>
+                                        </p>
+
+                                    </div>
+                                </a>
+                                <div class="helpArea area hidden-sm hidden-xs" >
+                                    <a mat="/t/faq/?matRout=True" >
+                                        <span class="questionIcon" >?</span>
+                                        <span class="en" >Help &amp;More</span>
+                                    </a>
+                                </div>
+                                <div class="localeSwitch area hidden-sm hidden-xs" >
+                                    <p class="selectedLocale" >EN </p>
+                                </div>
+
+
+            {% if request.user.is_authenticated %}
+                                <div class="loginArea loggedIn area-with-dropdown area hidden-xs" >
+                                    <div class="icon" >
+                                        <svg width="20px" height="20px" style="display:inline-block;vertical-align:middle;" viewBox="0 0 100 100">
+                                            <g>
+                                                <path
+                                                    d="m50 52.953c12.383 0 22.422-11.75 22.422-26.242 0-20.098-10.039-26.242-22.422-26.242s-22.422 6.1445-22.422 26.242c0 14.492 10.039 26.242 22.422 26.242z"
+                                                    ></path>
+                                                <path
+                                                    d="m99.512 91.582l-11.312-25.484c-0.51562-1.168-1.4258-2.1328-2.5586-2.7227l-17.555-9.1367c-0.38672-0.19922-0.85547-0.16016-1.2031 0.10156-4.9648 3.7539-10.805 5.7422-16.883 5.7422s-11.918-1.9844-16.883-5.7422c-0.34766-0.26172-0.81641-0.30078-1.2031-0.10156l-17.555 9.1406c-1.1328 0.58984-2.0391 1.5547-2.5586 2.7227l-11.312 25.48c-0.78125 1.7578-0.62109 3.7656 0.42578 5.3789 1.0469 1.6094 2.8203 2.5742 4.7422 2.5742h88.684c1.9219 0 3.6953-0.96094 4.7422-2.5742 1.0469-1.6133 1.207-3.625 0.42969-5.3789z"
+                                                    ></path>
+                                            </g>
+                                        </svg></div>
+                                    <div class="text" >
+                                        <p class="oneWord" >{{request.user.username}}</p>
+                                    </div>
+                                    <ul class="dropDown" >
+                                        <a class="alu-link" href="/customer/profile/">Your Profile</a>
+                                        <a class="alu-link" mat="/customer/orders/?matRout=True">Your Orders</a>
+                                        <a class="alu-link" mat="/customer/account-history/?matRout=True">Payment History</a>
+                                        <a class="alu-link" mat="/customer/changepassword/?matRout=True">Change Passwordx</a>
+                                        <a class="alu-link" href="{% url 'logout' %}">Log out</a>
+                                    </ul>
+                                </div>
+            {% else %}
+                                 <div class="loginArea authButtons area hidden-xs" >
+                                    <button mat="{% url 'login' %}?matRout=True" class="signInBtn" >Sign in</button>
+                                </div>
+
+
+
+            {% endif %}
+
+
+                                <style>
+                                    #lol-btn{
+                                        width: 30px;
+                                        height: 30px;
+                                        background-color: #ff4a4d;
+                                        position: absolute;
+                                        top: 0;
+                                        right: 0;
+                                        z-index: 999999999;
+                                        cursor: pointer;
+                                        display: flex;
+                                        justify-content: space-around;
+                                        align-items: center;
+                                    }
+                                    #lol-btn div{
+                                        position: absolute;
+                                        height: 21px;
+                                        width: 2px;
+                                    }
+                                    #lol-btn div:nth-child(1){
+                                        background-color: white;
+                                        transform:rotate(-48deg);
+                                    }
+                                    #lol-btn div:nth-child(2){
+                                        background-color: white;
+                                        transform: rotate(48deg);
+                                    }
+                                    .amuni{
+                                        position: relative;
+                                    }
+                                </style>
+                                <div class="mui nai" id="pp_dorpdown">
+
+                                    <div class="ModalDialogContainer headerDropDownDialog">
+                                        <div class="ModalDialog amuni">
+                                            <div id="lol-btn"><div></div><div></div></div>
+                                            <div class="ModalDialogContent undefined">
+                                                <ul>
+                                                    <li style="display:flex;justify-content: center;align-items: center;">
+                                                        {% if profile.profile_photo %}
+                                                        <img style="height: 37px;width: 37px;margin-right: 10px;border-radius: 50%;border: 1px solid white;" src="{{profile.profile_photo.url}}" alt="">
+                                                        {%else%}
+                                                        <svg width="24px" height="16px" style="fill: #fff;stroke: #fff;display: inline-block;vertical-align: middle;" viewBox="0 0 100 100">
+                                                            <g>
+                                                                <path
+                                                                    d="m50 52.953c12.383 0 22.422-11.75 22.422-26.242 0-20.098-10.039-26.242-22.422-26.242s-22.422 6.1445-22.422 26.242c0 14.492 10.039 26.242 22.422 26.242z">
+                                                                </path>
+                                                                <path
+                                                                    d="m99.512 91.582l-11.312-25.484c-0.51562-1.168-1.4258-2.1328-2.5586-2.7227l-17.555-9.1367c-0.38672-0.19922-0.85547-0.16016-1.2031 0.10156-4.9648 3.7539-10.805 5.7422-16.883 5.7422s-11.918-1.9844-16.883-5.7422c-0.34766-0.26172-0.81641-0.30078-1.2031-0.10156l-17.555 9.1406c-1.1328 0.58984-2.0391 1.5547-2.5586 2.7227l-11.312 25.48c-0.78125 1.7578-0.62109 3.7656 0.42578 5.3789 1.0469 1.6094 2.8203 2.5742 4.7422 2.5742h88.684c1.9219 0 3.6953-0.96094 4.7422-2.5742 1.0469-1.6133 1.207-3.625 0.42969-5.3789z">
+                                                                </path>
+                                                            </g>
+                                                        </svg>
+                                                        {%endif%}
+                                                        <span>{{request.user}}</span>
+                                                    </li>
+                                                    {% if request.user.is_authenticated %}
+                                                    <li>
+                                                        <a href="/customer/profile/"><svg style="fill: #4f4f4f;stroke: #4f4f4f;display: inline-block;vertical-align: middle;" width="24px" height="19px" viewBox="0 0 26 32.5">
+                                                                <g>
+                                                                    <path
+                                                                        d="M25.7,3.4l-3.1-3.1c-0.4-0.4-1-0.4-1.4,0l-1.9,1.9c0,0,0,0,0,0s0,0,0,0l-7.4,7.4c0,0,0,0,0,0c-0.1,0.1-0.1,0.2-0.2,0.3   c0,0,0,0,0,0.1c0,0,0,0,0,0l-1.6,4.7c-0.1,0.4,0,0.8,0.2,1c0.2,0.2,0.4,0.3,0.7,0.3c0.1,0,0.2,0,0.3-0.1l4.7-1.6c0,0,0,0,0,0   c0,0,0,0,0.1,0c0.1,0,0.2-0.1,0.3-0.2c0,0,0,0,0,0l9.3-9.3C26.1,4.4,26.1,3.8,25.7,3.4z M23.6,4.1l-0.5,0.5l-1.7-1.7l0.5-0.5   L23.6,4.1z M15.7,12l-0.8-0.8L14,10.3l6-6l1.7,1.7L15.7,12z M12.6,13.4l0.4-1.2l0.8,0.8L12.6,13.4z">
+                                                                    </path>
+                                                                    <path
+                                                                        d="M21,14c-0.6,0-1,0.4-1,1v7c0,1.1-0.9,2-2,2H4c-1.1,0-2-0.9-2-2V8c0-1.1,0.9-2,2-2h7c0.6,0,1-0.4,1-1s-0.4-1-1-1H4   C1.8,4,0,5.8,0,8v14c0,2.2,1.8,4,4,4h14c2.2,0,4-1.8,4-4v-7C22,14.4,21.6,14,21,14z">
+                                                                    </path>
+                                                                </g>
+                                                            </svg><span> </span><span>Your Profile</span></a>
+                                                    </li>
+                                                    <li>
+                                                        <a mat="/customer/orders/?matRout=True"><svg version="1.1" id="Calque_1" x="0px" y="0px"
+                                                                style="fill: #4f4f4f; stroke: #4f4f4f" width="24px" height="19px" viewBox="0 0 100 160.13">
+                                                                <g>
+                                                                    <polygon points="11.052,154.666 21.987,143.115 35.409,154.666  "></polygon>
+                                                                    <path
+                                                                        d="M83.055,36.599c-0.323-7.997-1.229-15.362-2.72-19.555c-2.273-6.396-5.49-7.737-7.789-7.737   c-6.796,0-13.674,11.599-16.489,25.689l-3.371-0.2l-0.19-0.012l-5.509,1.333c-0.058-9.911-1.01-17.577-2.849-22.747   c-2.273-6.394-5.49-7.737-7.788-7.737c-8.618,0-17.367,18.625-17.788,37.361l-13.79,3.336l0.18,1.731h-0.18v106.605l17.466-17.762   l18.592,17.762V48.06H9.886l42.845-10.764l2.862,0.171c-0.47,2.892-0.74,5.865-0.822,8.843l-8.954,1.75v106.605l48.777-10.655   V38.532l0.073-1.244L83.055,36.599z M36.35,8.124c2.709,0,4.453,3.307,5.441,6.081c1.779,5.01,2.69,12.589,2.711,22.513   l-23.429,5.667C21.663,23.304,30.499,8.124,36.35,8.124z M72.546,11.798c2.709,0,4.454,3.308,5.44,6.081   c1.396,3.926,2.252,10.927,2.571,18.572l-22.035-1.308C61.289,21.508,67.87,11.798,72.546,11.798z M58.062,37.612l22.581,1.34   c0.019,0.762,0.028,1.528,0.039,2.297l-23.404,4.571C57.375,42.986,57.637,40.234,58.062,37.612z M83.165,40.766   c-0.007-0.557-0.01-1.112-0.021-1.665l6.549,0.39L83.165,40.766z">
+                                                                    </path>
+                                                                </g>
+                                                            </svg><span> </span><span>Your Orders</span></a>
+                                                    </li>
+                                                    <li>
+                                                        <a mat="/customer/account-history/?matRout=True"><span> </span><svg width="24px" height="19px" style="fill: #4f4f4f;stroke: #4f4f4f;display: inline-block;vertical-align: middle;" viewBox="0 0 100 100">
+                                                                <path
+                                                                    d="m53.801 58.898c-1.1016 0-2-0.30078-2.8008-0.80078-0.80078-0.60156-1.1992-1.1992-1.1992-2 0-0.19922-0.10156-0.39844-0.19922-0.5-0.10156-0.10156-0.30078-0.19922-0.5-0.19922h-9.3008c-0.5 0-0.69922 0.19922-0.69922 0.69922 0 1.5 0.19922 2.8984 0.69922 4.3008 0.5 1.3984 1.1992 2.6016 2.1016 3.6992 0.89844 1.1016 2 2.1016 3.1992 3 1.1992 0.89844 2.6016 1.5 4.1992 1.8984v5.0039c0 0.39844 0.19922 0.69922 0.69922 0.69922h7.6992c0.5 0 0.69922-0.19922 0.69922-0.69922v-5.1016c2.8984-0.89844 5.3008-2.5 7.1016-4.8008 2.1016-2.5 3.1016-5.3008 3.1016-8.3984 0-2.1016-0.39844-4-1.1992-5.6992-0.80078-1.6992-2-3.1992-3.6016-4.3984-1.3008-1-2.6992-1.8008-4.3008-2.3984-1.5-0.60156-3-1.1016-4.3984-1.5-1.3008-0.30078-2.3008-0.60156-3-1-0.69922-0.30078-1.1992-0.60156-1.6016-0.89844-0.39844-0.30078-0.60156-0.5-0.69922-0.69922-0.10156-0.19922-0.19922-0.39844-0.19922-0.5 0.10156-0.19922 0.5-0.5 1.1992-0.89844 0.69922-0.39844 1.6016-0.60156 2.8984-0.60156 0.80078 0 1.6016 0.19922 2.3984 0.60156 0.80078 0.39844 1.3008 0.89844 1.6016 1.6992 0.10156 0.30078 0.30078 0.5 0.69922 0.5 0.10156 0 0.19922 0 0.19922-0.10156l8.8984-2.8984c0.39844-0.10156 0.5-0.39844 0.39844-0.80078-0.69922-2.1016-1.8984-4-3.6016-5.6016-1.6992-1.6016-3.6992-2.6992-6.1016-3.3984v-5.1992c0-0.19922-0.10156-0.39844-0.19922-0.5 0.007812-0.30469-0.19141-0.40625-0.39063-0.40625h-7.6992c-0.19922 0-0.39844 0.10156-0.5 0.19922-0.10156 0.10156-0.19922 0.30078-0.19922 0.5v5.1016c-1.8984 0.5-3.6992 1.3008-5.3008 2.3984-1.6016 1.1992-2.8008 2.5-3.6992 4.1016-0.89844 1.6016-1.3008 3.1992-1.3008 5 0 4 1.6016 7.3008 4.8984 9.8008 1 0.80078 2.1992 1.5 3.6016 2.1016 1.3984 0.60156 3 1.1016 4.8984 1.6992 2.5 0.60156 4.1016 1.3008 4.8984 2.1016 0.19922 0.19922 0.39844 0.5 0.39844 0.69922s0.10156 0.5 0.10156 0.89844c0 0.80078-0.39844 1.5-1.1992 2.1992-0.60156 0.69922-1.6016 1.0977-2.6992 1.0977zm0-54.797c-23.301 0-42.5 17.801-44.301 41.102l-7.6992-0.003906 12 20.801 12-20.801h-7.3984c1.8008-18 17-32.102 35.398-32.102 19.602 0 35.5 15.801 35.5 35.398 0 19.605-15.902 35.402-35.5 35.402-8.8008 0-17.301-3.3008-23.801-9.1992l-6 6.6016c8.1992 7.3984 18.801 11.5 29.801 11.5 24.5 0 44.5-19.898 44.5-44.398 0-24.504-20-44.301-44.5-44.301z">
+                                                                </path>
+                                                            </svg><span> </span><span>Payment History</span></a>
+                                                    </li>
+                                                    <li>
+                                                        <a mat="/customer/changepassword/?matRout=True"><svg width="24px" height="19px" style="fill: #4f4f4f;stroke: #4f4f4f;display: inline-block;vertical-align: middle;" version="1.1" viewBox="0 0 100 100">
+                                                                <g>
+                                                                    <path
+                                                                        d="m80.371 51.176c4.3594-4.3594 6.5312-10.059 6.5312-15.773 0-5.6992-2.1719-11.414-6.5312-15.773s-10.059-6.5312-15.773-6.5312c-5.6992 0-11.414 2.1719-15.773 6.5312-2.7695 2.7695-4.6562 6.0703-5.6562 9.5547-1.043 3.6328-1.1602 7.4844-0.3125 11.16l0.14844 0.65625-0.47656 0.47656c-9.8047 9.8047-19.598 19.598-29.406 29.406l0.51953 15.461 15.461 0.51953 29.883-29.883 0.65625 0.14844c3.6758 0.83203 7.5312 0.73047 11.16-0.3125 3.4961-1.0117 6.8008-2.8867 9.5547-5.6562zm-9.4922-9.4922c-3.4688 3.4688-9.0781 3.4688-12.543 0-3.4688-3.4688-3.4688-9.0781 0-12.543 3.4688-3.4688 9.0781-3.4688 12.543 0 3.4688 3.4688 3.4688 9.0781 0 12.543z">
+                                                                    </path>
+                                                                    <path d="m19.102 60.75l2.125-2.125 4.8711 4.8711-2.125 2.125z"></path>
+                                                                    <path d="m21.617 55.801l3.1836-3.1836 4.8711 4.8711-3.1836 3.1836z"></path>
+                                                                    <path d="m13.094 64.32l3.1836-3.1836 4.8711 4.8711-3.1836 3.1836z"></path>
+                                                                </g>
+                                                            </svg><span> </span><span>Change Password</span></a>
+                                                    </li>
+                                                {% else %}
+                                                <li mat="/login/?matRout=True">
+                                                    <svg width="24px" height="19px" style="fill: #4f4f4f;stroke: #4f4f4f;display: inline-block;vertical-align: middle;" viewBox="0 0 100 100">
+                                                        <g>
+                                                            <path d="m66.668 50l-33.336-34.512v17.844h-33.332v33.336h33.332v16.664z"></path>
+                                                            <path
+                                                                d="m75 8.332h-20.832c-2.3008 0-4.168 1.8672-4.168 4.168s1.8672 4.168 4.168 4.168h20.832c4.5977 0 8.332 3.7383 8.332 8.332v50c0 4.5977-3.7383 8.332-8.332 8.332h-20.832c-2.3008 0-4.168 1.8633-4.168 4.168s1.8672 4.168 4.168 4.168h20.832c9.168 0 16.668-7.5 16.668-16.668v-50c0-9.168-7.5-16.668-16.668-16.668z">
+                                                            </path>
+                                                        </g>
+                                                    </svg><span> </span><span>Login</span><span> </span>
+                                                </li>
+                                                <li mat="/signup/?matRout=True">
+                                                    <svg width="24px" height="19px" style="fill: #4f4f4f;stroke: #4f4f4f;display: inline-block;vertical-align: middle;" viewBox="0 0 100 100">
+                                                        <g>
+                                                            <path
+                                                                d="m95.266 63h-15.266v-15.734c0-0.13672-0.51562-0.26562-0.64844-0.26562h-11.246c-0.13281 0-0.10547 0.12891-0.10547 0.26562v15.734h-15.812c-0.13281 0-0.1875 0.050781-0.1875 0.18359v11.242c0 0.13281 0.054688 0.57422 0.1875 0.57422h15.812v15.344c0 0.13281-0.027344 0.65625 0.10547 0.65625h11.246c0.13281 0 0.64844-0.52344 0.64844-0.65625v-15.344h15.266c0.13672 0 0.73438-0.44141 0.73438-0.57422v-11.242c0-0.13281-0.59766-0.18359-0.73438-0.18359z">
+                                                            </path>
+                                                            <path
+                                                                d="m52.188 77c-1.2344 0-2.1875-1.3398-2.1875-2.5742v-11.242c0-1.2383 0.95312-2.1836 2.1875-2.1836h13.812v-9.7461c-3.918-4.6367-9.1484-8.1641-15.156-9.9883 6.0234-3.3125 10.109-9.6836 10.109-17.004 0-10.727-8.7617-19.422-19.57-19.422-10.809 0-19.566 8.6953-19.566 19.422 0 7.3203 4.082 13.691 10.109 17.004-13.051 3.9609-22.527 15.887-22.527 29.996 0 17.34 14.316 20.324 31.98 20.324 9.9023 0 18.754-0.9375 24.617-4.8203l0.003906-9.7656z">
+                                                            </path>
+                                                        </g>
+                                                    </svg><span> </span><span>Sign Up</span><span> </span>
+                                                </li>
+
+
+                                                {% endif %}
+
+
+
+
+                                                    <li>
+                                                        <a mat="/t/faq/?matRout=True"><svg width="24px" height="17px" style="fill: #4f4f4f;stroke: #4f4f4f;display: inline-block;vertical-align: middle;" version="1.1" viewBox="0 0 100 100">
+                                                                <path
+                                                                    d="m50 5c-24.898 0-45 20.102-45 45s20.102 45 45 45 45-20.102 45-45-20.102-45-45-45zm7.1016 70c0 2.1992-1.8984 4.1016-4.1016 4.1016h-6.1992c-2.1992 0-4.1016-1.8984-4.1016-4.1016v-26.199c0-2.3008 1.8984-4.1016 4.1016-4.1016h6.1992c2.1992 0 4.1016 1.8984 4.1016 4.1016zm-7.2031-37.102c-4.6016 0-8.3984-3.8008-8.3984-8.5 0-4.6992 3.8008-8.5 8.3984-8.5 4.6992 0 8.5 3.8008 8.5 8.5 0 4.7031-3.7969 8.5-8.5 8.5z">
+                                                                </path>
+                                                            </svg><span> </span><span>Help &amp; More</span></a>
+                                                    </li>
+
+                                                    {% if request.user.is_authenticated %}
+                                                    <li>
+                                                        <a href="{% url 'logout' %}"><svg width="24px" height="17px" style="fill: #4f4f4f;stroke: #4f4f4f;display: inline-block;vertical-align: middle;" version="1.1" viewBox="0 0 100 100">
+                                                                <path
+                                                                    d="m50 0c-27.617 0-50 22.383-50 50s22.383 50 50 50c27.613 0 50-22.383 50-50s-22.383-50-50-50zm-3.9062 24.586c0.007812-1.5898 0.98438-3.0195 2.4648-3.6016 1.4805-0.58594 3.168-0.21094 4.2617 0.94531 0.67188 0.66406 1.0547 1.5664 1.0586 2.5156v1.7266c0 8.7031 0.015625 17.695 0 26.547 0 2.0234-1.7891 3.7266-3.8906 3.7266-2.0859 0-3.8594-1.7031-3.875-3.7344-0.023437-3.3203-0.015625-6.6797-0.011719-9.9453v-4.1836-1.082-2.9141c-0.007812-3.2617-0.019531-6.6875-0.007812-10zm9.0117 54.215c-7.2617 1.3789-14.777-0.19922-20.871-4.3828-6.0938-4.1836-10.266-10.629-11.59-17.906-1.6562-9.3359 0.875-17.625 7.5312-24.629 0.74609-0.8125 1.8008-1.2812 2.9023-1.293 0.98828 0.003906 1.9336 0.39062 2.6406 1.0703 0.77344 0.71484 1.2227 1.7031 1.2578 2.75v0.003906c0.015626 1.0586-0.39453 2.0781-1.1406 2.8359-3.0742 3.1953-4.9688 6.9375-5.625 11.133-0.98828 7.082 1.875 14.152 7.5156 18.551 5.6406 4.3945 13.195 5.4492 19.824 2.7656 6.6289-2.6836 11.32-8.7031 12.309-15.785 0.74219-6.2891-1.1172-11.812-5.5156-16.43-1.2227-1.2812-1.5898-2.5859-1.1484-4.0938v0.003906c0.38281-1.3164 1.4336-2.332 2.7578-2.6719 1.3281-0.33984 2.7344 0.046875 3.7031 1.0156 4.7773 4.8281 7.4883 10.691 8.0547 17.422 0.046874 0.52734 0.078124 1.0703 0.10547 1.5977 0.015625 0.24219 0.027344 0.48047 0.042969 0.72266-0.10547 13.543-9.4531 24.777-22.754 27.32z">
+                                                                </path>
+                                                            </svg><span> </span><span>Log out</span></a>
+                                                    </li>
+                                                    {% endif %}
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                                <div class="dotMenuIcon" >
+                                    <ul class="icons btn-left showLeft" >
+                                        <li></li>
+                                        <li></li>
+                                        <li></li>
+                                    </ul>
+                                </div>
+                                        <br>
+                                        <script>
+
+                                            $('.dotMenuIcon .icons').click(()=>{
+                                                $('#pp_dorpdown').removeClass('nai')
+                                                $('#lol-btn').click(()=>{
+                                                    $('#pp_dorpdown').addClass('nai')
+                                                })
+                                            })
+
+                                        </script>
+
+                            </div>
+                            <a href="/customer/select-city/" class="citySelectionInlineLink" >
+                                <p class="yourCity" >Your City</p>
+                                <p class="cityName" >{{crnt_city}}</p>
+                                <p >
+                                    <i class="arrow-down1" ></i>
+                                </p>
+                            </a>
+                            <div >
+                                <div id="notification_message"></div>
+                            </div>
+                        </div>
+
+
+                        <div class="menuWrapper" >
+                            <div >
+                                <div class="topMenu vertical" >
+                                    <div >
+                                        <div class=" hamBergerMenuIcon" >
+                                            <div class="bar1"></div>
+                                            <div class="bar2"></div>
+                                            <div class="bar3"></div>
+                                        </div>
+                                    </div>
+
+ {% comment %} Menu {% endcomment %}
+                                    <div class="menu" >
+
+
+                                    {% comment %} Extra menu {% endcomment %}
+                                        <ul class="misc-menu" >
+                                            <li class="unselected" >
+                                                <div class="name" >
+                                                    <a class='menu_0099' mat="{% url 'index' %}?matRout=True" >
+                                                        <img width="25px" height="25px" src="/media/home.png"/>
+                                                        <span style="margin-left: 10px;">Home</span>
+                                                    </a>
+                                                </div>
+                                            </li>
+                                            <li class="unselected" >
+                                                <div class="name">
+                                                    <a class="menu_0099" mat="{% url 'product:offer' %}?matRout=True" >
+                                                        <svg id="Filled" height="25" viewBox="0 0 512 512" width="25" xmlns="http://www.w3.org/2000/svg"><path d="m415.3 169.846c0-41.134-32.792-74.413-73.026-73.839-39.229.56-71.05 33.747-70.974 73.985a74.312 74.312 0 0 0 30.937 60.519 12.309 12.309 0 0 1 5.063 10.038l.033 31.451h72l-.034-31.452a12.328 12.328 0 0 1 5.081-10.05 74.318 74.318 0 0 0 30.92-60.652z" fill="#f7b030"/><rect fill="#c3c6c7" height="32" rx="16" width="96" x="295.299" y="256"/><path d="m311.3 288h64a0 0 0 0 1 0 0v16a16 16 0 0 1 -16 16h-32a16 16 0 0 1 -16-16v-16a0 0 0 0 1 0 0z" fill="#dadcde"/><path d="m360 440h112a16 16 0 0 1 16 16v16a16 16 0 0 1 -16 16h-201.837c-4.071 0-162.092-32-166.163-32h-32v-144h72c40 0 120 72 120 72l80 24s16 8 16 16v16a16 16 0 0 1 -16 16l-80-16-56-32" fill="#f7cca9"/><path d="m24 296h48v176h-48z" fill="#2d85cc"/><path d="m389.028 237.01a83.046 83.046 0 0 0 9.772-126.11 78.519 78.519 0 0 0 -56.645-22.893c-43.567.621-78.943 37.405-78.859 82a82.537 82.537 0 0 0 34.292 67.016 4.3 4.3 0 0 1 1.708 3.526v10.68a23.987 23.987 0 0 0 4 43.4v9.371a24.027 24.027 0 0 0 24 24h32a24.028 24.028 0 0 0 24-24v-9.376a23.987 23.987 0 0 0 4-43.4v-10.676a4.312 4.312 0 0 1 1.732-3.538zm-109.728-67.032c-.068-35.879 28.233-65.474 63.088-65.971.3 0 .608-.007.913-.007a62.694 62.694 0 0 1 44.27 18.3 67.046 67.046 0 0 1 -7.838 101.69 20.343 20.343 0 0 0 -8.433 16.562v7.448h-56v-7.451a20.316 20.316 0 0 0 -8.418-16.549 66.505 66.505 0 0 1 -27.582-54.022zm80 142.022h-32a8.009 8.009 0 0 1 -8-8v-8h48v8a8.009 8.009 0 0 1 -8 8zm16-32h-64a8 8 0 0 1 0-16h64a8 8 0 0 1 0 16z"/><path d="m356.27 138.543a36.163 36.163 0 0 1 20.839 23.624 8 8 0 0 0 15.4-4.334 52.282 52.282 0 0 0 -30.184-34.1 8 8 0 0 0 -6.058 14.809z"/><path d="m351.3 64v-16a8 8 0 0 0 -16 0v16a8 8 0 0 0 16 0z"/><path d="m297.749 81.685a8.005 8.005 0 0 0 7.3-11.256l-6.508-14.617a8 8 0 0 0 -14.617 6.508l6.508 14.617a8 8 0 0 0 7.317 4.748z"/><path d="m260.064 109.058a8 8 0 0 0 5.355-13.946l-11.89-10.706a8 8 0 0 0 -10.706 11.894l11.89 10.7a7.97 7.97 0 0 0 5.351 2.058z"/><path d="m244.389 143.861a8 8 0 0 0 -5.137-10.08l-15.217-4.943a8 8 0 1 0 -4.943 15.217l15.217 4.945a7.99 7.99 0 0 0 10.08-5.137z"/><path d="m231.076 179.751-15.912 1.673a8 8 0 1 0 1.672 15.912l15.913-1.673a8 8 0 0 0 -1.673-15.912z"/><path d="m453.849 195.663 15.912 1.673a8 8 0 0 0 1.674-15.912l-15.913-1.673a8 8 0 1 0 -1.673 15.912z"/><path d="m449.815 149.392a7.987 7.987 0 0 0 2.474-.394l15.217-4.943a8 8 0 1 0 -4.944-15.217l-15.216 4.943a8 8 0 0 0 2.469 15.611z"/><path d="m431.885 107 11.889-10.7a8 8 0 1 0 -10.707-11.891l-11.889 10.703a8 8 0 0 0 10.707 11.888z"/><path d="m388.849 81.685a8 8 0 0 0 7.313-4.748l6.508-14.617a8 8 0 0 0 -14.617-6.508l-6.508 14.617a8.005 8.005 0 0 0 7.3 11.256z"/><path d="m472 424h-104v-8c0-12.011-15.632-20.76-20.422-23.155a8.052 8.052 0 0 0 -1.279-.508l-78.3-23.491c-4.955-4.377-22.666-19.747-44.32-35.338-34.572-24.889-61.379-37.508-79.679-37.508h-64v-8a8 8 0 0 0 -8-8h-48a8 8 0 0 0 -8 8v176a8 8 0 0 0 8 8h48a8 8 0 0 0 8-8v-8h23.627c4.991.664 45.817 8.724 81.905 15.849 72.183 14.251 82.38 16.151 84.631 16.151h201.837a24.028 24.028 0 0 0 24-24v-16a24.028 24.028 0 0 0 -24-24zm-408 32h-32v-160h32zm416 8a8.009 8.009 0 0 1 -8 8h-201.464c-4.991-.664-45.817-8.724-81.9-15.849-72.188-14.251-82.385-16.151-84.636-16.151h-24v-128h64c30.271 0 93.023 50.491 114.649 69.947a8.013 8.013 0 0 0 3.052 1.716l79.3 23.791c4.981 2.606 10.233 6.793 10.994 8.79v15.756a8.012 8.012 0 0 1 -7.342 7.974l-77.811-15.564-54.873-31.356a8 8 0 1 0 -7.938 13.892l56 32a8 8 0 0 0 2.4.9l80 16a8.026 8.026 0 0 0 1.569.154 24.042 24.042 0 0 0 22.629-16h105.371a8.009 8.009 0 0 1 8 8z"/></svg>
+                                                        <span style="margin-left: 10px;">Offers</span>
+                                                        <span class="nav-count-label offers-count"><span>{{offers}}</span></span>
+                                                    </a>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    {% comment %} Extra menu {% endcomment %}
+
+                                        <ul class="hasSelection level-0">
+
+                                                <!-- Main menu ====== emty -->
+
+                                          {% for Items in main_menu %}
+
+                                                    <li  data-cid="238" class="not-in-selection-tree unselected topLevel">
+                                                        <img class="MenuItemIcons" src="{{Items.get_image}}">
+                                                        <div class="name">
+                                                            <a  class="menu_0011" href="/{{Items.ajsx_id}}">{{Items.Name}}</a>
+                                                            {% if Items.has_children %}
+                                                                <span>
+                                                                    <i class="arrow-right"></i>
+                                                                </span>
+                                                            {% endif %}
+                                                        </div>
+
+
+
+
+                                             {% for children in Items.children_menu %}
+
+
+                                                                            <!-- submenu -->
+                                                                    <ul class="hasSelection level-1">
+
+
+                                                                        <li data-cid="7" class="in-selection-tree">
+                                                                            <div class="name">
+                                                                                <a class="menu_0011"  href="/{{children.ajsx_id}}">{{children.Name}}</a>
+                                                                                {% if children.has_children %}
+                                                                                <span>
+                                                                                    <i class="arrow-right"></i>
+                                                                                </span>
+                                                                                {% endif %}
+                                                                            </div>
+
+                                                                            {% if children.has_children %}
+                                                                                <ul class="hasSelection level-2">
+                                                                                        {% for children_children in  children.children_menu %}
+                                                                                            <li data-cid="11" class="in-selection-tree selected">
+                                                                                                <div class="name">
+                                                                                                    <a class="menu_0011"  href="/{{children_children.ajsx_id}}">{{children_children.Name}}</a>
+                                                                                                </div>
+                                                                                            </li>
+                                                                                        {% endfor %}
+                                                                                 </ul>
+                                                                            {% endif %}
+
+
+                                                                                    </li>
+
+
+
+                                                                    </ul>
+
+                                             {% endfor %}
+
+
+
+
+
+                                                    </li>
+
+                                          {% endfor %}
+
+
+
+                                        </ul>
+                                    </div>
+
+ {% comment %} Menu {% endcomment %}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="openMenuShadowDrop"></div>
+                    </div>
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+                <div class="primary_shopping_bottom_btn shopping_bottom_btn" >
+                    <button class="start_shopping_btn" >
+                        <span ></span>
+                        <span >Start Shopping</span>
+                        <span ></span>
+                    </button>
+                </div>
+
+                <script>
+
+                    $('.start_shopping_btn').click(()=>{
+                        $('.hamBergerMenuIcon').click();
+                    })
+                </script>
+
+
+                <div class="everythingElseWrapper" >
+
+                            <section class="bodyTable">
+                                <div >
+                                    <div class="catalogBrowser" >
+                                        <div class="loaded" >
+                                            <div>
+                                            <!-- Content banner -->
+
+                                            <div id="page_banner">
+
+                                            </div>
+                                            <!-- COntent here -->
+
+                                            <section id="body_content_ajsx">
+                                            {% block body_content %}{% endblock body_content %}
+                                            </section>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                        </section>
+                    </div>
+            </div>
+
+
+
+        </div>
+
+
+
+
+
+        <!--AJSX-->
+
+        <script>
+            sessionStorage.clear() //for devoloping porpose
+
+            var want_menu_rout = true;
+            var ajx_updataion = false
+            var current_bag_item = Array()
+            var pModalsHtml
+            chekForlSbI() //checking for if there was any bag in localStorage api
+
+            {% if request.user.is_authenticated %} updatebagFormDatabase()
+            function updatebagFormDatabase(){
+                $.ajax({
+                    method:"GET",
+                    url:"{% url 'customer:bagList' %}",
+                    success:(data)=>{
+                        console.log(data);
+                        current_bag_item = data.data
+                        localStorage.setItem("current_bag_item",JSON.stringify(current_bag_item))
+                    }
+                })
+            }
+
+        {% endif %}
+
+        function setSessionprodModal(){
+            $.ajax({
+                    method:"GET",
+
+                    url:"{% url 'product:p8ModalHtml' %}",
+                    success:(data)=>{
+                        console.log(JSON.stringify(data));
+
+                        sessionStorage.setItem("p8ModalHtml",data.replaceAll("[[banglaTaka]]","৳"))
+                    }
+                })
+        }
+        setSessionprodModal()
+
+
+            const menu =  $(".menu_0011")
+            var bodyAjsx = $("#body_content_ajsx")
+            let preParent
+
+
+            var preRoutUrl
+            function url_routing(url) {
+
+                if(url != preRoutUrl){
+                    window.history.pushState('', '', url);
+                }
+
+                preRoutUrl = url;
+            }
+
+
+
+
+
+
+            $(".level-1").hide()
+            $(".level-2").hide()
+            menu.click((e)=>{
+
+
+
+                $('#loding_product').show();
+
+                $('#page_banner').empty();
+
+                $('.searchBox').val('');
+
+                $("#body_content_ajsx a").remove()
+                $("#div_all_product").empty()
+                if(!preParent){
+                    bodyAjsx.empty();
+                    bodyAjsx.append(`
+
+                                                                <section class="bodyWrapper">
+
+
+                                                                            <div class="categoryHeader">
+                                                                                <ol id="page_show_list" class="breadcrumb">
+
+
+
+                                                                                </ol>
+                                                                                <section >
+                                                                                    <hr class="first" >
+                                                                                    <div id="menu_display_name" class="name" >Fresh Vegetables</div>
+                                                                                    <hr class="last" >
+                                                                                </section>
+                                                                                <div ></div>
+                                                                            </div>
+
+
+                                                                            <div class="categorySection miscCategorySection onlyMiscCategorySection" >
+                                                                                <div class="productPane" >
+
+
+
+
+                                                                                <div  id="div_all_product">
+
+                                                                                    </div>
+
+
+
+
+
+                                                                                    <div id="loding_product" class="hasMoreLoading product" >
+                                                                                        <div class="imageWrapper" >
+                                                                                            <div class="imageWrapperWrapper" >
+                                                                                                <div class="loader" ></div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="name" >Loading more...</div>
+                                                                                       </div>
+                                                                                </div>
+                                                                            </div>
+
+                                                        </section>
+                          `)
+                }
+                console.log(preParent);
+                e.preventDefault();
+                const parent = e.target.parentNode.parentNode;
+                let menu_01_level =  parent.querySelectorAll(".level-2");
+
+                menu.parent().parent().removeClass("selected");
+                const href = e.target.href ;
+
+
+
+
+
+
+   //set page banner
+
+
+
+
+                $.ajax({
+                    type:"GET",
+                    url:`{% url 'product:api' %}?banner_menu=${href.split('/')[3]}`,
+                    success:(obj)=>{console.log(obj);
+                        if(obj.status == 'succsess'){
+                            let normal_bannerClass;
+                            if(obj.banner_type == "AB"){
+                            normal_bannerClass = ['app_banner','',''];
+                            }else{
+                                normal_bannerClass = ['normalBanner','categoryTopBanner','fade-carousel-container'];
+                            }
+                            if(obj.image){
+                                $('#page_banner').html(`
+                                        <div class="${normal_bannerClass[0]}" >
+                                                <div class="${normal_bannerClass[1]}" >
+                                                    <div class="${normal_bannerClass[2]}" >
+                                                        <img class="banner_imgage" src="${obj.image}" style="background-color:transparent;" >
+                                                    </div>
+                                                </div>
+                                            </div>
+                            `)
+                            }
+                            if(obj.banner_type == "AB"){
+                                            if(1210 >  $('.app_banner').width()){
+                                                $('.banner_imgage').width($('.app_banner').width()-20);
+                                            }
+                            }
+
+
+                        }
+
+                    }
+                })
+
+
+
+
+
+
+                    //set title
+                    setTitle(parent.querySelector('.menu_0011').textContent)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+               if(want_menu_rout){
+                url_routing(`/${menu_url_breack(href)}/`)
+               }
+               want_menu_rout = true;
+
+                // console.log(e.target.parentNode.parentNode);
+                parent.classList.add("selected"); //children childNodes
+                let menu_sub = parent.querySelectorAll(".level-1") ;
+
+
+                $("#menu_display_name").text(e.target.textContent)
+
+                show_page_bar(e.target)
+                if(menu_sub.length){
+                    $('#loding_product').hide()
+                    $(".level-1").hide()
+                    $(".level-2").hide()
+                    menu_sub.forEach((item)=>{
+                        get_categoryHtml(item)
+                        item.style.display = "block"
+                        console.log();
+                    });
+                }else if(menu_01_level.length){
+
+
+
+                    parent.parentNode.parentNode.querySelectorAll('ul.level-1').forEach(item => item.style.display = 'block');
+
+
+
+                    $('#loding_product').hide()
+                    $(".level-2").hide()
+                    menu_01_level.forEach((item)=>{
+                        get_categoryHtml(item)
+                        item.style.display = "block"
+                    });
+
+                }else{
+                    console.log("request");
+                    $('.hamBergerMenuIcon.change').click()
+
+                    show_product_ajsx(href)
+                    if(preParent){
+
+                        if(parent.parentNode.classList[1] == "level-0"){
+                            $(".level-1").hide()
+                            $(".level-2").hide()
+                        }else if(parent.parentNode.classList[1] == "level-1"){
+                            $(".level-2").hide()
+
+                        }
+
+                    }else{
+                        if(parent.parentNode.classList.contains('level-2')){
+                            parent.parentNode.style.display = 'block';
+                            parent.closest('.level-1').parentNode.querySelectorAll('ul.level-1').forEach(item => item.style.display = 'block');
+
+                        }else if(parent.parentNode.classList.contains('level-1')){
+                            parent.parentNode.parentNode.querySelectorAll('ul.level-1').forEach(item => item.style.display = 'block');
+
+                        }
+
+                    }
+
+                }
+
+                preParent = parent ;
+
+                is_need_ajax= true;
+                product_page_number=1;
+                need_next_page=true;
+
+
+
+            })
+
+            function show_product_ajsx(e){
+                const href = e.split("/")[3];
+                menu_ajsx(`/${href}/?json=True`)
+
+            }
+            function show_page_bar (target_obj){
+                const name = target_obj.textContent
+                const div_target = $("#page_show_list")
+                div_target.empty()
+                parent_01 = target_obj.parentNode.parentNode.parentNode;
+                console.log(target_obj.parentNode.parentNode.parentNode);
+                var show_list_page_html = (name,goto,isSelected='')=>{  return `
+                                                  <li style="cursor:pointer" class="crumb  ${isSelected} ">
+                                                            <a href="/${goto}" class="page_bar">
+                                                                <span itemprop="name">${name}</span>
+                                                            </a>
+                                                            <meta itemprop="position" content="3">
+                                                    </li>
+
+                `}
+
+                parent_02 = parent_01.parentNode.parentNode//
+                parent_03 = parent_02.parentNode
+
+                const href = menu_url_breack(target_obj.href)
+
+                if(parent_01.classList[1] == "level-1"){
+                    const tt = parent_01.parentNode.querySelector("a")
+                    div_target.append(show_list_page_html(tt.textContent,menu_url_breack(tt.href)))
+                    div_target.append(show_list_page_html(name,href,isSelected="selected"))
+                }else if(parent_01.classList[1] == "level-2"){
+                    const tt__01 = parent_03.querySelector("a")
+                    const tt__02 = parent_02.querySelector("a")
+                    div_target.append(show_list_page_html(tt__01.textContent,menu_url_breack(tt__01.href)))
+                    div_target.append(show_list_page_html(tt__02.textContent,menu_url_breack(tt__02.href)))
+                    div_target.append(show_list_page_html(name,href,isSelected="selected"))
+                }else{
+                    div_target.append(show_list_page_html(name,href,isSelected="selected"))
+                }
+                $(".page_bar").click((e)=>{
+                e.preventDefault()
+                $(`a[href='/${menu_url_breack(e.currentTarget.href)}']`)[0].click()
+            })
+            }
+            function menu_url_breack(url){
+                return url.split("/")[3]
+            }
+
+            var need_next_page = true;
+            var is_need_ajax = true;
+            function menu_ajsx(url,need_empty=true){
+                var loading_div =  $("#loding_product")
+                var all_product_div =  $("#div_all_product")
+
+                        $.ajax({
+                            method: "GET",
+                            url:url,
+                            beforeSend:()=>{
+                                if(need_empty){
+                                    all_product_div.empty()
+                                }
+                                loading_div.show()
+                            },
+                            success:(data)=>{
+
+                                // showing product👇
+                                console.log(data)
+                                if(data.product){
+                                const product = data.product
+
+                                    for (items in data.product){
+
+
+                                        const p_obj = {
+                                            id:product[items].pk,
+                                            img:product[items].image_link,
+                                            name:product[items].Name,
+                                            amount:product[items].Amount,
+                                            is_discord_price:product[items].is_discord_price,
+                                            discord_price:product[items].discord_price,
+                                            price:product[items].Price,
+                                            slug:product[items].slug,
+                                            is_stoke:product[items].is_stoke,
+                                            is_requested:product[items].is_requested,
+
+
+                                        }
+                                        all_product_div.append(get_product_html(p_obj))
+
+
+
+                                    }
+
+
+
+
+                                }else if(data.errPage){
+
+                                    if(need_empty){
+                                        all_product_div.html(`<h1>${data.errPage}</h1>`)
+                                    }else{
+                                        is_need_ajax = false;
+                                    }
+
+
+                                }
+
+                                loading_div.hide()
+
+               //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+               //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+               //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+               //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+                                // updating item html form lS api
+                                upDateProdHtml_lS(current_bag_item)
+
+
+
+
+
+
+
+
+                                need_next_page=true;
+                            },
+                            error:(err)=>{
+                                console.log(err)
+                            }
+
+                        })
+            }
+
+
+//00000000000000000000000000000000000000001111111111111111111111111111111111111111111111111111111111
+    //add quincity on bag
+$('body').on('click','.product .imageWrapper',(e)=>{
+
+         productImageWrapper(e)
+
+ })
+
+
+
+// product adding event
+$("body").on('click','.product section.asd ',(e)=>{
+        e.currentTarget.parentNode.querySelector(".imageWrapper").click()
+})
+
+
+
+
+            // Modals Event when user click the Product Button
+$("body").on('click','.product span a',product_init)
+
+//00000000000000000000000000000000000000001111111111111111111111111111111111111111111111111111111111
+
+
+
+
+
+            //pagination
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            var product_page_number = 1;
+
+            window.addEventListener("scroll",(e)=>{
+                var condition = ($(window).scrollTop() >= ($(document).height() - $(window).height())*0.9);
+
+
+                const all_p_div = $('#div_all_product div.product:last')
+                console.log(condition);
+
+
+                if(all_p_div.length && condition && need_next_page && is_need_ajax){
+
+                        product_page_number++;
+                        menu_ajsx(window.location.href+`?json=True&page=${product_page_number}`,false)
+                        console.log(e);
+                        need_next_page=false;
+                }
+
+                console.log(product_page_number);
+            })
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+            // helper function
+
+            function update_little_bag_html(){
+                    let total_price = 0;
+                    current_bag_item.forEach((e)=> total_price += Number(e.price) * Number(e.quantity));
+                    if(disccc){
+                            total_price = total_price -  (total_price * (disccc/100))
+                       }
+
+                    $('.stickyHeader p span').text(`${current_bag_item.length} ITEMS`);
+                    $('.stickyHeader .total .odometer').text(total_price);
+                    bounce_event();
+                    sideBarPOb()
+                }
+
+
+            function productImageWrapper(e){
+                let target = e.currentTarget;
+                const product_div = target.parentNode;
+
+
+                    if(!product_div.classList.contains('outOfStock')){
+
+
+                                    let d_price = target.querySelectorAll(".discountedPrice span")[1].textContent
+                                    // console.log(d_price);
+                                    const price = target.querySelectorAll(".actionItems .total span")[1]
+                                    const quantity = target.querySelectorAll(".actionItems .quantity span")[0]
+
+                                    if(!target.querySelector(".overlay").getAttribute("is-bag")){ //cheking for this product is already exist on bag
+
+
+                                          product_div.classList.add("isInCart")
+                                        target.querySelector(".overlay").setAttribute("is-bag",true)
+                                        const detailHref = product_div.querySelector('.linkStore a').href;
+                                        console.log(detailHref);
+                                        target.querySelector(".overlay").innerHTML = `
+
+                                        <section class="actionItems">
+                                            <p class="total">
+                                                <span> ৳ </span>
+                                                <span>${d_price}</span>
+                                            </p>
+                                            <div>
+                                                <p class="remove">-</p>
+                                                <p class="quantity">
+                                                    <span>1</span></p>
+                                                <p class="add">+</p>
+                                            </div>
+                                        </section>
+                                        <p class="inBag">in bag</p>
+                                        <span>
+                                            <a href="${detailHref}"class="btnShowDetails pc">
+                                                <span>Details</span><span>&gt;</span></a>
+                                                <a href="${detailHref}" class="btnShowDetailsIcon pc">
+                                                    <svg width="24px" height="24px"
+                                                    style="fill:#e1e1e1;stroke:#e1e1e1;display:inline-block;vertical-align:middle;" version="1.1"
+                                                    viewBox="0 0 100 100">
+                                                    <path
+                                                        d="m50 5c-24.898 0-45 20.102-45 45s20.102 45 45 45 45-20.102 45-45-20.102-45-45-45zm7.1016 70c0 2.1992-1.8984 4.1016-4.1016 4.1016h-6.1992c-2.1992 0-4.1016-1.8984-4.1016-4.1016v-26.199c0-2.3008 1.8984-4.1016 4.1016-4.1016h6.1992c2.1992 0 4.1016 1.8984 4.1016 4.1016zm-7.2031-37.102c-4.6016 0-8.3984-3.8008-8.3984-8.5 0-4.6992 3.8008-8.5 8.3984-8.5 4.6992 0 8.5 3.8008 8.5 8.5 0 4.7031-3.7969 8.5-8.5 8.5z"></path>
+                                                    </svg></a>
+                                        </span>
+
+                                    `;
+
+
+                                            target.querySelector(".remove").addEventListener("click",(e)=>{
+                                                e.stopPropagation();
+                                                const price = target.querySelectorAll(".actionItems .total span")[1]
+                                                const quantity = target.querySelectorAll(".actionItems .quantity span")[0]
+                                            if(Number(quantity.textContent) > 1){
+                                                const prod_id = product_div.getAttribute("product-id")
+                                                const c_quantity = Number(quantity.textContent) -  1
+                                                price.textContent =  Number(price.textContent) -  Number(d_price);
+                                                quantity.textContent =  c_quantity;
+                                                console.log("**********");
+
+                                                product_div.querySelector(".QuantityTextContainer span").textContent = c_quantity
+
+
+                                                //updating item quantity on lS api
+                                                updateItemToLs(product_div,c_quantity)
+
+
+                                                //adding item quantity to the bazzar bag
+                                                updateItemToBag(product_div,c_quantity,price)
+
+                                                //focus event
+                                                bagItemfocus(prod_id,false)
+
+                                                //updating database =======> bag item
+                                                bag_ud_ax("update",prod_id,c_quantity)
+
+                                                sideBarPOb() //checking and changing side bar footer and adding new place order button
+
+                                                if(c_quantity <2){
+                                                     $(`div[data-pvid='${prod_id}'] .caret-down`).addClass("disabled");
+                                                }
+                                            }else{
+
+
+                                                const product_id = product_div.getAttribute("product-id");
+
+
+
+
+                                               if(product_div){
+
+                                                rmANDevent(product_div);
+                                               }
+
+                                                $(`.orderItem[data-pvid='${product_id}']`).remove();
+                                                //updating item to lS api
+                                                rItemtoLs(product_id);
+
+                                                //deleting item form database
+                                                bag_ud_ax("delete",product_id);
+
+                                                sideBarPOb(); //checking and changing side bar footer and adding new place order button
+
+                                                 //adding detail modal event againg because previous html is change
+                                                 product_div.querySelector(".overlay span a").addEventListener("click",product_init);
+                                            }
+
+
+                                                update_little_bag_html();
+
+                                            })
+
+                                            const html =  `
+                                            <button class="minusQuantity">–</button>
+                                            <div class="QuantityTextContainer">
+                                                <span>1</span>
+                                                <span> </span>
+                                                <span>in bag</span>
+                                            </div>
+                                            <button class="plusQuantity">+</button>
+                                            `
+
+                                            if(product_div){
+                                                pt_ads_replace(product_div,html,"div","productQuantityEditor addButtonWrapper border-radius-small")
+                                            }
+                                            product_div.querySelector(".plusQuantity").addEventListener("click",(e)=>{
+                                                target.click()
+                                                })
+                                            product_div.querySelector(".minusQuantity").addEventListener("click",(e)=>{
+                                                target.querySelector(".remove").click()
+                                                })
+
+
+
+
+
+
+
+
+
+
+                                                const product_id = product_div.getAttribute("product-id")
+                                                $(`#bag_bat_${product_id}`).remove();
+
+                                                if(!ajx_updataion){
+                                                   setTimeout(()=>{
+                                                        if(window.innerWidth > 768){
+                                                            $(".shoppingCartWrapper .stickyHeader").click()
+                                                        }
+                                                    const bag_div = document.getElementById("bags")
+                                                    rmIt2ndEvent(bag_div)
+
+                                                    dqnt2Event(bag_div)
+
+                                                   },200)
+
+                                                    const emptyCart =  $(".shoppingCartWrapper .emptyCart")
+                                                    //chicking for the bag is not empty
+
+                                                    emptyCart.remove()
+                                                    //appending item to the bag
+                                                    const img = product_div.querySelector(".imageWrapperWrapper img").src
+                                                    const name = product_div.querySelector(".name").textContent
+                                                    const price = product_div.querySelectorAll(".discountedPrice span")[1].textContent
+                                                    const amount = product_div.querySelector(".subText").textContent
+                                                    const obj = {
+                                                        img:img,
+                                                        name:name,
+                                                        price:price,
+                                                        amount:amount,
+                                                        product_id:product_id,
+                                                        quantity:1
+                                                    }
+                                                    // database update
+                                                    bag_ud_ax("update",product_id,1)
+                                                    current_bag_item.push(obj)
+                                                    localStorage.setItem("current_bag_item",JSON.stringify(current_bag_item))
+
+                                                    //now appendin G
+                                                    bag_append_item(obj)
+
+                                                    setTimeout(()=>bagItemfocus(product_id,true) ,300)
+
+                                                    sideBarPOb() //checking and changing side bar footer and adding new place order button
+
+
+                                                    //adding detail modal event againg because previous html is change
+                                                    product_div.querySelector(".overlay span a").addEventListener("click",product_init);
+
+                                                }
+
+
+                                    }else{
+
+                                        const prod_id = product_div.getAttribute("product-id");
+
+                                        const c_quantity = Number(quantity.textContent) +  1
+                                        product_div.querySelector(".QuantityTextContainer span").textContent = c_quantity
+                                        console.log(price.textContent =  Number(price.textContent) +  Number(d_price));
+                                        quantity.textContent = c_quantity
+
+
+                                        //updating item quantity on lS api
+                                        updateItemToLs(product_div,c_quantity)
+
+                                        //adding item quantity to the bazzar bag
+                                        updateItemToBag(product_div,c_quantity,price)
+                                        if(!ajx_updataion){
+                                        //focus event
+                                        if(window.innerWidth < 768){
+                                            //when pc laptop tablet
+                                            bagItemfocus(prod_id,true);
+                                        }
+
+                                        //adding to database
+                                        bag_ud_ax("update",prod_id,c_quantity);
+
+                                        }
+                                         sideBarPOb(); //checking and changing side bar footer and adding new place order button
+
+
+                                         if(c_quantity >1){
+                                             $(`div[data-pvid="${prod_id}"] .caret-down`).removeClass("disabled");
+                                                }
+                                    }
+
+
+                                   if(!ajx_updataion){
+                                    update_little_bag_html();
+                                   }
+                    }else{
+                        if("{{request.user.is_authenticated}}" == "False"){
+                            request_product_ajsx(product_div.getAttribute('product-id'));
+
+                        }else  if(!product_div.classList.contains('hmm_requested')){
+                        product_div.classList.add('hmm_requested');
+                        product_div.querySelector('.buyText').innerHTML = 'Request Sent';
+                        product_div.querySelector('.buyText').classList.add('stockRequestSentText');
+                        product_div.querySelector('#svgIcon').innerHTML = request_product_svg;
+                        product_div.querySelector('#svgIcon').classList.add('stockRequestComplete');
+                        request_product_ajsx(product_div.getAttribute('product-id'));
+                        }
+                    }
+            }
+
+            function request_product_ajsx(product_id){
+                $.ajax({
+                                type:"POST",
+                                url:"{% url 'product:product_request' %}",
+                                data:{
+                                    'product_id':product_id,
+                                    "csrfmiddlewaretoken": csrfmiddlewaretoken
+                                },
+                                success:(data)=>{
+                                    var structions = `
+                                        <div class="cancelContainer oldinstak">
+
+                                            <div class="ModalDialogContainer orderCancelPrompt">
+                                            <div style="" class="ModalDialog">
+                                                <div class="ModalDialogContent">
+                                                <div>
+                                                    <div class="modal-text">
+                                                    <h1>${data.title}</h1>
+                                                    <p style='margin: 20px;'>${data.detail}</p>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                    <button class="btnPrimary">Close</button>
+                                                    </div>
+                                                </div>
+                                                </div>
+                                            </div>
+                                            </div>
+                                        </div>
+                                        `;
+                                    $('body').append(structions)
+                                    $('.OrderInstructionForm').html($('.orderInstructionContainer textarea').val())
+                                    $('.oldinstak .btnPrimary').click(()=>{
+                                        $('.oldinstak').remove()
+
+                                    })
+                                }
+                            })
+            }
+            function bounce_event(){
+                $('.shoppingCart').addClass('non-empty');
+                $('.shoppingCart').removeClass('empty');
+                $('.shoppingCart  .itemCount').addClass('bounce');
+                $('#boroSide_bag').text(`${current_bag_item.length} ITEMS`)
+
+                setTimeout(()=>{
+                    $('.shoppingCart  .itemCount').removeClass('bounce');
+
+                },1000);
+                $('.count-mobile span').text(current_bag_item.length)
+                if(current_bag_item.length == 0){
+                    $('.shoppingCart').removeClass('non-empty');
+                    $('.shoppingCart').addClass('empty');
+                }
+            }
+
+
+
+
+
+
+            function get_product_html(obj){
+                var html;
+                    if(obj.is_discord_price){
+                    html = `
+                                                        <div class="discountedPrice">
+                                                            <span>৳ </span>
+                                                            <span>${obj.discord_price}</span>
+                                                        </div>
+                                                        <div class="price">
+                                                            <span>৳ </span>
+                                                            <span>${obj.price}</span>
+                                                        </div>
+                `
+                }else{
+                    html = `
+                                                    <div class="discountedPrice">
+                                                            <span>৳ </span>
+                                                            <span>${obj.discord_price}</span>
+                                                        </div>
+                                                        `
+                }
+                var bottom_button_text = "Add to bag"
+                var add_btn_svg = `<svg width="22px" height="25px" style="display:inline-block;vertical-align:middle;" version="1.1" x="0px" y="0px" viewBox="-9 11 100 100" ><path class="st0" d="M59.4,32.6c0.2,0.2-0.2,0.3-0.2,0.3s-1.2,0.3-1.5,0.8c-0.3,0.3-0.8,1.5-0.8,1.5c0.7-0.2,1.5-0.3,2.3-0.7 c0.2,0,0.3,0.2,0.5,0.3c0.2,0-2,0.8-2.5,1.2c-0.3,0.3-2,1.7-2.5,1.7S53,37.9,53,37.9c0.2,0.3,0.3,0.7,0.7,1.2c0,0-1.2,0.7-1.2,0.8 c-0.2,0.2-1,1.2-1,1.2s3,0.3,4-1.3c-1,1.7-3.3,3.3-8.2,3.3c-5,0-9-2-11.7-3c-2.8-1.2-6.5-2.5-9.5-2.5c-2.8,0-6.2,0.8-8.4,2.9 c-3.9-1.5-9.2-0.7-11.7,1.7c-2.3,2.3-4.7,5.2-5,7.2c-0.5,2.2-1.7,7.4-3.3,9.7c-2.3,3.8-5,4.8-5.9,6.5c-0.8,1.7-0.8,5.2-0.7,5.2 c0.3,0.2,1.5,0,2.2-0.3c1.3-0.5,5-4.3,6.4-6.2c1.3-1.8,5.9-9.9,6.5-12.7c0.7-2.8,1.3-5.7,3.3-7.2c2.2-1.5,4.8-0.8,4.8-0.7 c0,0-2.5,2-2.7,7.5c-0.2,5.5,3.2,4.9,1.5,8.4c-1.7,3-6.7,1-8.4,2.8c-1.3,1.5,0,6.9,0,7.9c0,1-0.5,5.7-0.8,6.9c-0.2,1,0,1.7-0.2,2.3 c-0.2,0.5,1,0.7,1,0.7s-1,1.3-1.5,1c-0.5-0.2-0.8-0.2-1.2,0c-0.3,0-1,0.3-1.7,0l-2.7,5.7c0.3,0.2,0.8,0.3,1.3,0.2 c0.7-0.2,4-1.7,4.4-2c0.5-0.2,3.3-1.8,3.8-2.8c0.3-1,1-4.2,1-5.2c0.2-1,0.3-4.2,0.3-5c0-0.8-0.2-2.3,0-3c0.3-0.5,0.8-1.2,1.5-1.5 c0.8-0.2,1.8-0.2,2-0.2c0.3,0,3.2,0.3,3.7,0.3c0.7,0,3.3-0.5,4-0.8c0.8-0.2,1.3,0,1.5,0.3c0.3,0.3-0.3,0.8-0.3,1 c-0.2,0.2-1.5,1.8-1.8,2.5c-0.3,0.8-1.5,2.3-1.2,3c0.3,0.7,0.3,0.8,1.3,1.3c1,0.3,4.9,2.3,7,4.3c2.3,2.2,4.5,4.8,4.9,6.2 c0.5,1.5,1.3,1.7,1.8,1.7c0.5,0.2,1.5,0.3,1.5,1c0,0.7-0.2,1.5-0.2,1.5l6.2,2.3c0,0,0-2.2-0.2-3c-0.2-1-1.2-2-2-3 c-0.8-1.2-9.5-9.7-10.4-10.4c-0.8-0.5-1.5-1.2-1.7-2.5c-0.2-1.3,1.5-2.3,2.5-3.5c0.7-0.8,2.5-4.7,2.8-5.2c0.3-0.5,1.5-1.8,2.2-1.8 c0.8,0,2.7,1.2,5,2c1,0.3,8.2,2.2,9.2,2.5c1,0.2,3.2,0,3.8,0.7c0.7,0.5,0,1.8-0.2,2.7c-0.2,1-2,4.7-2,4.7s0.3,1.3,0.3,2.4 c0,1.2-0.5,5.3-1,6.7c-0.3,1.5-2.7,5.4-3.2,6c-0.3,0.5-0.8,0.8-0.8,1.7c0,0.8,1.5,1,2,1.7c0.7,0.5,0.2,1.5,0,2.5l6.7,2.8 c0-0.5,0.3-1.3,0-1.7c-0.2-0.5-1-1.5-1.5-2.2c-0.3-0.5-1.5-2.3-1.8-2.7c-0.3-0.5-0.3-1.5,0-2.3c0.2-0.8,2.3-6.5,2.5-7.2 c0.3-0.8,3.5-7.5,3.8-8.4c0.3-1,3-5.9,3.3-6.7c0.3-1,2.5-1.8,3.2-1.8c0.8,0,5,1.5,5.7,1.8c0.5,0.2,4.4,1.8,5,2.2 c0.8,0.3,0.3,1-0.2,1.2c-0.5,0.3-6.7,4.5-7.2,4.7c-0.5,0.2-1,0.7-1.3,0.7c-0.5,0-1.2,0.5-1.2,0.7c0,0.3-0.2,1-1,1c-0.7,0-2-1-2.8-2 c-1.2,0.7-2,1.2-2.5,2.2c-0.8,0.8-1.2,1.5-1.7,2.7c0.3,0.3,1,0.5,1.5,0.5h5.4c0.5,0,1.2-0.2,1.7-0.3c0.5-0.3,13.7-9,13.7-9 s2.2-1.7,2.2-3.2c0-1.2-1-1.5-1.3-2c-0.5-0.3-3.5-2.3-4-2.7c-0.7-0.5-3-1.8-3.7-2.2c-0.5-0.3-2.4-1-2.4-1c0.5-1.5,0.8-2.7,1-3 c0.2-0.3,0.2-3.4,0.3-3.9c0-0.5,0.8-2.7,1.2-3c0.3-0.3,1.2-3,1.3-3.5c0.2-0.3,1.5-4.2,2.2-4.2c0.7-0.2,1.3,0.5,2,0.5 c0.7,0.2,3.2-0.2,4.5,0c1.2,0.2,2.7,1.7,3,1.8c0.5,0.2,1.7,0.7,2,0.7c0.2,0,1.8-1.2,1.8-1.5c0-0.3-1.2-1-1.3-1 c-0.2-0.2-1.3-0.8-1.3-0.8c0,0.2,0.5-0.3,1.3-0.3c0.7,0,1.3,0.7,1.5,0.8c0.3,0.2,1.2,0.7,1.3,0.3c0.2-0.2,0.8-1,0.8-1.5 c0-0.7-0.7-1.5-1-1.8c-0.3-0.3-4.2-4-4.5-4.2c-0.5-0.2-2.5-2-2.5-2.5c-0.2-0.3-1.2-1.2-1.3-1.3c-0.2-0.2-5.2-3.7-5.9-4.2 c-0.7-0.5-1.3-1.3-1.3-2.2c0-0.8-0.3-3-0.3-3s-1.2-0.2-1.7,0.3c-0.5,0.3-1.7,3-2.3,3c-1.8-0.3-4.2,0.2-4.2,0.5 c0.2,0.5,1.8,0.2,1.8,0.2c0,0.2-0.7,1-1.2,1c-0.3,0-1.3,0.3-1.5,0.5c-0.3,0-1,0.5-1,0.5c0.5,0,1,0,1.7,0.2c0,0-1,0.7-1.5,0.7 c-0.5,0-2.2,0.5-2.7,0.7c-0.3,0.3-1.7,1.3-1.7,1.3h-1.5l0.2,0.3h0.8L59.4,32.6L59.4,32.6z"></path> </svg>`;
+                var ots = '';
+                if(!obj.is_stoke){
+                    bottom_button_text="Request Stock"
+                    add_btn_svg = `<svg width="22px" height="25px" style="display:inline-block;vertical-align:middle;" version="1.1" x="0px" y="0px" viewBox="0 0 48 48"><path d="M23.2653,17.9526 L30.621,17.9526 L30.621,20.9906 L32.621,20.9906 L32.621,17.3669009 L37.0392116,12.9494507 C37.3793909,13.5305585 37.5745,14.2063668 37.5745,14.9268 L37.5745,26.3048 L39.5745,26.3048 L39.5745,14.9268 C39.5745,11.6588 36.9155,8.9998 33.6465,8.9998 L18.9945,8.9998 C17.4105,8.9998 15.9215,9.6168 14.8025,10.7368 L10.7375,14.8008 C9.6175,15.9218 9.0005,17.4108 9.0005,18.9948 L9.0005,30.5598 C9.0005,33.8288 11.6595,36.4878 14.9275,36.4878 L20.0225,36.4878 L20.0225,34.4878 L14.9275,34.4878 C12.7615,34.4878 11.0005,32.7258 11.0005,30.5598 L11.0005,18.9948 C11.0005,18.6377284 11.0477994,18.2879425 11.1394092,17.9526 L17.9453,17.9526 L17.9453,21.4408 L23.2653,21.4408 L23.2653,17.9526 Z M28.4078566,10.9998 L33.6465,10.9998 C34.3675379,10.9998 35.0438064,11.1950564 35.6252102,11.5354367 L31.2072,15.9526 L23.807052,15.9526 L28.4078566,10.9998 Z M22.7297261,10.9998 L18.9945,10.9998 C17.9595,10.9998 16.9475,11.4198 16.2165,12.1508 L12.4147,15.9526 L18.1356382,15.9526 L22.7297261,10.9998 Z M30.621,34.0076 L24.966,34.0076 L24.966,32.0076 L30.621,32.0076 L30.621,26.3546 L32.622,26.3546 L32.622,32.0076 L38.275,32.0076 L38.275,34.0076 L32.622,34.0076 L32.622,39.6616 L30.621,39.6616 L30.621,34.0076 Z" fill="#4c8e00"></path></svg>`;
+                    ots = 'outtaStock';
+                    if(obj.is_requested){
+                        add_btn_svg = request_product_svg;
+                    }
+                }
+                const product_html = `
+                                     <div class="product ${obj.is_stoke?"":"outOfStock"} ${obj.is_requested?"hmm_requested":""}" product-id="${obj.id}">
+                                            <div class="imageWrapper">
+                                                <div class="imageWrapperWrapper">
+                                                    <img src="${obj.img}" size="400" style="background-color:transparent;">
+                                                </div>
+                                                <div class="name">${obj.name}</div>
+                                                <div class="subText">${obj.amount}</div>
+                                                <div class="discountedPriceSection">
+                                                    ${html}
+                                                </div>
+                                                <div class="overlay text">
+                                                   ${add_shoping_bag_html(`/product/${obj.slug}/`)}
+                                                </div>
+                                            </div>
+                                            <span class="linkStore">
+                                                <a href="/product/${obj.slug}/" class="btnShowDetails">
+                                                    <span>Details</span>
+                                                    <span>&gt;</span>
+                                                </a>
+                                                <a href="/product/${obj.slug}/" class="btnShowDetailsIcon">
+                                                    <svg width="24px" height="24px" style="fill:#e1e1e1;stroke:#e1e1e1;display:inline-block;vertical-align:middle;" version="1.1" viewBox="0 0 100 100" >
+                                                        <path d="m50 5c-24.898 0-45 20.102-45 45s20.102 45 45 45 45-20.102 45-45-20.102-45-45-45zm7.1016 70c0 2.1992-1.8984 4.1016-4.1016 4.1016h-6.1992c-2.1992 0-4.1016-1.8984-4.1016-4.1016v-26.199c0-2.3008 1.8984-4.1016 4.1016-4.1016h6.1992c2.1992 0 4.1016 1.8984 4.1016 4.1016zm-7.2031-37.102c-4.6016 0-8.3984-3.8008-8.3984-8.5 0-4.6992 3.8008-8.5 8.3984-8.5 4.6992 0 8.5 3.8008 8.5 8.5 0 4.7031-3.7969 8.5-8.5 8.5z" ></path>
+                                                    </svg>
+                                                </a>
+                                            </span>
+                                            <section class="addButtonWrapper asd ${ots} border-radius-small" >
+                                                <span class="express ${obj.is_requested?"stockRequestComplete":""}" id="svgIcon" >
+                                                    ${add_btn_svg}
+                                                </span>
+                                                <p class="buyText ${obj.is_requested?"stockRequestSentText":""}">${bottom_button_text}</p>
+                                            </section>
+                                        </div>
+                `
+                return product_html
+            }
+
+
+
+            var rout_product_previousUrl;
+
+            function product_init(e){
+                console.log("FUNCTION-----------called");
+                rout_product_previousUrl = window.location.href;
+                e.stopPropagation()
+                e.preventDefault()
+                const fachUrl = e.currentTarget.href
+                const requestUrl = fachUrl.match('/product.*/')[0];
+                url_routing(requestUrl);
+                const product_div = e.currentTarget.closest(".product")
+
+
+                $.ajax({
+                    method:"GET",
+                    url:`${requestUrl}?json=True`,
+                    success:(data)=>{
+                        console.log("_______________________________________");
+                        console.log(data);
+                        var modalsHtml = sessionStorage.getItem("p8ModalHtml");
+                        for(const [key,value]  of Object.entries(data)){
+                            modalsHtml =   modalsHtml.replace(`[[${key}]]`,value)
+
+                        }
+                        var m_image = ""
+                        data.image.forEach((images)=>{
+                           const html = `
+
+                           <li>
+                                <a>
+                                    <img src="${images}" />
+                                    </a>
+                                    </li>
+                           `;
+                           m_image +=  html;
+                        })
+                       modalsHtml =   modalsHtml.replace("[[M-image]]",m_image); //image replacement
+                       modalsHtml =   modalsHtml.replace("[[single_image]]","asdad"); //image replacement
+
+
+                       if(data.percentage_off){
+                           const html = `<a class="discount"><span>${data.percentage_off}% OFF</span></a>`
+                           const html2= `<span>MRP ৳</span><span>${data.Price}</span>`
+                           modalsHtml =   modalsHtml.replace("[[pd-dis]]",html) //product discount replacement
+                           modalsHtml =   modalsHtml.replace("[[del-price]]",html2) //product discount replacement
+                       }else{
+                            modalsHtml =   modalsHtml.replace("[[pd-dis]]","") //product discount replacement
+                            modalsHtml =   modalsHtml.replace("[[del-price]]","") //product discount replacement
+                        }
+
+                        const crnt_qnt = product_div.querySelector(".imageWrapper .actionItems .quantity span")
+                       if(crnt_qnt){
+                        modalsHtml =   modalsHtml.replace("[[p-c-qnt]]",crnt_qnt.textContent) //product current qnt scraping form main div
+                         }else{
+                           modalsHtml =   modalsHtml.replace("[[p-c-qnt]]","0") // set product current qnt defualt value
+                        }
+
+                        bodyAjsx.append(modalsHtml)
+
+
+                        if(product_div.classList.contains('outOfStock')){
+                            const request_btnHtml = `<span class="icon"><svg viewBox="0 0 100 100" x="0px" y="0px" fill="#C0C0C0" version="1.1"><path d="M71.8,36.4l-29,13.8V78c0,0.6-0.5,1-1,1c-0.6,0-1-0.5-1-1V50.1l-15.8-8.6l38.6-18.4l7.7,4.2c0.2-0.7,0.4-1.3,0.7-2  L49.8,13.4c-1.9-1-4.1-1.1-6-0.2L7.4,30.6c-2.3,1.1-3.8,3.4-3.8,6v26.5c0,2.4,1.3,4.7,3.5,5.8L38.7,86c1.9,1,4.1,1.1,6,0.2  l36.4-17.3c2.3-1.1,3.8-3.4,3.8-6V45.2c0,0,0,0,0,0C79,45.2,73.9,41.5,71.8,36.4z M8.2,32.5l38.6-18.4L61.3,22L22.7,40.3L8.2,32.5z   M75.5,59.5l-19.3,9.4V55.3l19.3-9.4V59.5z M96,31c0,6.1-5,11.1-11.1,11.1c-6.1,0-11.1-5-11.1-11.1s5-11.1,11.1-11.1  c3.1,0,5.9,1.3,7.9,3.3L84.1,32l-2.6-2.6c-0.6-0.6-1.5-0.6-2.1,0c-0.6,0.6-0.6,1.5,0,2.1l4.6,4.6l10.5-10.5C95.5,27.2,96,29.1,96,31  z"></path></svg></span><span class="buttonText"><span>Request Sent</span></span>`;
+                            $('#add_card_modals_element').html(`<div class="outOfStockBtn"><span class="icon"><svg viewBox="0 0 48 48" x="0px" y="0px"><path d="M23.2653,17.9526 L30.621,17.9526 L30.621,20.9906 L32.621,20.9906 L32.621,17.3669009 L37.0392116,12.9494507 C37.3793909,13.5305585 37.5745,14.2063668 37.5745,14.9268 L37.5745,26.3048 L39.5745,26.3048 L39.5745,14.9268 C39.5745,11.6588 36.9155,8.9998 33.6465,8.9998 L18.9945,8.9998 C17.4105,8.9998 15.9215,9.6168 14.8025,10.7368 L10.7375,14.8008 C9.6175,15.9218 9.0005,17.4108 9.0005,18.9948 L9.0005,30.5598 C9.0005,33.8288 11.6595,36.4878 14.9275,36.4878 L20.0225,36.4878 L20.0225,34.4878 L14.9275,34.4878 C12.7615,34.4878 11.0005,32.7258 11.0005,30.5598 L11.0005,18.9948 C11.0005,18.6377284 11.0477994,18.2879425 11.1394092,17.9526 L17.9453,17.9526 L17.9453,21.4408 L23.2653,21.4408 L23.2653,17.9526 Z M28.4078566,10.9998 L33.6465,10.9998 C34.3675379,10.9998 35.0438064,11.1950564 35.6252102,11.5354367 L31.2072,15.9526 L23.807052,15.9526 L28.4078566,10.9998 Z M22.7297261,10.9998 L18.9945,10.9998 C17.9595,10.9998 16.9475,11.4198 16.2165,12.1508 L12.4147,15.9526 L18.1356382,15.9526 L22.7297261,10.9998 Z M30.621,34.0076 L24.966,34.0076 L24.966,32.0076 L30.621,32.0076 L30.621,26.3546 L32.622,26.3546 L32.622,32.0076 L38.275,32.0076 L38.275,34.0076 L32.622,34.0076 L32.622,39.6616 L30.621,39.6616 L30.621,34.0076 Z"></path></svg></span><span class="buttonText">Request Stock</span></div>`)
+                            if(product_div.classList.contains('hmm_requested')){
+                                $('#add_card_modals_element .outOfStockBtn').addClass('requestSent');
+                                $('#add_card_modals_element .outOfStockBtn').html(request_btnHtml);
+                            }
+                            $('#add_card_modals_element .outOfStockBtn').click((e)=>{
+                                e.currentTarget.classList.add("requestSent")
+                                e.currentTarget.innerHTML = request_btnHtml;
+
+                                product_div.querySelector('.imageWrapper').click();
+                            })
+                        }else{
+
+
+                                                $("button.addButton").click(()=>{
+                                                product_div.querySelector(".imageWrapper").click()    // ----------------------------------------------------need function many time used
+                                                upmq(product_div) //updating the display
+                                                console.log("added");
+                                            })
+
+                                            $("button.removeButton ").click(()=>{
+                                                if($(".lightboxContent .quantity").text() < 2 ){
+                                                    if($(".lightboxContent .quantity").text() == 1){
+                                                        upmq(product_div) //updating the display
+                                                        product_div.querySelector(".imageWrapper .actionItems .remove").click()
+                                                    }
+                                                    $(".lightboxContent .quantity").text(0)
+                                                }else{
+                                                    product_div.querySelector(".imageWrapper .actionItems .remove").click()
+                                                    upmq(product_div) //updating the display
+                                                }
+                                                console.log($(".lightboxContent .quantity").text() );
+                                                    console.log("remove");
+                                            })
+
+
+                                            $(".lightboxContainer #buyNowButton").click(()=>{
+                                            if($(".lightboxContent .quantity").text() > 0){
+                                                $(".lightboxContainer .close").click()
+                                                }else{
+                                                product_div.querySelector(".imageWrapper").click()
+                                                $(".lightboxContainer .close").click()
+                                            }
+                                            $(".stickyHeader").click()
+                                            })
+
+                                            $('.pictureNavigation a')[0].classList.add('active')
+                                            $('.pictureNavigation a').click((e)=>{
+                                                $('.productGallery img.productImage').attr('src',e.currentTarget.children[0].src );
+                                                $('.pictureNavigation a').removeClass('active');
+                                                e.currentTarget.classList.add('active');
+                                            })
+
+
+
+                        }
+                        $(".lightboxContainer .close").click((ev)=>{
+                              ev.currentTarget.closest('.lightboxContainer').remove()
+                              url_routing(rout_product_previousUrl);
+
+                         })
+
+
+                    },
+                    error:()=> alert("NetWork connection Error")
+                })
+            }
+
+
+            function bag_ud_ax(type,prod_id,qnt=0){
+                $.ajax({
+                    method:"POST",
+                    url:"{% url 'customer:add_bag' %}",
+                    data:{
+                        "type":type,
+                        "prod_id":prod_id,
+                        "quantity":qnt,
+                        "csrfmiddlewaretoken": csrfmiddlewaretoken
+                    },
+                    success:(data)=>{
+                        console.log(data);
+                    }
+                })
+            }
+
+            function bag_append_item(obj){
+                $(".shoppingCartWrapper .body").append(`
+           <div data-pvid="${obj.product_id}" class="orderItem">
+                <div class="quantity">
+                    <div class="caret caret-up" title="Add one more to bag">
+                        <svg version="1.1" x="0px" y="0px" viewBox="0 20 100 100">
+                            <polygon points="46.34,39.003 46.34,39.003 24.846,60.499 29.007,64.657 50.502,43.163 71.015,63.677 75.175,59.519 50.502,34.844"></polygon>
+                        </svg>
+                    </div>
+                    <span class="onHoverCursor"><span> </span><span>${obj.quantity}</span><span> </span></span>
+                    <div class="caret caret-down ${obj.quantity < 2?"disabled":""}" title="Remove one from bag">
+                        <svg version="1.1" x="0px" y="0px" viewBox="0 -20 100 100">
+                            <polygon points="53.681,60.497 53.681,60.497 75.175,39.001 71.014,34.843 49.519,56.337 29.006,35.823 24.846,39.982   49.519,64.656 "></polygon>
+                        </svg>
+                    </div>
+                </div>
+                <div class="picture">
+                    <div class="productPicture">
+                        <img src="${obj.img}" size="400" style="background-color:transparent;">
+                    </div>
+                </div>
+                <div class="name">
+                    <span>${obj.name}</span>
+                    <div class="subText"><span >৳ </span><span >${obj.price}</span><span > / ${obj.amount}</span></div>
+                </div>
+                <div class="amount">
+                    <section>
+                        <div class="total"><span>৳ </span><span>${obj.price * obj.quantity}</span></div>
+                    </section>
+                    <div class="remove" title="Remove from bag">
+                        <svg version="1.1" x="0px" y="0px" viewBox="0 0 100 100"> <rect x="19.49" y="46.963" transform="matrix(-0.7071 0.7071 -0.7071 -0.7071 121.571 49.0636)"     width="62.267" height="5.495"></rect> <rect x="18.575" y="47.876" transform="matrix(-0.7071 -0.7071 0.7071 -0.7071 49.062 121.5686)" width="62.268" height="5.495"></rect></svg>
+                    </div>
+                </div>
+          </div>
+
+
+                                            `)
+
+            }
+
+
+
+            function add_shoping_bag_html(pt_link){
+                const html = `
+                <p class="addText">Add to Shopping Bag</p>
+                <span>
+                    <a href="${pt_link}" class="btnShowDetails">
+                        <span>Details</span>
+                        <span>&gt;</span>
+                    </a>
+                    <a href="${pt_link}" class="btnShowDetailsIcon">
+                        <svg width="24px" height="24px" style="fill:#e1e1e1;stroke:#e1e1e1;display:inline-block;vertical-align:middle;" version="1.1" viewBox="0 0 100 100">
+                            <path d="m50 5c-24.898 0-45 20.102-45 45s20.102 45 45 45 45-20.102 45-45-20.102-45-45-45zm7.1016 70c0 2.1992-1.8984 4.1016-4.1016 4.1016h-6.1992c-2.1992 0-4.1016-1.8984-4.1016-4.1016v-26.199c0-2.3008 1.8984-4.1016 4.1016-4.1016h6.1992c2.1992 0 4.1016 1.8984 4.1016 4.1016zm-7.2031-37.102c-4.6016 0-8.3984-3.8008-8.3984-8.5 0-4.6992 3.8008-8.5 8.3984-8.5 4.6992 0 8.5 3.8008 8.5 8.5 0 4.7031-3.7969 8.5-8.5 8.5z"></path>
+                        </svg>
+                    </a>
+                </span>
+                `
+                return html
+            }
+
+            // helper function              ***************************
+            function pt_ads_replace(parent,new_elementHtml,new_element,new_elementCls=""){
+                const newItem = document.createElement(`${new_element}`);
+                newItem.className = new_elementCls;
+                newItem.innerHTML = new_elementHtml;
+                parent.replaceChild(newItem,parent.querySelector('.addButtonWrapper'));
+            }
+
+            function upmq(product_div){
+                $(".lightboxContainer .quantity").text(product_div.querySelector(".actionItems .quantity span").textContent)
+            }
+
+            function sideBarPOb(){ // change side bar footer html
+                    const sBbody = $(".shoppingCartWrapper .footer")
+                       if(sBbody.length){
+                        if(current_bag_item != "[]"){
+                       let total_price = 0;
+                       current_bag_item.forEach((e)=> total_price += Number(e.price) * Number(e.quantity));
+                       if(disccc){
+                            total_price = total_price -  (total_price * (disccc/100))
+                       }
+                          sBbody.html(`
+                        <div class="shoppingtCartActionButtons">
+                            <button id="placeOrderButton" mat='{% if request.user.is_authenticated %}/customer/checkout/?matRout=True{% else %}/login/?matRout=True{% endif %}'>
+                                <span class="placeOrderText">Place Order</span>
+                                <span class="totalMoneyCount">
+                                    <span>৳ </span><span>${total_price}</span>
+                                    <span></span>
+                                </span>
+                            </button>
+                        </div>
+
+                        `)
+                     }
+                       }
+            }
+ function dqnt2Event(main_div){
+                    main_div.querySelectorAll(".orderItem .caret-down").forEach((e)=>{
+
+                        const parent = e.parentNode.parentNode
+
+                        if(!parent.getAttribute('data-type') == 'outofstock'){
+                            if(parent.querySelectorAll(".onHoverCursor span")[1].textContent < 2){
+                            parent.querySelector(".caret-down").classList.add("disabled")
+                            }else{
+                                parent.querySelector(".caret-down").classList.remove("disabled")
+                            }
+                        }
+
+                    })
+
+            }
+
+
+
+
+            $("body").on("click",".orderItem .caret-down",(event)=>{
+                if(!event.currentTarget.classList.contains("disabled")){
+                                const bag_item = event.currentTarget.parentNode.parentNode
+                                bag_item.querySelector(".caret-down").classList.remove("disabled")
+                                const target = $(`.product[product-id='${bag_item.getAttribute("data-pvid")}']`);
+                                if(target.length){
+                                target.find(".remove")[0].click()
+                                }else{
+                                     current_bag_item.forEach((e)=>{
+                                         if(bag_item.getAttribute("data-pvid") == e.product_id){
+                                             const ic = e.quantity -= 1
+                                             bag_item.querySelectorAll(".onHoverCursor span")[1].textContent = ic
+                                             bag_item.querySelectorAll(".total span")[1].textContent = e.price * ic
+                                             localStorage.setItem("current_bag_item",JSON.stringify(current_bag_item))
+                                             if(!ajx_updataion){
+                                            bag_ud_ax("update",bag_item.getAttribute("data-pvid"),ic)
+                                            }
+                                             if(e.quantity <= 1){
+                                                 bag_item.querySelector(".caret-down").classList.add("disabled")
+                                                }
+                                         }
+                                     })
+                                }
+                            }
+            })
+
+
+            $("body").on("click",".orderItem .caret-up",(event)=>{
+                const bag_item = event.currentTarget.parentNode.parentNode
+                            bag_item.querySelector(".caret-down").classList.remove("disabled")
+
+                            const target = $(`.product[product-id='${bag_item.getAttribute("data-pvid")}']`);
+                            // const qnt =
+                            if(target.length){
+                               target.find(".imageWrapper").click()
+                            }else{
+                                current_bag_item.forEach((e)=>{
+                                    if(bag_item.getAttribute("data-pvid") == e.product_id){
+                                        const ic = e.quantity += 1
+                                        bag_item.querySelectorAll(".onHoverCursor span")[1].textContent = ic
+                                        bag_item.querySelectorAll(".total span")[1].textContent = e.price * ic
+                                        localStorage.setItem("current_bag_item",JSON.stringify(current_bag_item))
+                                        if(!ajx_updataion){
+                                            bag_ud_ax("update",bag_item.getAttribute("data-pvid"),ic)
+                                            }
+                                    }
+                                })
+                            }
+
+            })
+
+
+
+
+            function rmIt2ndEvent(main_div){
+                    main_div.querySelectorAll(".remove").forEach((e)=>{
+                        e.addEventListener("click",(e)=>{
+                            bar_remove_item(e)
+
+                        })
+                    })
+
+
+                if(!current_bag_item == "[]"){
+                    if(main_div.querySelectorAll(".onHoverCursor span")[1].textContent > 1){
+                    main_div.querySelector(".caret-down").classList.remove("disabled")
+                }}
+            }
+function bar_remove_item(e){
+
+                           const bag_item_div = e.currentTarget.parentNode.parentNode;
+                           const prod_id = bag_item_div.getAttribute("data-pvid");
+
+                                if(bag_item_div.getAttribute('data-type') == "outofstock"){
+                                    bag_item_div.remove()
+                                }else{
+
+                                    $(`.shoppingCart div[data-pvid="${prod_id}"]`).remove();
+
+
+                                    rItemtoLs(bag_item_div.getAttribute("data-pvid"))
+                                    const html = `
+                                                            <span class="express" id="svgIcon">
+                                                                                            <svg width="22px" height="25px" style="display:inline-block;vertical-align:middle;" version="1.1" x="0px" y="0px" viewBox="-9 11 100 100">
+                                                                                                <path class="st0" d="M59.4,32.6c0.2,0.2-0.2,0.3-0.2,0.3s-1.2,0.3-1.5,0.8c-0.3,0.3-0.8,1.5-0.8,1.5c0.7-0.2,1.5-0.3,2.3-0.7 c0.2,0,0.3,0.2,0.5,0.3c0.2,0-2,0.8-2.5,1.2c-0.3,0.3-2,1.7-2.5,1.7S53,37.9,53,37.9c0.2,0.3,0.3,0.7,0.7,1.2c0,0-1.2,0.7-1.2,0.8 c-0.2,0.2-1,1.2-1,1.2s3,0.3,4-1.3c-1,1.7-3.3,3.3-8.2,3.3c-5,0-9-2-11.7-3c-2.8-1.2-6.5-2.5-9.5-2.5c-2.8,0-6.2,0.8-8.4,2.9 c-3.9-1.5-9.2-0.7-11.7,1.7c-2.3,2.3-4.7,5.2-5,7.2c-0.5,2.2-1.7,7.4-3.3,9.7c-2.3,3.8-5,4.8-5.9,6.5c-0.8,1.7-0.8,5.2-0.7,5.2 c0.3,0.2,1.5,0,2.2-0.3c1.3-0.5,5-4.3,6.4-6.2c1.3-1.8,5.9-9.9,6.5-12.7c0.7-2.8,1.3-5.7,3.3-7.2c2.2-1.5,4.8-0.8,4.8-0.7 c0,0-2.5,2-2.7,7.5c-0.2,5.5,3.2,4.9,1.5,8.4c-1.7,3-6.7,1-8.4,2.8c-1.3,1.5,0,6.9,0,7.9c0,1-0.5,5.7-0.8,6.9c-0.2,1,0,1.7-0.2,2.3 c-0.2,0.5,1,0.7,1,0.7s-1,1.3-1.5,1c-0.5-0.2-0.8-0.2-1.2,0c-0.3,0-1,0.3-1.7,0l-2.7,5.7c0.3,0.2,0.8,0.3,1.3,0.2 c0.7-0.2,4-1.7,4.4-2c0.5-0.2,3.3-1.8,3.8-2.8c0.3-1,1-4.2,1-5.2c0.2-1,0.3-4.2,0.3-5c0-0.8-0.2-2.3,0-3c0.3-0.5,0.8-1.2,1.5-1.5 c0.8-0.2,1.8-0.2,2-0.2c0.3,0,3.2,0.3,3.7,0.3c0.7,0,3.3-0.5,4-0.8c0.8-0.2,1.3,0,1.5,0.3c0.3,0.3-0.3,0.8-0.3,1 c-0.2,0.2-1.5,1.8-1.8,2.5c-0.3,0.8-1.5,2.3-1.2,3c0.3,0.7,0.3,0.8,1.3,1.3c1,0.3,4.9,2.3,7,4.3c2.3,2.2,4.5,4.8,4.9,6.2 c0.5,1.5,1.3,1.7,1.8,1.7c0.5,0.2,1.5,0.3,1.5,1c0,0.7-0.2,1.5-0.2,1.5l6.2,2.3c0,0,0-2.2-0.2-3c-0.2-1-1.2-2-2-3 c-0.8-1.2-9.5-9.7-10.4-10.4c-0.8-0.5-1.5-1.2-1.7-2.5c-0.2-1.3,1.5-2.3,2.5-3.5c0.7-0.8,2.5-4.7,2.8-5.2c0.3-0.5,1.5-1.8,2.2-1.8 c0.8,0,2.7,1.2,5,2c1,0.3,8.2,2.2,9.2,2.5c1,0.2,3.2,0,3.8,0.7c0.7,0.5,0,1.8-0.2,2.7c-0.2,1-2,4.7-2,4.7s0.3,1.3,0.3,2.4 c0,1.2-0.5,5.3-1,6.7c-0.3,1.5-2.7,5.4-3.2,6c-0.3,0.5-0.8,0.8-0.8,1.7c0,0.8,1.5,1,2,1.7c0.7,0.5,0.2,1.5,0,2.5l6.7,2.8 c0-0.5,0.3-1.3,0-1.7c-0.2-0.5-1-1.5-1.5-2.2c-0.3-0.5-1.5-2.3-1.8-2.7c-0.3-0.5-0.3-1.5,0-2.3c0.2-0.8,2.3-6.5,2.5-7.2 c0.3-0.8,3.5-7.5,3.8-8.4c0.3-1,3-5.9,3.3-6.7c0.3-1,2.5-1.8,3.2-1.8c0.8,0,5,1.5,5.7,1.8c0.5,0.2,4.4,1.8,5,2.2 c0.8,0.3,0.3,1-0.2,1.2c-0.5,0.3-6.7,4.5-7.2,4.7c-0.5,0.2-1,0.7-1.3,0.7c-0.5,0-1.2,0.5-1.2,0.7c0,0.3-0.2,1-1,1c-0.7,0-2-1-2.8-2 c-1.2,0.7-2,1.2-2.5,2.2c-0.8,0.8-1.2,1.5-1.7,2.7c0.3,0.3,1,0.5,1.5,0.5h5.4c0.5,0,1.2-0.2,1.7-0.3c0.5-0.3,13.7-9,13.7-9 s2.2-1.7,2.2-3.2c0-1.2-1-1.5-1.3-2c-0.5-0.3-3.5-2.3-4-2.7c-0.7-0.5-3-1.8-3.7-2.2c-0.5-0.3-2.4-1-2.4-1c0.5-1.5,0.8-2.7,1-3 c0.2-0.3,0.2-3.4,0.3-3.9c0-0.5,0.8-2.7,1.2-3c0.3-0.3,1.2-3,1.3-3.5c0.2-0.3,1.5-4.2,2.2-4.2c0.7-0.2,1.3,0.5,2,0.5 c0.7,0.2,3.2-0.2,4.5,0c1.2,0.2,2.7,1.7,3,1.8c0.5,0.2,1.7,0.7,2,0.7c0.2,0,1.8-1.2,1.8-1.5c0-0.3-1.2-1-1.3-1 c-0.2-0.2-1.3-0.8-1.3-0.8c0,0.2,0.5-0.3,1.3-0.3c0.7,0,1.3,0.7,1.5,0.8c0.3,0.2,1.2,0.7,1.3,0.3c0.2-0.2,0.8-1,0.8-1.5 c0-0.7-0.7-1.5-1-1.8c-0.3-0.3-4.2-4-4.5-4.2c-0.5-0.2-2.5-2-2.5-2.5c-0.2-0.3-1.2-1.2-1.3-1.3c-0.2-0.2-5.2-3.7-5.9-4.2 c-0.7-0.5-1.3-1.3-1.3-2.2c0-0.8-0.3-3-0.3-3s-1.2-0.2-1.7,0.3c-0.5,0.3-1.7,3-2.3,3c-1.8-0.3-4.2,0.2-4.2,0.5 c0.2,0.5,1.8,0.2,1.8,0.2c0,0.2-0.7,1-1.2,1c-0.3,0-1.3,0.3-1.5,0.5c-0.3,0-1,0.5-1,0.5c0.5,0,1,0,1.7,0.2c0,0-1,0.7-1.5,0.7 c-0.5,0-2.2,0.5-2.7,0.7c-0.3,0.3-1.7,1.3-1.7,1.3h-1.5l0.2,0.3h0.8L59.4,32.6L59.4,32.6z"></path>
+                                                                                            </svg>
+                                                            </span>
+                                                                                        <p class="buyText">Add to bag</p>
+                                                            `
+                                        const c_product_div = document.querySelector(`.product[product-id='${prod_id}']`)
+
+
+                                        if(c_product_div){
+                                            pt_ads_replace(c_product_div,html,"section","addButtonWrapper asd border-radius-small")
+                                            rmANDevent(c_product_div)
+                                        }
+
+                                        if(!ajx_updataion){
+
+
+                                            bag_ud_ax("delete",prod_id)
+                                            }
+
+
+                                        // chekck current product is empty? if empty then removing place order div
+                                        if(!current_bag_item.length){
+                                            $(".footer .shoppingtCartActionButtons").remove()
+                                            $(".footer").html("<a href='tel:+880{{root.Mobile.first.Phone}}'>Phone : +880{{root.Mobile.first.Phone}}</a>")
+                                        }else{
+                                            $(".footer .totalMoneyCount span")[1].textContent = caltulate_total_price()
+                                        }
+                                }
+
+
+                                if(faild_current_product.length){
+                                    faild_current_product =  faild_current_product.filter(e => e.product_id != prod_id);
+                                    localStorage.setItem("faild_current_product",JSON.stringify(faild_current_product));
+                                }
+                                if(!faild_current_product.length){
+                                    $('#outofstockitem_bag').remove()
+                                }
+}
+            function caltulate_total_price(){
+                var total_price = 0
+                current_bag_item.forEach((e)=>{
+                    var item_price = e.price * e.quantity
+                    total_price += item_price
+                })
+                if(disccc){
+                            total_price = total_price -  (total_price * (disccc/100))
+                    }
+                return total_price
+            }
+
+
+            function rmANDevent(product_div){
+                product_div.classList.remove("isInCart")
+                const link =product_div.querySelector(".btnShowDetails").href;
+
+                product_div.querySelector(".overlay.text").innerHTML= add_shoping_bag_html(link);//need to upgrate
+                product_div.querySelector(".overlay").removeAttribute("is-bag");
+                const html = `
+            <span class="express" id="svgIcon">
+                                            <svg width="22px" height="25px" style="display:inline-block;vertical-align:middle;" version="1.1" x="0px" y="0px" viewBox="-9 11 100 100">
+                                                <path class="st0" d="M59.4,32.6c0.2,0.2-0.2,0.3-0.2,0.3s-1.2,0.3-1.5,0.8c-0.3,0.3-0.8,1.5-0.8,1.5c0.7-0.2,1.5-0.3,2.3-0.7 c0.2,0,0.3,0.2,0.5,0.3c0.2,0-2,0.8-2.5,1.2c-0.3,0.3-2,1.7-2.5,1.7S53,37.9,53,37.9c0.2,0.3,0.3,0.7,0.7,1.2c0,0-1.2,0.7-1.2,0.8 c-0.2,0.2-1,1.2-1,1.2s3,0.3,4-1.3c-1,1.7-3.3,3.3-8.2,3.3c-5,0-9-2-11.7-3c-2.8-1.2-6.5-2.5-9.5-2.5c-2.8,0-6.2,0.8-8.4,2.9 c-3.9-1.5-9.2-0.7-11.7,1.7c-2.3,2.3-4.7,5.2-5,7.2c-0.5,2.2-1.7,7.4-3.3,9.7c-2.3,3.8-5,4.8-5.9,6.5c-0.8,1.7-0.8,5.2-0.7,5.2 c0.3,0.2,1.5,0,2.2-0.3c1.3-0.5,5-4.3,6.4-6.2c1.3-1.8,5.9-9.9,6.5-12.7c0.7-2.8,1.3-5.7,3.3-7.2c2.2-1.5,4.8-0.8,4.8-0.7 c0,0-2.5,2-2.7,7.5c-0.2,5.5,3.2,4.9,1.5,8.4c-1.7,3-6.7,1-8.4,2.8c-1.3,1.5,0,6.9,0,7.9c0,1-0.5,5.7-0.8,6.9c-0.2,1,0,1.7-0.2,2.3 c-0.2,0.5,1,0.7,1,0.7s-1,1.3-1.5,1c-0.5-0.2-0.8-0.2-1.2,0c-0.3,0-1,0.3-1.7,0l-2.7,5.7c0.3,0.2,0.8,0.3,1.3,0.2 c0.7-0.2,4-1.7,4.4-2c0.5-0.2,3.3-1.8,3.8-2.8c0.3-1,1-4.2,1-5.2c0.2-1,0.3-4.2,0.3-5c0-0.8-0.2-2.3,0-3c0.3-0.5,0.8-1.2,1.5-1.5 c0.8-0.2,1.8-0.2,2-0.2c0.3,0,3.2,0.3,3.7,0.3c0.7,0,3.3-0.5,4-0.8c0.8-0.2,1.3,0,1.5,0.3c0.3,0.3-0.3,0.8-0.3,1 c-0.2,0.2-1.5,1.8-1.8,2.5c-0.3,0.8-1.5,2.3-1.2,3c0.3,0.7,0.3,0.8,1.3,1.3c1,0.3,4.9,2.3,7,4.3c2.3,2.2,4.5,4.8,4.9,6.2 c0.5,1.5,1.3,1.7,1.8,1.7c0.5,0.2,1.5,0.3,1.5,1c0,0.7-0.2,1.5-0.2,1.5l6.2,2.3c0,0,0-2.2-0.2-3c-0.2-1-1.2-2-2-3 c-0.8-1.2-9.5-9.7-10.4-10.4c-0.8-0.5-1.5-1.2-1.7-2.5c-0.2-1.3,1.5-2.3,2.5-3.5c0.7-0.8,2.5-4.7,2.8-5.2c0.3-0.5,1.5-1.8,2.2-1.8 c0.8,0,2.7,1.2,5,2c1,0.3,8.2,2.2,9.2,2.5c1,0.2,3.2,0,3.8,0.7c0.7,0.5,0,1.8-0.2,2.7c-0.2,1-2,4.7-2,4.7s0.3,1.3,0.3,2.4 c0,1.2-0.5,5.3-1,6.7c-0.3,1.5-2.7,5.4-3.2,6c-0.3,0.5-0.8,0.8-0.8,1.7c0,0.8,1.5,1,2,1.7c0.7,0.5,0.2,1.5,0,2.5l6.7,2.8 c0-0.5,0.3-1.3,0-1.7c-0.2-0.5-1-1.5-1.5-2.2c-0.3-0.5-1.5-2.3-1.8-2.7c-0.3-0.5-0.3-1.5,0-2.3c0.2-0.8,2.3-6.5,2.5-7.2 c0.3-0.8,3.5-7.5,3.8-8.4c0.3-1,3-5.9,3.3-6.7c0.3-1,2.5-1.8,3.2-1.8c0.8,0,5,1.5,5.7,1.8c0.5,0.2,4.4,1.8,5,2.2 c0.8,0.3,0.3,1-0.2,1.2c-0.5,0.3-6.7,4.5-7.2,4.7c-0.5,0.2-1,0.7-1.3,0.7c-0.5,0-1.2,0.5-1.2,0.7c0,0.3-0.2,1-1,1c-0.7,0-2-1-2.8-2 c-1.2,0.7-2,1.2-2.5,2.2c-0.8,0.8-1.2,1.5-1.7,2.7c0.3,0.3,1,0.5,1.5,0.5h5.4c0.5,0,1.2-0.2,1.7-0.3c0.5-0.3,13.7-9,13.7-9 s2.2-1.7,2.2-3.2c0-1.2-1-1.5-1.3-2c-0.5-0.3-3.5-2.3-4-2.7c-0.7-0.5-3-1.8-3.7-2.2c-0.5-0.3-2.4-1-2.4-1c0.5-1.5,0.8-2.7,1-3 c0.2-0.3,0.2-3.4,0.3-3.9c0-0.5,0.8-2.7,1.2-3c0.3-0.3,1.2-3,1.3-3.5c0.2-0.3,1.5-4.2,2.2-4.2c0.7-0.2,1.3,0.5,2,0.5 c0.7,0.2,3.2-0.2,4.5,0c1.2,0.2,2.7,1.7,3,1.8c0.5,0.2,1.7,0.7,2,0.7c0.2,0,1.8-1.2,1.8-1.5c0-0.3-1.2-1-1.3-1 c-0.2-0.2-1.3-0.8-1.3-0.8c0,0.2,0.5-0.3,1.3-0.3c0.7,0,1.3,0.7,1.5,0.8c0.3,0.2,1.2,0.7,1.3,0.3c0.2-0.2,0.8-1,0.8-1.5 c0-0.7-0.7-1.5-1-1.8c-0.3-0.3-4.2-4-4.5-4.2c-0.5-0.2-2.5-2-2.5-2.5c-0.2-0.3-1.2-1.2-1.3-1.3c-0.2-0.2-5.2-3.7-5.9-4.2 c-0.7-0.5-1.3-1.3-1.3-2.2c0-0.8-0.3-3-0.3-3s-1.2-0.2-1.7,0.3c-0.5,0.3-1.7,3-2.3,3c-1.8-0.3-4.2,0.2-4.2,0.5 c0.2,0.5,1.8,0.2,1.8,0.2c0,0.2-0.7,1-1.2,1c-0.3,0-1.3,0.3-1.5,0.5c-0.3,0-1,0.5-1,0.5c0.5,0,1,0,1.7,0.2c0,0-1,0.7-1.5,0.7 c-0.5,0-2.2,0.5-2.7,0.7c-0.3,0.3-1.7,1.3-1.7,1.3h-1.5l0.2,0.3h0.8L59.4,32.6L59.4,32.6z"></path>
+                                            </svg>
+            </span>
+                                        <p class="buyText">Add to bag</p>
+            `
+            if(product_div){
+                pt_ads_replace(product_div,html,"section","addButtonWrapper asd border-radius-small")
+            }
+
+
+                // product adding event
+                product_div.querySelector(".product section.asd ").addEventListener("click",(e)=>{
+                    e.currentTarget.parentNode.querySelector(".imageWrapper").click();
+                })
+            }
+
+            function rItemtoLs(product_id){ //remove item from LocalStorage
+                const new_array = Array()
+                for(item in current_bag_item){
+                    if(current_bag_item[item].product_id != product_id){
+                        new_array.push(current_bag_item[item])
+                    }
+                }
+                current_bag_item = new_array
+                localStorage.setItem("current_bag_item",JSON.stringify(current_bag_item))
+            }
+
+            function updateItemToBag(product_div,c_quantity,price){
+                const item_bag = $(`div[data-pvid='${product_div.getAttribute("product-id")}']`) //targeting the bag item div
+                if(item_bag.length){
+                   item_bag.find(".onHoverCursor span")[1].textContent = c_quantity //updating quantity
+                   item_bag.find(".total span")[1].textContent = price.textContent  //updating quantity
+                }
+            }
+
+            function updateItemToLs(product_div,c_quantity){
+                //updating item quantity on lS api
+                if(!ajx_updataion){
+                     console.log('^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^');
+                     current_bag_item.find(e => e.product_id == product_div.getAttribute("product-id")).quantity = c_quantity
+                     console.log(current_bag_item.find(e => e.product_id == product_div.getAttribute("product-id")));
+                     localStorage.setItem("current_bag_item",JSON.stringify(current_bag_item))
+                 }
+            }
+
+
+            function chekForlSbI(){ //this  function check bag item from localstrage and update the current_bag_item variable
+                const item = localStorage.getItem("current_bag_item")
+                if(item){
+                    current_bag_item = JSON.parse(item)
+                }else{
+                    current_bag_item = Array()
+                }
+            }
+
+            function upDateProdHtml_lS(ary_obj){
+                ajx_updataion = true
+                ary_obj.forEach((e)=>{
+                    const pk = e.product_id
+                    const cunt = $(`.product[product-id=${pk}] .imageWrapper`)
+                    for(var click=0;click<e.quantity;click++){
+                        console.log("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
+                        cunt.click()
+                    }
+                })
+                ajx_updataion = false
+            }
+
+
+
+$("body").on("click",'.menu_0022',(e)=>{
+        e.preventDefault();
+        $(`.menu_0011[href="${e.currentTarget.getAttribute('href')}"]`).click();
+    })
+
+
+
+$('body').on('click','.menu_0033',(e)=>{
+    e.preventDefault();
+    $(`.menu_0011[href='/${e.currentTarget.href.split('/')[3]}']`).click();
+})
+
+
+
+
+            function get_categoryHtml(e){
+                var category  = e.querySelector('a')
+                var category_img_id = category.href.split("/")[3]
+                let categoryHtml = `<a href="${category.href}" class="category menu_0033">
+                                    <div>
+                                        <div class="imageWrapper">
+                                            <img id="${category_img_id}"  alt="${category.textContent}">
+                                        </div>
+                                        <div class="name">${category.textContent}</div>
+                                    </div>
+                                </a>`
+                bodyAjsx.append(categoryHtml)
+                var category_img_target = $(`#${category_img_id}`)
+                const cty_ls = sessionStorage.getItem(category_img_id)
+                if(cty_ls){
+                  if(cty_ls != "None")category_img_target.attr("src",cty_ls);
+                }else{
+                    $.ajax({
+                        method:"GET",
+                        url:`/api/menu_img/${category.textContent}/`,
+                        success:(data)=>{
+                            console.log(data);
+                            var category_img = data.img;
+                            if(category_img != "None")category_img_target.attr("src",category_img);
+                            sessionStorage.setItem(category_img_id,category_img);
+                        }
+                    })
+                }
+
+            }
+
+
+
+
+        </script>
+
+
+        <script>
+        update_dv_time_bag()
+
+            const profile_html = `
+
+
+            `
+            var want_profile_rout = true;
+            $("a[href='/customer/profile/']").click((e)=>{
+                $('#page_banner').empty();
+                preParent = null
+                e.preventDefault()
+                const href = e.currentTarget.href;
+                if(want_profile_rout){
+                    url_routing(href);
+                }
+                $('#pp_dorpdown').addClass('nai');
+                const is_profile_ss=sessionStorage.getItem("user_profile_html");
+                is_profile_ss?bodyAjsx.html(is_profile_ss):site_ajsx("{% url 'customer:get-profile-html'%}","user_profile_html",true);
+            })
+            $("a[href='/customer/select-city/']").click((e)=>{
+                $('#page_banner').empty();
+                $('#pp_dorpdown').addClass('nai');
+                preParent = null
+                e.preventDefault()
+                const href = e.currentTarget.href
+                url_routing(href)
+                const is_profile_ss=sessionStorage.getItem("select_city_html")
+                is_profile_ss?bodyAjsx.html(is_profile_ss):site_ajsx("{% url 'customer:select_city'%}?matRout=True","",true,true)
+
+            })
+
+
+
+
+            function site_ajsx(ajsx_url,sessionVariable,event=false,isHtml=false){
+                $('#page_banner').empty();
+                $.ajax({
+                method:"GET",
+                url:ajsx_url,
+                success:(data)=>{
+                    console.log(data);
+    //************************* sessionStorage.clear() **********************//
+                    if(event){
+                        isHtml?bodyAjsx.html(data):bodyAjsx.html(data.html)
+                    }
+                    sessionStorage.setItem(`${sessionVariable}`,data.html)
+
+
+                    if(window.location.pathname == '/home/'){
+                     $(".hamBergerMenuIcon.change").click();
+                    }
+                }
+            })
+            }
+
+
+
+        const csrfmiddlewaretoken = "{{ csrf_token }}"
+
+
+
+
+
+
+           $('body').on("click",'[mat]',(e)=>{
+            $('.menu_0011').parents('li').removeClass('selected');
+                preParent=null;
+                $('.oldinstak').remove()
+                e.preventDefault();
+
+                const crnt_url  = e.currentTarget.getAttribute("mat");
+                $('#pp_dorpdown').addClass('nai');
+                url_routing(urlParamSpider(crnt_url));
+                site_ajsx(crnt_url,crnt_url+"-HTMl",true,true);
+                $('.shoppingCartButton').click();
+           })
+
+        function urlParamSpider(url){
+            return url.split("?")[0]
+        }
+
+        var current_width = window.innerWidth;
+       $(window).resize((e)=>{
+         current_width = window.innerWidth;
+         if(1210 >  $('.app_banner').width()){
+                     $('.banner_imgage').width($('.app_banner').width()-20);
+                 }
+
+
+
+            if(current_width < 766){
+                $('.hamBergerMenuIcon.change').click();
+                console.log(current_width);
+            }
+
+
+       })
+
+       if(current_width < 768){
+
+                    $('#bags').click(()=>{
+                    $('.shoppingCart  .stickyHeader').click()
+                 })
+
+
+
+        }
+
+
+
+            $(".hamBergerMenuIcon").click((e)=>{
+                e.currentTarget.classList.toggle('change');
+                $('#page > div').toggleClass('navOpen')
+                $('html').toggleClass('fullscreen-menu')
+                $('.menuWrapper').css('height',window.innerHeight)
+            })
+
+            $(".hamburgerMenu").click((e)=>{
+                $('#page > div').toggleClass('navOpen')
+            })
+
+
+
+
+{% if mat_router %}
+
+    site_ajsx("{{mat_router|safe}}",urlParamSpider("{{mat_router}}")+"-HTML",true,true)
+
+{% endif %}
+
+{% if clickBaseMenu %}
+
+$(".menu_0011")[0].click()
+
+{% endif %}
+
+
+{% if isMenuClicked %}
+
+$(".menu_0011[href='/{{menu_slug}}']").click()
+
+{% endif %}
+
+
+
+
+
+
+
+
+function site_ajsxWithPOST(data,url){
+    $.ajax({
+        method:"POST",
+        url:url,
+        data:{
+            "csrfmiddlewaretoken": csrfmiddlewaretoken,
+            "data":JSON.stringify(data)
+        },
+        beforeSend:()=>{
+            $('#body_content_ajsx').html(`
+                                                             <div id="loding_product" class="hasMoreLoading product" >
+                                                                                        <div class="imageWrapper" >
+                                                                                            <div class="imageWrapperWrapper" >
+                                                                                                <div class="loader" ></div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="name" >Loading more...</div>
+                                                                                       </div>
+            `)
+        },
+        success:(data)=>{
+            if(data.status == 'successful'){
+           if(data.isLocalSessionclear){
+            localStorage.clear()
+            sessionStorage.clear()
+            setSessionprodModal()
+            current_bag_item = []
+            $(".shoppingCart .body .remove").click()
+           }
+            url_routing(data.matRout.split("?")[0]+"?"+data.matRout.split("?")[1].replace("matRout=True&",''))
+
+            site_ajsx(data.matRout,urlParamSpider(data.matRout)+"-HTML",true,true)
+            update_little_bag_html();
+            }else{
+
+                bodyAjsx.html(`<div class="noMatch"><p>${data.data}</p></div>`)
+            }
+           $('.loding_product').hide();
+        },
+        error:()=>alert("NETWORK CONNECTION EROOR")
+
+    })
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// back or forword button ajsx
+window.addEventListener("popstate", function (e) {
+    var state = e.state;
+
+    $('.menu_0011').parents('li').removeClass('selected');
+
+    const link =window.location.pathname
+    const is_menu = link.match(/^\/\w+\/$/)
+    want_menu_rout = false;
+
+        if(link.match(/(\/login\/|\/signup\/|\/corporate\/|\/home\/)/)){
+            preParent = false;
+            const full_link = link + `?matRout=True&popstate=True`;
+            site_ajsx(full_link,"ASd",true,true);
+        }
+        else if(is_menu){
+        $(`.menu_0011[href="${is_menu[0].slice(0,-1)}"]`).click()
+        }else if(link.match(/\/customer\/profile\//)){
+            $("a[href='/customer/profile/']").click()
+            want_profile_rout=false;
+        }else{
+            preParent = false;
+            const full_link = link + '?matRout=True&popstate=True';
+            console.log(full_link);
+            site_ajsx(full_link,"ASd",true,true);
+        }
+
+
+
+});
+
+
+
+
+
+
+
+
+
+
+
+
+update_little_bag_html();
+
+
+
+$(document).ready(()=>{
+    document.cookie = 'MyorderObj=';
+
+    $("[mat='/customer/orders/?matRout=True']").attr("mat","/customer/orders/?matRout=True&obj=True")
+
+    $(`[mat='{% url "product:offer" %}?matRout=True']`).attr("mat","{% url 'product:offer' %}?matRout=True&obj=True")
+
+
+})
+
+
+{% if request.user.is_authenticated %}
+
+site_ajsx("{% url 'customer:get-profile-html'%}","user_profile_html");
+
+const roomName = "{{request.user.get_profile.pk}}";
+const chatSocket = new WebSocket(
+            'wss://' +
+            window.location.host +
+            '/ws/chat/' +
+            roomName +
+            '/'
+        );
+
+
+        chatSocket.onmessage = (e) => {
+             const data2 = JSON.parse(e.data);
+
+            console.log(e)
+            if(data2.client.pk != roomName){
+                const message = JSON.parse(e.data)
+                const html = `
+                            <li class="send">
+                                <img src="${data2.client.img}" alt="">
+                                <p>${message.message}</p>
+                            </li>
+                `
+                $('#message ul').append(html);
+                $("#message").animate({ scrollTop: $('#message').prop("scrollHeight") }, "fast");
+            }
+
+        }
+
+
+
+$('body').on('click','.chat_launcher',e=>{
+    $('.c8-clint').removeClass('nai')
+    e.currentTarget.classList.add('nai')
+    $('#c8-close-btn').click((ev)=>{
+        $('.c8-clint').addClass('nai')
+        e.currentTarget.classList.remove('nai')
+    })
+    $('.c8-submit').click(()=>{
+        const message = $('#c8-input').val()
+        if(message != ""){
+            $('#c8-input').val("")
+            const html = `
+                        <li class="replay">
+                            <p>${message}</p>
+                            <img src="{%if profile.profile_photo %}{{profile.profile_photo.url}}{% endif %}" alt="">
+                        </li>
+            `
+
+            $('#message ul').append(html)
+            $("#message").animate({ scrollTop: $('#message').prop("scrollHeight") }, "fast");
+            chatSocket.send(JSON.stringify({
+                "message": message
+            }))
+
+        }
+    })
+
+})
+
+
+ const waitForCostomer = new WebSocket(
+                    'wss://' +
+                    window.location.host +
+                    '/ws/alert/'
+       );
+
+       waitForCostomer.onopen = e =>{
+            waitForCostomer.send(JSON.stringify({
+                alert:true
+            }))
+       };
+
+{% else %}
+
+
+$('body').on('click','.chat_launcher',e=>{
+    var structions = `
+     <div class="cancelContainer oldinstak">
+         <div class="ModalDialogContainer orderCancelPrompt">
+         <div style="" class="ModalDialog">
+             <div class="ModalDialogContent">
+             <div>
+                 <div class="modal-text">
+                 <h1>😶</h1>
+                 <p style='margin: 20px;'><span style="font-weight:700; color:red">Sorry!!</span> Your can't connect to us please Login/Sign Up first <br/> <a style="color:red;font-size:15px;font-weight:700;" mat="/login/?matRout=True">Login</a></p>
+                 </div>
+                 <div class="modal-footer">
+                 <button class="btnPrimary">Close</button>
+                 </div>
+             </div>
+             </div>
+         </div>
+         </div>
+     </div>
+     `;
+$('body').append(structions)
+$('.OrderInstructionForm').html($('.orderInstructionContainer textarea').val())
+$('.oldinstak .btnPrimary').click(()=>{
+    $('.oldinstak').remove()
+})
+
+})
+{% endif %}
+
+function update_dv_time_bag(){
+    $.ajax({
+    type:"GET",
+    url:"{% url 'next_dlv_time'%}",
+    success:(val)=>{
+        const data = val.data;
+        let dvday = 'Tomorrow';
+        if(val.isDvToday){
+            dvday='Today'
+        }
+        console.log(val);
+        dv_time_on_bag = `${dvday}, ${data[0][0]}:00${data[0][1]} - ${data[1][0]}:00${data[1][1]}`;
+
+        }
+    })
+}
+setTimeout(()=>{
+    update_dv_time_bag()
+},1000*60*60)
+
+</script>
+
+        {% block extra_js %}
+        {% endblock extra_js %}
+
+
+
+{% if request.user.is_authenticated %}
+
+<style>
+.c8-clint{position:fixed;right:3rem;bottom:0;background-color:#111;height:500px;width:380px;border-radius:10px 10px 0 0;box-shadow:-1px -2px 10px #000;box-sizing:border-box}.c8-clint #message{background-color:#fffaf0;height:75%;margin-top:10%;overflow:auto}.c8-clint span{color:#fff;font-size:medium;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;display:block}.c8-title{text-align:center;padding-top:14px}.c8-title .little{font-size:12px}#c8-close-btn{position:absolute;right:2%;top:3.5%;width:50px;display:flex;justify-content:center;cursor:pointer}#c8-close-btn div{background-color:#fff;width:2px;height:20px;position:absolute}#c8-close-btn div:nth-child(1){transform:rotate(48deg)}#c8-close-btn div:nth-child(2){transform:rotate(-48deg)}#message ul li{display:flex;align-items:center;padding:10px}#message ul .replay{justify-content:flex-end}#message ul li img{width:40px;height:40px;border-radius:50%}#message ul li p{padding:5px 15px;background-color:#d9dce4;border-radius:10px 10px}#message ul .replay img{margin-left:5px}#message ul .send img{margin-right:5px}.c8-input{background-color:#fff}.c8-input input{width:85%;height:36px}.c8-input svg{background-color:#fff;width:15%;height:20px;cursor:pointer}@media screen and (max-width:767px){.c8-clint{width:100%;z-index:10000;height:100%;position:fixed;top:0;right:0}}
+</style>
+
+<div class="c8-clint lightbox nai" style="z-index: 100000000;">
+            <div id="c8-close-btn">
+            <div></div>
+            <div></div>
+            </div>
+            <div class="c8-title">
+            <span>Questions? Chat with us!</span>
+            <span class="little">Support is online</span>
+            </div>
+            <div id="message">
+                <ul>
+                    <li class="send">
+                        <img src="{{root.Favicon.url}}" alt="">
+                        <p>hello from chaldal🥰</p>
+                    </li>
+
+
+
+
+                </ul>
+            </div>
+
+            <div class="c8-input">
+                <input type="text" id='c8-input'>
+                <svg class="c8-submit"  viewBox="0 0 24 24"><path d="M16.6915026,12.4744748 L3.50612381,13.2599618 C3.19218622,13.2599618 3.03521743,13.4170592 3.03521743,13.5741566 L1.15159189,20.0151496 C0.8376543,20.8006365 0.99,21.89 1.77946707,22.52 C2.41,22.99 3.50612381,23.1 4.13399899,22.8429026 L21.714504,14.0454487 C22.6563168,13.5741566 23.1272231,12.6315722 22.9702544,11.6889879 C22.8132856,11.0605983 22.3423792,10.4322088 21.714504,10.118014 L4.13399899,1.16346272 C3.34915502,0.9 2.40734225,1.00636533 1.77946707,1.4776575 C0.994623095,2.10604706 0.8376543,3.0486314 1.15159189,3.99121575 L3.03521743,10.4322088 C3.03521743,10.5893061 3.34915502,10.7464035 3.50612381,10.7464035 L16.6915026,11.5318905 C16.6915026,11.5318905 17.1624089,11.5318905 17.1624089,12.0031827 C17.1624089,12.4744748 16.6915026,12.4744748 16.6915026,12.4744748 Z" fill-rule="evenodd" stroke="none"></path></svg>
+            </div>
+
+</div>
+
+{% endif %}
+
+
+
+    </body>
+    <!-- Mirrored from chaldal.com/fresh-vegetable by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 21 Jun 2021 03:11:39 GMT -->
+</html>
+{% endspaceless %}

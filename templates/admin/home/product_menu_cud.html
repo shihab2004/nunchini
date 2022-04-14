@@ -1,0 +1,147 @@
+{% extends 'admin/home/base.html' %}
+{% load static %}
+
+
+{% block body %}
+
+<style>
+  .nhano img{
+    height: 80px;
+    width: 80px;
+  }
+</style>
+<div class="row grid-margin">
+    <div class="col-12">
+
+
+<form action="" enctype="multipart/form-data" method="post">
+    {% csrf_token %}
+    <div class="card">
+        <div class="card-body">
+
+            <h4 class="card-title">{{heading}}</h4>
+            
+
+            {% if c_menu.Image %}
+            
+            <div class="row">
+                <div class="col nhano"><img src="{{c_menu.Image.url}}" alt=""></div>
+            </div>
+
+            {% endif %}
+
+
+        
+
+        <div class="form-group row">
+            <div class="col-lg-3">
+            <label class="col-form-label">Menu Name</label>
+            </div>
+            <div class="col-lg-8">
+            <input required value="{{c_menu.Name}}" class="form-control" maxlength="100" name="Name" id="defaultconfig" type="text" placeholder="Product Name">
+            </div>
+        </div>
+
+        
+        <div class="form-group row">
+            <div class="col-lg-3">
+            <label class="col-form-label">Parent Menu</label>
+            </div>
+            <div class="col-lg-8">
+            <select name="parent_menu" required class="form-control">
+                <option value="0">None</option>
+                {% for m in menu %}
+                <option {% if c_menu.parent == m.id %}selected{% endif %} value="{{m.id}}">{{m.Name}}</option>
+                {% endfor %}
+            </select>
+            </div>
+        </div>
+
+
+    
+
+    
+        
+        <div class="form-group row">
+            <div class="col-lg-3">
+            <label class="col-form-label">Upload Menu Image</label>
+            </div>
+            <div class="col-lg-8">
+            <input class="form-control" {% if not is_dt %}required{% endif %}  name="menu_img" id="defaultconfig-5" type="file">
+            </div>
+        
+        </div>
+
+
+    {% if c_menu.page_image %}
+        <div class="form-group row">
+        <img style="height:100px;width:300px" src="{{c_menu.page_image.url}}" alt="">
+            
+        </div>
+        {% endif %}
+        
+        
+        <div class="form-group row">
+        <div class="col-lg-3">
+            <label class="col-form-label">Upload Menu Page Image</label>
+        </div>
+        <div class="col-lg-8">
+            <input {% if not is_dt %}required{% endif %}  class="form-control"  name="banner_img" id="defaultconfig-5" type="file">
+        </div>
+        
+    </div>
+
+
+
+    <div class="form-group row">
+        <div class="col-lg-3">
+        <label class="col-form-label">Page Banner Type</label>
+        </div>
+        <div class="col-lg-8">
+        <select name="banner_type" required class="form-control">
+            <option {% if c_menu.page_banner_type != "NM" %}selected{% endif %} value="NM">Normal Banner</option>
+            <option {% if c_menu.page_banner_type == "AB" %}selected{% endif %} value="AB">App Banner</option>
+        </select>
+        </div>
+    </div>
+
+
+
+
+
+        
+        <div class="form-group row">
+            
+        <div class="col-lg-8">
+            <button id="submit" class="btn btn-primary" >Submit</button>
+
+            {% if is_dt %}
+                <a href="/admin/menu/product_menu/delete/{{c_menu.id}}/" id="submit" class="btn btn-danger" >Delete</a>
+            {% endif %}
+
+            </div>
+        </div>
+
+        
+    </div>
+</div>
+</form>
+  
+
+    </div>
+
+
+</div>
+  
+  
+
+{% endblock body %}
+
+{% block js %}
+<script>
+    $(".mu")[4].classList.add("active");
+    const mu =$("a[href='/admin/menu/product_menu/']");
+    mu.closest(".collapse").addClass("show")
+    mu.addClass("active")
+</script>
+{% endblock js %}

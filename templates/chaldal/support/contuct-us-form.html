@@ -1,0 +1,48 @@
+<form id="contuctUsForm">
+    <div class="inputContainer">
+        <input class="has-value" name="name" type="text" value="{{name}}" /><span
+            class="input-placeholder">Name</span><span class="input-error"></span><span
+            class="input-description"></span><span class="input-extra-content"></span>
+    </div>
+    <div class="inputContainer">
+        <input class="" name="email" type="email" required="" value="{{email}}" /><span style="top: -32px;font-weight: 300;font-size: 13px!important;" class="input-placeholder">Email
+            Address</span><span class="input-error"></span><span class="input-description"></span><span
+            class="input-extra-content"></span>
+    </div>
+    <div class="inputContainer">
+        <input class="has-value" name="number" type="text" value="{% if is_auth %}0{% endif %}{% if phone2 %}{{phone2}}{% endif %}" /><span
+            class="input-placeholder">Phone Number</span><span class="input-error"></span><span
+            class="input-description"></span><span class="input-extra-content"></span>
+    </div>
+    <div class="inputContainer">
+        <textarea class="" name="message" type="text" required="" rows="3"></textarea><span
+            class="input-placeholder" style="top: -32px;font-weight: 300;font-size: 13px!important;">Message</span><span class="input-error"></span><span
+            class="input-description"></span><span class="input-extra-content"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <div class="callUs">
+        <span>Or call us</span><span>: </span><span>0{{phone}}</span>
+    </div>
+</form>
+
+<script>
+    $('#contuctUsForm button[type="submit"]').click((e)=>{
+        const form = $('#contuctUsForm')
+        e.preventDefault()
+        $.ajax({
+            type:'POST',
+            url:"{% url 'support:contuctUs' %}",
+            data:{
+                "csrfmiddlewaretoken": csrfmiddlewaretoken,
+                "data":JSON.stringify({
+                    'name':form.find('input[name="name"]').val(),
+                    'email':form.find('input[name="email"]').val(),
+                    'number':form.find('input[name="number"]').val(),
+                    'message':form.find('textarea[name="message"]').val()
+                })
+            },
+            success:(data)=>alert(data.data)
+        })
+    })
+</script>
+

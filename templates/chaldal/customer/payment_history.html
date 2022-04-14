@@ -1,0 +1,163 @@
+<section class="bodyTable">
+    <div>
+        <div class="paymentWallet">
+            <div class="headerContainer">
+                <h2 class="pagetitle">Payment History</h2>
+                <div class="headerLeft">
+                    <select>
+
+                    </select>
+                </div>
+                <div class="headerRight"></div>
+            </div>
+            <div class="balanceSummaryContainer">
+                <div class="containerTop">
+                    <div class="availableBalanceContainer">
+                        <div>
+                            <span class="availableBalanceLabel">Available Balance</span>
+                        </div>
+                        <div class="currentBalanceValue"><span>৳</span><span>0</span></div>
+                        <button><span>Details</span><span> &gt;</span></button>
+                    </div>
+                    <div class="withdrawBlock"></div>
+                </div>
+                <div class="balanceBlockContainer">
+                    <dl>
+                        <dt>Account Balance</dt>
+                        <dd><span>৳</span><span>0</span></dd>
+                    </dl>
+                    <dl>
+                        <dt>Balance on hold</dt>
+                        <dd><span>৳</span><span>0</span></dd>
+                    </dl>
+                </div>
+            </div>
+            <div class="containerMonth">
+                <ul id="monthPicker">
+                {% for mounth  in previous_ago %}
+                    <li><button class="">{{mounth}}</button></li>
+                {% endfor %}
+                   
+                </ul>
+            </div>
+            <div class="txnDataContainer">
+                <div>
+                    <div>
+                        <div class="txnGroup active">
+                            <div class="txnContainer">
+                                <table>
+                                    
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+
+    var previous_mounth = {{next_year|safe}};
+    $('body').on('click','#monthPicker li',(e)=>{
+        $('#monthPicker li button').removeClass('active');
+        e.currentTarget.children[0].classList.add('active');
+        //load records
+        console.log($('.headerLeft select').val());
+
+        user_order_ajsx($('.headerLeft select').val(),e.currentTarget.children[0].textContent);
+ 
+    })
+    var now_year = new Date();
+    var was_month_appened_on_history;
+    for(var year = 2018; year< now_year.getFullYear()+1;year++){
+        var alu = now_year.getFullYear() == year?"selected":""
+        $('.paymentWallet .headerLeft select').prepend(`
+        <option ${alu}>${year}</option>
+    `)
+    }
+    
+    var current_mounth_legnth = $('#monthPicker li').length;
+
+    $('#monthPicker').children().last().click();
+
+    $('.headerLeft select').change((e)=>{
+        console.log(e.currentTarget.value);
+        user_order_ajsx(e.currentTarget.value,$('#monthPicker li button.active').text())
+        if(now_year.getFullYear() != e.currentTarget.value){
+          
+            if(!was_month_appened_on_history){
+                previous_mounth.forEach(month =>{
+                    $('#monthPicker').append(`
+                        <li><button class="">${month}</button></li>
+                    `);
+                })
+                was_month_appened_on_history = true;
+            }
+        }else{
+            console.log('asdad');
+            for(var i=11;i>current_mounth_legnth-1;i--){
+                console.log(i);
+                $('#monthPicker li')[i].remove();
+            }
+            was_month_appened_on_history = false;
+        }
+
+
+    });
+
+    function user_order_ajsx(year,month){
+        $.ajax({
+           type:"POST",
+           url:"{% url 'customer:payment_history' %}",
+           data:{
+            "csrfmiddlewaretoken": csrfmiddlewaretoken,
+            "year":year,
+            'mounth':month
+           },
+           success:(data)=>{
+            $('.txnContainer table').empty();
+                if(data.status === 'successful' ){
+                    const table_ggg = `
+                                       
+                                    <thead>
+                                        <tr>
+                                            <th class="txnDate">Date</th>
+                                            <th class="txnDescription">Description</th>
+                                            <th class="txnAmount">Cash on delivery</th>
+                                            <th class="txnAmount">Debit</th>
+                                            <th class="txnAmount">Credit</th>
+                                            <th class="txnAmount">Balance</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="txnGroup">
+                                       
+
+                                    </tbody>
+                    `
+                    $('.txnContainer table').append(table_ggg)
+                    data.data.forEach((order)=>{
+                    const table_html = `
+                                        <tr>
+                                            <td class="txnDate">${order.Date}</td>
+                                            <td class="txnDescription">${order.Description}</td>
+                                            <td class="txnAmount"><span>৳</span><span>${order.price}</span></td>
+                                            <td class="txnAmount">
+                                                <span>-</span>
+                                            </td>
+                                            <td class="txnAmount"><span>-</span></td>
+                                            <td class="txnAmount"><span>৳</span><span>${order.price}</span></td>
+                                        </tr>
+                    `//txnRed
+                        $('tbody.txnGroup').append(table_html)
+                    })
+                }
+           }
+       })
+    }
+
+
+
+setTitle('Payment History')
+</script>

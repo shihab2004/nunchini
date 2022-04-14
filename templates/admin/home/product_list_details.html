@@ -1,0 +1,360 @@
+{% extends 'admin/home/base.html' %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'admin/home/vendors/summernote/dist/summernote-bs4.css'%}">
+
+{% endblock css %}
+
+{% block body %}
+
+<style>
+  .nhano img{
+    height: 300px;
+    width: 300px;
+  }
+</style>
+<div class="row C grid-margin">
+    <div class="col-12">
+
+
+  <div class="card">
+    <div class="card-body">
+
+          <h4 class="card-title">{{heading}}</h4>
+          
+
+          {% if main_img %}
+          
+          <div class="row">
+            <div class="col nhano"><img src="{{main_img}}" alt=""></div>
+          </div>
+
+      <div class="row m-4 ccd">
+          {% for pd in product.product_image.all %}
+          
+          <img pic_id="{{pd.id}}" src="{{pd.get_image}}" alt="profile" class="img-sm mx-2 rounded-circle">
+          {% endfor %}
+      </div>
+          {% endif %}
+
+
+       
+
+      <div class="form-group row">
+        <div class="col-lg-3">
+          <label class="col-form-label">Name</label>
+        </div>
+        <div class="col-lg-8">
+          <input value="{{product.Name}}" class="form-control" maxlength="100" name="Name" id="defaultconfig" type="text" placeholder="Product Name">
+        </div>
+      </div>
+
+
+
+      <div class="form-group row">
+        <div class="col-lg-3">
+          <label class="col-form-label">Price</label>
+        </div>
+        <div class="col-lg-8">
+          <input value="{{product.Price}}" class="form-control" maxlength="20" name="price" id="defaultconfig-2" type="number" placeholder="Product Price">
+        </div>
+      </div>
+
+
+
+      <div class="form-group row">
+        <div class="col-lg-3">
+          <label class="col-form-label">Discount Price</label>
+        </div>
+        <div class="col-lg-8">
+          <input value="{{product.discord_price}}" class="form-control" maxlength="10" name="discord_price" id="defaultconfig-3" type="number" placeholder="Product Discount Price">
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-lg-3">
+          <label class="col-form-label">Amount</label>
+        </div>
+        <div class="col-lg-8">
+          <input value="{{product.Amount}}" class="form-control" maxlength="20" name="Amount" id="defaultconfig-4" type="text" placeholder="Product Amount">
+        </div>
+      </div>
+
+
+      <div class="form-group row">
+        <div class="col-lg-3">
+          <label class="col-form-label">Store quantity</label>
+        </div>
+        <div class="col-lg-8">
+          <input value="{{product.Stoke_quantity}}" class="form-control" maxlength="20" name="Stoke_quantity" id="defaultconfig-5" type="number" placeholder="Store Quantity Available">
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-lg-3">
+          <label class="col-form-label">Menu</label>
+        </div>
+        <div class="col-lg-8">
+          <select class="form-control"name="menu" multiple>
+
+            {% for m in menu %}
+
+            <option value="{{m.id}}" {% if m.Name in my %} selected {% endif %}>{{m.Name}}</option>
+            {% endfor %}
+
+          </select>
+        </div>
+      </div>
+
+
+      <div class="form-group row">
+        <div class="col-lg-3">
+          <label class="col-form-label">City</label>
+        </div>
+        <div class="col-lg-8">
+          <select class="form-control"name="city" multiple>
+            {% for citys in city %}
+            
+            
+            
+            
+            <option value="{{citys.id}}" {% if citys.Name in cy %} selected {% endif %}>{{citys.Name}}</option>
+            {% endfor %}
+          </select>
+        </div>
+      </div>
+
+
+
+
+
+      <div class="form-group row">
+        <div class="col-lg-3">
+          <label class="col-form-label">Description</label>
+        </div>
+        <div class="col-lg-8">
+
+          <div class="row grid-margin">
+            <div class="col-lg-12">
+              <div class="card">
+                <div class="card-body">
+                  
+                  <div id="summernoteExample" style="display: none;">
+                  {{product.Description|safe}}
+               
+                  </div></div><div class="note-statusbar">  <div class="note-resizebar">    <div class="note-icon-bar"></div>    <div class="note-icon-bar"></div>    <div class="note-icon-bar"></div>  </div></div><div class="modal link-dialog" aria-hidden="false" tabindex="-1"><div class="modal-dialog">  <div class="modal-content">    <div class="modal-header">      <h4 class="modal-title">Insert Link</h4>      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>    </div>    <div class="modal-body"><div class="form-group note-form-group"><label class="note-form-label">Text to display</label><input class="note-link-text form-control  note-form-control  note-input" type="text"></div><div class="form-group note-form-group"><label class="note-form-label">To what URL should this link go?</label><input class="note-link-url form-control note-form-control note-input" type="text" value="http://"></div><label class="custom-control custom-checkbox" for="sn-checkbox-open-in-new-window"> <input type="checkbox" class="custom-control-input" id="sn-checkbox-open-in-new-window" checked=""> <span class="custom-control-indicator"></span> <span class="custom-control-description">Open in new window</span></label></div>    <div class="modal-footer"><button href="#" class="btn btn-primary note-btn note-btn-primary note-link-btn disabled" disabled="">Insert Link</button></div>  </div></div></div><div class="modal" aria-hidden="false" tabindex="-1"><div class="modal-dialog">  <div class="modal-content">    <div class="modal-header">      <h4 class="modal-title">Insert Image</h4>      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>    </div>    <div class="modal-body"><div class="form-group note-form-group note-group-select-from-files"><label class="note-form-label">Select from files</label><input class="note-image-input form-control note-form-control note-input" type="file" name="files" accept="image/*" multiple="multiple"></div><div class="form-group note-group-image-url" style="overflow:auto;"><label class="note-form-label">Image URL</label><input class="note-image-url form-control note-form-control note-input  col-md-12" type="text"></div></div>    <div class="modal-footer"><button href="#" class="btn btn-primary note-btn note-btn-primary note-image-btn disabled" disabled="">Insert Image</button></div>  </div></div></div><div class="modal" tabindex="-1" style="display: none;" aria-hidden="true"><div class="modal-dialog">  <div class="modal-content">    <div class="modal-header">      <h4 class="modal-title">Insert Video</h4>      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>    </div>    <div class="modal-body"><div class="form-group note-form-group row-fluid"><label class="note-form-label">Video URL? <small class="text-muted">(YouTube, Vimeo, Vine, Instagram, DailyMotion or Youku)</small></label><input class="note-video-url form-control  note-form-control note-input span12" type="text"></div></div>    <div class="modal-footer"><button href="#" class="btn btn-primary note-btn note-btn-primary  note-video-btn disabled" disabled="">Insert Video</button></div>  </div></div></div><div class="modal" aria-hidden="false" tabindex="-1"><div class="modal-dialog">  <div class="modal-content">    <div class="modal-header">      <h4 class="modal-title">Help</h4>      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>    </div>    <div class="modal-body" style="max-height: 300px; overflow: scroll;"><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>ENTER</kbd></label><span>Insert Paragraph</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+Z</kbd></label><span>Undoes the last command</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+Y</kbd></label><span>Redoes the last command</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>TAB</kbd></label><span>Tab</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>SHIFT+TAB</kbd></label><span>Untab</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+B</kbd></label><span>Set a bold style</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+I</kbd></label><span>Set a italic style</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+U</kbd></label><span>Set a underline style</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+SHIFT+S</kbd></label><span>Set a strikethrough style</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+BACKSLASH</kbd></label><span>Clean a style</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+SHIFT+L</kbd></label><span>Set left align</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+SHIFT+E</kbd></label><span>Set center align</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+SHIFT+R</kbd></label><span>Set right align</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+SHIFT+J</kbd></label><span>Set full align</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+SHIFT+NUM7</kbd></label><span>Toggle unordered list</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+SHIFT+NUM8</kbd></label><span>Toggle ordered list</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+LEFTBRACKET</kbd></label><span>Outdent on current paragraph</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+RIGHTBRACKET</kbd></label><span>Indent on current paragraph</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+NUM0</kbd></label><span>Change current block's format as a paragraph(P tag)</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+NUM1</kbd></label><span>Change current block's format as H1</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+NUM2</kbd></label><span>Change current block's format as H2</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+NUM3</kbd></label><span>Change current block's format as H3</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+NUM4</kbd></label><span>Change current block's format as H4</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+NUM5</kbd></label><span>Change current block's format as H5</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+NUM6</kbd></label><span>Change current block's format as H6</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+ENTER</kbd></label><span>Insert horizontal rule</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+K</kbd></label><span>Show Link Dialog</span></div>    <div class="modal-footer"><p class="text-center"><a href="http://summernote.org/" target="_blank">Summernote 0.8.8</a> · <a href="https://github.com/summernote/summernote" target="_blank">Project</a> · <a href="https://github.com/summernote/summernote/issues" target="_blank">Issues</a></p></div>  </div></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          
+        </div>
+<input type="hidden" name="checkImage" >
+
+      </div>
+
+      
+      <div class="form-group row">
+        <div class="col-lg-3">
+          <label class="col-form-label">Upload Product Image</label>
+        </div>
+        <div class="col-lg-8">
+          <input class="form-control"   name="new_image" id="defaultconfig-5" type="file">
+        </div>
+      
+    </div>
+
+
+{% if product and product.offer_image %}
+    <div class="form-group row">
+      <img src="{{product.offer_image.url}}" alt="">
+        
+      </div>
+      {% endif %}
+      
+    <div class="form-group row">
+      <div class="col-lg-3">
+        <label class="col-form-label">Upload Offer Image</label>
+      </div>
+      <div class="col-lg-8">
+        <input class="form-control"  name="new_offer_image" id="defaultconfig-5" type="file">
+      </div>
+    
+  </div>
+
+
+
+
+
+
+
+    
+    <div class="form-group row">
+        
+      <div class="col-lg-8">
+          <button id="submit" class="btn btn-primary" >Submit</button>
+
+          {% if not create %}
+            <a href="/admin/product/delete/{{product.id}}/" id="submit" class="btn btn-danger" >Delete</a>
+          {% endif %}
+
+        </div>
+    </div>
+
+    
+  </div>
+</div>
+  
+
+    </div>
+
+
+</div>
+  
+  
+
+{% endblock body %}
+
+
+
+{% block js %}
+<script src="{% static 'admin/home/js/form-validation.js'%}"></script>
+<script src="{% static 'admin/home/js/bt-maxLength.js'%}"></script>
+<script src="{% static 'admin/home/vendors/tinymce/tinymce.min.js'%}"></script>
+<script src="{% static 'admin/home/vendors/tinymce/themes/modern/theme.js'%}"></script>
+<script src="{% static 'admin/home/vendors/summernote/dist/summernote-bs4.min.js'%}"></script>
+
+
+<script src="{% static 'admin/home/js/editorDemo.js'%}"></script>
+
+
+<script>
+  $(".ccd img").click((e)=>{
+    
+    $(".nhano img")[0].src = e.currentTarget.src
+    $('input[name="checkImage"]').val(e.currentTarget.getAttribute("pic_id"))
+  })
+
+
+
+  var wo = "{{create}}";
+$("#submit").click((e)=>{
+  const profile_form = new FormData();
+ 
+
+
+  if(!$("input[name='Name']").val()){
+    alert("Product Name Required")
+  }else if(!$("input[name='price']").val()){
+    alert("Product Price Required")
+  }else if(!$("input[name='Amount']").val()){
+    alert("Product Amount Required")
+  }else if(!$("input[name='Stoke_quantity']").val()){
+    alert("Product Store quantity Required")
+  
+  }else if($("select[name='menu']").val().length == 0 ){
+    alert("Product Menu quantity Required")
+  
+  }else if($("select[name='city']").val().length == 0 ){
+    alert("Product City Required")
+  }else{
+
+  
+    profile_form.append("product_image",$('input[name="new_image"]')[0].files[0])
+  profile_form.append("product_image_offer",$('input[name="new_offer_image"]')[0].files[0])
+  profile_form.append('csrfmiddlewaretoken',"{{ csrf_token }}");
+  profile_form.append('Name',$("input[name='Name']").val())
+  profile_form.append('price',$("input[name='price']").val())
+  profile_form.append('discord_price',$("input[name='discord_price']").val())
+  profile_form.append('Amount',$("input[name='Amount']").val())
+  profile_form.append('Description',$(".note-editable").html())
+  profile_form.append('Stoke_quantity',$("input[name='Stoke_quantity']").val())
+  profile_form.append('checkImage',$("input[name='checkImage']").val())
+  profile_form.append('city',$("select[name='city']").val())
+  profile_form.append('menu',$("select[name='menu']").val())
+
+  {% if  create == "a" %}
+
+    if($('input[name="new_image"]')[0].files[0]){
+
+      $.ajax({
+   type:"POST",
+    url:"",
+    enctype: "multipart/form-data",
+    cache: false,
+    processData: false,
+    contentType: false,
+    data:profile_form,
+    beforeSend:()=>{
+      $(".card").html(`
+<div class="loader-demo-box">
+  <div class="dot-opacity-loader">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+      `)
+    }
+    success:(e)=>{
+      location.reload();
+      if(wo){
+        window.location.href = "/admin/product/" 
+      }
+    }
+
+      
+      
+  })
+
+    }else{
+      alert("Product Image Required")
+    }
+
+    {% else %}
+    
+
+      $.ajax({
+   type:"POST",
+    url:"",
+    enctype: "multipart/form-data",
+    cache: false,
+    processData: false,
+    contentType: false,
+    data:profile_form,
+    beforeSend:()=>{
+      $(".C").html(`
+<div class="loader-demo-box">
+  <div class="dot-opacity-loader">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+      `)
+    },
+    success:(e)=>{
+      location.reload();
+      if(wo){
+        window.location.href = "/admin/product/" 
+      }
+    }
+
+      
+      
+  })
+
+    
+    {% endif %}
+
+
+  }
+  
+
+
+
+})
+</script>
+{% endblock js %}

@@ -1,0 +1,114 @@
+{% extends 'admin/home/base.html' %}
+{% block body %}
+<div class="content-wrapper">
+    <div class="page-header">
+      <h3 class="page-title">
+        Order
+      </h3>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 grid-margin stretch-card">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title">
+                <i class="fas fa-shopping-cart"></i>
+                Total Order ({{count}})
+              </h4>
+            <form action="" >
+              <input type="search" class="form-control w-25" name="search" placeholder="Search By Order Id" aria-controls="order-listing">
+            </form>
+              <div class="table-responsive">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>Customer</th>
+                      <th>Order ID</th>
+                      <th>Total Price</th>
+                      <th>Status</th>
+                      <th>Report</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                      {% for product in  order %}
+                    <tr>
+                      <td class="font-weight-bold">
+                        {{product.profile.user.username}}
+                      </td>
+                      <td class="text-muted">
+                        {{product.id}}
+                      </td>
+                      <td>
+                        {{product.total_price}} ৳
+                      </td>
+                      <td>
+                          {% if product.order_status == "SF" %}
+                        <label class="badge badge-success badge-pill">Delivered</label>
+
+                            {% elif   product.order_status == "PS" %}
+                            <label class="badge badge-warning badge-pill">Processing</label>
+
+                            {% elif   product.order_status == "CN" %}
+                            <label class="badge badge-danger badge-pill">Cancelled</label>
+                            {% elif   product.order_status == "PN" %}
+                            <label class="badge badge-primary badge-pill">Pending</label>
+                        {% endif %}
+                      </td>
+                      <td>
+                          {% if product.order_report %}
+                        <label class="badge badge-info badge-pill">Repored</label>
+                        {% endif %}
+                      </td>
+
+                      <td>
+                        <a href="details/{{product.id}}/" class="btn btn-outline-dark btn-fw">Details</a>
+                      </td>
+
+
+
+                    </tr>
+
+                    {% endfor %}
+
+
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="btn-group" role="group" aria-label="Basic example">
+        <ul class="pagination rounded-flat">
+
+          {% if c_page != 1 %}
+          <li class="page-item"><a class="page-link" href="?page={{p_page}}"><i class="fa fa-chevron-left"></i></a></li>
+          {% endif %}
+
+
+          {% for page in list_of_next_page %}
+
+
+
+              <li class="page-item {% if page == c_page %}active{% endif %}"><a class="page-link" href="?page={{page}}">{{page}}</a></li>
+
+
+
+                      {% endfor %}
+
+            {% if not is_last_page %}
+                      <li class="page-item"><a class="page-link" href="?page={{n_page}}"><i class="fa fa-chevron-right"></i></a></li>
+            {% endif %}
+
+          </ul>
+      </div>
+    </div>
+
+{% endblock body %}
+{% block js %}
+<script>
+  $(".mu")[1].classList.add("active");
+</script>
+{% endblock js %}

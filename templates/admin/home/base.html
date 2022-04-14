@@ -1,0 +1,356 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>{{root.Name}} Admin</title>
+  <!-- plugins:css -->
+  <link rel="stylesheet" href="{% static 'admin/home/vendors/iconfonts/font-awesome/css/all.min.css'%}">
+  <link rel="stylesheet" href="{% static 'admin/home/vendors/css/vendor.bundle.base.css'%}">
+  <link rel="stylesheet" href="{% static 'admin/home/vendors/css/vendor.bundle.addons.css'%}">
+  <!-- endinject -->
+  <!-- plugin css for this page -->
+  <!-- End plugin css for this page -->
+  <!-- inject:css -->
+  <link rel="stylesheet" href="{% static 'admin/home/css/style.css' %}">
+  <!-- endinject -->
+  <link rel="shortcut icon" href="{{root.get_favicon}}" />
+{% block css %}{% endblock css %}
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script>
+
+ jQuery(document).ready(function( $ ) {
+        $('.counter').counterUp({
+            delay: 10,
+            time: 1000
+        });
+    });
+
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.min.js"></script>
+
+</head>
+<body>
+  <div class="container-scroller">
+    <!-- partial:partials/_navbar.html -->
+    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row default-layout-navbar">
+      <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+        <a class="navbar-brand brand-logo" href="#"><img src="{{root.get_logo}}" alt="logo"/></a>
+        <a class="navbar-brand brand-logo-mini" href="#"><img src="{{root.Mini_Logo.url}}" alt="logo"/></a>
+      </div>
+      <div class="navbar-menu-wrapper d-flex align-items-stretch">
+        <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+          <span class="fas fa-bars"></span>
+        </button>
+
+        <ul class="navbar-nav navbar-nav-right">
+
+
+          <li class="nav-item dropdown">
+            <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-toggle="dropdown">
+              <i class="fas fa-bell mx-0"></i>
+              <span class="count">{{new_notication_count}}</span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
+              <a href="/admin/notification/" class="dropdown-item">
+                <p class="mb-0 font-weight-normal float-left">You have {{new_notication_count}} new notifications
+                </p>
+                <span class="badge badge-pill badge-warning float-right">View all</span>
+              </a>
+
+
+              {% for n in new_notication %}
+              <div class="dropdown-divider"></div>
+              <a href="{{n.url}}?notifation=redirect&id={{n.id}}" class="dropdown-item preview-item">
+                {% if n.color == "P" %}
+
+                <div class="preview-thumbnail">
+                      <div class="preview-icon bg-info">
+                        <i class="far fa-envelope mx-0"></i>
+                      </div>
+                    </div>
+
+                    {% elif n.color == "G" %}
+                    <div class="preview-thumbnail">
+                      <div class="preview-icon bg-success">
+                    <i class="fa fa-check mx-0"></i>
+
+                      </div>
+                    </div>
+                    {% elif n.color == "R" %}
+                    <div class="preview-thumbnail">
+                      <div class="preview-icon bg-danger">
+                    <i class="fa fa-times mx-0"></i>
+
+                      </div>
+                    </div>
+                    {% elif n.color == "B" %}
+
+                    <div class="preview-thumbnail">
+                      <div class="preview-icon bg-warning">
+                        <i class="fas fa-user mx-0"></i>
+                      </div>
+                    </div>
+
+                    {% endif %}
+
+
+
+                <div class="preview-item-content">
+                  <h6 class="preview-subject font-weight-medium">{{n.title}}</h6>
+                  <p class="font-weight-light small-text">
+                    {{n.date|timesince}}
+                  </p>
+                </div>
+              </a>
+              {% endfor %}
+
+
+
+
+
+            </div>
+          </li>
+
+          <li class="nav-item nav-profile dropdown">
+            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
+              <img src="{{profile.profile_photo.url}}" alt="profile"/>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
+              <a class="dropdown-item" href="/admin/profile/{{profile.pk}}/">
+                <i class="far fa-user"></i>
+                Profile
+              </a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="/logout/">
+                <i class="fas fa-power-off text-primary"></i>
+                Logout
+              </a>
+            </div>
+          </li>
+
+        </ul>
+        <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+          <span class="fas fa-bars"></span>
+        </button>
+      </div>
+    </nav>
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+      <!-- partial:partials/_settings-panel.html -->
+      <div class="theme-setting-wrapper">
+        <div id="settings-trigger"><i class="fas fa-fill-drip"></i></div>
+        <div id="theme-settings" class="settings-panel">
+          <i class="settings-close fa fa-times"></i>
+          <p class="settings-heading">SIDEBAR SKINS</p>
+          <div class="sidebar-bg-options selected" id="sidebar-light-theme"><div class="img-ss rounded-circle bg-light border mr-3"></div>Light</div>
+          <div class="sidebar-bg-options" id="sidebar-dark-theme"><div class="img-ss rounded-circle bg-dark border mr-3"></div>Dark</div>
+          <p class="settings-heading mt-2">HEADER SKINS</p>
+          <div class="color-tiles mx-0 px-4">
+            <div class="tiles primary"></div>
+            <div class="tiles success"></div>
+            <div class="tiles warning"></div>
+            <div class="tiles danger"></div>
+            <div class="tiles info"></div>
+            <div class="tiles dark"></div>
+            <div class="tiles default"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- partial -->
+      <!-- partial:partials/_sidebar.html -->
+      <nav class="sidebar sidebar-offcanvas" id="sidebar">
+        <ul class="nav">
+          <li class="nav-item nav-profile">
+            <div class="nav-link">
+              <div class="profile-image">
+                <img src="{{profile.profile_photo.url}}" alt="image"/>
+              </div>
+              <div class="profile-name">
+                <p class="name">
+                  Welcome {{profile.user.username}}
+                </p>
+                <p class="designation">
+                  Super Admin
+                </p>
+              </div>
+            </div>
+          </li>
+          <li class="nav-item mu">
+            <a class="nav-link" href="/admin">
+              <i class="fa fa-home menu-icon"></i>
+              <span class="menu-title">Dashboard</span>
+            </a>
+          </li>
+          <li class="nav-item mu">
+            <a class="nav-link" href="/admin/order/?page=1">
+              <i class=" fas fa-shopping-cart menu-icon"></i>
+              <span class="menu-title">Order</span>
+            </a>
+          </li>
+          <li class="nav-item mu">
+            <a class="nav-link" href="/admin/product/">
+              <i class="fas fa-cubes menu-icon"></i>
+              <span class="menu-title">Products</span>
+            </a>
+          </li>
+
+          <li class="nav-item mu">
+            <a class="nav-link" href="/admin/mail/">
+              <i class="fas fa-regular fa-envelope menu-icon"></i>
+              <span class="menu-title">Mail {% if new_mail %}({{new_mail}}){% endif %}</span>
+            </a>
+          </li>
+
+
+
+
+          <li class="nav-item mu">
+            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+              <i class="fa fa-align-left menu-icon"></i>
+              <span class="menu-title">Menu</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="ui-basic">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="/admin/menu/product_menu/">Product Menu</a></li>
+                <li class="nav-item"> <a class="nav-link" href="/admin/menu/home/">Home Manu</a></li>
+                <li class="nav-item"> <a class="nav-link" href="/admin/menu/help_more/">Help & More Page Manu</a></li>
+                <li class="nav-item"> <a class="nav-link" href="/admin/menu/footer/">Footer Menu</a></li>
+                <li class="nav-item"> <a class="nav-link" href="/admin/menu/footer_sub/">Footer Sub Menu</a></li>
+              </ul>
+              </div>
+          </li>
+
+          <li class="nav-item mu">
+            <a class="nav-link" href="/admin/root/">
+              <i class="fa fa-cog menu-icon"></i>
+              <span class="menu-title">Root</span>
+            </a>
+          </li>
+
+
+          <li class="nav-item mu">
+            <a class="nav-link" href="/admin/chat/">
+              <i class="fa fa-bolt menu-icon"></i>
+              <span class="menu-title">Chat</span>
+            </a>
+          </li>
+
+
+          <li class="nav-item mu">
+            <a class="nav-link" href="/admin/delivery_man/">
+              <i class="fa fa-male menu-icon"></i>
+              <span class="menu-title">Our Delivery man's</span>
+            </a>
+          </li>
+
+
+
+
+
+          <li class="nav-item mu">
+            <a class="nav-link" data-toggle="collapse" href="#ui-basi" aria-expanded="false" aria-controls="ui-basic">
+              <i class="fa fa-users menu-icon"></i>
+              <span class="menu-title">{{root.Name}} Business</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="ui-basi">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="/admin/business/client/">Clients</a></li>
+                <li class="nav-item"> <a class="nav-link" href="/admin/business/corporate/">Corporate</a></li>
+                <li class="nav-item"> <a class="nav-link" href="/admin/business/request/">Corporate Customer Request</a></li>
+
+              </ul>
+              </div>
+          </li>
+
+          <li class="nav-item mu">
+            <a class="nav-link" data-toggle="collapse" href="#ui-ba" aria-expanded="false" aria-controls="ui-basic">
+              <i class="fa fa-location-arrow menu-icon"></i>
+              <span class="menu-title">Location</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="ui-ba">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="/admin/city/">City</a></li>
+                <li class="nav-item"> <a class="nav-link" href="/admin/area/">Area</a></li>
+              </ul>
+              </div>
+          </li>
+
+          <li class="nav-item mu">
+            <a class="nav-link" data-toggle="collapse" href="#ui-bas" aria-expanded="false" aria-controls="ui-basic">
+              <i class="fa fa-plus-circle menu-icon"></i>
+              <span class="menu-title">Others</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="ui-bas">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="/admin/notification/">Notification</a></li>
+                <li class="nav-item"> <a class="nav-link" href="/admin/d_feature/">Delivery Feature</a></li>
+                <li class="nav-item"> <a class="nav-link" href="/admin/p_request/">Product Request</a></li>
+                <li class="nav-item"> <a class="nav-link" href="/admin/team/">Team Members</a></li>
+                <li class="nav-item"> <a class="nav-link" href="/admin/offer_code/">Offer Code</a></li>
+              </ul>
+              </div>
+          </li>
+
+
+
+        </ul>
+      </nav>
+      <!-- partial -->
+         <!-- main
+
+
+
+
+        -panel ends -->
+        <div class="main-panel">
+        {% block body %}{% endblock body %}
+          <!-- partial:partials/_footer.html -->
+    <footer class="footer">
+      <div class="d-sm-flex justify-content-center justify-content-sm-between">
+        <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © {{copyRight}}. All rights reserved.</span>
+        <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i class="far fa-heart text-danger"></i></span>
+      </div>
+    </footer>
+    <!-- partial -->
+      </div>
+
+    </div>
+    <!-- page-body-wrapper ends -->
+  </div>
+  <!-- container-scroller -->
+
+  <!-- plugins:js -->
+  <script src="{% static 'admin/home/vendors/js/vendor.bundle.base.js'%}"></script>
+  <script src="{% static 'admin/home/vendors/js/vendor.bundle.addons.js'%}"></script>
+  <!-- endinject -->
+  <!-- Plugin js for this page-->
+  <!-- End plugin js for this page-->
+  <!-- inject:js -->
+  <script src="{% static 'admin/home/js/off-canvas.js'%}"></script>
+  <script src="{% static 'admin/home/js/hoverable-collapse.js'%}"></script>
+  <script src="{% static 'admin/home/js/misc.js'%}"></script>
+  <script src="{% static 'admin/home/js/settings.js'%}"></script>
+  <!-- endinject -->
+  <!-- Custom js for this page-->
+
+
+  <!-- End custom js for this page-->
+
+{% block js %}{% endblock js %}
+
+</body>
+
+
+</html>
+

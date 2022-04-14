@@ -1,0 +1,102 @@
+{% extends 'admin/home/base.html' %}
+{% load static %}
+
+{% block body %}
+<div class="content-wrapper">
+    <div class="page-header">
+      <h3 class="page-title">
+        Footer Menu
+      </h3>
+    </div>
+    <div class="row">
+
+        <div class="col-md-12 grid-margin stretch-card">
+
+            <div class="card">
+                <div class="card-body">
+                  
+                  
+                  <div class="d-flex justify-content-between mb-4"><h4 class="card-title">Total Footer Menu ({{menu.count}})</h4> <a href="create/" class="btn h-25 btn-primary">+ Create new</a></div>
+
+
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="table-responsive">
+                        <div id="order-listing_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4 no-footer">
+<div class="row"><div class="col-sm-12">
+                                    <table id="order-listing" class="table dataTable no-footer" role="grid"
+                                     aria-describedby="order-listing_info">
+
+
+                          <thead>
+                            <tr role="row">
+                                <th class="sorting" style="width: 84.75px;">Name</th>
+                                <th class="sorting"  style="width: 56.4219px;">Action</th>
+                            </tr>
+                            </thead>
+                          <tbody>
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            {% for m in menu %}
+                            <tr role="row" class="odd">
+     
+                                <td>{{m.name}}
+                                </td>
+
+
+                                  <td>
+                                    <a href="details/{{m.id}}/" class="btn btn-outline-primary">View</a>
+                                  </td>
+                            </tr>
+                            {% endfor %}
+
+
+
+
+
+
+
+                         
+
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        </div>
+        
+      </div>
+   
+    </div>
+    </div>
+    </div>
+    </div>
+    
+{% endblock body %}
+
+{% block js %}
+<script src="{% static 'admin/home/js/data-table.js'%}"></script>
+ <script>
+   {% if is_sub %}
+   $(".mu")[4].classList.add("active");
+   const mu =$("a[href='/admin/menu/footer_sub/']");
+   mu.closest(".collapse").addClass("show")
+   mu.addClass("active")
+   {% else %}
+   $(".mu")[4].classList.add("active");
+     const mu =$("a[href='/admin/menu/footer/']");
+     mu.closest(".collapse").addClass("show")
+     mu.addClass("active")
+   {% endif %}
+  
+ </script>
+{% endblock js %}

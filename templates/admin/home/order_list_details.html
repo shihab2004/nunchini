@@ -1,0 +1,270 @@
+{% extends 'admin/home/base.html' %}
+{% load static %}
+{% block body %}
+<div class="content-wrapper">
+    <div class="page-header">
+      <h3 class="page-title">
+        Profile
+      </h3>
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="#">Sample Pages</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Profile</li>
+        </ol>
+      </nav>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-lg-4">
+                <div class="border-bottom text-center pb-4">
+                  <img src="{% if order.profile.profile_photo %}{{order.profile.profile_photo.url}}{% else %}/media/user.jpg{% endif %}" alt="profile" class="img-lg rounded-circle mb-3">
+                  {% if order.Instructions %}
+                  <p  class="my-3"><b>Order Instructions: </b>{{order.Instructions}}</p>
+                  {% endif %}  
+
+               
+                </div>
+           
+                <div class="border-bottom py-4">
+                        Order Info
+                    <div class="py-4">
+                        <p class="clearfix">
+                          <span class="float-left">
+                            ID
+                          </span>
+                          <span class="float-right text-muted">
+                            #{{order.id}}
+                          </span>
+                        </p>
+
+
+                        {% if order.home_adress %}
+                        <p class="clearfix">
+                          <span class="float-left">
+                            Area
+                          </span>
+                          <span class="float-right text-muted">
+                            {{order.home_adress.area.name}}
+                          </span>
+                        </p>
+                        <p class="clearfix">
+                          <span class="float-left">
+                            City
+                          </span>
+                          <span class="float-right text-muted">
+                            {{order.home_adress.city.Name}}
+                          </span>
+                        </p>
+                        <p class="clearfix">
+                          <span class="float-left">
+                            Delivery Adress
+                          </span>
+                          <span class="float-right text-muted">
+                            {{order.home_adress.adress}}
+                          </span>
+                        </p>
+                        <p class="clearfix">
+                          <span class="float-left">
+                            Customer Name
+                          </span>
+                          <span class="float-right text-muted">
+                            {{order.home_adress.delivery_parson_name}}
+                          </span>
+                        </p>
+                        <p class="clearfix">
+                          <span class="float-left">
+                            Customer Phone Number
+                          </span>
+                          <span class="float-right text-muted">
+                            0{{order.home_adress.Phone}}
+                          </span>
+                        </p>
+
+                        {% endif %}
+
+                        {% if order.geo_location  %}
+                        <p class="clearfix">
+                          <span class="float-left">
+                            Geo Location
+                          </span>
+                          <span class="float-right text-muted">
+                            <a target="_" href="https://www.google.com/maps/search/?api=1&query={{order.geo_location.latitude}}%2C{{order.geo_location.longitude}}">{{order.geo_location.latitude}} lat, {{order.geo_location.longitude}} long</a>
+                          </span>
+                        </p>
+                        {% endif %}
+
+
+                         <p class="clearfix">
+                          <span class="float-left">
+                            IP Adress
+                          </span>
+                          <span class="float-right text-muted">
+                            {{order.track_ip}}
+                          </span>
+                        </p>
+                        
+                        <p class="clearfix">
+                          <span class="float-left">
+                            Delivery Man
+                          </span>
+                          <span class="float-right text-muted">
+                            {{order.delivery_man.name}}
+                          </span>
+                        </p>
+                        <p class="clearfix">
+                          <span class="float-left">
+                            Order Time
+                          </span>
+                          <span class="float-right text-muted">
+                            {{order.ordered_time}}
+                          </span>
+                        </p>
+                        <p class="clearfix">
+                          <span class="float-left">
+                            Delivery Time
+                          </span>
+                          <span class="float-right text-muted">
+                            {{order.delivery_time}}
+                          </span>
+                        </p>
+                        
+                      </div>
+                      
+               
+                </div>
+
+
+                <div class="py-4">
+                  <p class="clearfix">
+                    <span class="float-left">
+                        Sub Total
+                    </span>
+                    <span class="float-right text-muted">
+                      {{order.product_total}}৳
+                    </span>
+                  </p>
+                  <p class="clearfix">
+                    <span class="float-left">
+                        Delivery Charge
+                    </span>
+                    <span class="float-right text-muted">
+                      {{order.order_delivery_charge}}৳
+                    </span>
+                  </p>
+                  <p class="clearfix">
+                    <span class="float-left">
+                        Discont
+                    </span>
+                    <span class="float-right text-muted">
+                     - {{order.dp}}৳
+                    </span>
+                  </p>
+                  <p class="clearfix">
+                    <span class="float-left">
+                      Total Price
+                    </span>
+                    <span class="float-right text-muted">
+                      {{order.total_price}}৳
+                    </span>
+                  </p>
+                
+                 
+                </div>
+                {% if  not order.order_status == "CN" and  not order.order_status == "SF" %}
+                Status: 
+                <form action="" method="post">
+                    {% csrf_token %}
+                <select name="status" class="form-control my-2">
+                    <option {% if order.order_status == "PN" %}selected{% endif %} value="PN">Pending</option>
+                    <option {% if order.order_status == "PS" %}selected{% endif %} value="PS">Processing</option>
+                    <option {% if order.order_status == "SF" %}selected{% endif %} value="SF">Successful</option>
+                    <option {% if order.order_status == "CN" %}selected{% endif %} value="CN">Cancelled</option>
+                </select>
+
+
+                <div class="form-group">
+                  <label>Select Delivery Man:</label></br>
+                  <select name="dvm" class="js-example-basic-single w-100 select2-hidden-accessible" tabindex="-1" aria-hidden="true">
+                    {% for i in dvms %}
+                    <option value="{{i.id}}">{{i.name}}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+                <button type="submit" class="btn btn-primary">submit</button>
+                <a target="_b" href="/admin/order/details/{{order.id}}/pdf/" class="ml-5 btn btn-outline-dark text-danger">View PDF</a>
+              </form>
+            {% else %}
+            Status: {{order.get_order_status_display}}
+            {% endif %}
+              </div>
+              <div class="col-lg-8 pl-lg-5">
+                <div class="d-flex justify-content-between">
+                  <div>
+                    <h3>{{order.profile.user}}</h3>
+                    {% if order.order_report %}<p><b>Report: </b>{{order.get_order_report_display}}</p>{% endif %}
+                    <div class="d-flex align-items-center">
+                      <h5 class="mb-0 mr-2 text-muted">Order Star gave</h5>
+                      <div class="br-wrapper br-theme-css-stars">
+                         <div class="br-widget">
+                             {% for star in order.star_range  %}
+                             <a href="#"  d class="br-selected br-current"></a>
+                             {% endfor %}
+                             {% for star in order.nun_star_range  %}
+                             <a href="#"  class=""></a>
+                             {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+                  <div>
+                  
+                  </div>
+                </div>
+                <div class="mt-4 py-2 border-top border-bottom">
+                  <ul class="nav profile-navbar">
+                    <li class="nav-item">
+                      <a class="nav-link" href="#">
+                        <i class="fab fa-apple"></i>
+                        Product Info
+                      </a>
+                    </li>
+                 
+                  </ul>
+                </div>
+                <div class="profile-feed">
+ 
+                {% for pd in order.product_info %}
+                  <div class="d-flex align-items-start profile-feed-item">
+                    <img src="{{pd.img}}" alt="profile" class="img-sm rounded-circle">
+                    <div class="ml-4">
+                      <h6>
+                        {{pd.name}}
+                      
+                      </h6>
+                      <p>
+                        Price: {{pd.price}}৳ </br>
+                        Amount: {{pd.amount}} </br>
+                        Quantity:{{pd.quantity}}
+                      </p>
+                   
+                    </div>
+                  </div>
+                {% endfor %}
+
+                
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock body %}
+
+{% block js %}
+<script src="{% static 'admin/home/js/select2.js'%}"></script>
+{% endblock js %}

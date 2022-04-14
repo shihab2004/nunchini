@@ -1,0 +1,116 @@
+{% extends 'admin/home/base.html' %}
+{% load static %}
+
+{% block body %}
+
+
+<div class="row grid-margin">
+    <div class="col-12">
+
+
+<form action="{{acUrl|safe}}" enctype="multipart/form-data" method="post">
+    {% csrf_token %}
+    <div class="card">
+        <div class="card-body">
+
+            <h4 class="card-title">{{heading}}</h4>
+ 
+        
+            {% if is_dt %}
+            <div class="form-group row">
+                <div class="col-lg-3">
+                <label class="col-form-label">Profile</label>
+                </div>
+                <div class="col-lg-8">
+                   <a href="/admin/profile/{{obj.profile.id}}">{{obj.profile}}</a>
+                </div>
+            </div>
+    
+            
+            {% endif %}
+        
+            
+
+        <div class="form-group row">
+            <div class="col-lg-3">
+            <label class="col-form-label">Special Code</label>
+            </div>
+            <div class="col-lg-8">
+                <input {% if not is_dt %}required{% endif %} value="{{obj.code}}"  class="form-control"  name="code"  type="text">
+            </div>
+        </div>
+    
+        
+      
+        <div class="form-group row">
+            <div class="col-lg-3">
+            <label class="col-form-label">Percentage</label>
+            </div>
+            <div class="col-lg-8">
+                <input {% if not is_dt %}required{% endif %} value="{{obj.discount_parsent}}"  class="form-control"  name="dp"  type="number">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-lg-3">
+            <label class="col-form-label">Expiry date</label>
+            </div>
+            <div class="col-lg-8">
+                <input {% if not is_dt %}required{% endif %} value="{{obj.expiry_date|date:"Y-m-d"}}T{{obj.expiry_date|date:"H:i"}}"  class="form-control"  name="ex_date"   type="datetime-local">
+            </div>
+        </div>
+
+      
+
+
+    
+
+    
+     
+
+ 
+   
+
+
+
+    
+
+        
+    <div class="form-group row">
+            
+        <div class="col-lg-8">
+            <button id="submit" class="btn btn-primary" >Submit</button>
+        </form>
+
+            {% if is_dt %}
+            <form class="d-inline" method="post" action="{{ac_to_R|safe}}">
+                {% csrf_token %}
+                <input type="hidden" name="id" value="{{obj.id}}" />
+                <button type="submit" class="btn btn-danger" >Delete</button>
+            </form>
+            {% endif %}
+
+            </div>
+        </div>
+
+    </div>
+</div>
+  
+
+    </div>
+
+
+</div>
+  
+  
+
+{% endblock body %}
+{% block js %}
+<script>
+    $(".mu")[9].classList.add("active");
+    const mu =$("a[href='/admin/offer_code/']");
+    mu.closest(".collapse").addClass("show")
+    mu.addClass("active")
+</script>
+{% endblock js %}
+

@@ -1,0 +1,278 @@
+<section class="bodyTable">
+    <div>
+        <div id="corporate-landing" class="corporate-landing">
+            <div class="wrapper">
+                <section class="banner">
+                    <div class="banner-content">
+                        <h1></h1>
+                        <p></p>
+                        <button class="sign-up-button btn">Sign Up for Chaldal Corporate</button>
+                    </div>
+                    <div class="why-chaldal-corporate">Why Choose Chaldal Corporate?</div>
+                </section>
+                <section id="why-chaldal-corporate">
+                    <div class="section-content">
+                        <h2 style="color:#000">Why Choose Chaldal Corporate?</h2>
+                        <ul class="chaldal-corporate-benefits">
+
+
+                        </ul>
+                    </div>
+                </section>
+                <section class="corporate-logos">
+                    <h2>Our Clients</h2>
+                    <ul class="corporate-logos-container">
+
+
+                    </ul>
+                </section>
+
+
+                <section class="corporate-registration">
+                    <div class="corporate-registration-content">
+                        <h2>Become a Corporate Customer</h2>
+                        <div class="contact-for-more-content">
+                            <h3>To Know More</h3>
+                            <p class="email"><svg width="24px" height="24px"
+                                    style="fill:rgba(0,0,0,.5);stroke:rgba(0,0,0,.5);display:inline-block;vertical-align:middle;"
+                                    viewBox="0 0 100 100">
+                                    <g>
+                                        <path
+                                            d="m32.805 52.016c1.293-1.207 1.2969-3.1797 0.007812-4.3867l-31.262-29.281c-0.98828 1.6641-1.5508 3.6055-1.5508 5.6797v51.922c0 1.9453 0.49219 3.7734 1.375 5.3672z">
+                                        </path>
+                                        <path
+                                            d="m63.785 55.516c-1.2891-1.207-3.4062-1.2109-4.7031-0.003906l-6.5938 6.1484c-1.2891 1.207-3.4102 1.207-4.6953-0.003906l-6.8945-6.4609c-1.2852-1.207-3.4023-1.207-4.6992-0.007812l-31.801 29.637c1.8516 1.418 4.1562 2.2656 6.6641 2.2656h77.879c2.3711 0 4.5703-0.76562 6.3672-2.043z">
+                                        </path>
+                                        <path
+                                            d="m98.629 18.66l-31.438 29.305c-1.2891 1.2031-1.2969 3.1758-0.007812 4.3867l31.262 29.281c0.98828-1.6719 1.5508-3.6133 1.5508-5.6836l0.003906-51.922c0-1.9414-0.5-3.7734-1.3711-5.3672z">
+                                        </path>
+                                        <path
+                                            d="m47.793 55.312c1.293 1.207 3.4062 1.2109 4.7031 0.007812l43.102-40.172c-1.8477-1.4102-4.1523-2.2461-6.6602-2.2461h-77.879c-2.375 0-4.5703 0.75-6.375 2.0312z">
+                                        </path>
+                                    </g>
+                                </svg><span>Email us at</span></p>
+                            <p class="phone"><svg width="24px" height="24px"
+                                    style="fill:rgba(0,0,0,.5);stroke:rgba(0,0,0,.5);display:inline-block;vertical-align:middle;"
+                                    viewBox="0 0 100 100">
+                                    <path
+                                        d="m28.988 44.66c8.4219 13.652 14.039 19.113 28.074 27.305l11.23-10.922c5.7344 1.4258 12.977 3.3828 18.785 3.3594 1.9375-0.015625 3.8672 1.8672 3.918 3.668l-0.12891 17.039c-0.007813 1.8828-1.9531 3.7773-3.9258 3.8906-48.387 0.082031-76.359-27.125-77.934-74.277-0.16016-1.8203 1.7852-3.7148 3.7227-3.7227h19.188c2.1172-0.078125 4.0469 1.7969 4.5078 2.9414-0.49219 6.3906 2.293 14.184 3.793 19.797z">
+                                    </path>
+                                </svg><span>Call us on</span></p>
+                        </div>
+
+
+
+                        <form>
+                            <div class="inputContainer"><input class="" name="name" type="text" required=""
+                                    value=""><span class="input-placeholder">Business Name</span><span
+                                    class="input-error"></span><span class="input-description"></span><span
+                                    class="input-extra-content"></span></div>
+                            <div class="inputContainer"><input class="" name="number" type="text" required=""
+                                    value=""><span class="input-placeholder">Phone Number</span><span
+                                    class="input-error"></span><span class="input-description"></span><span
+                                    class="input-extra-content"></span></div>
+                            <div class="inputContainer"><input class="" name="contactname" type="text" value=""><span
+                                    class="input-placeholder">Representative Name</span><span
+                                    class="input-error"></span><span class="input-description"></span><span
+                                    class="input-extra-content"></span></div>
+                            <div class="inputContainer"><input class="" name="email" type="email" value=""><span
+                                    class="input-placeholder">Email Address</span><span class="input-error"></span><span
+                                    class="input-description"></span><span class="input-extra-content"></span></div>
+                            <button class="btn btn-primary" type="submit">Submit</button>
+                        </form>
+                    </div>
+                </section>
+
+                <script>
+                    $.ajax({
+                        type:"GET",
+                        url:"{%url 'corporate:index'%}?json=True",
+                        success:(data)=>{
+                            $('#corporate-landing  section.banner').css('background-image',`url(${data.data.root.image})`)
+                            $('.banner-content > h1').text(data.data.root.root_title)
+                            $('.banner-content > p').html(data.data.root.description)
+                            data.data.clients.forEach(client => {
+                                $('.corporate-logos-container').append(`
+                                    <li class="corporate-logo-item">
+                                        <img src="${client.image}" alt="${client.name}">
+                                    </li>
+                                `)
+                            });
+                            data.data.corporates.forEach(corporate => {
+                                $('.chaldal-corporate-benefits').append(`
+                                <li class="corporate-benefits-item">
+                                    ${corporate.svg}
+                                    <h4>${corporate.title}</h4>
+                                    <p>${corporate.description}</p>
+                                 </li>
+                                `)
+                            });
+
+                            $('.corporate-registration-content .email').append(`
+                            <a href="mailto:${data.data.root.email}">${data.data.root.email}</a>
+                            `)
+                            $('.corporate-registration-content .phone').append(`
+                            <a href="tel:0${data.data.root.mobile}">0${data.data.root.mobile}</a>
+                            `)
+
+                            if(data.data.corporate_customer){
+                                console.log(data.data.corporate_customer);
+                                const a = data.data.corporate_customer;
+                                const form = $('form');
+                                form.find('input[name="name"]').val(a.Business_Name)
+                                form.find('input[name="number"]').val("0"+a.Phone_Number)
+                                form.find('input[name="contactname"]').val(a.Representative_Name)
+                                form.find('input[name="email"]').val(a.Email_Address)
+                                form.find('button').attr('disabled','disabled');
+                                $('form .input-placeholder').css('top',-32)
+                            }
+                        }
+                    })
+                    $('form input').focus((e)=>{
+                        span_input_up(e.currentTarget);
+                    })
+                    $('form input').focusout((e)=>{
+                        if(!e.currentTarget.value){
+                            span_input_down(e.currentTarget)
+                        }
+                    })
+                    $('form').submit((e)=>{
+                        e.preventDefault();
+                        const form = $('form');
+
+                        $.ajax({
+                            type:"POST",
+                            url:"",
+                            data:{
+                                "Business_Name":form.find('input[name="name"]').val(),
+                                "Phone_Number":form.find('input[name="number"]').val(),
+                                "Representative_Name":form.find('input[name="contactname"]').val(),
+                                "Email_Address":form.find('input[name="email"]').val(),
+                                "csrfmiddlewaretoken": csrfmiddlewaretoken
+                            },
+                            success:(data)=>{
+                                console.log(data);
+                                var structions = `
+                                        <div class="cancelContainer oldinstak">
+
+                                            <div class="ModalDialogContainer orderCancelPrompt">
+                                            <div style="" class="ModalDialog">
+                                                <div class="ModalDialogContent">
+                                                <div>
+                                                    <div class="modal-text">
+                                                    <h1>${data.title}</h1>
+                                                    <p style='margin: 20px;'>${data.data}</p>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                    <button class="btnPrimary">Close</button>
+                                                    </div>
+                                                </div>
+                                                </div>
+                                            </div>
+                                            </div>
+                                        </div>
+                                        `
+                              $('body').append(structions)
+                              $('.oldinstak .btnPrimary').click(()=>{
+                                $('.oldinstak').remove()
+                              })
+
+                            }
+
+
+                        })
+                    })
+
+                    function span_input_up(selector){
+                        selector.parentNode.querySelector(".input-placeholder").style.top = -32+'px';
+
+                    }
+                    function span_input_down(selector){
+                        selector.parentNode.querySelector(".input-placeholder").style.top = 0+'px';
+                    }
+                    $('form input').change((e)=>{
+                        if(e.currentTarget.value){
+                            span_input_up(e.currentTarget)
+                        }else{
+                            span_input_down(e.currentTarget)
+                        }
+                    })
+                    $('.why-chaldal-corporate').click(()=>{
+                        $('html').animate({
+                                scrollTop: $('#why-chaldal-corporate').offset().top- 55
+                            }, 800)
+                    })
+                    $('.sign-up-button').click(()=>{
+                        $('html').animate({
+                                scrollTop: $('.corporate-registration').offset().top- 54
+                            }, 1000)
+                    })
+                    if(window.innerWidth < 768){
+                        $('.hamBergerMenuIcon.change').click();
+                    }else{
+                        $('.navOpen .hamburgerMenu').click();
+                    }
+                </script>
+
+
+
+                <footer id="footer">
+                    <div class="footerTop">
+                        <h2 class="footerLogo"><img class="chaldal_logo"
+                                style="background-image:url({{root.get_logo}});background-repeat:no-repeat;"
+                                src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                                alt="Chaldal.com"></h2>
+                        <p>{{root.Description}}</p>
+                    </div>
+
+                    <div class="footerBottom">
+                        <ul class="footerNav">
+                            {% for item in footer_menu %}
+                                {% for menu in item.menu.all %}
+                                <li><a mat="{{menu.get_url}}">{{menu.name}}</a></li>
+                                {%endfor%}
+                            {%endfor%}
+                        </ul>
+                        <ul class="footerSocial">
+                            <li><a href="https://www.facebook.com/chaldalcom" target="_blank"><span> </span><svg
+                                        width="35px" height="35px"
+                                        style="fill:#000;stroke:#000;display:inline-block;vertical-align:middle;"
+                                        viewBox="0 0 430.113 430.114">
+                                        <path id="Facebook"
+                                            d="M158.081,83.3c0,10.839,0,59.218,0,59.218h-43.385v72.412h43.385v215.183h89.122V214.936h59.805 c0,0,5.601-34.721,8.316-72.685c-7.784,0-67.784,0-67.784,0s0-42.127,0-49.511c0-7.4,9.717-17.354,19.321-17.354 c9.586,0,29.818,0,48.557,0c0-9.859,0-43.924,0-75.385c-25.016,0-53.476,0-66.021,0C155.878-0.004,158.081,72.48,158.081,83.3z">
+                                        </path>
+                                    </svg><span> </span></a></li>
+                            <li><a href="https://www.youtube.com/channel/UCbMfF6hcthzQ2swy4R0wk-g"
+                                    target="_blank"><span> </span><svg width="45px" height="45px"
+                                        style="fill:#000;stroke:#000;display:inline-block;vertical-align:middle;"
+                                        viewBox="0 0 100 100">
+                                        <path
+                                            d="m91.668 12.5h-83.336c-4.5977 0-8.332 3.7344-8.332 8.332v58.332c0 4.6016 3.7344 8.332 8.332 8.332h83.332c4.6016 0 8.332-3.7344 8.332-8.332l0.003906-58.332c0-4.5977-3.7344-8.332-8.332-8.332zm-50 54.168v-33.336l25 16.668z">
+                                        </path>
+                                    </svg><span> </span></a></li>
+                            <li><a href="mailto:info@chaldal.com" target="_blank"><span> </span><svg width="45px"
+                                        height="45px"
+                                        style="fill:#000;stroke:#000;display:inline-block;vertical-align:middle;"
+                                        viewBox="0 0 100 100">
+                                        <g>
+                                            <path
+                                                d="m32.805 52.016c1.293-1.207 1.2969-3.1797 0.007812-4.3867l-31.262-29.281c-0.98828 1.6641-1.5508 3.6055-1.5508 5.6797v51.922c0 1.9453 0.49219 3.7734 1.375 5.3672z">
+                                            </path>
+                                            <path
+                                                d="m63.785 55.516c-1.2891-1.207-3.4062-1.2109-4.7031-0.003906l-6.5938 6.1484c-1.2891 1.207-3.4102 1.207-4.6953-0.003906l-6.8945-6.4609c-1.2852-1.207-3.4023-1.207-4.6992-0.007812l-31.801 29.637c1.8516 1.418 4.1562 2.2656 6.6641 2.2656h77.879c2.3711 0 4.5703-0.76562 6.3672-2.043z">
+                                            </path>
+                                            <path
+                                                d="m98.629 18.66l-31.438 29.305c-1.2891 1.2031-1.2969 3.1758-0.007812 4.3867l31.262 29.281c0.98828-1.6719 1.5508-3.6133 1.5508-5.6836l0.003906-51.922c0-1.9414-0.5-3.7734-1.3711-5.3672z">
+                                            </path>
+                                            <path
+                                                d="m47.793 55.312c1.293 1.207 3.4062 1.2109 4.7031 0.007812l43.102-40.172c-1.8477-1.4102-4.1523-2.2461-6.6602-2.2461h-77.879c-2.375 0-4.5703 0.75-6.375 2.0312z">
+                                            </path>
+                                        </g>
+                                    </svg><span> </span></a></li>
+                        </ul>
+                    </div>
+                </footer>
+            </div>
+        </div>
+    </div>
+</section>

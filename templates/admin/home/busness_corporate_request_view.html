@@ -1,0 +1,79 @@
+{% extends 'admin/home/base.html' %}
+{% load static %}
+
+{% block body %}
+
+<div class="row grid-margin">
+    <div class="col-12">
+
+    <div class="card">
+        <div class="card-body">
+
+            <h4 class="card-title">{{obj.profile}}'s Corporate Request</h4>
+            
+
+        
+            <div class="form-group row">
+                <label  class="col-sm-3 col-form-label">Name:</label>
+                <div class="col-sm-9">
+                 {{obj.profile}}
+                </div>
+              </div>
+        
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Business Name:</label>
+                <div class="col-sm-9">
+                 {{obj.Business_Name}}
+                </div>
+              </div>
+        
+        
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Phone Number</label>
+                <div class="col-sm-9">
+                 0{{obj.Phone_Number}}
+                </div>
+              </div>
+        
+        
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Representative Name</label>
+                <div class="col-sm-9">
+                 {{obj.Representative_Name}}
+                </div>
+              </div>
+        
+        
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Email</label>
+                <div class="col-sm-9">
+                    <a href= "mailto:{{obj.Email_Address}}">{{obj.Email_Address}}</a>
+                </div>
+              </div>
+        
+        
+
+
+    
+
+ 
+    </div>
+</div>
+
+
+    </div>
+
+
+</div>
+  
+  
+
+{% endblock body %}
+{% block js %}
+<script>
+    $(".mu")[8].classList.add("active");
+    const mu =$("a[href='/admin/business/request/']");
+    mu.closest(".collapse").addClass("show")
+    mu.addClass("active")
+</script>
+{% endblock js %}

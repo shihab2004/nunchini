@@ -1,0 +1,189 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+  style="width:100%;font-family:'open sans', 'helvetica neue', helvetica, arial, sans-serif;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;padding:0;Margin:0;">
+
+<head>
+  <meta charset="UTF-8">
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+  <meta name="x-apple-disable-message-reformatting">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta content="telephone=no" name="format-detection">
+  <title>New email template 2019-11-28</title>
+{% load root %}
+<style>
+  .jin .row{
+    background: gold;
+    text-align: center;
+  }
+  .jin img{
+    width: 70px;
+    height: 70px;
+  }
+  .lmv{
+    padding: 10px 0px;
+  }
+  .profile{
+    width: 150px;
+    height: 150px;
+    border-radius:50% ;
+  }
+  .bg-dark{
+    background-color: #000;
+  }
+  .my-5{
+    margin: 30px 0px;
+  }
+  .text-danger {
+    color: #dc3545!important;
+}
+  .my-2{
+    margin: 17px 0px;
+  }
+
+.row {
+
+    flex-wrap: wrap;
+    margin-top: calc(var(--bs-gutter-y) * -1);
+    margin-right: calc(var(--bs-gutter-x) * -.5);
+    margin-left: calc(var(--bs-gutter-x) * -.5);
+}
+.justify-content-between {
+    justify-content: space-between!important;
+}
+.d-flex {
+    display: flex!important;
+}
+
+.justify-content-between {
+    justify-content: space-between!important;
+}
+.text-white {
+    color: #fff!important;
+}
+
+.text-center {
+    text-align: center!important;
+}
+.my-5 {
+    margin-top: 3rem!important;
+    margin-bottom: 3rem!important;
+}
+.justify-content-center {
+    justify-content: center!important;
+}
+</style>
+</head>
+
+<body class="bg-dark">
+  <div class="container text-center my-5">
+  {% if profile.profile_photo %}
+    <div>
+      <img class="profile" src="{{host}}{{profile.profile_photo.url}}" alt="{{profile.user.username}}">
+    </div>
+  {% endif %}
+    <p style="font-size: 20px;" class="text-white my-4">Thanks for Order @{{profile.user.username}}</p>
+  </div>
+  <h1 class="text-center text-danger my-5">Your Order Is successful</h1>
+  <div class="container my-2">
+      <div class="col jin">
+
+      {% for item in order %}
+            <div class="row">
+                <div class="col-2">
+                  <img src="{{host}}{{item.img}}" alt="{{item.name}}">
+                </div>
+                <div class="col-4">
+                  <strong>Name</strong>
+                  <p>{{item.name}}</p>
+                </div>
+                <div class="col-3">
+                  <strong>Price</strong>
+                  <p>{{item.price|get_total:item.quantity}}</p>
+                </div>
+                <div class="col-3">
+                  <strong>Quantity</strong>
+                  <p>{{item.quantity}}</p>
+                </div>
+            </div>
+    {% endfor %}
+
+    {% if  reusableBag_price %}
+     <div class="row">
+                <div class="col-2">
+                  <svg style="display:inline-block;vertical-align:middle;" width="50px" height="50px" viewBox="0 0 242 298">
+                    <path fill="#d07c3f" d="M23.28 81.69h195.8v168.62H23.46z"></path>
+                    <path fill="#5eae35" d="M123.92 142.74V95H109a14.94 14.94 0 110-29.87h14.93l-9-9a12.71 12.71 0 0117.93-17.92l9 9v-12a17.92 17.92 0 0135.84-.8v12.75l9-9A12.72 12.72 0 01206 54.74a12.94 12.94 0 01-1.39 1.38l-9 9h14.93a14.94 14.94 0 110 29.87h-14.92v47.79z">
+                    </path>
+                    <path fill="#fb0200" d="M165.75 95a29.88 29.88 0 00-29.88 29.88v6h59.75v-6A29.88 29.88 0 00165.75 95z"></path>
+                    <path fill="#ff8706" d="M34.31 136.77V35.21a29.87 29.87 0 0159.74 0v101.56z"></path>
+                    <path fill="#ffa646" d="M52.23 47.15h23.9v12h-23.9zM52.23 71.05h23.9V83h-23.9zM52.23 94.94h23.9v12h-23.9z"></path>
+                    <path fill="#008c02" d="M135.87 77V65a12 12 0 0011.95-11.95h12A23.93 23.93 0 01135.87 77z"></path>
+                    <path fill="#84d2f4" d="M48.55 67.86L37.88 46 12.49 58.35l10.66 21.89a32.18 32.18 0 011.48 24.53 32.1 32.1 0 001.5 24.59l33.35 68.44 59.25-28.87-33.35-68.44A32.08 32.08 0 0067 84.21a32.11 32.11 0 01-18.4-16.29z">
+                    </path>
+                    <path fill="#57b7eb" d="M92.13 114.34l26.6 54.59-59.25 28.87-33.34-68.43a32.14 32.14 0 01-1.49-24.53 32.21 32.21 0 00-1.48-24.54L12.48 58.35 37.88 46 42 54.48A14.9 14.9 0 0035.84 74a32.23 32.23 0 011.49 24.53 32.16 32.16 0 001.47 24.54 52.56 52.56 0 0052.66 29.28 49.64 49.64 0 01-6.17-9.11 23.54 23.54 0 016.85-28.95z">
+                    </path>
+                    <path fill="#d0d8da" d="M0 43.48L33.86 27l8.25 16.94L8.25 60.41zM30.61 138.55l59.25-28.87 14.44 29.63L45 168.18z">
+                    </path>
+                    <path fill="#93999a" d="M69 149.87a48.06 48.06 0 009.09 2.22L45 168.18l-14.39-29.63 13.63-6.64A52.13 52.13 0 0069 149.87zM92.14 114.33l12.16 25-16.59 8.08a36.06 36.06 0 01-2.4-4.06 23.56 23.56 0 016.83-29.02zM38 35.45l4.12 8.47L8.25 60.41 0 43.48l10.75-5.24a18.71 18.71 0 0018.77 1.33z">
+                    </path>
+                    <path fill="#008c02" d="M189.64 83a23.93 23.93 0 01-23.9-23.9h11.95a12 12 0 0011.95 11.95z"></path>
+                    <path fill="#ffc933" d="M82.1 101.35a29.87 29.87 0 0029.9 29.88h12a12 12 0 0012-11.95 29.87 29.87 0 00-30-29.88H94a12 12 0 00-11.9 11.95z">
+                    </path>
+                    <path fill="#eec65d" d="M13.16 122.2v163.23a12.7 12.7 0 0013 12.42 12.26 12.26 0 001.36-.1h187.35a12.71 12.71 0 0014.24-11 12.26 12.26 0 00.1-1.35V122.2c0 .18-215.88 0-216.05 0zm30.38-26.8L23.28 81.69v33.77h20.26zm175.54-13.71L198.83 95.2v20.26h20.26z">
+                    </path>
+                    <path fill="#dca34f" d="M43.53 122.2v-27L13 122.2zm155.28-27v27h30.72z"></path>
+                    <path fill="#d07c3f" d="M61.1 161a9.37 9.37 0 00-9.29 9.28A9.26 9.26 0 0061 179.6h.06a9.36 9.36 0 009.28-9.28 9.16 9.16 0 00-9-9.28zm113.09 0a9.37 9.37 0 00-9.29 9.28 9.26 9.26 0 009.23 9.28h.06a9.36 9.36 0 009.28-9.28 9.16 9.16 0 00-9-9.28z">
+                    </path>
+                    <path fill="#cba94f" d="M117.81 238.66c-33.6 0-60.76-29.7-60.76-66.33a4.23 4.23 0 118.43-.68 3.86 3.86 0 010 .68 52.52 52.52 0 00104.65 9.15 53.77 53.77 0 000-9.15 4.23 4.23 0 118.43-.68 3.86 3.86 0 010 .68c.01 36.67-27.33 66.33-60.75 66.33z">
+                    </path>
+                    <path fill="#fff" d="M117.81 233.43A61.09 61.09 0 0157 172a4.22 4.22 0 018.43-.39 2.54 2.54 0 010 .39 52.33 52.33 0 10104.65 1.95V172a4.22 4.22 0 018.43-.39 2.54 2.54 0 010 .39 61.19 61.19 0 01-60.7 61.43z">
+                    </path>
+                </svg>
+                </div>
+                <div class="col-7">
+                  <strong>Name</strong>
+                  <p>Reusable Bag</p>
+                </div>
+                <div class="col-3">
+                  <strong>Price</strong>
+                  <p>{{reusableBag_price}}</p>
+                </div>
+            </div>
+
+    {% endif %}
+          
+
+          </div>
+
+      
+  </div>
+  <div class="container jin">
+    <div class="row d-flex justify-content-center ">
+      <div class="col-8">
+        <div class="d-flex justify-content-between">
+          <strong>Sub Total Price:</strong>
+          <strong>{{subTotal}}</strong>
+        </div>
+        <div class="d-flex text-danger justify-content-between">
+          <strong>Discount:</strong>
+          <strong>-{{discount}}</strong>
+        </div>
+        {%if reusableBag_price%}
+          <div class="d-flex justify-content-between">
+            <strong>Reusable Bag</strong>
+            <strong>{{reusableBag_price}}</strong>
+          </div>
+        {%endif%}
+        <div class="d-flex justify-content-between">
+          <strong>Delivery Charge:</strong>
+          <strong>{{delivery_charge}}</strong>
+        </div>
+        <div class="d-flex justify-content-between">
+          <strong>Total Price:</strong>
+          <strong>{{totalPrice}}</strong>
+        </div>
+      </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,208 @@
+<script>
+    var active_modals_id = null;
+    function models_show(modals_id,target_id,add_adress="false",name="",phone="",area="",pk=0){
+        const model_div = $(`#${modals_id}`)
+        const target = $(`#${target_id}`)
+        let action_html
+        let ajsx_url
+        if(add_adress === "true"){
+            ajsx_model_type = "add_adress"
+            action_html = `
+            <button class="btn btn-danger" type="submit">Add</button>
+            `
+        }else{
+            ajsx_model_type = "update_adress"
+            action_html = `
+            <button class="btn btn-danger" type="submit">update</button>
+            <button class="btn" id="delete_modals">delete</button>
+            `
+        }
+
+            const modals_html = `
+            <div class="ModalDialogContainer">
+                <div class="ModalDialog fullScreenOnMobile">
+                    <div class="ModalTitle">New Address</div>
+                    <button class="close modal_close" id="${target_id}_empty"></button>
+                    <div class="ModalDialogContent undefined">
+                        <div class="addressInputComponent">
+                            <div class="show">
+                                <form id="modal_form" action="?add_adress=True">
+                                    <div class="inputContainer alternateStyle">
+                                        <div class="input-label">Name</div>
+                                        <input class="has-value" name="name" type="text" required="" maxlength="70" value="${name}">
+                                        <span class="input-error"></span>
+                                        <span class="input-description">e.g Emraan Mahmood</span>
+                                        <span class="input-extra-content"></span>
+                                    </div>
+                                    <div class="alternateInputStyle">
+                                        <div class="input-label">Phone Number</div>
+                                        <div class="input">
+                                            <span class="dial-code">+88</span>
+                                            <input type="tel" name="phone" value="0${phone}" placeholder="e.g. 01672955886">
+                                        </div>
+                                    </div>
+                                    <div class="error"></div>
+                                    <div class="city-field">
+                                        <div class="input-label">City</div>
+                                        <div class="area-input cursor-none">
+                                            <span class="areaName">{{current_city}}</span> 
+                                        </div>
+                                        
+                                        
+                                    </div>
+                                    <div  class="area-dropdown-field">
+                                        <div class="input-label">Area</div>
+                                        <select name="area" class="form-select">
+                                            {{area_option_html}}
+                                        </select>
+
+                                    </div>
+                                    <div class="inputContainer alternateStyle">
+                                        <div class="input-label">Address</div>
+                                            <textarea class="" name="address" type="text" required="" maxlength="400" rows="3">${area}</textarea>
+                                            <span class="input-error"></span>
+                                            <span class="input-description">e.g House No 73, Road 14, Block F,Bashundhara R/A, Dhaka - 1216</span>
+                                            <span class="input-extra-content"></span>
+                                    </div>
+                                    <div class="actions">
+                                        ${action_html}
+                                    </div>
+                                    <input type="hidden" value="${pk}" name="pk">
+                                </form>
+                                <div class="error dropdownError"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            `
+        target.html(modals_html)
+        model_div.attr("data-bs-toggle","modal")
+        model_div.attr("data-bs-target",`#${modals_id}`)
+
+
+        $(`#${target_id}_empty`).click((e)=>{
+            target.empty()
+        })
+
+        $("#delete_modals").click((e)=>{
+            e.preventDefault()
+            const pk = $("#modal_form").find("input[name='pk']")[0].value
+            $.ajax({
+                method:"POST",
+                url:`{% url 'customer:post_data' %}?delete=true`,
+                data:{
+                    "pk":pk,
+                    'csrfmiddlewaretoken': csrfmiddlewaretoken,
+                },
+                success:(e)=>{
+                    $(".modal_close").click()
+                    model_div.parent().parent().remove()
+                }
+                
+            })
+        })
+
+        $("#modal_form").submit((e)=>{
+            e.preventDefault()
+            const form = $("#modal_form")
+            const area = form.find("select[name='area']")[0]
+            const data = {
+                'pk': form.find("input[name='pk']")[0].value,
+                'name': form.find("input[name='name']")[0].value,
+                'adress':form.find("textarea")[0].value,
+                'phone':form.find("input[name='phone']")[0].value,
+                "area":area.value,
+            }
+            const area_text = area.options[area.options.selectedIndex].textContent
+            update_adress_ajsx(data,ajsx_model_type,area_text)
+            console.log(area_text);
+            if(ajsx_model_type == "update_adress"){
+            model_div.parent("div")[0].querySelector(".l-Adress").textContent = area_text
+            }
+            $(".modal_close").click()
+
+        })
+        
+       
+        
+    }
+    
+//models_click_event 
+function modals_render(e){
+    active_modals_id = e.id
+    models_show(active_modals_id,e.getAttribute("targetId"),e.getAttribute("adress_add"),e.getAttribute("name"),e.getAttribute("phone"),e.getAttribute("adress"),e.getAttribute("pk"))
+    if(e.getAttribute("area")){     //Render edit modals area select option selected faild
+        const option_target = $("select[name='area']")[0].options
+        for(var option=0;option<option_target.length;option++){
+            if (option_target[option].value == e.getAttribute("area")){
+                option_target[option].defaultSelected  = true
+            }
+        }
+    }
+}
+
+
+
+   
+
+function update_adress_ajsx(data,type,area_text){
+    $.ajax({
+        method:"POST",
+        url:`{% url 'customer:post_data' %}?${type}=true`,
+        data:{
+           
+            "data":JSON.stringify(data),
+            'csrfmiddlewaretoken': csrfmiddlewaretoken,
+        },
+        success:(sucData)=>{
+            console.log(sucData);
+            if(type == "update_adress"){
+                console.log("####################YES############")
+                const edit_modals_terget = $(`#${active_modals_id}`)
+                edit_modals_terget.attr("pk",data.pk)
+                edit_modals_terget.attr("name",data.name)
+                edit_modals_terget.attr("adress",data.adress)
+                edit_modals_terget.attr("phone",data.phone)
+                edit_modals_terget.attr("area",data.area)
+                edit_modals_terget.parent()[0].querySelector("p").textContent = data.adress 
+                console.log(data);
+                
+            }else{
+                const length = $("#localAdress-list section").length
+                var jin = `
+                <section class="addresses">
+                    <div class="address disableAddressSelection" data-address="1682035">
+                        <span class="selectedAddressTickIcon">
+                            <svg style="fill:#3BB07E;stroke:#3BB07E;display:inline-block;vertical-align:middle;" width="20px" height="20px" version="1.1" viewBox="0 0 100 100" x="0px" y="0px">
+                                <path d="M50,88.6c21.3,0,38.6-17.3,38.6-38.6S71.3,11.4,50,11.4S11.4,28.7,11.4,50S28.7,88.6,50,88.6z M31.8,45.9l12.3,12.3  l22.5-22.5l3,3L44.1,64.2L28.8,48.9L31.8,45.9z"></path>
+                            </svg>
+                        </span>
+                        <span>
+                            <p>${data.adress}</p>
+                            <span class="addressArea"><span class="l-Adress">${area_text}</span>, {{current_city}}</span>
+                        </span>
+                        <a pk="${sucData.pk}" name="${data.name}" area="${data.area}" adress="${data.adress}" phone="${data.phone}" adress_add="false" id="edit_adress_modals_${length}" targetId="target_modals_${length}" onclick="modals_render(this)">Edit</a>
+                    </div>
+
+                    <div id="target_modals_${length}">
+
+                    </div>
+            
+                </section>
+             `
+             console.log(area_text);
+             $("#localAdress-list").prepend(jin)
+
+            }
+        },
+        error:(err)=>{
+            console.log(err);
+        }
+    })
+} //
+
+
+
+</script>

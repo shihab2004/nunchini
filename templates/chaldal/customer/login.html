@@ -1,0 +1,105 @@
+<style>
+    label{
+        font-size: 16px;
+        font-weight: 500;
+    }
+    .phoneNumberLoginField p{
+        margin: 10px;
+    }
+    div.phoneNumberLogin select{
+        margin: 0 17px;
+    }
+</style>
+
+<div>
+    <div class="phoneNumberLogin outsideDialog authForm">
+      
+        <div class="loginWithPhoneMessage">
+            PLEASE FILLUP THE FORM
+        </div>
+        <div class="loginWithPhoneMessage">
+            {% if is_signUpForm %}
+            <img id="demopp" height="100px" width="100px" style="border-radius: 50%;display: none;" src="" alt="">
+            {% endif %}
+        </div>
+        <form>
+            <div class="phoneNumberLoginField">
+              
+                 {{form.as_p}}
+            </div>
+            <div class="actions">
+                <button class="loginBtn" type="submit">SIGN UP / LOGIN</button>
+            </div>
+        </form>
+        <div class="recaptcha">
+            <h5 class="recaptchaTxt">
+                <span>This site is protected by reCAPTCHA and the Google </span><a
+                    href="https://policies.google.com/privacy" target="_blank">Privacy Policy</a><span> and </span><a
+                    href="https://policies.google.com/terms" target="_blank">Terms of Service</a><span> apply.</span>
+            </h5>
+        </div>
+        <div class="recaptcha">
+            <h5 class="recaptchaTxt">
+                <span>To Create A New Account Go To 👉</span>
+                <a style="cursor:pointer" mat='{% url 'signup' %}?matRout=True'>Sign Up</a>
+            </h5>
+        </div>
+    </div>
+</div>
+<script>
+    var profile_pic_img_obj
+    {% if is_signUpForm %}
+    $('input[name="profile_photo"]').change(()=>{
+        const file = $('input[name="profile_photo"]')[0].files[0]
+        const url = URL.createObjectURL(file)
+        $('#demopp').attr('src',url)
+        $('#demopp').css('display','inline')
+        profile_pic_img_obj  = file
+    })
+    {% endif %}
+
+    $('.loginBtn').click((e)=>{
+        e.preventDefault();
+        const mat_forms = new FormData()
+        const trg = $('.phoneNumberLoginField');
+        mat_forms.append('username',trg.find('input[name="username"]').val())
+        mat_forms.append('csrfmiddlewaretoken',csrfmiddlewaretoken)
+        {% if is_signUpForm %}
+            mat_forms.append('password1',trg.find('input[name="password1"]').val())
+            mat_forms.append('password2',trg.find('input[name="password2"]').val())
+            mat_forms.append('gender',trg.find('select[name="gender"]').val())
+            mat_forms.append('Phone',trg.find('input[name="Phone"]').val())
+            mat_forms.append('current_city',trg.find('select[name="current_city"]').val())
+            mat_forms.append('profile_photo',profile_pic_img_obj)
+
+        {% else %}
+
+         mat_forms.append('password',trg.find('input[name="password"]').val())
+        {% endif %}
+        $.ajax({
+            method:"POST",
+            url:"{{url}}?matRout=True",
+            {% if is_signUpForm %}
+            enctype: "multipart/form-data",
+            cache: false,
+            processData: false,
+            contentType: false,
+            data:mat_forms,
+            {% else %}
+            data:{
+                'csrfmiddlewaretoken':csrfmiddlewaretoken,
+                "username":trg.find('input[name="username"]').val(),
+                "password":trg.find('input[name="password"]').val(),
+            },
+            {% endif %}
+            success:(data)=>{
+                console.log(data);
+                if(data.status == 'succsess'){
+                    window.location = data.url;
+                }else if(data.status == 'err'){
+                    alert(data.data);
+                }
+            }
+        })
+    })
+</script>

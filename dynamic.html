@@ -1,0 +1,43 @@
+  <section class="bodyTable">
+                <div class="profile">
+                    <h2 class="profile-title">Your Profile</h2>
+                    <div class="profile-info">
+                        <form>
+                            <div class="inputContainer">
+                                <div id="profile_photo">
+                                    <div style="background-image: url({{profile_pic}})"></div>
+                                </div>
+                            </div>
+                            <div class="inputContainer">
+                                <input class="has-value" name="name" type="text" required maxlength="70" value="{{user_name}}">
+                                <span class="input-placeholder">Name</span>
+                                <span class="input-error"></span>
+                                <span class="input-extra-content"></span>
+                            </div>
+                            <div class="inputContainer">
+                                <input class="paddingForExtraContent" name="email" type="email" value="{{user_email}}">
+                                <span class="input-placeholder">Email Address</span>
+                                <span class="input-error"></span>
+                                <span class="input-extra-content" style="margin-top: -11px;" >
+                            </div>
+                            <div class="inputContainer disable">
+                                <input class="has-value" name="number" type="text" disabled value="+880{{user_phone}}">
+                                <span class="input-placeholder">Phone Number</span>
+                                <span class="input-error"></span>
+                                <span class="input-extra-content">
+                            </div>
+                   
+                            <div class="inputContainer" data-reactid=".26j8ymn200w.6.2.0.0.1.0.3">
+                                <label class="labelClass" data-reactid=".26j8ymn200w.6.2.0.0.1.0.3.0">Gender</label>
+                                <select class="selectClass">
+                                    {{gender_option_html}}
+                                </select>
+                            </div>
+                        </form>
+                     </div>
+                     
+                
+
+                </div>
+</section>
+                <script>console.log("HELLOOOOOOOOOO")</script>

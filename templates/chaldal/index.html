@@ -1,0 +1,740 @@
+{% load static %}
+
+
+<link rel="stylesheet" href="{% static 'owlcarousel/owl.carousel.min.css' %}">
+<script src="{% static 'owlcarousel/owl.carousel.min.js' %}"></script>
+<link rel="stylesheet" href="{% static 'owlcarousel/owl.theme.default.min.css' %}">
+
+<div>
+  <div class="landingPage2">
+    <div
+      class="landingBanner"
+      style="
+        background: url(/media/landingBannerTop.jpg)
+          no-repeat center;
+        background-size: cover;
+        height: 325px;
+        padding-top: 100px;
+      "
+    >
+      <div
+        itemscope=""
+        itemprop="google"
+        content="nositelinkssearchbox"
+        class="floatingSearchBar"
+      >
+        <meta itemprop="url" content="https://chaldal.com/" />
+        <div class="searchBarContainer">
+          <h2>
+            <span> </span><span>Groceries delivered in 1 hour</span
+            ><span> </span>
+          </h2>
+          <form
+            itemprop="potentialAction"
+            itemscope=""
+            itemtype="http://schema.org/SearchAction"
+            class="searchArea"
+          >
+            <table>
+              <tbody>
+                <tr>
+                  <td>
+                   <input
+                      name="mainSearch"
+                      class="searchBox"
+                      type="text"
+                      autocomplete="off"
+                      placeholder="Search for products (e.g. eggs, milk, potato)"
+                      required=""
+                    />
+                  </td>
+                  <td class="buttonCell">
+                    <button type="submit">
+                      <svg
+                        class="search"
+                        version="1.1"
+                        x="0px"
+                        y="0px"
+                        viewBox="0 0 100 100"
+                      >
+                        <path
+                          d="M44.5,78.5c-18.8,0-34-15.3-34-34s15.3-34,34-34s34,15.3,34,34S63.3,78.5,44.5,78.5z M44.5,18.1  C30,18.1,18.2,30,18.2,44.5S30,70.8,44.5,70.8S70.9,59,70.9,44.5S59,18.1,44.5,18.1z"
+                        ></path>
+                        <path
+                          d="M87.2,91c-1,0-2-0.4-2.7-1.1L63.1,68.5c-1.5-1.5-1.5-3.9,0-5.4s3.9-1.5,5.4,0l21.3,21.3  c1.5,1.5,1.5,3.9,0,5.4C89.2,90.6,88.2,91,87.2,91z"
+                        ></path>
+                      </svg>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </form>
+        </div>
+      </div>
+    </div>
+    <section id="discount-offers-refer">
+     
+        <div class="discount-offer">
+          <img
+            src="{{frist_img}}"
+          /></div>
+
+        <div class="referral">
+          <img
+            src="{{second_img}}"
+          /></div
+      >
+    </section>
+    <div class="mainContainer">
+      <section id="product-categories" class="categoryTiles">
+        <div class="initialLabel">
+          <h2><span>Our Product Categories</span></h2>
+        </div>
+        <div class="mainTile">
+           
+        </div>
+      </section>
+    </div>
+ 
+
+
+
+
+
+
+
+<style>
+ .owl-theme .owl-dots .owl-dot.active span,.why_chaldal .owl-theme .owl-dots .owl-dot:hover span {
+    background: #4c8e00;
+   
+}
+ .owl-theme .owl-dots .owl-dot span,.why_chaldal .owl-theme .owl-dots .owl-dot:hover span {
+
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
+  .banner-slide{
+    height: 400px;
+
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  .why_chaldal > div {
+    width: 60%;
+  }
+  .owl-nav{
+    display: none;
+  }
+  @media screen and (max-width: 1200px) {
+    .why_chaldal > div {
+    width: 90%;
+  }
+}
+  @media screen and (max-width: 600px) {
+    .why_chaldal > div {
+    width: 98%;
+  }
+  .banner-slide{
+    height: 200px;
+  }
+}
+
+.product section{
+    margin-bottom: 0px !important;
+}
+</style>
+
+
+
+
+
+<div class='why_chaldal' style="display: flex;justify-content: center;">
+  <div class="owl-carousel owl-theme">
+    {% for order in how_to_order %}
+    <div class="item"><div class="banner-slide slide" style="background-image: url({{order.img.url}});"></div></div>
+    {% endfor %}
+  </div>
+</div>
+
+
+
+
+
+
+    <section id="OfferSlider">
+      <div class="initialLabel"><h2>Special Offers</h2></div>
+      <div class="mainTile">
+        <div class="bestSellerContainer your-offers">
+          <div class="carousel items-carousel">
+            <div class="items-slides-container">
+              
+
+
+
+
+
+
+
+
+              <div class='offer_index' style="display: flex;justify-content: center;">
+                <div class="owl-carousel owl-theme">
+              
+                  {% for offer in ofer_order %}
+                  <div class="item">
+              
+                      <div class="offer-item">
+                        <h2>{{offer.Name}}</h2>
+                        <img
+                          src="{% if offer.offer_image %}{{offer.offer_image.url}}{% endif %}"
+                          alt="{{offer.Name}}"
+                          class="offer-image"
+                        />
+                        <div class="product" product-id="{{offer.pk}}">
+                          <div class="imageWrapper">
+                            <div class="imageWrapperWrapper">
+                              <img
+                                src="{{offer.get_display_image}}"
+                                size="400"
+                                style="background-color: transparent"
+                              />
+                            </div>
+                            <div class="name">{{offer.Name}}</div>
+                            <div class="subText">{{offer.Amount}}</div>
+                            <div class="discountedPriceSection">
+                              <div class="discountedPrice">
+                                <span>৳ </span><span>{{offer.Price}}</span>
+                              </div>
+                              <div class="price">
+                                <span>৳ </span><span>{{offer.get_discord_price}}</span>
+                              </div>
+                            </div>
+                            <div class="overlay text">
+                              <p class="addText">Add to Shopping Bag</p>
+                              <span ><a href="/product/{{offer.slug}}/" class="btnShowDetails" ><span>Details</span><span> &gt;</span></a>
+                                <a
+                                  href="//product/{{offer.slug}}/"
+                                  class="btnShowDetailsIcon"
+                                  >
+                                  <svg width="24px" height="24px" style=" fill: #e1e1e1; stroke: #e1e1e1; display: inline-block; vertical-align: middle; " version="1.1" viewBox="0 0 100 100">
+                                    <path
+                                      d="m50 5c-24.898 0-45 20.102-45 45s20.102 45 45 45 45-20.102 45-45-20.102-45-45-45zm7.1016 70c0 2.1992-1.8984 4.1016-4.1016 4.1016h-6.1992c-2.1992 0-4.1016-1.8984-4.1016-4.1016v-26.199c0-2.3008 1.8984-4.1016 4.1016-4.1016h6.1992c2.1992 0 4.1016 1.8984 4.1016 4.1016zm-7.2031-37.102c-4.6016 0-8.3984-3.8008-8.3984-8.5 0-4.6992 3.8008-8.5 8.3984-8.5 4.6992 0 8.5 3.8008 8.5 8.5 0 4.7031-3.7969 8.5-8.5 8.5z"></path></svg>
+                                      </a>
+                                      </span>
+                            </div>
+                          </div>
+                          <span class="linkStore"><a
+                              href="/product/{{offer.slug}}/"
+                              class="btnShowDetails"
+                              ><span>Details</span><span> &gt;</span></a
+                            ><a
+                              href="/product/{{offer.slug}}/"
+                              class="btnShowDetailsIcon"
+                              ><svg
+                                width="24px"
+                                height="24px"
+                                style="
+                                  fill: #e1e1e1;
+                                  stroke: #e1e1e1;
+                                  display: inline-block;
+                                  vertical-align: middle;
+                                "
+                                version="1.1"
+                                viewBox="0 0 100 100"
+                              >
+                                <path
+                                  d="m50 5c-24.898 0-45 20.102-45 45s20.102 45 45 45 45-20.102 45-45-20.102-45-45-45zm7.1016 70c0 2.1992-1.8984 4.1016-4.1016 4.1016h-6.1992c-2.1992 0-4.1016-1.8984-4.1016-4.1016v-26.199c0-2.3008 1.8984-4.1016 4.1016-4.1016h6.1992c2.1992 0 4.1016 1.8984 4.1016 4.1016zm-7.2031-37.102c-4.6016 0-8.3984-3.8008-8.3984-8.5 0-4.6992 3.8008-8.5 8.3984-8.5 4.6992 0 8.5 3.8008 8.5 8.5 0 4.7031-3.7969 8.5-8.5 8.5z"
+                                ></path></svg></a>
+                                </span>
+                          <section class="addButtonWrapper asd border-radius-small">
+                            <span class="express" id="svgIcon">
+                            <svg width="22px" height="25px" style="display: inline-block;vertical-align: middle;" version="1.1" x="0px" y="0px" viewBox="-9 11 100 100">
+                                <path class="st0" d="M59.4,32.6c0.2,0.2-0.2,0.3-0.2,0.3s-1.2,0.3-1.5,0.8c-0.3,0.3-0.8,1.5-0.8,1.5c0.7-0.2,1.5-0.3,2.3-0.7 c0.2,0,0.3,0.2,0.5,0.3c0.2,0-2,0.8-2.5,1.2c-0.3,0.3-2,1.7-2.5,1.7S53,37.9,53,37.9c0.2,0.3,0.3,0.7,0.7,1.2c0,0-1.2,0.7-1.2,0.8 c-0.2,0.2-1,1.2-1,1.2s3,0.3,4-1.3c-1,1.7-3.3,3.3-8.2,3.3c-5,0-9-2-11.7-3c-2.8-1.2-6.5-2.5-9.5-2.5c-2.8,0-6.2,0.8-8.4,2.9 c-3.9-1.5-9.2-0.7-11.7,1.7c-2.3,2.3-4.7,5.2-5,7.2c-0.5,2.2-1.7,7.4-3.3,9.7c-2.3,3.8-5,4.8-5.9,6.5c-0.8,1.7-0.8,5.2-0.7,5.2 c0.3,0.2,1.5,0,2.2-0.3c1.3-0.5,5-4.3,6.4-6.2c1.3-1.8,5.9-9.9,6.5-12.7c0.7-2.8,1.3-5.7,3.3-7.2c2.2-1.5,4.8-0.8,4.8-0.7 c0,0-2.5,2-2.7,7.5c-0.2,5.5,3.2,4.9,1.5,8.4c-1.7,3-6.7,1-8.4,2.8c-1.3,1.5,0,6.9,0,7.9c0,1-0.5,5.7-0.8,6.9c-0.2,1,0,1.7-0.2,2.3 c-0.2,0.5,1,0.7,1,0.7s-1,1.3-1.5,1c-0.5-0.2-0.8-0.2-1.2,0c-0.3,0-1,0.3-1.7,0l-2.7,5.7c0.3,0.2,0.8,0.3,1.3,0.2 c0.7-0.2,4-1.7,4.4-2c0.5-0.2,3.3-1.8,3.8-2.8c0.3-1,1-4.2,1-5.2c0.2-1,0.3-4.2,0.3-5c0-0.8-0.2-2.3,0-3c0.3-0.5,0.8-1.2,1.5-1.5 c0.8-0.2,1.8-0.2,2-0.2c0.3,0,3.2,0.3,3.7,0.3c0.7,0,3.3-0.5,4-0.8c0.8-0.2,1.3,0,1.5,0.3c0.3,0.3-0.3,0.8-0.3,1 c-0.2,0.2-1.5,1.8-1.8,2.5c-0.3,0.8-1.5,2.3-1.2,3c0.3,0.7,0.3,0.8,1.3,1.3c1,0.3,4.9,2.3,7,4.3c2.3,2.2,4.5,4.8,4.9,6.2 c0.5,1.5,1.3,1.7,1.8,1.7c0.5,0.2,1.5,0.3,1.5,1c0,0.7-0.2,1.5-0.2,1.5l6.2,2.3c0,0,0-2.2-0.2-3c-0.2-1-1.2-2-2-3 c-0.8-1.2-9.5-9.7-10.4-10.4c-0.8-0.5-1.5-1.2-1.7-2.5c-0.2-1.3,1.5-2.3,2.5-3.5c0.7-0.8,2.5-4.7,2.8-5.2c0.3-0.5,1.5-1.8,2.2-1.8 c0.8,0,2.7,1.2,5,2c1,0.3,8.2,2.2,9.2,2.5c1,0.2,3.2,0,3.8,0.7c0.7,0.5,0,1.8-0.2,2.7c-0.2,1-2,4.7-2,4.7s0.3,1.3,0.3,2.4 c0,1.2-0.5,5.3-1,6.7c-0.3,1.5-2.7,5.4-3.2,6c-0.3,0.5-0.8,0.8-0.8,1.7c0,0.8,1.5,1,2,1.7c0.7,0.5,0.2,1.5,0,2.5l6.7,2.8 c0-0.5,0.3-1.3,0-1.7c-0.2-0.5-1-1.5-1.5-2.2c-0.3-0.5-1.5-2.3-1.8-2.7c-0.3-0.5-0.3-1.5,0-2.3c0.2-0.8,2.3-6.5,2.5-7.2 c0.3-0.8,3.5-7.5,3.8-8.4c0.3-1,3-5.9,3.3-6.7c0.3-1,2.5-1.8,3.2-1.8c0.8,0,5,1.5,5.7,1.8c0.5,0.2,4.4,1.8,5,2.2 c0.8,0.3,0.3,1-0.2,1.2c-0.5,0.3-6.7,4.5-7.2,4.7c-0.5,0.2-1,0.7-1.3,0.7c-0.5,0-1.2,0.5-1.2,0.7c0,0.3-0.2,1-1,1c-0.7,0-2-1-2.8-2 c-1.2,0.7-2,1.2-2.5,2.2c-0.8,0.8-1.2,1.5-1.7,2.7c0.3,0.3,1,0.5,1.5,0.5h5.4c0.5,0,1.2-0.2,1.7-0.3c0.5-0.3,13.7-9,13.7-9 s2.2-1.7,2.2-3.2c0-1.2-1-1.5-1.3-2c-0.5-0.3-3.5-2.3-4-2.7c-0.7-0.5-3-1.8-3.7-2.2c-0.5-0.3-2.4-1-2.4-1c0.5-1.5,0.8-2.7,1-3 c0.2-0.3,0.2-3.4,0.3-3.9c0-0.5,0.8-2.7,1.2-3c0.3-0.3,1.2-3,1.3-3.5c0.2-0.3,1.5-4.2,2.2-4.2c0.7-0.2,1.3,0.5,2,0.5 c0.7,0.2,3.2-0.2,4.5,0c1.2,0.2,2.7,1.7,3,1.8c0.5,0.2,1.7,0.7,2,0.7c0.2,0,1.8-1.2,1.8-1.5c0-0.3-1.2-1-1.3-1 c-0.2-0.2-1.3-0.8-1.3-0.8c0,0.2,0.5-0.3,1.3-0.3c0.7,0,1.3,0.7,1.5,0.8c0.3,0.2,1.2,0.7,1.3,0.3c0.2-0.2,0.8-1,0.8-1.5 c0-0.7-0.7-1.5-1-1.8c-0.3-0.3-4.2-4-4.5-4.2c-0.5-0.2-2.5-2-2.5-2.5c-0.2-0.3-1.2-1.2-1.3-1.3c-0.2-0.2-5.2-3.7-5.9-4.2 c-0.7-0.5-1.3-1.3-1.3-2.2c0-0.8-0.3-3-0.3-3s-1.2-0.2-1.7,0.3c-0.5,0.3-1.7,3-2.3,3c-1.8-0.3-4.2,0.2-4.2,0.5 c0.2,0.5,1.8,0.2,1.8,0.2c0,0.2-0.7,1-1.2,1c-0.3,0-1.3,0.3-1.5,0.5c-0.3,0-1,0.5-1,0.5c0.5,0,1,0,1.7,0.2c0,0-1,0.7-1.5,0.7 c-0.5,0-2.2,0.5-2.7,0.7c-0.3,0.3-1.7,1.3-1.7,1.3h-1.5l0.2,0.3h0.8L59.4,32.6L59.4,32.6z" </path></svg></span>
+                            <p class="buyText">Add to bag</p>
+                          </section>
+
+                        </div>
+
+
+
+                      </div>
+                   
+              
+                  </div>
+                {% endfor %}
+                </div>
+              </div>
+              
+              
+              
+              
+
+
+
+
+
+              
+            </div>
+            <div class="carouselLeft carouselNavigation">
+              <span></span><span></span>
+            </div>
+            <div class="carouselRight carouselNavigation">
+              <span></span><span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="love-chaldal">
+      <div class="initialLabel">
+        <h2>
+          <span
+            >Why People
+            <svg
+              width="50px"
+              height="50px"
+              style="
+                fill: #ff0000;
+                stroke: #ff0000;
+                display: inline-block;
+                vertical-align: middle;
+              "
+              version="1.1"
+              viewBox="0 0 100 100"
+            >
+              <path
+                d="m83.332 27.082c-2.293-4.168-16.668-18.125-33.332 2.082-17.5-20.207-31.043-6.25-33.332-2.082-4.168 7.707-1.668 19.375 4.168 25l29.168 29.168 29.168-29.168c5.8281-5.625 8.3281-17.289 4.1602-25z"
+              ></path>
+            </svg>
+            Chaldal
+          </span>
+        </h2>
+      </div>
+      <div class="mainTile">
+
+      </div>
+    </section>
+    <section id="feedback">
+      <div class="initialLabel"><h2>What our clients are saying</h2></div>
+      <div class="mainTile">
+       
+
+        <style>
+          .userRecommendation .slideContents{
+            display: flex;
+            align-items: center;
+          }
+          .userRecommendation .profile{
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            font-size: 19px !important;
+          }
+          .userRecommendation img{
+            height: 100px !important;
+            width: 100px !important;
+            border-radius: 50%;
+          }
+          .userRecommendation .commentsAndRating .comments:before {
+
+            top: calc(50% - 20px) !important;
+          }
+        </style>
+        <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+      />
+<div class='message_c8' style="display: flex;justify-content: center;">
+                <div class="owl-carousel owl-theme">
+              
+            
+                  {% for message in rated_massage %}
+                  <div class="item">
+              
+                      <div class="userRecommendation slide" >
+                        <div class="slideContents">
+                          <div class="profile">
+                            <img
+                              src="{% if message.profile.profile_photo %}{{message.profile.profile_photo.url}}{% endif %}"
+                            />
+                            <div class="profileName">{{message.profile.user.username}}</div>
+                          </div>
+                          <div class="commentsAndRating">
+                            <p class="comments">
+                              {{message.message}}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+
+
+                    </div>
+                
+                {% endfor %}
+                </div>
+              </div>
+
+
+
+
+
+      </div>
+    </section>
+
+
+    <section id="corporate" style="background-image: url({{corporate_image}});">
+      <div class="mainContainer">
+        <div class="corporate-content">
+          <div class="initialLabel">
+            <svg width="80px" height="80px" style="fill: #fff;stroke: #fff;display: inline-block;vertical-align: middle;" version="1.1" viewBox="0 0 100 100">
+              <g>
+                <path d="m82.652 27.863h-18.59v-2.1328c0-3.4453-2.8047-6.25-6.25-6.25h-15.625c-3.4453 0-6.25 2.8047-6.25 6.25v2.1328h-18.59c-1.0039 0-1.8164 0.8125-1.8164 1.8164v16.371c0 0.78125 0.5 1.4766 1.2422 1.7227l23.281 7.75v6.6875c0 1.0039 0.8125 1.8125 1.8125 1.8164l16.289 0.035156h0.003906c0.48047 0 0.94141-0.19141 1.2812-0.53125s0.53125-0.80469 0.53125-1.2852v-6.7227l23.246-7.75c0.74219-0.24609 1.2422-0.94141 1.2422-1.7227l0.007812-16.371c0-1.0039-0.8125-1.8164-1.8164-1.8164zm-43.082-2.1328c0-1.4414 1.1719-2.6172 2.6172-2.6172h15.625c1.4414 0 2.6172 1.1719 2.6172 2.6172v2.1328h-20.859zm4.1172 34.668v-4.3672h12.656v4.3945zm37.148-15.656l-22.969 7.6562h-15.703l-23-7.6602v-13.242h61.672z"></path>
+                <path d="m82.652 52.398c-1.0039 0-1.8164 0.8125-1.8164 1.8164v16.184c0 3.5781-2.9102 6.4922-6.4922 6.4922l-48.691-0.003906c-3.5781 0-6.4922-2.9102-6.4922-6.4922l0.003906-16.18c0-1.0039-0.8125-1.8164-1.8164-1.8164s-1.8164 0.8125-1.8164 1.8164v16.184c0 5.582 4.543 10.125 10.125 10.125h48.691c5.582 0 10.125-4.543 10.125-10.125l-0.003906-16.184c0-1.0039-0.8125-1.8164-1.8164-1.8164z"></path>
+              </g>
+            </svg>
+            <h2>Do you own a business?</h2>
+            <h3>Become a Corporate Customer</h3>
+          </div>
+          <ul class="corporate-benefits">
+
+          </ul>
+          <a mat="/corporate/?matRout=True">find out more</a>
+        </div>
+      </div>
+    </section>
+    <div class="mainContainer">
+      <section id="chaldalApps">
+        <div class="chaldalAppsContent">
+          <div class="initialLabel">
+            <h2 class="heading">Be a part of our family</h2>
+          </div>
+          <form>
+            <div class="inputGroup">
+              <div class="phoneNumberLoginField focused">
+                <div class="input">
+                  <img
+                    src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                    class="flag flag-bd"
+                  /><input type="tel" value="+88" placeholder="" />
+                </div>
+                <div class="placeholder">e.g. +880{{root.Mobile.first.Phone}}</div>
+              </div>
+              <input type="submit" name="submit" value="Get app" />
+            </div>
+          </form>
+          <div class="appButtonGroup">
+             
+             {% if root.Play_store %}<a href="{{root.Play_store}}" class="googlePlayLink">
+              <img src="/media/lp_getandroidapp.webp" alt="Download chaldal Android app" /></a>{% endif %}
+              {% if root.App_store %}
+              <a href="{{root.App_store}}" class="iosAppLink">
+              <img src="/media/lp_getappleapp.webp" alt="Download chaldal iOS app"/></a>{% endif %}
+          </div>
+        </div>
+        <img
+          class="chaldalAppPreview"
+          src="/media/lp_iphone_nexus.webp"
+        />
+      </section>
+    </div>
+    <section id="map">
+      <div class="wrap">
+        <div class="mapImage">
+          <img src="/media/chaldal_new_warehouses.webp"/>
+        </div>
+        <div class="infoText">
+          <div class="mainTitle"><div class="name">Dhaka</div></div>
+          <div class="section">
+            <div class="title">Total Orders Placed</div>
+            <div class="info"><span></span></div>
+          </div>
+          <div class="section">
+            <div class="title">Total Savings</div>
+            <div class="info"></div>
+          </div>
+          <div class="section">
+            <div class="title">Our Total Customers</div>
+            <div class="info"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+   
+      
+
+
+
+    <footer id="footer">
+      <section class="footer-banner">
+        <div class="banner">
+          <div class="wrap">
+            <div class="left-area">
+              <ul>
+                {% for features in root.Features.all %}
+                <li>
+                  <span class="icon">
+                      <img src="{{features.image.url}}" />
+                  </span>
+                    <span class="text">{{features.name}}</span>
+                </li>
+             {% endfor %}
+              </ul>
+            </div>
+            <div class="right-area">
+              <ul>
+                <li class="text">Pay with</li>
+              {% for method in root.Payment_allow.all  %}
+                <li class="icon">
+                  <img src="{{method.get_image}}"/>
+                </li>
+              {% endfor %}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      
+      <div class="footer-left">
+        <div class="footerTop">
+          <h2 class="footerLogo">
+            <img
+              class="chaldal_logo"
+              style="
+                background-image: url({{root.get_logo}});
+                background-repeat: no-repeat;
+              "
+              src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+              alt="Chaldal.com"
+            />
+          </h2>
+          <p>{{root.Description}}</p>
+        </div>
+
+
+
+         <div class="footerBottom">
+                    {% for item in footer %}
+                    <div class="list-type customer-service">
+                        <p>{{item.name}}</p>
+                        <ul>
+                            {% for links in item.menu.all %}
+                            <li><a {% if links.url %}mat="{{links.get_url}}"{%endif%}>{{links.name}}</a></li>
+                            {%endfor%}
+                        </ul>
+                    </div>
+                  {%endfor%}
+          </div>
+
+
+      </div>
+
+      <div class="footer-right">
+                <div class="app-download-section">
+                    <div class="wrap">
+                    {% if root.Play_store %}
+                        <div class="google_play_store">
+                            <a target="_blank" href="{{root.Play_store}}">
+                                <img src="{{MEDIA_URL}}others/google_play_store.jpg">
+                            </a>
+                        </div>
+                    {% endif %}
+                    {% if root.App_store %}
+                        <div class="app_store">
+                            <a target="_blank" href="{{root.App_store}}">
+                                <img src="{{MEDIA_URL}}others/app_store.jpg">
+                            </a>
+                        </div>
+                    {% endif %}
+                    </div>
+                </div>
+                <div class="contact-section">
+                    <div class="phone-number">
+                        <div class="wrap"><span class="phone-icon">
+                        <img src="{{MEDIA_URL}}others/phone_icon.jpg"></span><span
+                                class="number">0{{root.Mobile.all.first.Phone}}</span>
+                        </div>
+                    </div>
+                    <div style="text-align: center;" class="email-address"><span class="pre-text">or email</span>
+                        <span style="display: flex;flex-direction: column;" class="email">
+                        {% for email in root.Email.all %}
+                           <span> {{email.email}}</span>
+                        {% endfor %}
+                        </span>
+                    </div>
+                </div>
+                <div class="social-section">
+                    <ul>
+                    {% for socalMd in root.Social_media.all %}
+                        <li>
+                            <a href="{{socalMd.url}}" target="_blank"><span>
+                                </span><img
+                                    src="{{socalMd.image.url}}"><span>
+                                </span></a>
+                        </li>
+                    {% endfor %}
+                    </ul>
+                </div>
+            </div>
+    </footer>
+  </div>
+</div>
+
+
+<script>
+
+$.ajax({
+    type:"GET",
+    url:"?json=True",
+    success:(data)=>{
+        console.log(data)
+        $('#map .info')[0].textContent = data.total_order;
+        $('#map .info')[1].textContent = `৳${data.total_money_saved}`;
+        $('#map .info')[2].textContent = data.total_customer;
+        const obj = new indexObj(data);
+        obj.set_corporate_sectionHtml();
+        obj.set_love_sectionHtml();
+        obj.set_menu()
+       
+    }
+  })
+
+
+ {% if need_obj %}
+ 
+  class indexObj{
+    constructor(obj){
+      this.corporate = obj.corporate_section
+      this.target_corporate = $('.corporate-benefits')
+      this.love_chaldal = obj.why_chaldal_section
+      this.target_love_section = $('#love-chaldal .mainTile')
+      this.menu = obj.menu
+      this.target_menu = $('#product-categories .mainTile')
+      this.banner_order = obj.how_to_order_slider
+      this.target_order_banner = $('#how_to_order_banner .owl-carousel')
+    }
+    set_corporate_sectionHtml(){
+        let html = "";
+      this.corporate.forEach(item =>{
+        html += `
+        <li class="corporate-benefits-item">
+            <i class="tick"></i>
+                ${item.svg}
+            <h4>${item.title}</h4>
+        </li>
+        `;
+      })
+      this.target_corporate.append(html)
+     
+    }
+    set_love_sectionHtml(){
+        let html = "";
+       this.love_chaldal.forEach(item =>{
+            html += `
+            <div class="tile">
+            <div class="tileHeaderImg">
+                <img src="${item.img}"/>
+            </div>
+            <div class="tileHeaderText">
+                <h3><span>${item.title}</span></h3>
+                <p><span>${item.discription}</span></p>
+            </div>
+            </div>
+            `;
+       })
+       this.target_love_section.append(html);
+
+    }
+    set_menu(){
+        let html = "";
+        this.menu.forEach(item =>{
+            html += `
+            <a href="/${item.link}" class="menu_0022">
+            <div class="categoryBox">
+              <div class="categoryName">${item.name}</div>
+              <div class="categoryImg">
+                    ${item.svg}
+              </div>
+            </div>
+          </a>
+            `;
+        })
+        this.target_menu.append(html);
+        
+    }
+   
+  }
+
+
+  $(`[mat='{% url "index" %}?matRout=True']`).attr("mat","{% url 'index' %}?matRout=True&obj=True")
+ {% endif %}
+
+
+
+$(document).ready(()=>{
+    $('.why_chaldal .owl-carousel').owlCarousel({
+        items:1,
+      loop:true,
+      margin:10,
+      nav:true,
+      autoplayHoverPause:true,
+      autoplayTimeout:2800,
+      autoplay:true,
+     
+    })
+
+
+    $('.offer_index .owl-carousel').owlCarousel({
+      items:1,
+    loop:true,
+    margin:3,
+    nav:true,
+    autoplayHoverPause:true,
+    autoplayTimeout:2500,
+    autoplay:true,
+    responsive : {
+      1000:{
+        items:2,
+        autoplayTimeout:2000,
+      },
+      1200:{
+        items:3,
+        autoplayTimeout:1700,
+      },
+    
+  }
+   
+  })
+
+
+
+  $('.message_c8 .owl-carousel').owlCarousel({
+    items:1,
+    loop:true,
+    margin:3,
+    nav:true,
+    autoplayHoverPause:true,
+    autoplayTimeout:1565,
+    autoplay:true,
+    animateIn: 'animate__fadeIn',
+    animateOut: 'animate__fadeOutDown',
+
+  })
+
+
+
+  $('#OfferSlider .carouselRight').click(()=>{
+    $('#OfferSlider .owl-next').click();
+  })
+   
+  $('#OfferSlider .carouselLeft').click(()=>{
+    $('#OfferSlider .owl-prev').click();
+  })
+   
+})
+
+setTitle('Home')
+</script>

@@ -1,0 +1,77 @@
+<section class="bodyTable">
+  <div>
+    <div class="checkoutExperience2">
+      <div>
+        <div class="checkoutConfirmComponent">
+          <div class="orderSuccess">
+            <img
+              src="{{MEDIA_URL}}/cancelled-crate.webp"
+            />
+            <div class="orderSuccessMessage">
+              <div class="orderNum">
+                <span>Order Number </span><b><span>#{{orderId}}</span></b>
+              </div>
+              <div class="thankYou">
+                <div><span>has been cancelled</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="restOfThePage">
+            <div class="orderDetails">
+              <div class="orderSummary">
+                <div class="orderSummaryContent">
+                  <h6>Order Summary</h6>
+                  <table>
+                    <tbody>
+                      <tr>
+                        <td class="label">Subtotal</td>
+                        <td class="value"><span>৳</span><span>0</span></td>
+                      </tr>
+                      <tr>
+                        <td class="label">Discount</td>
+                        <td class="value"><span>- ৳</span><span>71</span></td>
+                      </tr>
+                      <tr>
+                        <td class="label">Order Total</td>
+                        <td class="value"><span>৳</span><span>0</span></td>
+                      </tr>
+                      <tr>
+                        <td class="label walletRed">Amount Paid</td>
+                        <td class="value"><span>৳</span><span>0</span></td>
+                      </tr>
+                    </tbody>
+                    <tfoot>
+                      <tr>
+                        <td class="label">Due</td>
+                        <td class="value"><span>৳</span><span>0</span></td>
+                      </tr>
+                    </tfoot>
+                  </table>
+                </div>
+              </div>
+              <div class="orderSummary">
+                <div class="deliveryDetails">
+                  <h6>Delivery Address</h6>
+                  <p>{{Delivery_Address}}</p>
+                  <h6>Preferred Delivery Timings</h6>
+                  <div
+                    class="deliveryTimeSelectionContainer singleSlotShipment"
+                  >
+                    <div class="expressDelivery">
+                      <div class="deliveryTypeTitle">Express Delivery</div>
+                      <div class="deliveryDate">{{Delivery_day}} {{Delivery_mounth}}</div>
+                      <div class="deliveryTimeRange">
+                        <span>{{Delivery_from_time}}</span><span> - </span><span>{{Delivery_to_time}}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
