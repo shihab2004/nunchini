@@ -1,4 +1,3 @@
-import imp
 from root.models import Menu
 from django import template
 from root.models import basic_setting
